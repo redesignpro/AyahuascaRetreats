@@ -1,0 +1,3694 @@
+{% extends './base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+    <span style="display: none" id="perftrack"></span>
+    <div class="search__hero__container">
+      <header class="fullwidth-header header-fullsize">
+        <div class="t-container breadcrumbs-container">
+          <div class="t-row">
+            <div class="col-sm-12">
+              <div class="breadcrumbs-box horizontal-scroll">
+                <div class="breadcrumbs horizontal-scroll__elements"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-background-container">
+          <div class="hero-background zoom-in">
+            <video
+              muted
+              width="100%"
+              src="https://statics.tpn.to/hero/video/byr_1440.mp4"
+              class="video_hero--inline"
+              loop
+              preload="auto"
+              height="100%"
+              autoplay
+              type="video/mp4"
+              defaultMuted
+            ></video>
+          </div>
+        </div>
+        <div class="t-container box-container hero-box-container">
+          <div class="t-row">
+            <div
+              class="hero-box box-main col-sm-7 col-sm-offset-1 col-md-offset-0"
+            >
+              <div class="box-content">
+                <h1 class="catamaran">
+                  Enrich your life with an unforgettable yoga retreat
+                </h1>
+                <h2>
+                  <a href="#start-discovering" class="js-scroll-to">
+                    Book yoga retreats, holidays and courses from 1865
+                    organizers worldwide
+                  </a>
+                </h2>
+              </div>
+            </div>
+            <form method="GET" action=''>
+            <div class="search__wrapper tp_clearer_search_dropdown">
+              
+              <div
+                id="yoga_search"
+                class="search__input-wrapper search__input-wrapper--compound"
+              >
+                <div class="search__icon">
+                  <i class="fas fa-search-location center"></i>
+                </div>
+                <input
+                  type="text"
+                  name='search-txt'
+                  id = 'search-txt'
+                  placeholder="Try &#34;Bali&#34; or &#34;Vinyasa yoga&#34;"
+                  class="
+                    js-search__modal-toggle
+                    search__input
+                    js-desktop-search-input-compoundsearch
+                  "
+                />
+              </div>
+              <hr />
+              <style>
+                #search-btn:hover {
+                  background-color: skyblue;
+                }
+              </style>
+              <div
+              id="search-btn"
+                class="search__input-wrapper js-search__input-wrapper-duration"
+                style="flex: 0.5; padding:0"
+              >
+
+                <Button type="submit" style="width:100%; height:100%; border-radius: 0px 6px 6px 0px; background-color: transparent; border-color:skyblue; border-bottom: 0px; border-right: 0px; border-top:0px">Search</Button>
+              </div>
+            
+            </div>
+            </form>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div class="covid-banner-container">
+      <div class="covid-banner">
+        <svg
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          height="16"
+          width="16"
+          viewBox="0 0 16 16"
+        >
+          <g clip-path="url(#clip0)">
+            <path
+              d="M9.25 5.5C9.25 5.16848 9.1183 4.85054 8.88388 4.61612C8.64946 4.3817 8.33152 4.25 8 4.25C7.66848 4.25 7.35054 4.3817 7.11612 4.61612C6.8817 4.85054 6.75 5.16848 6.75 5.5V7H9.25V5.5Z"
+              fill="#515355"
+            ></path>
+            <path
+              d="M14.165 1.01399L8.165 0.0139894C8.05574 -0.00401209 7.94426 -0.00401209 7.835 0.0139894L1.835 1.01399C1.60168 1.05302 1.38976 1.1735 1.23688 1.35403C1.084 1.53455 1.00007 1.76343 1 1.99999V8.99999C1 10.8565 1.7375 12.637 3.05025 13.9497C4.36301 15.2625 6.14348 16 8 16C9.85652 16 11.637 15.2625 12.9497 13.9497C14.2625 12.637 15 10.8565 15 8.99999V1.99999C14.9999 1.76343 14.916 1.53455 14.7631 1.35403C14.6102 1.1735 14.3983 1.05302 14.165 1.01399ZM12 11C12 11.2652 11.8946 11.5196 11.7071 11.7071C11.5196 11.8946 11.2652 12 11 12H5C4.73478 12 4.48043 11.8946 4.29289 11.7071C4.10536 11.5196 4 11.2652 4 11V7.99999C4 7.73477 4.10536 7.48042 4.29289 7.29288C4.48043 7.10535 4.73478 6.99999 5 6.99999H5.25V5.49999C5.25 4.77064 5.53973 4.07117 6.05546 3.55545C6.57118 3.03972 7.27065 2.74999 8 2.74999C8.72935 2.74999 9.42882 3.03972 9.94454 3.55545C10.4603 4.07117 10.75 4.77064 10.75 5.49999V6.99999H11C11.2652 6.99999 11.5196 7.10535 11.7071 7.29288C11.8946 7.48042 12 7.73477 12 7.99999V11Z"
+              fill="#515355"
+            ></path>
+          </g>
+          <defs>
+            <clipPath id="clip0">
+              <rect height="16" width="16" fill="white"></rect>
+            </clipPath>
+          </defs>
+        </svg>
+        <p>
+          Book with confidence - we offer flexible booking conditions during
+          COVID-19.
+          <a href="/cancellation-policy-corona"> Learn more</a>
+        </p>
+      </div>
+    </div>
+    <div class="topic-content">
+      <div id="start-discovering" class="t-container t-container-wider">
+        <div class="topic-categories">
+          <h2 class="topic-categories__heading">
+            Safe travel, unique experiences
+          </h2>
+          <p class="topic-categories__subheading">
+            Continue to have unique travel experiences nearby, or from your home
+          </p>
+          <div class="topic-categories-list">
+            <div class="topic-categories-list__item">
+              <a href="/all/c/online-yoga-teacher-training">
+                <div class="image-text">Online Teacher Training</div>
+                <div class="image-shadow"></div>
+                <div class="image-container">
+                  <img
+                    alt="Online Teacher Training"
+                    src="https://photos.tpn.to/nr/qf/qq/et/653x490.webp"
+                  />
+                </div>
+              </a>
+            </div>
+            <div class="topic-categories-list__item">
+              <a href="/all/c/online-retreats">
+                <div class="image-text">Online Retreats</div>
+                <div class="image-shadow"></div>
+                <div class="image-container">
+                  <img
+                    alt="Online Retreats"
+                    src="https://photos.tpn.to/gi/eo/mg/ph/653x490.webp"
+                  />
+                </div>
+              </a>
+            </div>
+            <div class="topic-categories-list__item">
+              <a href="/all/c/private-yoga-retreats">
+                <div class="image-text">Private Yoga Retreats</div>
+                <div class="image-shadow"></div>
+                <div class="image-container">
+                  <img
+                    alt="Private Yoga Retreats"
+                    src="https://statics.tpn.to/hero/images/yoga.webp"
+                  />
+                </div>
+              </a>
+            </div>
+            <div class="topic-categories-list__item">
+              <a href="/all/d/asia-and-oceania/thailand?show_all">
+                <div class="image-text">Local Experiences</div>
+                <div class="image-shadow"></div>
+                <div class="image-container">
+                  <img
+                    alt="Local Experiences"
+                    src="https://photos.tpn.to/lk/go/ep/et/653x490.webp"
+                  />
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="t-row">
+          <div class="col-md-3">
+            <div
+              data-popular="Popular"
+              class="sidebar_filters border-box sidebar_filters-alternate"
+            >
+              <div class="sidebar_filters_heading_container">
+                <h2 class="sidebar_filters_heading">Filters</h2>
+              </div>
+              <div id="sf_online_offer" class="sf_item">
+                <div class="sf_item_title subtitle">Safe travel</div>
+                <div class="sf_item_list">
+                  {% if qcheck_private %}
+                  <li
+                    onClick="addParam(event,'private_offer=true');"
+                    class="fakeCheck selected"
+                  >
+                  {% else %}
+                  <li
+                    onClick="addParam(event,'private_offer=true');"
+                    class="fakeCheck"
+                  >
+                  {% endif %}
+                    <a
+                      >Private retreats
+                      <span class="sf_filter_item_facet">(555)</span></a
+                    >
+                  </li>
+                  {% if qcheck_clean %}
+                  <li
+                    onClick="addParam(event,'clean_and_safe=true');"
+                    class="fakeCheck selected"
+                  >
+                  {% else %}
+                  <li
+                  onClick="addParam(event,'clean_and_safe=true');"
+                  class="fakeCheck"
+                >
+                  {% endif %}
+                    <a
+                      >Clean &amp; Safe
+                      <span class="sf_filter_item_facet">(2847)</span></a
+                    >
+                  </li>
+                </div>
+              </div>
+              <div id="sf_online_offer" class="sf_item">
+                <div class="sf_item_title subtitle">Travel / Online</div>
+                <div class="sf_item_list">
+                  {% if qcheck_online %}
+                  <li
+                    onClick="addParam(event,'online_offer=true');"
+                    class="fakeCheck selected"
+                  >
+                  {% else %}
+                  <li
+                  onClick="addParam(event,'online_offer=true');"
+                  class="fakeCheck"
+                >
+                  {% endif %}
+                    <a
+                      >Online experiences 
+                      <span class="sf_filter_item_facet">(381)</span></a
+                    >
+                  </li>
+                  {% if qcheck_travel %}
+                  <li
+                    onClick="addParam(event,'travel_experience=true');"
+                    class="fakeCheck selected"
+                  >
+                  {% else %}
+                  <li
+                  onClick="addParam(event,'travel_experience=true');"
+                  class="fakeCheck"
+                >
+                  {% endif %}
+                    <a
+                      >Travel experiences
+                      <span class="sf_filter_item_facet">(4856)</span></a
+                    >
+                  </li>
+                </div>
+              </div>
+              <div
+                data-transtag-anywhere-in-destination="Anywhere in DESTINATION"
+                id="sf_grouped_destinations"
+                class="sf_item sf_grouped"
+              >
+                <div class="sf_item_title subtitle">Destinations</div>
+                <div class="sf_item_list">
+                  <div class="sf_dropdown_filtering__noresults hidden">
+                    We couldn&#39;t find any matches for your search yet. Please
+                    try selecting a country first.
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      data-href="/all/d/europe?show_all"
+                      class="sf_filter_group_title"
+                    >
+                      Europe <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li class="fakeRadio">
+                      <a
+                        href="/all/d/europe?show_all"
+                        class="parent-destination"
+                        >Anywhere in Europe</a
+                      >
+                    </li>
+                    <li
+                      data-id="2675"
+                      data-transtag-destination-with-preposition="Spain"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/spain?show_all"
+                        >Spain <span class="sf_filter_item_facet">(540)</span>
+                        <i class="fas fa-caret-down"></i
+                      ></a>
+                      <ul class="sf_filter_group_3">
+                        <li class="fakeRadio">
+                         <a href="/all/d/europe/spain?show_all" class="parent-destination"
+                          >Anywhere in Spain</a
+                         >
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Mallorca');">
+                         Mallorca
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Canary Islands');">
+                         Canary Islands
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Andalusia');">
+                         Andalusia
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Balearic Islands');">
+                         Balearic Islands
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Catalonia');">
+                         Catalonia
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Eastern Spain');">
+                         Eastern Spain
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Ibiza');">
+                         Ibiza
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Alicante');">
+                         Province of Alicante
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Las Palmas');">
+                         Province of Las Palmas
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Malaga');">
+Province of Málaga
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Southern Spain');">
+                         Southern Spain
+                        </li>
+                        <li class="fakeRadio" onClick="addParam(event,'city=Valencia');">
+Valencian Community
+                        </li>
+                       </ul>
+                       </li>
+                    <li
+                      data-id="3235"
+                      data-transtag-destination-with-preposition="France"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/france?show_all"
+                        >France <span class="sf_filter_item_facet">(322)</span>
+                        <i class="fas fa-caret-down"></i>
+                      </a>
+                      <ul class="sf_filter_group_3"><li class="fakeRadio"><a href="/all/d/europe/france?show_all" class="parent-destination">Anywhere in France</a></li><li class="fakeRadio"><a href="/all/d/europe/france/provence?show_all">Provence</a></li><li class="fakeRadio"><a href="/all/d/europe/france/aquitaine?show_all">Aquitaine</a></li><li class="fakeRadio"><a href="/all/d/europe/france/brittany?show_all">Brittany</a></li><li class="fakeRadio"><a href="/all/d/europe/france/provence-alpes-cote-dazur?show_all">Provence-Alpes-Cote d'Azur</a></li><li class="fakeRadio"><a href="/all/d/europe/france/auvergne-rhone-alpes?show_all">Auvergne-Rhône-Alpes</a></li><li class="fakeRadio"><a href="/all/d/europe/france/corsica?show_all">Corsica</a></li><li class="fakeRadio"><a href="/all/d/europe/france/haute-savoie?show_all">Haute-Savoie</a></li><li class="fakeRadio"><a href="/all/d/europe/france/nouvelle-aquitaine?show_all">Nouvelle-Aquitaine</a></li><li class="fakeRadio"><a href="/all/d/europe/france/occitanie?show_all">Occitanie</a></li><li class="fakeRadio"><a href="/all/d/europe/france/rhone-alpes?show_all">Rhône-Alpes</a></li><li class="fakeRadio"><a href="/all/d/europe/france/south-west-france?show_all">South West France</a></li><li class="fakeRadio"><a href="/all/d/europe/france/southeastern-france?show_all">Southeastern France</a></li></ul>
+                    </li>
+                    <li
+                      data-id="3276"
+                      data-transtag-destination-with-preposition="Portugal"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/portugal?show_all"
+                        >Portugal
+                        <span class="sf_filter_item_facet">(300)</span>
+                        <i class="fas fa-caret-down"></i
+                      ></a>
+                      <ul class="sf_filter_group_3"><li class="fakeRadio"><a href="/all/d/europe/portugal?show_all" class="parent-destination">Anywhere in Portugal</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/algarve?show_all">Algarve</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/mafra?show_all">Mafra</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/ericeira?show_all">Ericeira</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/faro-district?show_all">Faro District</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/grande-lisboa?show_all">Grande Lisboa</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/greater-lisbon?show_all">Greater Lisbon</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/lisbon-district?show_all">Lisbon District</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/lisbon-metropolitan-area?show_all">Lisbon Metropolitan Area</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/lisbon-region?show_all">Lisbon Region</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/sintra?show_all">Sintra</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/south-central-portugal?show_all">South Central Portugal</a></li><li class="fakeRadio"><a href="/all/d/europe/portugal/southern-portugal?show_all">Southern Portugal</a></li></ul>
+                    </li>
+                    <li
+                      data-id="2948"
+                      data-transtag-destination-with-preposition="Italy"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/italy?show_all"
+                        >Italy <span class="sf_filter_item_facet">(231)</span>
+                        <i class="fas fa-caret-down"></i
+                      ></a>
+                    </li>
+                    <li
+                      data-id="2874"
+                      data-transtag-destination-with-preposition="Greece"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/greece?show_all"
+                        >Greece <span class="sf_filter_item_facet">(205)</span>
+                        <i class="fas fa-caret-down"></i
+                      ></a>
+                    </li>
+                    <li
+                      data-id="3383"
+                      data-transtag-destination-with-preposition="the United Kingdom"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/united-kingdom?show_all"
+                        >United Kingdom
+                        <span class="sf_filter_item_facet">(149)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2822"
+                      data-transtag-destination-with-preposition="Germany"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/germany?show_all"
+                        >Germany <span class="sf_filter_item_facet">(99)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2809"
+                      data-transtag-destination-with-preposition="Austria"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/austria?show_all"
+                        >Austria <span class="sf_filter_item_facet">(82)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2826"
+                      data-transtag-destination-with-preposition="Netherlands"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/netherlands?show_all"
+                        >Netherlands
+                        <span class="sf_filter_item_facet">(64)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="1747"
+                      data-transtag-destination-with-preposition="Croatia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/croatia?show_all"
+                        >Croatia <span class="sf_filter_item_facet">(54)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2799"
+                      data-transtag-destination-with-preposition="Switzerland"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/switzerland?show_all"
+                        >Switzerland
+                        <span class="sf_filter_item_facet">(40)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="1031"
+                      data-transtag-destination-with-preposition="Belgium"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/belgium?show_all"
+                        >Belgium <span class="sf_filter_item_facet">(22)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="1324"
+                      data-transtag-destination-with-preposition="Malta"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/malta?show_all"
+                        >Malta <span class="sf_filter_item_facet">(22)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2617"
+                      data-transtag-destination-with-preposition="Ireland"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/ireland?show_all"
+                        >Ireland <span class="sf_filter_item_facet">(17)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2864"
+                      data-transtag-destination-with-preposition="Montenegro"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/montenegro?show_all"
+                        >Montenegro
+                        <span class="sf_filter_item_facet">(14)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2389"
+                      data-transtag-destination-with-preposition="Sweden"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/sweden?show_all"
+                        >Sweden <span class="sf_filter_item_facet">(13)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3424"
+                      data-transtag-destination-with-preposition="Cyprus"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/cyprus?show_all"
+                        >Cyprus <span class="sf_filter_item_facet">(12)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2559"
+                      data-transtag-destination-with-preposition="Norway"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/norway?show_all"
+                        >Norway <span class="sf_filter_item_facet">(12)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3506"
+                      data-transtag-destination-with-preposition="Iceland"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/iceland?show_all"
+                        >Iceland <span class="sf_filter_item_facet">(7)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2530"
+                      data-transtag-destination-with-preposition="Slovenia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/slovenia?show_all"
+                        >Slovenia <span class="sf_filter_item_facet">(7)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3013"
+                      data-transtag-destination-with-preposition="Estonia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/estonia?show_all"
+                        >Estonia <span class="sf_filter_item_facet">(4)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3544"
+                      data-transtag-destination-with-preposition="Bulgaria"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/bulgaria?show_all"
+                        >Bulgaria <span class="sf_filter_item_facet">(4)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2471"
+                      data-transtag-destination-with-preposition="Romania"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/romania?show_all"
+                        >Romania <span class="sf_filter_item_facet">(4)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2813"
+                      data-transtag-destination-with-preposition="Denmark"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/denmark?show_all"
+                        >Denmark <span class="sf_filter_item_facet">(3)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2773"
+                      data-transtag-destination-with-preposition="Finland"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/finland?show_all"
+                        >Finland <span class="sf_filter_item_facet">(3)</span>
+                        <i class="fas fa-caret-down"></i>/a>
+                    </li>
+                    <li
+                      data-id="2728"
+                      data-transtag-destination-with-preposition="Hungary"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/hungary?show_all"
+                        >Hungary <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3143"
+                      data-transtag-destination-with-preposition="Czech Republic"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/czech-republic?show_all"
+                        >Czech Republic
+                        <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2848"
+                      data-transtag-destination-with-preposition="Serbia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/serbia?show_all"
+                        >Serbia <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2827"
+                      data-transtag-destination-with-preposition="Belarus"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/belarus?show_all"
+                        >Belarus <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2594"
+                      data-transtag-destination-with-preposition="Albania"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/albania?show_all"
+                        >Albania <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2812"
+                      data-transtag-destination-with-preposition="Jersey"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/jersey?show_all"
+                        >Jersey <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3026"
+                      data-transtag-destination-with-preposition="Latvia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/latvia?show_all"
+                        >Latvia <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3455"
+                      data-transtag-destination-with-preposition="Luxembourg"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/luxembourg?show_all"
+                        >Luxembourg
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2692"
+                      data-transtag-destination-with-preposition="Poland"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/poland?show_all"
+                        >Poland <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3402"
+                      data-transtag-destination-with-preposition="Bosnia Herzegovina"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/europe/bosnia-herzegovina?show_all"
+                        >Bosnia Herzegovina
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      data-href="/all/d/asia-and-oceania?show_all"
+                      class="sf_filter_group_title"
+                    >
+                      Asia &amp; Oceania
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li class="fakeRadio">
+                      <a
+                        href="/all/d/asia-and-oceania?show_all"
+                        class="parent-destination"
+                        >Anywhere in Asia &amp; Oceania</a
+                      >
+                    </li>
+                    <li
+                      data-id="2585"
+                      data-transtag-destination-with-preposition="India"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/india?show_all"
+                        >India <span class="sf_filter_item_facet">(903)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2354"
+                      data-transtag-destination-with-preposition="Indonesia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/indonesia?show_all"
+                        >Indonesia
+                        <span class="sf_filter_item_facet">(420)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3513"
+                      data-transtag-destination-with-preposition="Thailand"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/thailand?show_all"
+                        >Thailand
+                        <span class="sf_filter_item_facet">(223)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2360"
+                      data-transtag-destination-with-preposition="Nepal"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/nepal?show_all"
+                        >Nepal <span class="sf_filter_item_facet">(121)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2372"
+                      data-transtag-destination-with-preposition="Sri Lanka"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/sri-lanka?show_all"
+                        >Sri Lanka
+                        <span class="sf_filter_item_facet">(96)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2722"
+                      data-transtag-destination-with-preposition="Australia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/australia?show_all"
+                        >Australia
+                        <span class="sf_filter_item_facet">(54)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3436"
+                      data-transtag-destination-with-preposition="Cambodia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/cambodia?show_all"
+                        >Cambodia
+                        <span class="sf_filter_item_facet">(19)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2373"
+                      data-transtag-destination-with-preposition="New Zealand"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/new-zealand?show_all"
+                        >New Zealand
+                        <span class="sf_filter_item_facet">(19)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2790"
+                      data-transtag-destination-with-preposition="Vietnam"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/vietnam?show_all"
+                        >Vietnam <span class="sf_filter_item_facet">(18)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3535"
+                      data-transtag-destination-with-preposition="Maldives"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/maldives?show_all"
+                        >Maldives
+                        <span class="sf_filter_item_facet">(13)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2377"
+                      data-transtag-destination-with-preposition="Japan"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/japan?show_all"
+                        >Japan <span class="sf_filter_item_facet">(6)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="952"
+                      data-transtag-destination-with-preposition="China"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/china?show_all"
+                        >China <span class="sf_filter_item_facet">(4)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="1040"
+                      data-transtag-destination-with-preposition="Georgia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/georgia?show_all"
+                        >Georgia <span class="sf_filter_item_facet">(4)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3522"
+                      data-transtag-destination-with-preposition="Philippines"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/philippines?show_all"
+                        >Philippines
+                        <span class="sf_filter_item_facet">(3)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2358"
+                      data-transtag-destination-with-preposition="Bhutan"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/bhutan?show_all"
+                        >Bhutan <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="1575"
+                      data-transtag-destination-with-preposition="Fiji"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/fiji?show_all"
+                        >Fiji <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3732"
+                      data-transtag-destination-with-preposition="French Polynesia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/asia-and-oceania/french-polynesia?show_all"
+                        >French Polynesia
+                        <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2697"
+                      data-transtag-destination-with-preposition="Hong Kong"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/hong-kong?show_all"
+                        >Hong Kong
+                        <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2481"
+                      data-transtag-destination-with-preposition="Laos"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/laos?show_all"
+                        >Laos <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2452"
+                      data-transtag-destination-with-preposition="Myanmar"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/myanmar?show_all"
+                        >Myanmar <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2616"
+                      data-transtag-destination-with-preposition="Singapore"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/singapore?show_all"
+                        >Singapore
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2621"
+                      data-transtag-destination-with-preposition="Taiwan"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/asia-and-oceania/taiwan?show_all"
+                        >Taiwan <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      data-href="/all/d/the-americas-and-caribbean?show_all"
+                      class="sf_filter_group_title"
+                    >
+                      The Americas &amp; Caribbean
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li class="fakeRadio">
+                      <a
+                        href="/all/d/the-americas-and-caribbean?show_all"
+                        class="parent-destination"
+                        >Anywhere in The Americas &amp; Caribbean</a
+                      >
+                    </li>
+                    <li
+                      data-id="3470"
+                      data-transtag-destination-with-preposition="the USA"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/the-americas-and-caribbean/usa?show_all"
+                        >USA <span class="sf_filter_item_facet">(275)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3340"
+                      data-transtag-destination-with-preposition="Costa Rica"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/costa-rica?show_all"
+                        >Costa Rica
+                        <span class="sf_filter_item_facet">(202)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2650"
+                      data-transtag-destination-with-preposition="Mexico"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/mexico?show_all"
+                        >Mexico <span class="sf_filter_item_facet">(112)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3466"
+                      data-transtag-destination-with-preposition="Peru"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/the-americas-and-caribbean/peru?show_all"
+                        >Peru <span class="sf_filter_item_facet">(52)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3484"
+                      data-transtag-destination-with-preposition="Canada"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/canada?show_all"
+                        >Canada <span class="sf_filter_item_facet">(34)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2464"
+                      data-transtag-destination-with-preposition="Nicaragua"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/nicaragua?show_all"
+                        >Nicaragua
+                        <span class="sf_filter_item_facet">(31)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2768"
+                      data-transtag-destination-with-preposition="Ecuador"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/ecuador?show_all"
+                        >Ecuador <span class="sf_filter_item_facet">(17)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2854"
+                      data-transtag-destination-with-preposition="Brazil"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/brazil?show_all"
+                        >Brazil <span class="sf_filter_item_facet">(16)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2488"
+                      data-transtag-destination-with-preposition="Colombia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/colombia?show_all"
+                        >Colombia
+                        <span class="sf_filter_item_facet">(16)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2554"
+                      data-transtag-destination-with-preposition="Guatemala"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/guatemala?show_all"
+                        >Guatemala
+                        <span class="sf_filter_item_facet">(15)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3184"
+                      data-transtag-destination-with-preposition="Panama"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/panama?show_all"
+                        >Panama <span class="sf_filter_item_facet">(15)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3298"
+                      data-transtag-destination-with-preposition="Jamaica"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/jamaica?show_all"
+                        >Jamaica <span class="sf_filter_item_facet">(9)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3496"
+                      data-transtag-destination-with-preposition="Dominican Republic"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/dominican-republic?show_all"
+                        >Dominican Republic
+                        <span class="sf_filter_item_facet">(6)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2751"
+                      data-transtag-destination-with-preposition="Chile"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/the-americas-and-caribbean/chile?show_all"
+                        >Chile <span class="sf_filter_item_facet">(3)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3556"
+                      data-transtag-destination-with-preposition="Belize"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/belize?show_all"
+                        >Belize <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2782"
+                      data-transtag-destination-with-preposition="Sint Maarten"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/sint-maarten?show_all"
+                        >Sint Maarten
+                        <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2714"
+                      data-transtag-destination-with-preposition="Antigua and Barbuda"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/antigua-and-barbuda?show_all"
+                        >Antigua and Barbuda
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2414"
+                      data-transtag-destination-with-preposition="Barbados"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/barbados?show_all"
+                        >Barbados <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2413"
+                      data-transtag-destination-with-preposition="El Salvador"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/el-salvador?show_all"
+                        >El Salvador
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2693"
+                      data-transtag-destination-with-preposition="Puerto Rico"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/puerto-rico?show_all"
+                        >Puerto Rico
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2772"
+                      data-transtag-destination-with-preposition="Saint Kitts and Nevis"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/saint-kitts-and-nevis?show_all"
+                        >Saint Kitts and Nevis
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3170"
+                      data-transtag-destination-with-preposition="Suriname"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/the-americas-and-caribbean/suriname?show_all"
+                        >Suriname <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      data-href="/all/d/africa-and-the-middle-east?show_all"
+                      class="sf_filter_group_title"
+                    >
+                      Africa &amp; the Middle East
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li class="fakeRadio">
+                      <a
+                        href="/all/d/africa-and-the-middle-east?show_all"
+                        class="parent-destination"
+                        >Anywhere in Africa &amp; the Middle East</a
+                      >
+                    </li>
+                    <li
+                      data-id="3437"
+                      data-transtag-destination-with-preposition="Morocco"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/morocco?show_all"
+                        >Morocco
+                        <span class="sf_filter_item_facet">(161)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3189"
+                      data-transtag-destination-with-preposition="South Africa"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/south-africa?show_all"
+                        >South Africa
+                        <span class="sf_filter_item_facet">(33)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2965"
+                      data-transtag-destination-with-preposition="Turkey"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/turkey?show_all"
+                        >Turkey <span class="sf_filter_item_facet">(19)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="969"
+                      data-transtag-destination-with-preposition="Egypt"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/africa-and-the-middle-east/egypt?show_all"
+                        >Egypt <span class="sf_filter_item_facet">(11)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2365"
+                      data-transtag-destination-with-preposition="Tanzania"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/tanzania?show_all"
+                        >Tanzania
+                        <span class="sf_filter_item_facet">(10)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2429"
+                      data-transtag-destination-with-preposition="Mauritius"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/mauritius?show_all"
+                        >Mauritius
+                        <span class="sf_filter_item_facet">(7)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3192"
+                      data-transtag-destination-with-preposition="Namibia"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/namibia?show_all"
+                        >Namibia <span class="sf_filter_item_facet">(5)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2708"
+                      data-transtag-destination-with-preposition="Kenya"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/africa-and-the-middle-east/kenya?show_all"
+                        >Kenya <span class="sf_filter_item_facet">(4)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3124"
+                      data-transtag-destination-with-preposition="Lebanon"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/lebanon?show_all"
+                        >Lebanon <span class="sf_filter_item_facet">(3)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2867"
+                      data-transtag-destination-with-preposition="Botswana"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/botswana?show_all"
+                        >Botswana <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2456"
+                      data-transtag-destination-with-preposition="Jordan"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/jordan?show_all"
+                        >Jordan <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2549"
+                      data-transtag-destination-with-preposition="Mozambique"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/mozambique?show_all"
+                        >Mozambique
+                        <span class="sf_filter_item_facet">(2)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2572"
+                      data-transtag-destination-with-preposition="Ghana"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a href="/all/d/africa-and-the-middle-east/ghana?show_all"
+                        >Ghana <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="2547"
+                      data-transtag-destination-with-preposition="Israel"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/israel?show_all"
+                        >Israel <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="1632"
+                      data-transtag-destination-with-preposition="Madagascar"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/madagascar?show_all"
+                        >Madagascar
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                    <li
+                      data-id="3440"
+                      data-transtag-destination-with-preposition="United Arab Emirates"
+                      class="js-sf_filter_group_3 sf_filter_group_3_wrapper"
+                    >
+                      <a
+                        href="/all/d/africa-and-the-middle-east/united-arab-emirates?show_all"
+                        >United Arab Emirates
+                        <span class="sf_filter_item_facet">(1)</span>
+                        <i class="fas fa-caret-down"></i></a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+              <div id="sf_arrival_date" class="sf_item">
+                <div class="sf_item_title subtitle">Arrival date</div>
+                <div class="sf_item_list noMaxHeight">
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2021-07-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2021 July <span class="sf_filter_item_facet">(2827)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2021-08-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2021 August
+                      <span class="sf_filter_item_facet">(3168)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2021-09-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2021 September
+                      <span class="sf_filter_item_facet">(3482)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2021-10-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2021 October
+                      <span class="sf_filter_item_facet">(3281)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2021-11-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2021 November
+                      <span class="sf_filter_item_facet">(2908)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2021-12-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2021 December
+                      <span class="sf_filter_item_facet">(2508)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2022-01-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2022 January
+                      <span class="sf_filter_item_facet">(1446)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2022-02-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2022 February
+                      <span class="sf_filter_item_facet">(1298)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2022-03-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2022 March
+                      <span class="sf_filter_item_facet">(1271)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2022-04-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2022 April
+                      <span class="sf_filter_item_facet">(1162)</span>
+                    </li>
+                  </a>
+                  <a
+                    rel="nofollow"
+                    href="?arrival_date=2022-05-15&amp;flexible=15"
+                  >
+                    <li class="fakeRadio">
+                      2022 May <span class="sf_filter_item_facet">(1037)</span>
+                    </li>
+                  </a>
+                  <div class="expander">Show more</div>
+                  <div id="sf_item_arrival_wrapper">
+                    <div id="sf_item_arrival_toggle" class="js-arrival-toggle">
+                      <i class="fas fa-clipboard-list"></i>
+                      <span>Select a specific date</span>
+                    </div>
+                    <div id="sf_item_arrival">
+                      <select
+                        name="filter_flexible"
+                        id="filter_flexible--sidebar"
+                        class="form-control filter_flexible"
+                      >
+                        <option value="0" selected>Exact dates</option>
+                        <option value="1">1 day before/after</option>
+                        <option value="2">2 days before/after</option>
+                        <option value="3">3 days before/after</option>
+                        <option value="7">7 days before/after</option>
+                        <option value="14">14 days before/after</option>
+                      </select>
+                      <div id="availability-options" class="sidebar-calendar">
+                        <div
+                          data-date-end-date="2023-07-05"
+                          data-date-start-date="2021-07-06"
+                          data-availability="210706-730"
+                          data-date
+                          class="month"
+                        ></div>
+                        <div class="filter-reset"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="sf_duration" class="sf_item">
+                <div class="sf_item_title subtitle">Duration</div>
+                <div class="sf_item_list">
+                  <li
+                    onClick="addParam(event,'duration_option=1');"
+                    class="fakeCheck"
+                  >
+                    <a>2 days <span class="sf_filter_item_facet">(56)</span></a>
+                  </li>
+                  <li
+                    onClick="addParam(event,'duration_option=2');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >From 3 to 7 days
+                      <span class="sf_filter_item_facet">(2732)</span></a
+                    >
+                  </li>
+                  <li
+                    onClick="addParam(event,'duration_option=3');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >From 1 to 2 weeks
+                      <span class="sf_filter_item_facet">(2084)</span></a
+                    >
+                  </li>
+                  <li
+                    onClick="addParam(event,'duration_option=4');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >More than 2 weeks
+                      <span class="sf_filter_item_facet">(1091)</span></a
+                    >
+                  </li>
+                  <div class="expander">Show more</div>
+                </div>
+              </div>
+              <div id="tp_airport_filter" class="sf_item">
+                <div class="sf_item_title subtitle">Airport Transfer</div>
+                <div class="sf_item_list">
+                  <li
+                    onClick="addParam(event,'airport_transfer=available_for_free');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >Airport transfer included
+                      <span class="sf_filter_item_facet">(1301)</span></a
+                    >
+                  </li>
+                  <li
+                    onClick="addParam(event,'airport_transfer=available_with_cost');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >Airport transfer available
+                      <span class="sf_filter_item_facet">(1602)</span></a
+                    >
+                  </li>
+                </div>
+              </div>
+              <div id="sf_categories" class="sf_item">
+                <div class="sf_item_title subtitle">Categories</div>
+                <div class="sf_item_list">
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_1');"
+                      class="sf_filter_group_title"
+                    >
+                      Budget or luxury
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="budget-retreats" class="fakeCheck">
+                      <a href="/all/c/budget-retreats?show_all">
+                        Budget Retreats
+                        <span class="sf_filter_item_facet">(1118)</span>
+                      </a>
+                    </li>
+                    <li data-slug="luxury-retreats" class="fakeCheck">
+                      <a href="/all/c/luxury-retreats?show_all">
+                        Luxury Holidays
+                        <span class="sf_filter_item_facet">(400)</span>
+                      </a>
+                    </li>
+                    <li data-slug="all-inclusive-yoga" class="fakeCheck">
+                      <a href="/all/c/all-inclusive-yoga?show_all">
+                        All-Inclusive Yoga Retreats
+                        <span class="sf_filter_item_facet">(153)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_2');"
+                      class="sf_filter_group_title"
+                    >
+                      Skill Level <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="advanced-yoga" class="fakeCheck">
+                      <a href="/all/c/advanced-yoga?show_all">
+                        Level: Advanced
+                        <span class="sf_filter_item_facet">(1824)</span>
+                      </a>
+                    </li>
+                    <li data-slug="beginner" class="fakeCheck">
+                      <a href="/all/c/beginner?show_all">
+                        Level: Beginner
+                        <span class="sf_filter_item_facet">(2873)</span>
+                      </a>
+                    </li>
+                    <li data-slug="intermediate" class="fakeCheck">
+                      <a href="/all/c/intermediate?show_all">
+                        Level: Intermediate
+                        <span class="sf_filter_item_facet">(2761)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_3');"
+                      class="sf_filter_group_title"
+                    >
+                      Teacher Training
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="yoga-teacher-training" class="fakeCheck">
+                      <a href="/all/c/yoga-teacher-training?show_all">
+                        Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(860)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="100-hour-yoga-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/100-hour-yoga-teacher-training?show_all">
+                        100-Hour Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(134)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="200-hour-yoga-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/200-hour-yoga-teacher-training?show_all">
+                        200-Hour Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(562)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="300-hour-yoga-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/300-hour-yoga-teacher-training?show_all">
+                        300-Hour Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(124)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="500-hour-yoga-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/500-hour-yoga-teacher-training?show_all">
+                        500-Hour Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(46)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="kids-yoga-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/kids-yoga-teacher-training?show_all">
+                        Kids Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(10)</span>
+                      </a>
+                    </li>
+                    <li data-slug="prenatal-yoga-training" class="fakeCheck">
+                      <a href="/all/c/prenatal-yoga-training?show_all">
+                        Prenatal Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(9)</span>
+                      </a>
+                    </li>
+                    <li data-slug="sup-yoga-teacher-training" class="fakeCheck">
+                      <a href="/all/c/sup-yoga-teacher-training?show_all">
+                        SUP Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(5)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="short-yoga-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/short-yoga-teacher-training?show_all">
+                        Short Yoga Teacher Training
+                        <span class="sf_filter_item_facet">(115)</span>
+                      </a>
+                    </li>
+                    <li
+                      data-slug="yoga-nidra-teacher-training"
+                      class="fakeCheck"
+                    >
+                      <a href="/all/c/yoga-nidra-teacher-training?show_all">
+                        Yoga Nidra Teacher Training
+                        <span class="sf_filter_item_facet">(19)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_4');"
+                      class="sf_filter_group_title"
+                    >
+                      Sporty &amp; Outdoor Activities
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="adventure-yoga" class="fakeCheck">
+                      <a href="/all/c/adventure-yoga?show_all">
+                        Adventure Yoga Retreats
+                        <span class="sf_filter_item_facet">(161)</span>
+                      </a>
+                    </li>
+                    <li data-slug="sup-yoga-retreats" class="fakeCheck">
+                      <a href="/all/c/sup-yoga-retreats?show_all">
+                        SUP Yoga Retreats
+                        <span class="sf_filter_item_facet">(87)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-cycling" class="fakeCheck">
+                      <a href="/all/c/yoga-cycling?show_all">
+                        Yoga and Cycling
+                        <span class="sf_filter_item_facet">(56)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-diving" class="fakeCheck">
+                      <a href="/all/c/yoga-diving?show_all">
+                        Yoga and Diving
+                        <span class="sf_filter_item_facet">(30)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-fitness" class="fakeCheck">
+                      <a href="/all/c/yoga-and-fitness?show_all">
+                        Yoga and Fitness
+                        <span class="sf_filter_item_facet">(164)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-hiking" class="fakeCheck">
+                      <a href="/all/c/yoga-hiking?show_all">
+                        Yoga and Hiking
+                        <span class="sf_filter_item_facet">(610)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-horse-riding" class="fakeCheck">
+                      <a href="/all/c/yoga-and-horse-riding?show_all">
+                        Yoga and Horse Riding
+                        <span class="sf_filter_item_facet">(47)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-kayaking" class="fakeCheck">
+                      <a href="/all/c/yoga-kayaking?show_all">
+                        Yoga and Kayaking
+                        <span class="sf_filter_item_facet">(30)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-kitesurfing" class="fakeCheck">
+                      <a href="/all/c/yoga-kitesurfing?show_all">
+                        Yoga and Kitesurfing
+                        <span class="sf_filter_item_facet">(19)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-martial-arts" class="fakeCheck">
+                      <a href="/all/c/yoga-martial-arts?show_all">
+                        Yoga and Martial Arts
+                        <span class="sf_filter_item_facet">(84)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-pilates" class="fakeCheck">
+                      <a href="/all/c/yoga-pilates?show_all">
+                        Yoga and Pilates
+                        <span class="sf_filter_item_facet">(128)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-running" class="fakeCheck">
+                      <a href="/all/c/yoga-running?show_all">
+                        Yoga and Running
+                        <span class="sf_filter_item_facet">(20)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-sailing" class="fakeCheck">
+                      <a href="/all/c/yoga-sailing?show_all">
+                        Yoga and Sailing
+                        <span class="sf_filter_item_facet">(49)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-ski" class="fakeCheck">
+                      <a href="/all/c/yoga-ski?show_all">
+                        Yoga and Skiing
+                        <span class="sf_filter_item_facet">(10)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-surf" class="fakeCheck">
+                      <a href="/all/c/yoga-surf?show_all">
+                        Yoga and Surfing
+                        <span class="sf_filter_item_facet">(455)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-walking" class="fakeCheck">
+                      <a href="/all/c/yoga-walking?show_all">
+                        Yoga and Walking
+                        <span class="sf_filter_item_facet">(382)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_5');"
+                      class="sf_filter_group_title"
+                    >
+                      Spirituality &amp; Chanting
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="yoga-meditation-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-meditation-retreats?show_all">
+                        Yoga Meditation Retreats
+                        <span class="sf_filter_item_facet">(3041)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ayahuasca-yoga" class="fakeCheck">
+                      <a href="/all/c/ayahuasca-yoga?show_all">
+                        Ayahuasca Yoga Retreats
+                        <span class="sf_filter_item_facet">(16)</span>
+                      </a>
+                    </li>
+                    <li data-slug="christian-yoga" class="fakeCheck">
+                      <a href="/all/c/christian-yoga?show_all">
+                        Christian Yoga Retreats
+                        <span class="sf_filter_item_facet">(2)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kirtan-yoga-retreats" class="fakeCheck">
+                      <a href="/all/c/kirtan-yoga-retreats?show_all">
+                        Kirtan Yoga Retreats
+                        <span class="sf_filter_item_facet">(200)</span>
+                      </a>
+                    </li>
+                    <li data-slug="shamanic-yoga" class="fakeCheck">
+                      <a href="/all/c/shamanic-yoga?show_all">
+                        Shamanic Healing Yoga
+                        <span class="sf_filter_item_facet">(63)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-spiritual-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-spiritual-retreats?show_all">
+                        Spiritual Yoga Retreats
+                        <span class="sf_filter_item_facet">(1407)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ashrams" class="fakeCheck">
+                      <a href="/all/c/ashrams?show_all">
+                        Yoga Ashrams
+                        <span class="sf_filter_item_facet">(180)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-mantra" class="fakeCheck">
+                      <a href="/all/c/yoga-mantra?show_all">
+                        Yoga and Chanting
+                        <span class="sf_filter_item_facet">(727)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-silent" class="fakeCheck">
+                      <a href="/all/c/yoga-silent?show_all">
+                        Yoga and Silent Retreats
+                        <span class="sf_filter_item_facet">(40)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_6');"
+                      class="sf_filter_group_title"
+                    >
+                      Certain People with You
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="men-yoga" class="fakeCheck">
+                      <a href="/all/c/men-yoga?show_all">
+                        Men Only Yoga Retreats
+                        <span class="sf_filter_item_facet">(16)</span>
+                      </a>
+                    </li>
+                    <li data-slug="nude" class="fakeCheck">
+                      <a href="/all/c/nude?show_all">
+                        Nude / Naked Yoga Retreats
+                        <span class="sf_filter_item_facet">(6)</span>
+                      </a>
+                    </li>
+                    <li data-slug="couples-yoga" class="fakeCheck">
+                      <a href="/all/c/couples-yoga?show_all">
+                        Popular for Couples
+                        <span class="sf_filter_item_facet">(83)</span>
+                      </a>
+                    </li>
+                    <li data-slug="family-yoga" class="fakeCheck">
+                      <a href="/all/c/family-yoga?show_all">
+                        Popular for Families
+                        <span class="sf_filter_item_facet">(60)</span>
+                      </a>
+                    </li>
+                    <li data-slug="gay-yoga" class="fakeCheck">
+                      <a href="/all/c/gay-yoga?show_all">
+                        Popular for Gay
+                        <span class="sf_filter_item_facet">(10)</span>
+                      </a>
+                    </li>
+                    <li data-slug="lesbian-yoga" class="fakeCheck">
+                      <a href="/all/c/lesbian-yoga?show_all">
+                        Popular for Lesbians
+                        <span class="sf_filter_item_facet">(1)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-singles" class="fakeCheck">
+                      <a href="/all/c/yoga-singles?show_all">
+                        Popular for Singles
+                        <span class="sf_filter_item_facet">(61)</span>
+                      </a>
+                    </li>
+                    <li data-slug="teen" class="fakeCheck">
+                      <a href="/all/c/teen?show_all">
+                        Popular for Teen
+                        <span class="sf_filter_item_facet">(1)</span>
+                      </a>
+                    </li>
+                    <li data-slug="popular-for-solo" class="fakeCheck">
+                      <a href="/all/c/popular-for-solo?show_all">
+                        Popular for solo
+                        <span class="sf_filter_item_facet">(204)</span>
+                      </a>
+                    </li>
+                    <li data-slug="prenatal-pregnant" class="fakeCheck">
+                      <a href="/all/c/prenatal-pregnant?show_all">
+                        Prenatal / Pregnant Yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="private-yoga-retreats" class="fakeCheck">
+                      <a href="/all/c/private-yoga-retreats?show_all">
+                        Private Yoga Retreats
+                        <span class="sf_filter_item_facet">(128)</span>
+                      </a>
+                    </li>
+                    <li data-slug="women-yoga" class="fakeCheck">
+                      <a href="/all/c/women-yoga?show_all">
+                        Women Only Yoga Retreats
+                        <span class="sf_filter_item_facet">(164)</span>
+                      </a>
+                    </li>
+                    <li data-slug="women-of-color-yoga" class="fakeCheck">
+                      <a href="/all/c/women-of-color-yoga?show_all">
+                        Yoga Retreats for Women of Color
+                        <span class="sf_filter_item_facet">(2)</span>
+                      </a>
+                    </li>
+                    <li data-slug="seniors-yoga" class="fakeCheck">
+                      <a href="/all/c/seniors-yoga?show_all">
+                        Yoga for Seniors
+                        <span class="sf_filter_item_facet">(9)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_7');"
+                      class="sf_filter_group_title"
+                    >
+                      Cultural Activities
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="yoga-astrology" class="fakeCheck">
+                      <a href="/all/c/yoga-astrology?show_all">
+                        Yoga and Astrology
+                        <span class="sf_filter_item_facet">(9)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-cooking" class="fakeCheck">
+                      <a href="/all/c/yoga-cooking?show_all">
+                        Yoga and Cooking
+                        <span class="sf_filter_item_facet">(324)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-dancing" class="fakeCheck">
+                      <a href="/all/c/yoga-dancing?show_all">
+                        Yoga and Dancing
+                        <span class="sf_filter_item_facet">(224)</span>
+                      </a>
+                    </li>
+                    <li data-slug="language-yoga" class="fakeCheck">
+                      <a href="/all/c/language-yoga?show_all">
+                        Yoga and Language
+                        <span class="sf_filter_item_facet">(33)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-painting" class="fakeCheck">
+                      <a href="/all/c/yoga-and-painting?show_all">
+                        Yoga and Painting
+                        <span class="sf_filter_item_facet">(24)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-photography" class="fakeCheck">
+                      <a href="/all/c/yoga-photography?show_all">
+                        Yoga and Photography
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-qigong-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-and-qigong-retreats?show_all">
+                        Yoga and Qigong
+                        <span class="sf_filter_item_facet">(90)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-tai-chi" class="fakeCheck">
+                      <a href="/all/c/yoga-and-tai-chi?show_all">
+                        Yoga and Tai Chi
+                        <span class="sf_filter_item_facet">(77)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-writing" class="fakeCheck">
+                      <a href="/all/c/yoga-writing?show_all">
+                        Yoga and Writing
+                        <span class="sf_filter_item_facet">(67)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_8');"
+                      class="sf_filter_group_title"
+                    >
+                      Special Time of the Year
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="short" class="fakeCheck">
+                      <a href="/all/c/short?show_all">
+                        Short Breaks and Weekends
+                        <span class="sf_filter_item_facet">(937)</span>
+                      </a>
+                    </li>
+                    <li data-slug="christmas" class="fakeCheck">
+                      <a href="/all/c/christmas?show_all">
+                        Christmas Yoga Retreats
+                        <span class="sf_filter_item_facet">(1304)</span>
+                      </a>
+                    </li>
+                    <li data-slug="easter" class="fakeCheck">
+                      <a href="/all/c/easter?show_all">
+                        Easter Yoga Retreats
+                        <span class="sf_filter_item_facet">(932)</span>
+                      </a>
+                    </li>
+                    <li data-slug="full-moon-yoga" class="fakeCheck">
+                      <a href="/all/c/full-moon-yoga?show_all">
+                        Full Moon Yoga Retreats
+                        <span class="sf_filter_item_facet">(20)</span>
+                      </a>
+                    </li>
+                    <li data-slug="new-year" class="fakeCheck">
+                      <a href="/all/c/new-year?show_all">
+                        New Year Yoga Retreats
+                        <span class="sf_filter_item_facet">(1335)</span>
+                      </a>
+                    </li>
+                    <li data-slug="thanksgiving" class="fakeCheck">
+                      <a href="/all/c/thanksgiving?show_all">
+                        Thanksgiving Yoga Retreats
+                        <span class="sf_filter_item_facet">(5)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_9');"
+                      class="sf_filter_group_title"
+                    >
+                      Nature Location
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="mountain-yoga" class="fakeCheck">
+                      <a href="/all/c/mountain-yoga?show_all">
+                        Mountain Yoga Retreats
+                        <span class="sf_filter_item_facet">(195)</span>
+                      </a>
+                    </li>
+                    <li data-slug="beach-retreats" class="fakeCheck">
+                      <a href="/all/c/beach-retreats?show_all">
+                        Retreats near the Sea or Beach
+                        <span class="sf_filter_item_facet">(1607)</span>
+                      </a>
+                    </li>
+                    <li data-slug="nature-yoga-retreat" class="fakeCheck">
+                      <a href="/all/c/nature-yoga-retreat?show_all">
+                        Yoga Retreats in Nature
+                        <span class="sf_filter_item_facet">(697)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-eco-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-and-eco-retreats?show_all">
+                        Yoga and Eco Retreats
+                        <span class="sf_filter_item_facet">(212)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_10');"
+                      class="sf_filter_group_title"
+                    >
+                      Health &amp; Wellness
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="aqua-yoga" class="fakeCheck">
+                      <a href="/all/c/aqua-yoga?show_all">
+                        Aqua Healing and Yoga
+                        <span class="sf_filter_item_facet">(22)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ayurveda-yoga-retreats" class="fakeCheck">
+                      <a href="/all/c/ayurveda-yoga-retreats?show_all">
+                        Ayurveda Retreats
+                        <span class="sf_filter_item_facet">(318)</span>
+                      </a>
+                    </li>
+                    <li data-slug="wellness-retreats" class="fakeCheck">
+                      <a href="/all/c/wellness-retreats?show_all">
+                        Wellness Retreats
+                        <span class="sf_filter_item_facet">(90)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-detox-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-detox-retreats?show_all">
+                        Yoga Detox Retreats
+                        <span class="sf_filter_item_facet">(393)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-health-farms" class="fakeCheck">
+                      <a href="/all/c/yoga-health-farms?show_all">
+                        Yoga Health Farms
+                        <span class="sf_filter_item_facet">(14)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-health-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-health-retreats?show_all">
+                        Yoga Health Retreats
+                        <span class="sf_filter_item_facet">(669)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-therapy-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-therapy-retreats?show_all">
+                        Yoga Therapy Retreats
+                        <span class="sf_filter_item_facet">(373)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-wellness-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-wellness-retreats?show_all">
+                        Yoga Wellness Retreats
+                        <span class="sf_filter_item_facet">(1055)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-acupuncture" class="fakeCheck">
+                      <a href="/all/c/yoga-acupuncture?show_all">
+                        Yoga and Acupuncture
+                        <span class="sf_filter_item_facet">(19)</span>
+                      </a>
+                    </li>
+                    <li data-slug="digital-detox-yoga" class="fakeCheck">
+                      <a href="/all/c/digital-detox-yoga?show_all">
+                        Yoga and Digital Detox Retreats
+                        <span class="sf_filter_item_facet">(35)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-life-coaching" class="fakeCheck">
+                      <a href="/all/c/yoga-and-life-coaching?show_all">
+                        Yoga and Life Coaching
+                        <span class="sf_filter_item_facet">(145)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-and-pranayama" class="fakeCheck">
+                      <a href="/all/c/yoga-and-pranayama?show_all">
+                        Yoga and Pranayama
+                        <span class="sf_filter_item_facet">(1592)</span>
+                      </a>
+                    </li>
+                    <li data-slug="regression-therapy-yoga" class="fakeCheck">
+                      <a href="/all/c/regression-therapy-yoga?show_all">
+                        Yoga and Regression Therapy
+                        <span class="sf_filter_item_facet">(5)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-reiki" class="fakeCheck">
+                      <a href="/all/c/yoga-reiki?show_all">
+                        Yoga and Reiki
+                        <span class="sf_filter_item_facet">(145)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-shiatsu" class="fakeCheck">
+                      <a href="/all/c/yoga-shiatsu?show_all">
+                        Yoga and Shiatsu
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-weight-loss" class="fakeCheck">
+                      <a href="/all/c/yoga-weight-loss?show_all">
+                        Yoga and Weight Loss
+                        <span class="sf_filter_item_facet">(32)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_11');"
+                      class="sf_filter_group_title"
+                    >
+                      Pampering <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="yoga-spa-retreats" class="fakeCheck">
+                      <a href="/all/c/yoga-spa-retreats?show_all">
+                        Yoga Spa Retreats
+                        <span class="sf_filter_item_facet">(320)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-aromatherapy" class="fakeCheck">
+                      <a href="/all/c/yoga-aromatherapy?show_all">
+                        Yoga and Aromatherapy
+                        <span class="sf_filter_item_facet">(32)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-massage" class="fakeCheck">
+                      <a href="/all/c/yoga-massage?show_all">
+                        Yoga and Massage
+                        <span class="sf_filter_item_facet">(935)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_12');"
+                      class="sf_filter_group_title"
+                    >
+                      Specific Diet
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="vegan-yoga" class="fakeCheck">
+                      <a href="/all/c/vegan-yoga?show_all">
+                        Vegan Yoga Retreats
+                        <span class="sf_filter_item_facet">(394)</span>
+                      </a>
+                    </li>
+                    <li data-slug="vegetarian-retreats" class="fakeCheck">
+                      <a href="/all/c/vegetarian-retreats?show_all">
+                        Vegetarian Yoga Retreats
+                        <span class="sf_filter_item_facet">(2014)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-raw-food" class="fakeCheck">
+                      <a href="/all/c/yoga-raw-food?show_all">
+                        Yoga and Raw Food Retreats
+                        <span class="sf_filter_item_facet">(70)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','category_group_13');"
+                      class="sf_filter_group_title"
+                    >
+                      Holiday Fun <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="yoga-camps" class="fakeCheck">
+                      <a href="/all/c/yoga-camps?show_all">
+                        Yoga Camps
+                        <span class="sf_filter_item_facet">(49)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-cruise" class="fakeCheck">
+                      <a href="/all/c/yoga-cruise?show_all">
+                        Yoga Cruises
+                        <span class="sf_filter_item_facet">(18)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-festivals" class="fakeCheck">
+                      <a href="/all/c/yoga-festivals?show_all">
+                        Yoga Festivals
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="holidays" class="fakeCheck">
+                      <a href="/all/c/holidays?show_all">
+                        Yoga Holidays
+                        <span class="sf_filter_item_facet">(2044)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-hotels-and-resorts" class="fakeCheck">
+                      <a href="/all/c/yoga-hotels-and-resorts?show_all">
+                        Yoga Hotels and Resorts
+                        <span class="sf_filter_item_facet">(577)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-tours" class="fakeCheck">
+                      <a href="/all/c/yoga-tours?show_all">
+                        Yoga Tours
+                        <span class="sf_filter_item_facet">(193)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yoga-wine" class="fakeCheck">
+                      <a href="/all/c/yoga-wine?show_all">
+                        Yoga and Wine
+                        <span class="sf_filter_item_facet">(59)</span>
+                      </a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+              <div id="sf_styles" class="sf_item">
+                <div class="sf_item_title subtitle">Styles</div>
+                <div class="sf_item_list noMaxHeight">
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','style_group_1');"
+                      class="sf_filter_group_title"
+                    >
+                      Sweat &amp; Flow
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="ashtanga-yoga" class="fakeCheck">
+                      <a href="/all/s/ashtanga-yoga?show_all">
+                        Ashtanga Yoga
+                        <span class="sf_filter_item_facet">(860)</span>
+                      </a>
+                    </li>
+                    <li data-slug="bikram-hot-yoga" class="fakeCheck">
+                      <a href="/all/s/bikram-hot-yoga?show_all">
+                        Bikram / Hot Yoga
+                        <span class="sf_filter_item_facet">(37)</span>
+                      </a>
+                    </li>
+                    <li data-slug="vinyasa-yoga" class="fakeCheck">
+                      <a href="/all/s/vinyasa-yoga?show_all">
+                        Vinyasa Yoga
+                        <span class="sf_filter_item_facet">(1819)</span>
+                      </a>
+                    </li>
+                    <li data-slug="acroyoga" class="fakeCheck">
+                      <a href="/all/s/acroyoga?show_all">
+                        AcroYoga <span class="sf_filter_item_facet">(75)</span>
+                      </a>
+                    </li>
+                    <li data-slug="baptiste-yoga" class="fakeCheck">
+                      <a href="/all/s/baptiste-yoga?show_all">
+                        Baptiste yoga
+                        <span class="sf_filter_item_facet">(6)</span>
+                      </a>
+                    </li>
+                    <li data-slug="forrest-yoga" class="fakeCheck">
+                      <a href="/all/s/forrest-yoga?show_all">
+                        Forrest Yoga
+                        <span class="sf_filter_item_facet">(15)</span>
+                      </a>
+                    </li>
+                    <li data-slug="jivamukti-yoga" class="fakeCheck">
+                      <a href="/all/s/jivamukti-yoga?show_all">
+                        Jivamukti Yoga
+                        <span class="sf_filter_item_facet">(18)</span>
+                      </a>
+                    </li>
+                    <li data-slug="power-yoga" class="fakeCheck">
+                      <a href="/all/s/power-yoga?show_all">
+                        Power Yoga
+                        <span class="sf_filter_item_facet">(213)</span>
+                      </a>
+                    </li>
+                    <li data-slug="rocket-yoga" class="fakeCheck">
+                      <a href="/all/s/rocket-yoga?show_all">
+                        Rocket Yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="tibetan-yoga" class="fakeCheck">
+                      <a href="/all/s/tibetan-yoga?show_all">
+                        Tibetan Yoga
+                        <span class="sf_filter_item_facet">(23)</span>
+                      </a>
+                    </li>
+                    <li data-slug="zen-yoga" class="fakeCheck">
+                      <a href="/all/s/zen-yoga?show_all">
+                        Zen Yoga <span class="sf_filter_item_facet">(39)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','style_group_2');"
+                      class="sf_filter_group_title"
+                    >
+                      Mindfulness &amp; Meditation
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="hatha-yoga" class="fakeCheck">
+                      <a href="/all/s/hatha-yoga?show_all">
+                        Hatha Yoga
+                        <span class="sf_filter_item_facet">(3557)</span>
+                      </a>
+                    </li>
+                    <li data-slug="iyengar-yoga" class="fakeCheck">
+                      <a href="/all/s/iyengar-yoga?show_all">
+                        Iyengar Yoga
+                        <span class="sf_filter_item_facet">(176)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kundalini-yoga" class="fakeCheck">
+                      <a href="/all/s/kundalini-yoga?show_all">
+                        Kundalini Yoga
+                        <span class="sf_filter_item_facet">(412)</span>
+                      </a>
+                    </li>
+                    <li data-slug="tantra-yoga" class="fakeCheck">
+                      <a href="/all/s/tantra-yoga?show_all">
+                        Tantra Yoga
+                        <span class="sf_filter_item_facet">(194)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yin-yoga" class="fakeCheck">
+                      <a href="/all/s/yin-yoga?show_all">
+                        Yin Yoga
+                        <span class="sf_filter_item_facet">(1275)</span>
+                      </a>
+                    </li>
+                    <li data-slug="alignment-yoga" class="fakeCheck">
+                      <a href="/all/s/alignment-yoga?show_all">
+                        Alignment Yoga
+                        <span class="sf_filter_item_facet">(49)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ananda-yoga" class="fakeCheck">
+                      <a href="/all/s/ananda-yoga?show_all">
+                        Ananda Yoga
+                        <span class="sf_filter_item_facet">(1)</span>
+                      </a>
+                    </li>
+                    <li data-slug="chair-yoga" class="fakeCheck">
+                      <a href="/all/s/chair-yoga?show_all">
+                        Chair yoga <span class="sf_filter_item_facet">(9)</span>
+                      </a>
+                    </li>
+                    <li data-slug="chakra-yoga" class="fakeCheck">
+                      <a href="/all/s/chakra-yoga?show_all">
+                        Chakra Yoga
+                        <span class="sf_filter_item_facet">(165)</span>
+                      </a>
+                    </li>
+                    <li data-slug="critical-alignment-yoga" class="fakeCheck">
+                      <a href="/all/s/critical-alignment-yoga?show_all">
+                        Critical Alignment Yoga
+                        <span class="sf_filter_item_facet">(13)</span>
+                      </a>
+                    </li>
+                    <li data-slug="dru-yoga" class="fakeCheck">
+                      <a href="/all/s/dru-yoga?show_all">
+                        Dru Yoga <span class="sf_filter_item_facet">(2)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ganja-yoga" class="fakeCheck">
+                      <a href="/all/s/ganja-yoga?show_all">
+                        Ganja yoga <span class="sf_filter_item_facet">(1)</span>
+                      </a>
+                    </li>
+                    <li data-slug="integral-yoga" class="fakeCheck">
+                      <a href="/all/s/integral-yoga?show_all">
+                        Integral yoga
+                        <span class="sf_filter_item_facet">(58)</span>
+                      </a>
+                    </li>
+                    <li data-slug="japa-yoga" class="fakeCheck">
+                      <a href="/all/s/japa-yoga?show_all">
+                        Japa Yoga <span class="sf_filter_item_facet">(48)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kashmir-yoga" class="fakeCheck">
+                      <a href="/all/s/kashmir-yoga?show_all">
+                        Kashmir yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kripalu-yoga" class="fakeCheck">
+                      <a href="/all/s/kripalu-yoga?show_all">
+                        Kripalu Yoga
+                        <span class="sf_filter_item_facet">(10)</span>
+                      </a>
+                    </li>
+                    <li data-slug="laughter-yoga" class="fakeCheck">
+                      <a href="/all/s/laughter-yoga?show_all">
+                        Laughter Yoga
+                        <span class="sf_filter_item_facet">(21)</span>
+                      </a>
+                    </li>
+                    <li data-slug="laya-yoga" class="fakeCheck">
+                      <a href="/all/s/laya-yoga?show_all">
+                        Laya Yoga <span class="sf_filter_item_facet">(4)</span>
+                      </a>
+                    </li>
+                    <li data-slug="nada-yoga" class="fakeCheck">
+                      <a href="/all/s/nada-yoga?show_all">
+                        Nada Yoga <span class="sf_filter_item_facet">(19)</span>
+                      </a>
+                    </li>
+                    <li data-slug="nidra-yoga" class="fakeCheck">
+                      <a href="/all/s/nidra-yoga?show_all">
+                        Nidra Yoga
+                        <span class="sf_filter_item_facet">(907)</span>
+                      </a>
+                    </li>
+                    <li data-slug="para-yoga" class="fakeCheck">
+                      <a href="/all/s/para-yoga?show_all">
+                        Para Yoga <span class="sf_filter_item_facet">(2)</span>
+                      </a>
+                    </li>
+                    <li data-slug="partner-yoga" class="fakeCheck">
+                      <a href="/all/s/partner-yoga?show_all">
+                        Partner Yoga
+                        <span class="sf_filter_item_facet">(58)</span>
+                      </a>
+                    </li>
+                    <li data-slug="restorative-yoga" class="fakeCheck">
+                      <a href="/all/s/restorative-yoga?show_all">
+                        Restorative Yoga
+                        <span class="sf_filter_item_facet">(849)</span>
+                      </a>
+                    </li>
+                    <li data-slug="satyananda-yoga" class="fakeCheck">
+                      <a href="/all/s/satyananda-yoga?show_all">
+                        Satyananda Yoga
+                        <span class="sf_filter_item_facet">(18)</span>
+                      </a>
+                    </li>
+                    <li data-slug="sivananda-yoga" class="fakeCheck">
+                      <a href="/all/s/sivananda-yoga?show_all">
+                        Sivananda Yoga
+                        <span class="sf_filter_item_facet">(104)</span>
+                      </a>
+                    </li>
+                    <li data-slug="somatic-yoga" class="fakeCheck">
+                      <a href="/all/s/somatic-yoga?show_all">
+                        Somatic Yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="thai-yoga" class="fakeCheck">
+                      <a href="/all/s/thai-yoga?show_all">
+                        Thai yoga <span class="sf_filter_item_facet">(45)</span>
+                      </a>
+                    </li>
+                    <li data-slug="therapeutic-yoga" class="fakeCheck">
+                      <a href="/all/s/therapeutic-yoga?show_all">
+                        Therapeutic Yoga
+                        <span class="sf_filter_item_facet">(104)</span>
+                      </a>
+                    </li>
+                    <li data-slug="tibetan-yoga" class="fakeCheck">
+                      <a href="/all/s/tibetan-yoga?show_all">
+                        Tibetan Yoga
+                        <span class="sf_filter_item_facet">(23)</span>
+                      </a>
+                    </li>
+                    <li data-slug="transformational-yoga" class="fakeCheck">
+                      <a href="/all/s/transformational-yoga?show_all">
+                        Transformational Yoga
+                        <span class="sf_filter_item_facet">(43)</span>
+                      </a>
+                    </li>
+                    <li data-slug="viniyoga" class="fakeCheck">
+                      <a href="/all/s/viniyoga?show_all">
+                        Viniyoga <span class="sf_filter_item_facet">(28)</span>
+                      </a>
+                    </li>
+                    <li data-slug="vipassana-yoga" class="fakeCheck">
+                      <a href="/all/s/vipassana-yoga?show_all">
+                        Vipassana Yoga
+                        <span class="sf_filter_item_facet">(46)</span>
+                      </a>
+                    </li>
+                    <li data-slug="zen-yoga" class="fakeCheck">
+                      <a href="/all/s/zen-yoga?show_all">
+                        Zen Yoga <span class="sf_filter_item_facet">(39)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','style_group_3');"
+                      class="sf_filter_group_title"
+                    >
+                      Restore &amp; Revitalize
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="hatha-yoga" class="fakeCheck">
+                      <a href="/all/s/hatha-yoga?show_all">
+                        Hatha Yoga
+                        <span class="sf_filter_item_facet">(3557)</span>
+                      </a>
+                    </li>
+                    <li data-slug="iyengar-yoga" class="fakeCheck">
+                      <a href="/all/s/iyengar-yoga?show_all">
+                        Iyengar Yoga
+                        <span class="sf_filter_item_facet">(176)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kundalini-yoga" class="fakeCheck">
+                      <a href="/all/s/kundalini-yoga?show_all">
+                        Kundalini Yoga
+                        <span class="sf_filter_item_facet">(412)</span>
+                      </a>
+                    </li>
+                    <li data-slug="tantra-yoga" class="fakeCheck">
+                      <a href="/all/s/tantra-yoga?show_all">
+                        Tantra Yoga
+                        <span class="sf_filter_item_facet">(194)</span>
+                      </a>
+                    </li>
+                    <li data-slug="yin-yoga" class="fakeCheck">
+                      <a href="/all/s/yin-yoga?show_all">
+                        Yin Yoga
+                        <span class="sf_filter_item_facet">(1275)</span>
+                      </a>
+                    </li>
+                    <li data-slug="aerial-yoga" class="fakeCheck">
+                      <a href="/all/s/aerial-yoga?show_all">
+                        Aerial Yoga
+                        <span class="sf_filter_item_facet">(114)</span>
+                      </a>
+                    </li>
+                    <li data-slug="alignment-yoga" class="fakeCheck">
+                      <a href="/all/s/alignment-yoga?show_all">
+                        Alignment Yoga
+                        <span class="sf_filter_item_facet">(49)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ananda-yoga" class="fakeCheck">
+                      <a href="/all/s/ananda-yoga?show_all">
+                        Ananda Yoga
+                        <span class="sf_filter_item_facet">(1)</span>
+                      </a>
+                    </li>
+                    <li data-slug="chair-yoga" class="fakeCheck">
+                      <a href="/all/s/chair-yoga?show_all">
+                        Chair yoga <span class="sf_filter_item_facet">(9)</span>
+                      </a>
+                    </li>
+                    <li data-slug="chakra-yoga" class="fakeCheck">
+                      <a href="/all/s/chakra-yoga?show_all">
+                        Chakra Yoga
+                        <span class="sf_filter_item_facet">(165)</span>
+                      </a>
+                    </li>
+                    <li data-slug="critical-alignment-yoga" class="fakeCheck">
+                      <a href="/all/s/critical-alignment-yoga?show_all">
+                        Critical Alignment Yoga
+                        <span class="sf_filter_item_facet">(13)</span>
+                      </a>
+                    </li>
+                    <li data-slug="dru-yoga" class="fakeCheck">
+                      <a href="/all/s/dru-yoga?show_all">
+                        Dru Yoga <span class="sf_filter_item_facet">(2)</span>
+                      </a>
+                    </li>
+                    <li data-slug="integral-yoga" class="fakeCheck">
+                      <a href="/all/s/integral-yoga?show_all">
+                        Integral yoga
+                        <span class="sf_filter_item_facet">(58)</span>
+                      </a>
+                    </li>
+                    <li data-slug="japa-yoga" class="fakeCheck">
+                      <a href="/all/s/japa-yoga?show_all">
+                        Japa Yoga <span class="sf_filter_item_facet">(48)</span>
+                      </a>
+                    </li>
+                    <li data-slug="jivamukti-yoga" class="fakeCheck">
+                      <a href="/all/s/jivamukti-yoga?show_all">
+                        Jivamukti Yoga
+                        <span class="sf_filter_item_facet">(18)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kashmir-yoga" class="fakeCheck">
+                      <a href="/all/s/kashmir-yoga?show_all">
+                        Kashmir yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="kripalu-yoga" class="fakeCheck">
+                      <a href="/all/s/kripalu-yoga?show_all">
+                        Kripalu Yoga
+                        <span class="sf_filter_item_facet">(10)</span>
+                      </a>
+                    </li>
+                    <li data-slug="laughter-yoga" class="fakeCheck">
+                      <a href="/all/s/laughter-yoga?show_all">
+                        Laughter Yoga
+                        <span class="sf_filter_item_facet">(21)</span>
+                      </a>
+                    </li>
+                    <li data-slug="laya-yoga" class="fakeCheck">
+                      <a href="/all/s/laya-yoga?show_all">
+                        Laya Yoga <span class="sf_filter_item_facet">(4)</span>
+                      </a>
+                    </li>
+                    <li data-slug="nada-yoga" class="fakeCheck">
+                      <a href="/all/s/nada-yoga?show_all">
+                        Nada Yoga <span class="sf_filter_item_facet">(19)</span>
+                      </a>
+                    </li>
+                    <li data-slug="nidra-yoga" class="fakeCheck">
+                      <a href="/all/s/nidra-yoga?show_all">
+                        Nidra Yoga
+                        <span class="sf_filter_item_facet">(907)</span>
+                      </a>
+                    </li>
+                    <li data-slug="para-yoga" class="fakeCheck">
+                      <a href="/all/s/para-yoga?show_all">
+                        Para Yoga <span class="sf_filter_item_facet">(2)</span>
+                      </a>
+                    </li>
+                    <li data-slug="restorative-yoga" class="fakeCheck">
+                      <a href="/all/s/restorative-yoga?show_all">
+                        Restorative Yoga
+                        <span class="sf_filter_item_facet">(849)</span>
+                      </a>
+                    </li>
+                    <li data-slug="satyananda-yoga" class="fakeCheck">
+                      <a href="/all/s/satyananda-yoga?show_all">
+                        Satyananda Yoga
+                        <span class="sf_filter_item_facet">(18)</span>
+                      </a>
+                    </li>
+                    <li data-slug="sivananda-yoga" class="fakeCheck">
+                      <a href="/all/s/sivananda-yoga?show_all">
+                        Sivananda Yoga
+                        <span class="sf_filter_item_facet">(104)</span>
+                      </a>
+                    </li>
+                    <li data-slug="somatic-yoga" class="fakeCheck">
+                      <a href="/all/s/somatic-yoga?show_all">
+                        Somatic Yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                    <li data-slug="thai-yoga" class="fakeCheck">
+                      <a href="/all/s/thai-yoga?show_all">
+                        Thai yoga <span class="sf_filter_item_facet">(45)</span>
+                      </a>
+                    </li>
+                    <li data-slug="therapeutic-yoga" class="fakeCheck">
+                      <a href="/all/s/therapeutic-yoga?show_all">
+                        Therapeutic Yoga
+                        <span class="sf_filter_item_facet">(104)</span>
+                      </a>
+                    </li>
+                    <li data-slug="transformational-yoga" class="fakeCheck">
+                      <a href="/all/s/transformational-yoga?show_all">
+                        Transformational Yoga
+                        <span class="sf_filter_item_facet">(43)</span>
+                      </a>
+                    </li>
+                    <li data-slug="viniyoga" class="fakeCheck">
+                      <a href="/all/s/viniyoga?show_all">
+                        Viniyoga <span class="sf_filter_item_facet">(28)</span>
+                      </a>
+                    </li>
+                    <li data-slug="vipassana-yoga" class="fakeCheck">
+                      <a href="/all/s/vipassana-yoga?show_all">
+                        Vipassana Yoga
+                        <span class="sf_filter_item_facet">(46)</span>
+                      </a>
+                    </li>
+                  </div>
+                  <div class="sf_filter_group">
+                    <div
+                      onclick="gae('sidebar_filters','style_group_4');"
+                      class="sf_filter_group_title"
+                    >
+                      Fitness &amp; Strength
+                      <i class="fas fa-caret-down"></i>
+                    </div>
+                    <li data-slug="anusara-yoga" class="fakeCheck">
+                      <a href="/all/s/anusara-yoga?show_all">
+                        Anusara Yoga
+                        <span class="sf_filter_item_facet">(21)</span>
+                      </a>
+                    </li>
+                    <li data-slug="ashtanga-yoga" class="fakeCheck">
+                      <a href="/all/s/ashtanga-yoga?show_all">
+                        Ashtanga Yoga
+                        <span class="sf_filter_item_facet">(860)</span>
+                      </a>
+                    </li>
+                    <li data-slug="bikram-hot-yoga" class="fakeCheck">
+                      <a href="/all/s/bikram-hot-yoga?show_all">
+                        Bikram / Hot Yoga
+                        <span class="sf_filter_item_facet">(37)</span>
+                      </a>
+                    </li>
+                    <li data-slug="vinyasa-yoga" class="fakeCheck">
+                      <a href="/all/s/vinyasa-yoga?show_all">
+                        Vinyasa Yoga
+                        <span class="sf_filter_item_facet">(1819)</span>
+                      </a>
+                    </li>
+                    <li data-slug="acroyoga" class="fakeCheck">
+                      <a href="/all/s/acroyoga?show_all">
+                        AcroYoga <span class="sf_filter_item_facet">(75)</span>
+                      </a>
+                    </li>
+                    <li data-slug="aerial-yoga" class="fakeCheck">
+                      <a href="/all/s/aerial-yoga?show_all">
+                        Aerial Yoga
+                        <span class="sf_filter_item_facet">(114)</span>
+                      </a>
+                    </li>
+                    <li data-slug="baptiste-yoga" class="fakeCheck">
+                      <a href="/all/s/baptiste-yoga?show_all">
+                        Baptiste yoga
+                        <span class="sf_filter_item_facet">(6)</span>
+                      </a>
+                    </li>
+                    <li data-slug="forrest-yoga" class="fakeCheck">
+                      <a href="/all/s/forrest-yoga?show_all">
+                        Forrest Yoga
+                        <span class="sf_filter_item_facet">(15)</span>
+                      </a>
+                    </li>
+                    <li data-slug="partner-yoga" class="fakeCheck">
+                      <a href="/all/s/partner-yoga?show_all">
+                        Partner Yoga
+                        <span class="sf_filter_item_facet">(58)</span>
+                      </a>
+                    </li>
+                    <li data-slug="power-yoga" class="fakeCheck">
+                      <a href="/all/s/power-yoga?show_all">
+                        Power Yoga
+                        <span class="sf_filter_item_facet">(213)</span>
+                      </a>
+                    </li>
+                    <li data-slug="rocket-yoga" class="fakeCheck">
+                      <a href="/all/s/rocket-yoga?show_all">
+                        Rocket Yoga
+                        <span class="sf_filter_item_facet">(8)</span>
+                      </a>
+                    </li>
+                  </div>
+                </div>
+              </div>
+              <div id="sf_price" class="sf_item">
+                <div class="sf_item_title subtitle">Price per trip</div>
+                <div class="sf_item_list">
+                  <li
+                    onClick="addParam(event,'price_option=1');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >From US$0 to US$119
+                      <span class="sf_filter_item_facet">(86)</span></a
+                    >
+                  </li>
+                  <li
+                    onClick="addParam(event,'price_option=2');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >From US$119 to US$356
+                      <span class="sf_filter_item_facet">(541)</span></a
+                    >
+                  </li>
+                  <li
+                    onClick="addParam(event,'price_option=3');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >From US$356 to US$1,068
+                      <span class="sf_filter_item_facet">(2413)</span></a
+                    >
+                  </li>
+                  <li
+                    onClick="addParam(event,'price_option=4');"
+                    class="fakeCheck"
+                  >
+                    <a
+                      >More than US$1,068
+                      <span class="sf_filter_item_facet">(2412)</span></a
+                    >
+                  </li>
+                  <div class="expander">Show more</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="showcards-wrapper col-md-9">
+            <div class="showcards-wrapper_header">
+              <h2
+                class="
+                  topic-categories__heading
+                  topic-categories__heading--all-retreats
+                "
+              >
+                Showing 500+ results
+              </h2>
+              <div class="sort-by-dropdown sort-by-dropdown--inline-label">
+                <div class="inline-form-label">Sort by</div>
+                <select onchange="location = this.value;" class="select-css">
+                  <option
+                    selected="selected"
+                    value="?sorting=recommended&amp;page=1"
+                  >
+                    Recommended
+                  </option>
+                  <option value="?sorting=popularity&amp;page=1">
+                    Popularity
+                  </option>
+                  <option value="?sorting=duration_asc&amp;page=1">
+                    Duration short to long
+                  </option>
+                  <option value="?sorting=duration_desc&amp;page=1">
+                    Duration long to short
+                  </option>
+                  <option value="?sorting=price_asc&amp;page=1">
+                    Price low to high
+                  </option>
+                  <option value="?sorting=price_desc&amp;page=1">
+                    Price high to low
+                  </option>
+                  <option value="?sorting=price_per_day_asc&amp;page=1">
+                    Price per day low to high
+                  </option>
+                  <option value="?sorting=price_per_day_desc&amp;page=1">
+                    Price per day high to low
+                  </option>
+                  <option value="?sorting=review_score&amp;page=1">
+                    Review score
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="cards cards--new-showcards">
+              {% for listing in listings %}
+              <div
+                data-duration="12"
+                data-csrf-token="puqlPFFSjIILYXdwxJrUvznOgHUPnZGC"
+                data-listing-id="45396"
+                data-organizer-id="18578"
+                data-reference-code="ETC0UesOkrreMDirxAkyHV9eJfxXAGYe"
+                class="showcard-listing"
+              >
+                <a href="{% url 'listings:listing_detail' listing.pk listing.slug %}" class="js-showcard-link">
+                  <div
+                    data-view-class="img-1956832"
+                    class="showcard-listing-image"
+                  >
+                  {% if listing.clean_and_safe %}
+                    <div
+                      data-tippy
+                      data-template="clean-and-safe-popover"
+                      class="
+                        showcard-listing-image__badge
+                        showcard-listing-image__badge--default
+                      "
+                    >
+                    
+                      Clean &amp; Safe 
+                    </div>
+                  
+                    <div
+                      style="display: none"
+                      id="clean-and-safe-popover"
+                      role="tooltip"
+                      class="tippy-popper"
+                    >
+                      <div class="tippy-content">
+                        This organizer is taking steps to ensure your experience
+                        is safe, during the COVID-19 pandemic
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if user.is_authenticated and user.is_customer %}
+                    
+                    <div class="favorite favorite-new-showcard" >
+                      <i class="ebs-icon ebs-icon--shadow ebs-icon-heart-stroked">
+                      <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" fill="none"><path fill-opacity=".5" stroke-linecap="round" stroke="#fff" stroke-linejoin="round" fill="#202224" stroke-width="2" d="M22.347 2a7.537 7.537 0 00-3.6.973A7.864 7.864 0 0016 5.573a7.866 7.866 0 00-2.748-2.6A7.537 7.537 0 009.653 2c-2.039.013-3.99.864-5.424 2.366A8.14 8.14 0 002 10.014C2 18.027 16 30 16 30s14-11.973 14-19.986a8.14 8.14 0 00-2.229-5.648C26.337 2.864 24.386 2.013 22.347 2v0z" stroke-miterlimit="10"></path></svg>
+                      </i>
+                      {% if listing.pk in wish_list %}
+                      <i onclick=addFavorite({{ listing.id }}) data-csrf-token="7GtC208kbHoSXmWQmVVP43jgZ7SOMDXs" data-currency-code="CAD" data-listing-id="32088" data-total-listing-price="113" data-reference-code="RVSS7U35YgT3LXXvFE2eyw1jDjKuJ5CM" class="ebs-icon ebs-icon--main ebs-icon-heart favorites makes-toast">
+                      {% else %}
+                      <i onclick=addFavorite({{ listing.id }}) data-csrf-token="7GtC208kbHoSXmWQmVVP43jgZ7SOMDXs" data-currency-code="CAD" data-listing-id="81787" data-total-listing-price="2,511" data-reference-code="aJJQ5bGyZ9azKdAcBEAx_q3iUADVMIvv" class="ebs-icon ebs-icon--main ebs-icon-heart-stroked favorites makes-toast">
+                      {% endif %}
+                        <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" fill="none"><path fill-opacity="1" stroke-linecap="round" stroke="#fff" stroke-linejoin="round" fill="#E63C15" stroke-width="2" d="M22.347 2a7.537 7.537 0 00-3.6.973A7.864 7.864 0 0016 5.573a7.866 7.866 0 00-2.748-2.6A7.537 7.537 0 009.653 2c-2.039.013-3.99.864-5.424 2.366A8.14 8.14 0 002 10.014C2 18.027 16 30 16 30s14-11.973 14-19.986a8.14 8.14 0 00-2.229-5.648C26.337 2.864 24.386 2.013 22.347 2v0z" stroke-miterlimit="10"></path></svg>
+                      </i>
+                      <span class="js-show-on-like">
+                      Remove from Favorites
+                      </span>
+                      <span class="js-show-on-unlike">
+                      Add to Favorites
+                      </span>
+                      </div>
+                    {% else %}
+                    <div
+                    onclick="openLoginModal()"
+                    class="
+                      favorite
+                      favorite--right-aligned
+                      favorite--preventDefault
+                    "
+                  >
+                    <div class="svg-wrapper">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        height="32"
+                        width="32"
+                        fill="none"
+                      >
+                        <path
+                          fill-opacity=".5"
+                          stroke-linecap="round"
+                          stroke="#fff"
+                          stroke-linejoin="round"
+                          fill="#202224"
+                          stroke-width="2"
+                          d="M22.347 2a7.537 7.537 0 00-3.6.973A7.864 7.864 0 0016 5.573a7.866 7.866 0 00-2.748-2.6A7.537 7.537 0 009.653 2c-2.039.013-3.99.864-5.424 2.366A8.14 8.14 0 002 10.014C2 18.027 16 30 16 30s14-11.973 14-19.986a8.14 8.14 0 00-2.229-5.648C26.337 2.864 24.386 2.013 22.347 2v0z"
+                          stroke-miterlimit="10"
+                        ></path>
+                      </svg>
+                    </div>
+                    <span class="js-show-on-unlike">
+                      Login to save to your favorites
+                    </span>
+                  </div>
+                    {% endif %}
+
+                    <div class="slider-viewport">
+                      <div class="slider-button-group">
+                        <button class="slider-prev">
+                          <svg
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="26"
+                            width="14"
+                            viewBox="0 0 14 26"
+                          >
+                            <path
+                              stroke-width="2"
+                              d="M13 25L1 13L13 1"
+                              stroke-linecap="round"
+                              stroke="white"
+                              stroke-linejoin="round"
+                              stroke-miterlimit="10"
+                            ></path>
+                          </svg>
+                        </button>
+                        <button class="slider-next">
+                          <svg
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="26"
+                            width="14"
+                            viewBox="0 0 14 26"
+                          >
+                            <path
+                              stroke-width="2"
+                              d="M1 25L13 13L1 1"
+                              stroke-linecap="round"
+                              stroke="white"
+                              stroke-linejoin="round"
+                              stroke-miterlimit="10"
+                            ></path>
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="slider-wrapper">
+                        {% for image in listing.images.all %}
+                        <img
+                          loading="eager"
+                          src="{{ image.image.url }}"
+                          class="img1956832"
+                        />
+                        {% endfor %}
+                        <!-- <img
+                          loading="lazy"
+                          src="https://photos.tpn.to/qq/nl/qi/mj/653x490.webp"
+                          class="img1956841"
+                        />
+                        <img
+                          loading="lazy"
+                          src="https://photos.tpn.to/ft/lo/mm/he/653x490.webp"
+                          class="img1956848"
+                        />
+                        <img
+                          loading="lazy"
+                          src="https://photos.tpn.to/jf/tr/ge/tt/653x490.webp"
+                          class="img1956843"
+                        />
+                        <img
+                          loading="lazy"
+                          src="https://photos.tpn.to/ps/jo/el/nq/653x490.webp"
+                          class="img1956812"
+                        /> -->
+                        
+                      </div>
+                      <div class="slider-indicators-container">
+                        <div class="slider-indicators-list"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="showcard-listing-content">
+                    <div class="pre-main-content">
+                      <div class="pre-main-content__location">{{ listing.country.name }}</div>
+                      {% if listing.overall_rating %}
+                      <div class="pre-main-content-rating-and-interested">
+                        <div
+                          data-href="/muay-thai-battle-conquer-gym/12-days-weight-loss-detox-yoga-meditation-and-muay-thai-in-phetchabun-thailand#reviews"
+                          class="pre-main-content__rating"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="12"
+                            width="13"
+                            fill="none"
+                          >
+                            <path
+                              d="M12.209 4.174l-3.54-.54L7.085.272a.534.534 0 00-.19-.198.503.503 0 00-.52 0 .534.534 0 00-.19.198l-1.58 3.364-3.54.539a.49.49 0 00-.25.118.526.526 0 00-.154.239.549.549 0 00.127.537L3.35 7.69l-.606 3.697a.548.548 0 00.03.286c.035.09.093.17.169.227a.486.486 0 00.527.04l3.167-1.75 3.167 1.746a.48.48 0 00.615-.126.534.534 0 00.11-.426l-.605-3.698 2.562-2.62a.549.549 0 00.127-.538.526.526 0 00-.154-.24.49.49 0 00-.25-.117v.003z"
+                              fill="#02A5E8"
+                            ></path>
+                          </svg>
+                          {{ listing.overall_rating }}<span class="review-number"></span>
+                        </div>
+                      </div>
+                      {% endif %}
+                    </div>
+                    <div class="listing-title">
+                      {{ listing.title }}
+                    </div>
+                    <div class="listing-features">
+                      {% if listing.airport_shuttle != 3 %}
+                      <span>Airport transfer available</span>
+                      {% endif %}
+                      <span>Instructed in {{ listing.get_instruction_language_display }}</span>
+                      {% if 'Breakfast' and 'Lunch' and 'Dinner' in listing.get_meals_display %}
+                      <span>All meals included</span>
+                      {% elif listing.get_meals_display %}
+                      <span>Some meals included</span>
+                      {% else %}
+                      <span>No meals included</span>
+                      {% endif %}
+                    </div>
+                    <div class="listing-footer">
+                      <div class="listing-footer__details">
+                        <span class="detail-item detail-item--number-of-people">
+                          <svg
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="16"
+                            width="16"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M9 10.836C9 10.232 8.735 9.657 8.262 9.282C7.539 8.708 6.285 8 4.5 8C2.715 8 1.461 8.708 0.738 9.282C0.265 9.657 0 10.232 0 10.836V12H9V10.836Z"
+                              fill="#7C8086"
+                            ></path>
+                            <path
+                              d="M4.5 7C5.88071 7 7 5.88071 7 4.5C7 3.11929 5.88071 2 4.5 2C3.11929 2 2 3.11929 2 4.5C2 5.88071 3.11929 7 4.5 7Z"
+                              fill="#7C8086"
+                            ></path>
+                            <path
+                              d="M11.5 7C12.8807 7 14 5.88071 14 4.5C14 3.11929 12.8807 2 11.5 2C10.1193 2 9 3.11929 9 4.5C9 5.88071 10.1193 7 11.5 7Z"
+                              fill="#7C8086"
+                            ></path>
+                            <path
+                              d="M15.262 9.282C14.539 8.708 13.285 8 11.5 8C10.939 8 10.437 8.075 9.981 8.189C10.625 8.909 11 9.836 11 10.836V12H16V10.836C16 10.232 15.735 9.657 15.262 9.282Z"
+                              fill="#7C8086"
+                            ></path>
+                          </svg>
+                          1 person
+                        </span>
+                        <span
+                          class="detail-item detail-item--availability-and-days"
+                        >
+                          <svg
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="16"
+                            width="16"
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              d="M15 2H13V0H10V2H6V0H3V2H1C0.448 2 0 2.448 0 3V15C0 15.552 0.448 16 1 16H15C15.552 16 16 15.552 16 15V3C16 2.448 15.552 2 15 2ZM14 14H2V5H14V14Z"
+                              fill="#7C8086"
+                            ></path>
+                            <path d="M6 7H4V9H6V7Z" fill="#7C8086"></path>
+                            <path d="M9 7H7V9H9V7Z" fill="#7C8086"></path>
+                            <path d="M6 10H4V12H6V10Z" fill="#7C8086"></path>
+                            <path d="M9 10H7V12H9V10Z" fill="#7C8086"></path>
+                            <path d="M12 7H10V9H12V7Z" fill="#7C8086"></path>
+                            <path d="M12 10H10V12H12V10Z" fill="#7C8086"></path>
+                          </svg>
+                          <span class="days"> {{ listing.program_duration }} days </span>
+                          <span class="availability">
+                            <span>•</span> Available all year
+                          </span>
+                        </span>
+                      </div>
+                      <div class="listing-footer__price">
+                        <div class="from">from</div>
+                        <div class="price">US${{ listing.get_lowest_package_price|intcomma }} </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+
+            <div class="topic-pagination">
+              <div class="topic-pagination__container">
+                {% if page_obj.number|add:'-4' > 1 %}
+                <a href="?page={{ page_obj.number|add:'-5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                {% endif %}
+
+                {% for i in page_obj.paginator.page_range %}
+                  {% if page_obj.number == i %}
+                  <a href="?page={{ i }}&{{ get_copy.urlencode }}" class="active">  {{ i }} </a>
+                  {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                  <a href="?page={{ i }}&{{ get_copy.urlencode }}"> {{ i }} </a>
+                  {% endif %}
+                {% endfor %}
+
+                {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                    <a href="?page={{ page_obj.number|add:'5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      data-view-class="img-topography-green"
+      class="sector topography topography-green"
+    >
+      <style>
+        .img-topography-green {
+          background-image: url("https://s3.us-east-2.amazonaws.com/statics.tpn.to/backgrounds/topography-green.svg");
+        }
+      </style>
+      <div class="customer-layout-wrapper">
+        <div class="grid-wrapper single-column">
+          <div class="column">
+            <div class="sector-header">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="100"
+                width="104"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 0 104 100"
+              >
+                <defs>
+                  <path d="M0 47.323h59.233V0h13.72v65.509H0z" id="a"></path>
+                </defs>
+                <g fill-rule="evenodd" fill="none">
+                  <path
+                    opacity=".2"
+                    d="M21.427 86.904a45.402 45.402 0 0 1-11.52-16.31C-2.225 42.28 15.645 9.807 39.474 1.852a34.4 34.4 0 0 1 1.751-.534C52.521-1.8 64.854.567 74.927 8.94c12.046 10.012 19.286 26.47 20.074 42.227 1.09 21.8-5.994 41.426-24.333 47.242-13.84 4.389-36.942-.579-49.241-11.505z"
+                    fill="#02BF9B"
+                  ></path>
+                  <g
+                    stroke-width="4"
+                    transform="translate(12.473 24.357)"
+                    stroke="#53585C"
+                  >
+                    <circle cy="3.884" cx="8.199" r="3.884"></circle>
+                    <path
+                      d="M2 29.266h12.399v-8.79a6.2 6.2 0 0 0-12.399 0v8.79zM22.067 3.258h35.387M22.067 11.652h31.071M22.067 20.045h35.387M22.067 28.439H39.76"
+                    ></path>
+                  </g>
+                  <path
+                    stroke-width="4"
+                    d="M6.711 14h67.194c2.603 0 4.71 2.087 4.71 4.658v40.489c0 2.57-2.107 4.658-4.71 4.658H14.549l-.252.25L3.71 74.561a1.024 1.024 0 0 1-.736.287.71.71 0 0 1-.319-.067l-.04-.017A.976.976 0 0 1 2 73.87V18.658C2 16.088 4.107 14 6.711 14z"
+                    stroke="#53585C"
+                  ></path>
+                  <g transform="translate(30.906 27.94)">
+                    <mask id="b" fill="#fff">
+                      <use xlink:href="#a"></use>
+                    </mask>
+                    <path
+                      stroke-width="4"
+                      d="M66.224 2.585H7.031c-2.604 0-4.711 2.087-4.711 4.658v40.489c0 2.57 2.107 4.658 4.71 4.658h51.356l.252.25 10.588 10.506c.188.185.443.288.736.287a.71.71 0 0 0 .32-.067l.04-.017a.976.976 0 0 0 .613-.894V7.243c0-2.57-2.107-4.658-4.71-4.658z"
+                      mask="url(#b)"
+                      stroke="#53585C"
+                    ></path>
+                  </g>
+                </g>
+              </svg>
+              <div class="text">
+                <h2>Travelers love us, and the feeling is mutual</h2>
+                <p>
+                  Over 140k travelers like you have chosen Tripaneer so far.
+                  Hear what they have to say about us!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-wrapper three-columns">
+          <div class="column">
+            <div class="company-metric">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="33"
+                width="29"
+                viewBox="0 0 29 33"
+              >
+                <g
+                  stroke-width="2.5"
+                  fill-rule="evenodd"
+                  transform="translate(0 1)"
+                  stroke="#02BF9B"
+                  fill="none"
+                >
+                  <ellipse
+                    cy="8.599"
+                    cx="14.476"
+                    ry="8.19"
+                    rx="8.107"
+                  ></ellipse>
+                  <path
+                    d="M1.25 30.75h26.452v-.45a8.75 8.75 0 0 0-8.75-8.75H10a8.75 8.75 0 0 0-8.75 8.75v.45z"
+                  ></path>
+                </g>
+              </svg>
+              <div class="text">
+                <h4>Over 150,000 trips enjoyed</h4>
+                <p>through Tripaneer</p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="company-metric">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="31"
+                width="32"
+                viewBox="0 0 32 31"
+              >
+                <path
+                  fill-rule="nonzero"
+                  d="M12.996 3.228c-.125 3.966-.625 6.232-2.874 9.694a2.174 2.174 0 0 0-1.5-.63H2.125C1 12.293 0 13.3 0 14.497v12.967c0 1.196 1 2.203 2.124 2.203h6.499c.624 0 1.124-.251 1.562-.692.25.252.5.44.812.63.625.377 1.374.566 2.312.692 1.937.189 4.873.063 11.809.063.25 0 .5-.063.687-.252 1.375-1.133 2.062-2.266 2.374-3.462.125-.063.188-.189.313-.315 1-1.259 1.437-2.77 1.25-4.154l.187-.19c1.187-1.51 1.562-3.273 1.125-4.783.75-.944 1-2.015.937-3.022-.188-1.259-.937-2.329-2.125-2.895-.125-.063-.312-.063-.437-.063h-8.81c.437-3.588.063-6.799-1.187-9.065C18.745.962 17.682.207 16.62.018c-1.937-.189-3.436 1.133-3.624 3.21zm4.561 0c1 1.763 1.5 5.162.75 8.876-.125.63.438 1.259 1.062 1.259h9.748c.375.252.624.566.687 1.07.062.44-.125.944-.562 1.51h-3.75c-.562 0-1.124.504-1.124 1.07 0 .567.562 1.071 1.125 1.071h3.561c.063.63-.062 1.385-.562 2.14h-3c-.562 0-1.124.567-1.124 1.133 0 .567.562 1.07 1.125 1.07h2.124c.063.63-.062 1.385-.562 2.14h-1.562c-.563 0-1.125.567-1.125 1.134 0 .566.562 1.07 1.125 1.07h.375c-.25.44-.563.881-1.188 1.448-6.56 0-9.684.063-11.121-.063-.75-.063-1.063-.19-1.437-.44-.313-.19-.75-.567-1.375-1.008V15.692c3.374-4.532 4.249-7.68 4.436-12.4.313-1.826 1.937-1.07 2.374-.064zM2.124 14.496h6.499c-.063 4.28 0 8.624 0 12.967H2.124V14.496z"
+                  fill="#02BF9B"
+                ></path>
+              </svg>
+              <div class="text">
+                <h4>93% of our customers</h4>
+                <p>recommend booking with us</p>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="company-metric">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="32"
+                width="33"
+                viewBox="0 0 33 32"
+              >
+                <path
+                  stroke-width="2.5"
+                  d="M16.5 24.75l-8.523 4.48 1.628-9.49-6.895-6.72 9.529-1.385L16.5 3l4.261 8.635 9.53 1.384-6.896 6.721 1.628 9.49z"
+                  fill-rule="evenodd"
+                  stroke="#02BF9B"
+                  fill="none"
+                ></path>
+              </svg>
+              <div class="text">
+                <h4>44,000+ verified reviews</h4>
+                <p>4.5 star average organizer score</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid-wrapper single-column grid-reviews">
+          <div class="customer-review review-with-country-link">
+            <blockquote>
+              “I enjoy the quiet sounds of nature, rice paddy views, healthy
+              food and tantra kundalini yoga daily. ”
+            </blockquote>
+            <div class="attribution">&mdash; Tara Z.</div>
+            <div class="review-stats">
+              <strong
+                ><img src="/static/files/flags/ID.png" /> Indonesia</strong
+              >
+              <div class="review-stars">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <a
+              href="/all/d/asia-and-oceania/indonesia?show_all"
+              class="bttn -regular -large"
+            >
+              See Indonesia trips
+            </a>
+          </div>
+          <div class="customer-review review-with-country-link">
+            <blockquote>
+              “Pumping the Pranic Cosmic Being to its Max ”
+            </blockquote>
+            <div class="attribution">&mdash; Michealangelo B.</div>
+            <div class="review-stats">
+              <strong><img src="/static/files/flags/IN.png" /> India</strong>
+              <div class="review-stars">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <a
+              href="/all/d/asia-and-oceania/india?show_all"
+              class="bttn -regular -large"
+            >
+              See India trips
+            </a>
+          </div>
+          <div class="customer-review review-with-country-link">
+            <blockquote>
+              “Feeling of home, trust, ease and love. Feeling of family and
+              support in all ways. Beautiful souls.”
+            </blockquote>
+            <div class="attribution">&mdash; Irīna M.</div>
+            <div class="review-stats">
+              <strong><img src="/static/files/flags/ES.png" /> Spain</strong>
+              <div class="review-stars">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="14"
+                  width="14"
+                  fill="none"
+                >
+                  <g clip-path="url(#clip0)">
+                    <path
+                      d="M13.25 4.76l-3.777-.55L7.787.787a.91.91 0 00-1.575 0L4.526 4.21.75 4.76a.875.875 0 00-.487 1.492l2.733 2.664-.645 3.763a.875.875 0 001.27.922L7 11.824l3.378 1.775a.875.875 0 001.27-.922l-.645-3.763 2.734-2.662a.874.874 0 00-.484-1.492h-.002z"
+                      fill="#02A5E8"
+                    ></path>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0">
+                      <path d="M0 0h14v14H0z" fill="#fff"></path>
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+            <a href="/all/d/europe/spain?show_all" class="bttn -regular -large">
+              See Spain trips
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        function addFavorite(id) {
+          url = "{% url 'listings:add_favorite' 0 %}".replace('0', id)
+          $.ajax({
+            type : 'POST',
+            url :  url,
+            success : function(response){
+            },
+            error : function(response){
+                console.log(response)
+            }
+          });
+        }
+
+        function removeFavorite(id) {
+          url = "{% url 'listings:remove_favorite' 0 %}".replace('0', id)
+          $.ajax({
+            type : 'POST',
+            url :  url,
+            success : function(response){
+            },
+            error : function(response){
+                console.log(response)
+            }
+          });
+        }
+      </script>
+
+{% endblock %}

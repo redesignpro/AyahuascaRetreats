@@ -1,0 +1,1681 @@
+{% load static %}
+{% load humanize %}
+{% load socialaccount %}
+{% load crispy_forms_tags %} 
+{% load filename %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title></title>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png?v=16">
+      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png?v=16">
+      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png?v=16">
+      <link rel="manifest" href="/static/favicon/site.webmanifest?v=16">
+      <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg?v=16" color="#00c09c">
+      <link rel="shortcut icon" href="/static/favicon/favicon.ico?v=16">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="msapplication-config" content="/static/favicon/browserconfig.xml?v=16">
+      <meta name="theme-color" content="#02BF9B">
+      <script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+      <link rel="stylesheet" type="text/css" href="{% static 'css/framework.css' %}" />
+      <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+      <script>var CKEDITOR_BASEPATH = '/static/ckeditor/';</script>
+      <script>const siteIDToName = {
+         "1": "BookMartialArts",
+         
+         "2": "BookCulinaryVacations",
+         
+         "3": "BookYogaRetreats",
+         
+         "4": "Tripaneer",
+         
+         "5": "BookCyclingHolidays",
+         
+         "6": "BookSinglesHolidays",
+         
+         "7": "BookSurfCamps",
+         
+         "8": "BookHorseRidingHolidays",
+         
+         "9": "BookMeditationRetreats",
+         
+         "10": "BookYogaTeacherTraining",
+         
+         "11": "BookDetoxRetreats",
+         
+         "12": "WeLoveHoneymoons",
+         
+         "13": "BookAllSafaris",
+         
+         "14": "BookMotorcycleTours",
+         
+         "15": "BookRanchVacations",
+         
+         "16": "BookCountryTours",
+         
+         };
+         const siteIDToURL = {
+         
+         "1": "https://www.bookmartialarts.com",
+         
+         "2": "https://www.bookculinaryvacations.com",
+         
+         "3": "https://www.bookyogaretreats.com",
+         
+         "4": "https://www.tripaneer.com",
+         
+         "5": "https://www.bookcyclingholidays.com",
+         
+         "6": "https://www.booksinglesholidays.com",
+         
+         "7": "https://www.booksurfcamps.com",
+         
+         "8": "https://www.bookhorseridingholidays.com",
+         
+         "9": "https://www.bookmeditationretreats.com",
+         
+         "10": "https://www.bookyogateachertraining.com",
+         
+         "11": "https://www.bookdetoxretreats.com",
+         
+         "12": "https://www.welovehoneymoons.com",
+         
+         "13": "https://www.bookallsafaris.com",
+         
+         "14": "https://www.bookmotorcycletours.com",
+         
+         "15": "https://www.bookranchvacations.com",
+         
+         "16": "https://www.bookcountrytours.com",
+         
+         };
+         const langIDToLang = {
+         
+         "41": ["en", "English"],
+         
+         "52": ["de", "German"],
+         
+         "48": ["fr", "French"],
+         
+         "39": ["nl", "Dutch"],
+         
+         "149": ["es", "Spanish"],
+         
+         };
+      </script>
+
+      <script type="text/javascript" charset="utf-8" src="{% static 'js/lib.js' %}"></script>
+      <script type="text/javascript" charset="utf-8" src="{% static 'js/logic.js' %}"></script>
+      <script>if(typeof(user) == 'undefined'){var user = {};};
+         user.privileges = {
+         	
+         		"OrganizersEdit": 1,
+         	
+         		"OrganizersRead": 1,
+         	
+         		"ListingsEdit": 1,
+         	
+         		"InquiriesEdit": 1,
+         	
+         		"InvoicesEdit": 1,
+         	
+         		"PayoutsRead": 1,
+         	
+         };
+      </script>
+      <!-- Begin Inspectlet Embed Code -->
+      <script type="text/javascript" id="inspectletjs">
+         window.__insp = window.__insp || [];
+         __insp.push(['wid', 2012022517]);
+         __insp.push(['identify', "yogateachertraining@mokshayogaamazonica.com"]);
+         (function() {
+         function ldinsp(){if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js'; var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+         setTimeout(ldinsp, 500); document.readyState != "complete" ? (window.attachEvent ? window.attachEvent('onload', ldinsp) : window.addEventListener('load', ldinsp, false)) : ldinsp();
+         })();
+      </script>
+      <!-- End Inspectlet Embed Code -->
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+         
+         ga('create', 'UA-104417812-1', 'auto');
+         ga('send', 'pageview');
+         
+      </script>
+      <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js"></script>
+      <script type="text/javascript">
+         Raven.config(
+         	'https://7b5597f845f945eabda6a1de5f4397fa@sentry.io/231798',
+         	{
+         		ignoreErrors: [
+         			'top.GLOBALS',
+         			/UET/,
+         			/Blocked a frame with origin/,
+         			/__firefox__/,
+         			'ResizeObserver loop limit exceeded',
+         		],
+         		shouldSendCallback(data) {
+         			return !(
+         				/CriOS/i.test(navigator.userAgent) ||
+         				/UCBrowser/i.test(navigator.userAgent) ||
+         				/UBrowser/i.test(navigator.userAgent)
+         			)
+         		}
+         	}
+         ).install()
+      </script>
+      <script src="https://clientcdn.pushengage.com/core/20226.js"></script>
+      <script>
+         var hash = "";
+         _pe.subscribe({}.pe,function(data) {
+         	if(data.statuscode == 1 ) {
+         		hash = data.subscriber_hash;
+         			var formData = {
+         				"hash": hash
+         			}
+         			var options = {
+         							credentials: 'same-origin',
+         							headers: {
+         								'Accept': 'application/json',
+         								'Content-Type': 'application/json'
+         							},
+         							method: 'POST',
+         							body: JSON.stringify(formData)
+         						}
+         			var url ='/organizers/23069/json/add_user_push_notification_hash'
+         			fetch(url, options)
+         			.then(function(response) {
+         				if (response.status != 400 && response.status != 200) {
+         					flash.error('Something went wrong.');
+         					console.log(response);
+         				} else {
+         					return response.json()
+         				}
+         			})
+         	}
+         });
+      </script>
+      <!-- unsubscribe? -->
+      <!-- to check/implement : we have to clean up unsubscribed hashes? -->
+      <style type="text/css">
+         @font-face {
+         font-family: "ebs-fonticon";
+         font-display: swap;
+         font-weight: 400;
+         font-style: normal;
+         src: local('ebs-fonticon'),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=2Sb3gWgXL');
+         src: url('/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=2Sb3gWgXL#iefix') format("embedded-opentype"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.woff2?v=2Sb3gWgXL') format("woff2"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.woff?v=2Sb3gWgXL') format("woff"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.ttf?v=2Sb3gWgXL') format("truetype"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.svg?v=2Sb3gWgXL#ebs-fonticon') format("svg");
+         }
+      </style>
+   </head>
+   <body class="office " data-site-id="4">
+      <nav class="navbar navbar-static-top navbar--mobile">
+         <div class="navbar-header">
+            <div class="pull-left">
+               <ul class="nav navbar-nav">
+                  <li><a class="site-selector-header dropdown-toggle" href="/4/" data-site-id="4">
+                     <i class="office-logo-main"></i>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="navbar" class="navbar-right">
+            <ul class="nav navbar-nav pull-right">
+               <li class="hidden-xs"><a href="/4/">Home</a></li>
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="visible-xs text-uppercase">en&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                  <span class="hidden-xs">English&nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                     <li><a href="#" class="language-switch" data-lang-code="de">Deutsch</a></li>
+                     <li><a href="#" class="language-switch" data-lang-code="fr">Français</a></li>
+                     <li><a href="#" class="language-switch" data-lang-code="nl">Nederlands</a></li>
+                     <li><a href="#" class="language-switch" data-lang-code="es">Español</a></li>
+                  </ul>
+               </li>
+               <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                  <span class="visible-xs">
+                  <img src="/static/files/navbar-icons/my-profile.svg" style="filter: brightness(0%);margin-top: -1px"> &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                  <span class="hidden-xs">My account &nbsp;<i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                     <li>
+                        <a href="{% url 'listings:host_pass_change' pk=user.pk %}">
+                          <i class="fa fa-key" aria-hidden="true"></i> Change password </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'account_logout' %}" rel="nofollow">
+                          <i class="fa fa-sign-out" aria-hidden="true"></i> Log out </a>
+                      </li>
+                  </ul>
+               </li>
+            </ul>
+         </div>
+      </nav>
+      <script type="text/javascript">
+         $(".language-switch").click(function(e) {
+         	e.preventDefault;
+         
+         	$.post( "/language_switch/", { languageCode: $(this).data("langCode") })
+         		.done(function() {
+         			location.reload();
+         		})
+         	;
+         
+         });
+         
+      </script>
+      <div class="container">
+         <div id="flash"></div>
+      </div>
+      <div id="main-container" class="container-fluid">
+         <div
+            id="my-inquiries"
+            class="my-inquiries js-active-tab-name my-inquiries--first-release"
+            data-tab-name="Inquiries"
+            >
+            <div class="my-inquiries__container js-inquiries-container" data-open-section="">
+               <!-- INBOX -->
+               <!-- INQUIRY -->
+               <section class="inquiry-container js-inquiry-container" data-deposit-currency="USD" data-total-price="119000">
+                  <div class="hidden-phone">
+                     <header class="mt-header" id="organizer_nav">
+                        <style type="text/css">
+                           @media (min-width:1441px){.admin-content {padding: 25px 0}}
+                           @media screen and (max-width: 767px) {
+                           .panel .panel-heading {
+                           padding: 16px 8px;
+                           }
+                           .panel .panel-heading .nav-tabs>li>a {
+                           padding: 16px 8px;
+                           text-transform: none;
+                           }
+                           .jumbotron p {font-size: 14px}
+                           }
+                           .panel .panel-heading .nav-tabs {
+                           padding: 0;
+                           border-bottom: none;
+                           position: relative;
+                           box-shadow: 0 -2px 0 #d9d9d9 inset;
+                           }
+                           .panel .panel-heading .nav-tabs:after {
+                           content: "";
+                           height: 2px;
+                           background: #D9D9D9;
+                           width: 100%;
+                           bottom: 0;
+                           left: 0;
+                           }
+                           .panel .panel-heading .nav-tabs>li.active>a,
+                           .panel .panel-heading .nav-tabs>li.active>a, .panel .panel-heading .nav-tabs>li>a:hover {
+                           color: #02BF9B !important;
+                           }
+                           .panel .panel-heading .nav-tabs>li.active>a:after,
+                           .panel .panel-heading .nav-tabs>li.active>a:after, .panel .panel-heading .nav-tabs>li>a:hover:after  {
+                           background: #02BF9B
+                           }
+                        </style>
+                        <script type="text/javascript">
+                           var siteID = 4,
+                           	orgNavID = 23069
+                        </script>
+                        <div class="mt-header__content hidden-phone">
+                           <div class="mt-header__content__main">
+                              <h1 class="catamaran">
+                                 {{ inquiry.listing.get_organization }}
+                              </h1>
+                           </div>
+                           <div class="mt-header__content__secondary">
+                              <span class="hidden-phone">
+                              Account Manager: Alan Cepeda (BYR)
+                              <br/>
+                              <a href="/cdn-cgi/l/email-protection#afcec3cec1efcdc0c0c4d6c0c8ceddcadbddcacedbdc81ccc0c2"><span class="__cf_email__" data-cfemail="d1b0bdb0bf91b3bebebaa8beb6b0a3b4a5a3b4b0a5a2ffb2bebc">[email&#160;protected]</span></a><br/>
+                              </span>
+                              <span class="visible-phone">
+                              <a href="/4/organizers/23069/support/" class="btn btn-link btn-sm"><img src="/static/files/t-customer-service.svg" style="width: 24px" /></a>
+                              </span>
+                           </div>
+                        </div>
+                        <ul class="mt-header__tabs js-tabs js-affix">
+                            <li class="mt-header__tabs__item dropdown">
+                              <a href="#" class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
+                                <img src="./inquiries.svg" class="mt-header__tabs__item__link__icon" /> Inquiries <span class="caret"></span>
+                              </a>
+                              <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu" role="menu">
+                                <li>
+                                  <a href="{% url 'listings:my_inquiries' request.user.get_profile.pk %}">Inquiries</a>
+                                </li>
+                                <li>
+                                 <a href="{% url 'listings:my_bookings' request.user.get_profile.pk %}">Bookings</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                  <a href="{% url 'listings:my_payments' request.user.get_profile.pk %}">Payments</a>
+                                </li>
+                                <li>
+                                  <a href="/4/organizers/23069/invoices/">Invoices</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                  <a href="/4/organizers/23069/reviews/">Reviews</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="mt-header__tabs__item dropdown">
+                              <a href="#" class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
+                                <img src="./my-listings.svg" class="mt-header__tabs__item__link__icon" /> My Listings <span class="caret"></span>
+                              </a>
+                              <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu" role="menu">
+                                <li>
+                                  <a href="{% url 'listings:my_listings' %}">Listings</a>
+                                </li>
+                                <li>
+                                  <a href="{% url 'listings:accommodation-list' %}">Accommodations</a>
+                                </li>
+                                <li>
+                                  <a href="{% url 'listings:instructor-list' %}">Instructors</a>
+                                </li>
+                                <li>
+                                  <a href="{% url 'listings:update-videos' %}">Videos</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="mt-header__tabs__item dropdown">
+                              <a href="#" class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
+                                <img src="./my-profile.svg" class="mt-header__tabs__item__link__icon" /> My Profile <span class="caret"></span>
+                              </a>
+                              <ul class="
+                                  mt-header__tabs__item__link__dropdown__menu
+                                  dropdown-menu dropdown-menu--right-on-mobile
+                                " role="menu">
+                                <li>
+                                  <a href="{% url 'listings:myprofile-update' pk=request.user.get_profile.id %}">My Profile Page</a>
+                                </li>
+                                <li>
+                                  {% if request.user.get_profile.is_business %}
+                                  <a href="{% url 'listings:businessinfo-update' pk=request.user.get_profile.id %}">Business Information</a>
+                                  {% else %}
+                                  <a href="{% url 'listings:personalinfo-update' pk=request.user.get_profile.id %}">Business Information</a>
+                                  {% endif %}
+                                </li>
+                                <li>
+                                  <a href="{% url 'listings:paymentinfo-update' pk=request.user.get_profile.id %}">Payment Information</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                  <a href="/4/organizers/edit/51525/account/">Account Settings</a>
+                                </li>
+                                <li>
+                                  <a href="/4/organizers/edit/51525/notification_preferences/">Notifications</a>
+                                </li>
+                              </ul>
+                            </li>
+                            <li class="mt-header__tabs__item">
+                              <a href="/4/newsletter/23069/list/" class="mt-header__tabs__item__link">
+                                <img src="./marketing.svg" class="mt-header__tabs__item__link__icon" /> Marketing </a>
+                            </li>
+                            <li class="mt-header__tabs__item hidden-phone">
+                              <a href="/4/organizers/23069/support/" class="mt-header__tabs__item__link">
+                                <img src="./support.svg" class="mt-header__tabs__item__link__icon" /> Support </a>
+                            </li>
+                          </ul>
+                        <div class="js-affix-placeholder affix-placeholder"></div>
+                     </header>
+                  </div>
+                  <header class="inquiry-header">
+                     <style type="text/css">
+                        .inquiry-header {background-image: url({{ inquiry.listing.get_first_image }})}
+                     </style>
+                     <div class="inquiry-header__overlay"></div>
+                     <div class="inquiry-container-first-release">
+                        <div class="inquiry-header__content">
+                           <div class="inquiry-header__content__top">
+                              <a href="/4/organizers/23069/inquiry-overview/" class="hidden-dekstop" data-section=""><i class="ebs-icon-sec-arrow-left"></i></a>
+                              <a href="/4/organizers/23069/inquiry-overview/" class="hidden-dekstop" data-section=""><i class="ebs-icon-close"></i></a>
+                           </div>
+                           <div class="inquiry-header__content__bottom">
+                              <h2>{{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}</h2>
+                              <p>
+                                 {% if not inquiry.host_declined  and  not inquiry.deposit_paid %}
+                                 <span class="label label-info">In progress</span>
+                                 {% elif not inquiry.host_declined and inquiry.deposit_paid %}
+                                 <span class="label label-success">Booked</span>
+                                 {% else %}
+                                 <span class="label label-danger">Availability Declined</span>
+                                 {% endif %}
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </header>
+                  <div class="inquiry-container-first-release">
+                     <div class="inquiry-content">
+                        <!-- SUMMARY -->
+                        <div class="inquiry-summary inquiry-panel">
+                           <!-- CUSTOMER INFO -->
+                           <!-- Only show this info if if title doesn't include customeer's name already -->
+                           <!-- ALERTS -->
+                           {% if inquiry.deposit_paid %}
+                           <div class="inquiry-summary__customer js-disable-on-form-open">
+                              <div class="inquiry-summary__customer__data">
+                                 <p class="text-strong">from
+                                    {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}
+                                 </p>
+                                 <span class="text-muted">
+                                 {{ inquiry.arrival_date }} <i class="ebs-icon-sec-arrow-right"></i> {{ inquiry.departure_date }}
+                                 </span>
+                                 <div class="inquiry-summary__customer__data__links">
+                                    <a href="mailto:{{ inquiry.customer.user.email }}" class="btn btn-link"><i class="fa fa-envelope-o"></i>{{ inquiry.customer.user.email }}</a>
+                                 </div>
+                              </div>
+                           </div>
+                           {% endif %}
+                           <div class="js-disable-on-form-open">
+                              <!-- CUSTOMER PAYMENT REQUEST -->
+
+                              <!-- ORGANIZER PAYMENT REQUEST -->
+                              <!-- PAST DATES -->
+                           </div>
+                           <!-- ACTIONS -->
+                           {% if not inquiry.deposit_paid %}
+                           <div class="inquiry-summary__actions js-disable-on-form-open">
+                            <div class="btn-group btn-group-justified">
+                               <!-- ONLINE PAYMENT DISABLED -->
+                               {% if not inquiry.is_approved and not inquiry.host_declined %}
+                               <a
+                                  href="#request-payment-modal" data-toggle="modal" class="btn btn-default"
+                                  >
+                               <span class="icon icon--green"><img src="/static/files/my-inquiries-icons/request-payment.svg" /></span>
+                               <strong class="text">Accept &amp; Enable Payment</strong>
+                               </a>
+                               
+                               {% endif %}
+                               <a href="#" class="btn btn-default btn--mobile js-open-section" data-section="chat">
+                               <span class="icon">
+                               <img src="/static/files/my-inquiries-icons/chat.svg" />
+                               <i class="unread-dot js-unread-dot"></i>
+                               </span>
+                               <span class="text">
+                               Chat 
+                               </span>
+                               <i class="ebs-icon-arrow-right"></i>
+                               </a>
+                               {% if not inquiry.host_declined %}
+                               <a href="#decline-modal" class="btn btn-default" data-toggle="modal">
+                               <span class="icon"><img src="/static/files/my-inquiries-icons/decline.svg" /></span>
+                               <span class="text">Decline availability</span>
+                               </a>
+                               {% else %}
+                               <a class="btn btn-danger" style="display:block; color: white; text-align:center; cursor: not-allowed">
+                                 DECLINED BY HOST
+                              </a>
+                               {% endif %}
+                            </div>
+                         </div>
+                         {% endif %}
+                           <!-- BOOKED -->
+                           <!-- TRIP DETAILS -->
+                           <div class="inquiry-summary__block js-summary-block js-disable-on-form-open">
+                              <div class="inquiry-summary__block__header">
+                                 <h3>Trip details</h3>
+                                 <a href="#request-modify-modal" class="btn btn-default js-toggle-form" data-toggle="modal">
+                                 <span class="open-btn-txt"><i class="fa fa-pencil"></i> Modify</span>
+                                 <span class="close-btn-txt"><i class="fa fa-times"></i> Cancel</span>
+                                 </a>
+                              </div>
+                              <div class="inquiry-summary__block__content">
+                                 <p class="inquiry-summary__block__inquiry-title">
+                                    {{ inquiry.package.room.name }} <br> <hr>{{ inquiry.listing.title }}
+                                    &nbsp;<a href="https://www.bookyogaretreats.com/moksha-yoga-amazonica/14-days-intensive-200-hour-yoga-teacher-training-with-ayurvedic-and-thai-massages-in-peru/" target="blank"><i class="fa fa-external-link" aria-hidden="true"></i></a>
+                                 </p>
+                                 <div class="row">
+                                    <div class="col-xs-6 col-md-4">
+                                       <dl>
+                                          <dt>Arrival</dt>
+                                          <dd>{{ inquiry.arrival_date }}</dd>
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                       <dl>
+                                          <dt>Departure</dt>
+                                          <dd>{{ inquiry.departure_date }}</dd>
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                       <dl>
+                                          <dt>Duration</dt>
+                                          <dd >
+                                             {{ inquiry.duration }} days, {{ inquiry.duration|add:"-1" }} nights
+                                          </dd>
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6 col-md-4">
+                                       <dl>
+                                          <dt>Guests</dt>
+                                          {% if inquiry.number_of_people > 1 %}
+                                          <dd>{{ inquiry.number_of_people }} people</dd>
+                                          {% else %}
+                                          <dd>{{ inquiry.number_of_people }} person</dd>
+                                          {% endif %}
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6 col-lg-8">
+                                       <dl>
+                                          <dt>Room</dt>
+                                          <dd>
+                                              {{ inquiry.package.room.get_shared_display }} {{ inquiry.package.room.get_type }} <br>
+                                             <span class="inline-list">{{ inquiry.package.room.accommodation.get_acc_type }}</span>
+                                          </dd>
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6 col-md-4 col-lg-6">
+                                       <dl>
+                                          <dt>Total price</dt>
+                                          <dd><strong>US${{ inquiry.total_price|intcomma }}</strong></dd>
+                                       </dl>
+                                    </div>
+                                 </div>
+                              </div>
+                              <form class="js-trip-details-form inquiry-summary__block__form">
+                                 <div class="form-group">
+                                    <label>Title</label>
+                                    <textarea class="form-control js-listing_title" max="200" required="required">14 Day 200hr Integral Vinyasa, Yin &amp; Karma YTT with Ayurvedic Self-Care Routines in the Amazon, Peru</textarea>
+                                    <small class="help-block"></small>
+                                 </div>
+                                 <div class="row">
+                                    <div class="col-xs-6 form-group">
+                                       <label>Arrival</label>
+                                       <div class="input-group-flex js-datepicker-container">
+                                          <input class="form-control js-inquiry-datepicker js-arrival_date" type="date" value="2021-08-24" required="required"/>
+                                       </div>
+                                       <small class="help-block"></small>
+                                    </div>
+                                    <div class="col-xs-6 form-group">
+                                       <label>Departure</label>
+                                       <div class="input-group-flex js-datepicker-container input-group--datepicker--right">
+                                          <input class="form-control js-inquiry-datepicker js-departure_date" type="date" value="2021-09-06" required="required"/>
+                                       </div>
+                                       <small class="help-block"></small>
+                                    </div>
+                                 </div>
+                                 <p>
+                                    <strong>Duration:</strong>
+                                    <span class="js-summary-duration" data-original-duration-in-nights="13">14 days, 13 nights</span>
+                                    <small class="js-summary-duration-msg feedback-msg text-muted"></small>
+                                 </p>
+                                 <div class="form-group">
+                                    <label class="label-block">
+                                    Package
+                                    <a
+                                    role="button"
+                                    tabindex="0"
+                                    data-html="true"
+                                    data-placement="top"
+                                    data-trigger="focus"
+                                    data-toggle="popover"
+                                    data-content='The number of persons and room types can only be adjusted based on the existing price packages. If you require other rooms / number of persons, please add this info at the end of the title. i.e.: "<strong>6 Days Meditation and Yoga Holiday in Rishikesh, India | 3 persons, 3 single rooms).</strong>"'
+                                    <i class="ebs-icon-info"></i>
+                                    </a>
+                                    </label>
+                                    <div class="btn-group package-dropdown js-dropdown-select js-package-dropdown" role="group">
+                                       <button class="btn btn-default dropdown-toggle js-package_id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                       <span class="js-package" data-package-id="533484" data-package-price="">
+                                       <strong>1 person <span class="js-package-price text-muted">(US$1,190)</span></strong>
+                                       <small>
+                                       Shared double room
+                                       <span class="inline-list">Hotel</span>
+                                       </small>
+                                       </span>
+                                       <span class="caret"></span>
+                                       </button>
+                                       <ul class="dropdown-menu">
+                                          <li>
+                                             <a href="#">
+                                             <span class="js-package" data-package-id="533484" data-package-price="119000">
+                                             <strong>1 person <span class="js-package-price text-muted">(US$1,190)</span></strong>
+                                             <small>
+                                             <span class="inline-list">Shared double room (Shared double room)</span>
+                                             <span class="inline-list">Hotel</span>
+                                             </small>
+                                             </span>
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="#">
+                                             <span class="js-package" data-package-id="533485" data-package-price="144500">
+                                             <strong>1 person <span class="js-package-price text-muted">(US$1,445)</span></strong>
+                                             <small>
+                                             <span class="inline-list">Private double room (Private queen room)</span>
+                                             <span class="inline-list">Hotel - Queen room</span>
+                                             </small>
+                                             </span>
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="#">
+                                             <span class="js-package" data-package-id="533486" data-package-price="296500">
+                                             <strong>2 persons <span class="js-package-price text-muted">(US$2,965)</span></strong>
+                                             <small>
+                                             <span class="inline-list">Private double room (Private queen room)</span>
+                                             <span class="inline-list">Hotel - Queen room</span>
+                                             </small>
+                                             </span>
+                                             </a>
+                                          </li>
+                                          <li>
+                                             <a href="#">
+                                             <span class="js-package" data-package-id="533487" data-package-price="509900">
+                                             <strong>2 persons <span class="js-package-price text-muted">(US$5,099)</span></strong>
+                                             <small>
+                                             <span class="inline-list">Private double room (Private king room)</span>
+                                             <span class="inline-list">Hotel - King room</span>
+                                             </small>
+                                             </span>
+                                             </a>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                    <small class="help-block"></small>
+                                 </div>
+                                 <div class="form-group">
+                                    <label class="label-block">
+                                    Total price
+                                    </label>
+                                    <div class="row">
+                                       <div class="col-xs-8 col-md-6">
+                                          <div class="input-group-flex">
+                                             <span class="input-group-flex-addon">USD</span>
+                                             <input class="form-control input-lg js-price" type="number" value="1190" max="9999999999" required="required"/>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <small class="help-block"></small>
+                                 </div>
+                                 <div class="form-actions">
+                                    <button type="button" class="btn btn-default js-toggle-form">Cancel</button>
+                                    <button type="submit" class="btn btn-success">
+                                    <span class="js-loading" style="display: none"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                                    <span class="js-default">Save changes</span>
+                                    </button>
+                                 </div>
+                              </form>
+                           </div>
+                           <!-- BOOKING CONDITIONS -->
+                           <div class="inquiry-summary__block js-summary-block js-disable-on-form-open">
+                              <div class="inquiry-summary__block__header">
+                                 <h3>Booking conditions</h3>
+                                 <a href="#request-conditions-modal" class="btn btn-default js-toggle-form" data-toggle="modal">
+                                 <span class="open-btn-txt"><i class="fa fa-pencil"></i> Modify</span>
+                                 <span class="close-btn-txt"><i class="fa fa-times"></i> Cancel</span>
+                                 </a>
+                              </div>
+                              <div class="inquiry-summary__block__content">
+                                 <div class="row arrow-container">
+                                    <div class="arrow-right">
+                                       <i class="ebs-icon-arrow-right"></i>
+                                    </div>
+                                    <div class="col-xs-6">
+                                       <dl class="dl--dark-labels">
+                                          <dt>Required deposit</dt>
+                                          <dd>
+                                             US${{ inquiry.deposit_amount|floatformat:2|intcomma }}
+                                             <span>({{ inquiry.commission_percent }}% of the total)</span>
+                                          </dd>
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6">
+                                       <dl class="dl--dark-labels">
+                                          <dt>Cancellation</dt>
+                                          <dd>
+                                             Non Refundable
+                                          </dd>
+                                       </dl>
+                                    </div>
+                                 </div>
+                                 <div class="row arrow-container">
+                                    <div class="arrow-right">
+                                       <i class="ebs-icon-arrow-right"></i>
+                                    </div>
+                                    <div class="col-xs-6">
+                                       <dl class="dl--dark-labels">
+                                          <dt>Remaining amount</dt>
+                                          <dd>
+                                             US${{ remaining_amount|floatformat:2|intcomma }}
+                                             <span>({{ remain_percent }}% of the total)</span>
+                                          </dd>
+                                       </dl>
+                                    </div>
+                                    <div class="col-xs-6">
+                                       <dl class="dl--dark-labels">
+                                          <dt>
+                                             To be paid
+                                             <a
+                                             role="button"
+                                             tabindex="0"
+                                             data-placement="top"
+                                             data-trigger="focus"
+                                             data-toggle="popover"
+                                             data-content="The remaining amount should be paid from the customer directly to you - It can’t be paid via Tripaneer.
+                                             The customer is aware that you accept
+                                             Visa,
+                                             Mastercard,
+                                             Bank transfers,
+                                             Paypal,
+                                             Cash.
+                                             You can edit your supported payment methods in My Profile &gt; Payment Information.
+                                             "
+                                             <i class="ebs-icon-info"></i>
+                                             </a>
+                                          </dt>
+                                          <dd>
+                                             {{ pay_date }} ({{ days_before }} {{ pay_date_ctx }} )
+                                          </dd>
+                                       </dl>
+                                    </div>
+                                 </div>
+                              </div>
+                              <form class="js-booking-conditions-form inquiry-summary__block__form">
+                                 <div class="js-hide-on-payment-disabled" >
+                                    <div class="js-booking-conditions-group">
+                                       <h4>Required deposit</h4>
+                                       <div class="bordered-form-group">
+                                          <div class="form-group js-amount-group">
+                                             <label>Percentage</label>
+                                             <div class="row">
+                                                <div class="col-xs-6 col-lg-5">
+                                                   <div class="input-range-container">
+                                                      <button type="button" class="btn btn-default btn-xs js-update-range" data-operation="minus">
+                                                      <i class="ebs-icon-minus"></i>
+                                                      </button>
+                                                      <input type="range" step="1" class="form-control js-range js-deposit_percentage" max="10000" min="1400" value="3000"/>
+                                                      <button type="button" class="btn btn-default btn-xs js-update-range" data-operation="plus">
+                                                      <i class="ebs-icon-plus"></i>
+                                                      </button>
+                                                   </div>
+                                                </div>
+                                                <div class="col-xs-6 col-lg-7">
+                                                   <p class="input-text"><span class="js-deposit-output js-output" data-original-value="30">30%</span> (<span class="js-amount-tip" data-currency="USD" data-original-value="35700">US$357</span>)</p>
+                                                </div>
+                                             </div>
+                                             <small class="js-minimum-deposit-tip text-muted" style="display: none">
+                                             The deposit can&#39;t be lower than 14%
+                                             <a role="button" tabindex="0" data-placement="top" data-trigger="focus" data-toggle="popover" data-content="14% is the commission for this inquiry."><i class="ebs-icon-info"></i></a>
+                                             </small>
+                                             <small class="help-block"></small>
+                                          </div>
+                                          <div class="form-group">
+                                             <label>Cancellation Policy</label>
+                                             <!-- 
+                                                <div class="radio js-radio-container form-group bring-closer">
+                                                	<label class="radio-group bring-closer" for="cancellationRadio1">
+                                                		<input type="radio" name="cancellationRadio" id="cancellationRadio1" value="refundable" >
+                                                		<div>
+                                                			<p>Refundable until</p>
+                                                			<div class="input-group-flex">
+                                                				<input class="form-control js-cancellation_days_before_arrival js-days-before" data-date="2021-Jun-25" type="number" style="max-width: 100px" max="365" placeholder="15"/>
+                                                				<span class="input-group-flex-addon">
+                                                					days before arrival&nbsp;
+                                                					<span class="js-date-tip nowrap" data-date="2021-06-25">Jun 25, 2021</span>
+                                                				</span>
+                                                			</div>
+                                                		</div>
+                                                	</label>
+                                                	<ul class="help-list">
+                                                		<li class="js-empty-error text-danger" style="display: none">Please define a valid number of days</span>
+                                                		<li class="js-refundable-error text-danger" style="display: none">The cancellation date should be sooner than the remaining&#39;s amount payment date.</span>
+                                                		<li class="js-date-past-tip text-muted" style="display: none">The cancellation date is in the past. Do you want to set it to non refundable instead?</span>
+                                                	</ul>
+                                                	<small class="help-block"></small>
+                                                </div>
+                                                -->
+                                             <div class="radio js-radio-container">
+                                                <label class="radio-group" for="cancellationRadio2">
+                                                <input type="radio" name="cancellationRadio" id="cancellationRadio2" value="non_refundable" checked >
+                                                Non-refundable upon payment
+                                                </label>
+                                             </div>
+                                             <input type="hidden" class="js-cancellation_policy"/>
+                                             <small class="help-block"></small>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="js-booking-conditions-group js-hide-if-deposit-100" >
+                                       <h4>Remaining amount</h4>
+                                       <div class="bordered-form-group">
+                                          <div class="form-group js-amount-group">
+                                             <label>Percentage</label>
+                                             <div class="row">
+                                                <div class="col-xs-6 col-lg-7">
+                                                   <p class="input-text"><span class="js-remaining-output js-output" data-original-value="70">70%</span> (<span class="js-amount-tip" data-original-value="83300">US$833</span>)</p>
+                                                   <input class="form-control js-remaining-input" max="100" min="0" type="hidden" value="70"}" disabled/>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="form-group">
+                                             <label>
+                                             To be paid
+                                             </label>
+                                             <div class="radio js-radio-container bring-closer">
+                                                <label for="toBePaidRadio1-1300037">
+                                                <input type="radio" name="toBePaidRadio" id="toBePaidRadio1-1300037" value="arrival" >
+                                                On arrival
+                                                </label>
+                                             </div>
+                                             <div class="radio js-radio-container">
+                                                <label for="toBePaidRadio2-1300037">
+                                                <input type="radio" name="toBePaidRadio" id="toBePaidRadio2-1300037" value="departure" >
+                                                On departure
+                                                </label>
+                                             </div>
+                                             <div class="radio js-radio-container form-group">
+                                                <label class="radio-group" for="toBePaidRadio3-1300037">
+                                                   <input type="radio" name="toBePaidRadio" id="toBePaidRadio3-1300037" value="before_arrival"  checked="checked" >
+                                                   <div class="input-group-flex">
+                                                      <input class="form-control js-rest_paid_on_days_before_arrival js-days-before" data-date="2021-Jul-25" type="number" style="max-width: 100px" style="max-width: 100px" max="30" value="30"/>
+                                                      <span class="input-group-flex-addon">
+                                                      days before arrival&nbsp;
+                                                      <span class="js-date-tip nowrap" data-date="2021-07-25">Jul 25, 2021</span>
+                                                      </span>
+                                                   </div>
+                                                </label>
+                                                <ul class="help-list">
+                                                   <li class="js-empty-error text-danger" style="display: none">Please define a valid number of days</span>
+                                                   <li class="js-refundable-error text-danger" style="display: none">The remaining amount should be paid later than the refundable period.</span>
+                                                </ul>
+                                                <small class="help-block"></small>
+                                             </div>
+                                             <input type="hidden" class="js-rest_paid_on"/>
+                                             <small class="help-block"></small>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="form-actions">
+                                    <button type="button" class="btn btn-default js-toggle-form">Cancel</button>
+                                    <button type="submit" class="btn btn-success">
+                                    <span class="js-loading" style="display: none"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                                    <span class="js-default">Save changes</span>
+                                    </button>
+                                 </div>
+                              </form>
+                              <hr />
+                              <div>
+                                 <h4>Our COVID-19 cancellation policy</h4>
+                                 <p>Due to the uncertainty during the COVID-19 pandemic, we can only offer a non-refundable deposit option. We encourage you to offer the customer to reschedule the booking with you. If that&#39;s not possible, we will convert the non-refundable deposit into a store credit for the customer. No cash refunds will be issued. Payments will only be transferred to you 1 day post the arrival date.</p>
+                              </div>
+                           </div>
+                           <!-- TIMELINE -->
+                           <div class="inquiry-summary__block js-disable-on-form-open">
+                              <h3>Steps</h3>
+                              <div class="timeline">
+                                 {% if step != 'cancelled' and not inquiry.host_declined %}
+                                    <div class="timeline__item timeline__item--blue
+                                       ">
+                                       <div class="timeline__item__marker"></div>
+                                       <div class="timeline__item__content">
+                                          <dl class="dl--dark-labels">
+                                             <dt>Inquiry received</dt>
+                                             <dd></dd>
+                                          </dl>
+                                       </div>
+                                    </div>
+                                    {% if step == 'enable_payment' %}
+                                    <div class="timeline__item timeline__item--purple
+                                       timeline__item--active
+                                       ">
+                                    {% else %}
+                                    <div class="timeline__item timeline__item--purple
+                                       ">
+                                    {% endif %}
+                                       <div class="timeline__item__marker"></div>
+                                       <div class="timeline__item__content">
+                                          <dl class="dl--dark-labels">
+                                             <dt>Enable payment</dt>
+                                             <dd>
+                                                Required deposit: {{ inquiry.commission_percent }}%
+                                             </dd>
+                                          </dl>
+                                       </div>
+                                    </div>
+                                    {% if step == 'deposit_required' %}
+                                    <div class="timeline__item timeline__item--green
+                                       timeline__item--active
+                                       ">
+                                    {% else %}
+                                    <div class="timeline__item timeline__item--green
+                                    ">
+                                    {% endif %}
+                                       <div class="timeline__item__marker"></div>
+                                       <div class="timeline__item__content">
+                                          <dl class="dl--dark-labels">
+                                             <dt>Booking confirmation</dt>
+                                             <dd>
+                                                Customer pays deposit
+                                             </dd>
+                                          </dl>
+                                       </div>
+                                    </div>
+                                    {% if step == 'remainder_due' %}
+                                    <div class="timeline__item timeline__item--green
+                                       timeline__item--active
+                                       ">
+                                    {% else %}
+                                    <div class="timeline__item timeline__item--green
+                                    ">
+                                    {% endif %}
+                                       <div class="timeline__item__marker"></div>
+                                       <div class="timeline__item__content">
+                                          <dl class="dl--dark-labels">
+                                             <dt>
+                                                {{ pay_date }}
+                                             </dt>
+                                             <dd>
+                                                Remaining amount is due
+                                                <a
+                                                role="button"
+                                                tabindex="0"
+                                                data-placement="top"
+                                                data-trigger="focus"
+                                                data-toggle="popover"
+                                                data-content="The remaining amount should be paid from the customer directly to you - It can’t be paid via Tripaneer.
+                                                The customer is aware that you accept
+                                                Visa,
+                                                Mastercard,
+                                                Bank transfers,
+                                                Paypal,
+                                                Cash.
+                                                You can edit your supported payment methods in My Profile &gt; Payment Information.
+                                                "
+                                                <i class="ebs-icon-info"></i>
+                                                </a>
+                                             </dd>
+                                          </dl>
+                                       </div>
+                                    </div>
+                                    {% if step == 'arrival_due' %}
+                                    <div class="timeline__item timeline__item--green
+                                       timeline__item--active
+                                       ">
+                                    {% else %}
+                                    <div class="timeline__item timeline__item--green
+                                    ">
+                                    {% endif %}
+                                       <div class="timeline__item__marker"></div>
+                                       <div class="timeline__item__content">
+                                          <dl class="dl--dark-labels">
+                                             <dt>Arrival ({{ inquiry.arrival_date }})</dt>
+                                          </dl>
+                                       </div>
+                                    </div>
+                                    {% if step == 'currently_there' %}
+                                    <div class="timeline__item timeline__item--green
+                                       timeline__item--active   
+                                       ">
+                                    {% else %}
+                                    <div class="timeline__item timeline__item--green
+                                    ">
+                                    {% endif %}
+                                       <div class="timeline__item__marker"></div>
+                                       <div class="timeline__item__content">
+                                          <dl class="dl--dark-labels">
+                                             <dt>Departure ({{ inquiry.departure_date }})</dt>
+                                          </dl>
+                                       </div>
+                                    </div>
+                                 {% else %}
+                                 <div class="timeline__item timeline__item--blue
+                                    timeline__item--active 
+                                    ">
+                                 <div class="timeline__item__marker"></div>
+                                 <div class="timeline__item__content">
+                                    <dl class="dl--dark-labels">
+                                       <dt>Inquiry Cancelled</dt>
+                                       <dd></dd>
+                                    </dl>
+                                 </div>
+                              </div>
+                              {% endif %}
+                              
+                              </div>
+                           </div>
+                           <!-- HELP -->
+                           <div class="inquiry-summary__block">
+                              <h3>Need help?</h3>
+                              <p>Your account manager will be happy to assist you</p>
+                              <p>
+                                 Alan Cepeda (BYR) <br/>
+                                 <a href="/cdn-cgi/l/email-protection#5e3f323f301e3c3131352731393f2c3b2a2c3b3f2a2d703d3133"><span class="__cf_email__" data-cfemail="6c0d000d022c0e03030715030b0d1e09181e090d181f420f0301">[email&#160;protected]</span></a>
+                              </p>
+                              <p class="js-hide-on-feedback-form">
+                                 Discover the <a href="#inquiry-intro-modal" data-toggle="modal">new features</a> on this page
+                              </p>
+                           </div>
+                           <!-- Remove #layout's feedback pool -->
+                           <style>#main-container > .js-org-feedback-controls {display: none;}</style>
+                           <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>$(document).ready( function() {if ($('.js-org-feedback-controls').length > 1) $('.js-org-feedback-controls')[1].remove()})</script>
+                           <div class="inquiry-summary__block">
+                              <div class="organizer--feedback">
+                                 <div class="js-org-feedback-controls organizer--feedback-container">
+                                    <div class="js-feedback-initial organizer--feedback-form">
+                                       <label>Do you find this page and its features useful?</label>
+                                       <input class="btn btn-sm btn-outline-secondary" id="org_feedback_yes" type="button" value="Yes" onclick="submitOrgFeedback(1);">
+                                       <input class="btn btn-sm btn-outline-secondary" id="org_feedback_no" type="button" value="No" onclick="submitOrgFeedback(0);">
+                                    </div>
+                                    <div class="js-feedback-text organizer--feedback-message" style="display: none;">
+                                       <label>How could we improve it for you?</label>
+                                       <textarea id="orgFeedbackMessageInput"></textarea>
+                                       <small>For immediate support we recommend getting in touch with your account manager, these messages are not constantly monitored.</small>
+                                       <input type="button" class="btn btn-outline-secondary" onclick="submitOrgFeedback(2);" value="Send feedback">
+                                    </div>
+                                 </div>
+                                 <div hidden id="organizer_feedback_submitted" class="organizer--feedback-container">
+                                    <label>Your feedback was sent to our team, thanks for helping us making our tools match your expectations.</label>
+                                 </div>
+                              </div>
+                              <script>
+                                 function showOrgFeedbackMessage(){
+                                 	$('.js-feedback-initial').hide()
+                                 	$('.js-feedback-text').show()
+                                 }
+                                 var feedbackType = "undefined";
+                                 function submitOrgFeedback(state_){
+                                 	if(state_ == 0) {
+                                 		feedbackType = "negative";
+                                 	} else if(state_ == 1) {
+                                 		feedbackType = "positive";
+                                 	}
+                                 
+                                 	$.ajax({
+                                 		url: '/organizer_feedback',
+                                 		type: 'POST',
+                                 		dataType: 'json',
+                                 		contentType: 'application/json',
+                                 		data : JSON.stringify({
+                                 					url: "https://office.tripaneer.com/4/my_inquiries/NWB3LZQM/",
+                                 					state: state_,
+                                 					type: feedbackType,
+                                 					message:$("#orgFeedbackMessageInput").val()
+                                 				}),
+                                 		statusCode:{
+                                 			200: function(response){
+                                 				if (response.error != undefined) {
+                                 					flash.error(response.error);
+                                 					return;
+                                 				}
+                                 				if(state_ == 2){
+                                 					$("#organizer_feedback_submitted").show();
+                                 					$(".js-org-feedback-controls").hide();
+                                 				} else {
+                                 					showOrgFeedbackMessage();
+                                 				}
+                                 			}
+                                 		}
+                                 	});
+                                 }
+                              </script>
+                           </div>
+                        </div>
+                        <!-- CHAT -->
+                        <div class="inquiry-chat">
+                           <!-- Data -->
+                           <!-- Mobile navbar -->
+                           <nav class="dlg-chat-navbar navbar navbar-fixed-top">
+                              <div class="container-fluid">
+                                 <!-- Brand and toggle get grouped for better mobile display -->
+                                 <div class="navbar-header">
+                                    <a href="#" class="js-go-back dlg-chat-navbar__btn" data-section="">
+                                    <i class="ebs-icon-sec-arrow-left"></i>
+                                    </a>
+                                    <a class="navbar-brand" href="#">Chat </a>
+                                 </div>
+                              </div>
+                           </nav>
+                           <div class="inquiry-chat-scroll js-chat-container">
+                              <!-- send message tablet and up -->
+                              <form class="inquiry-chat__tablet inquiry-panel js-message-form" method='post' enctype="multipart/form-data" action="">
+                                {% csrf_token %} 
+                                <input type='hidden' name='action_form' id="action_form" value='modify_package'> 
+                                <div class="js-disable-on-form-open">
+                                    <p>Reply to {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}</p>
+                                    <div class="form-group">
+                                        {{ form|crispy }}
+                                        <small class="help-block"></small>
+                                    </div>
+                                    <div class="inquiry-chat__tablet__bottom-bar">
+                                       <div class="inquiry-chat__tablet__bottom-bar__left">
+                                          <div class="copy-to-self"><input type="checkbox" name="copyYourself" class="copyYourself">  Copy To Self</div>
+                                          <div class="attachment-buttons-container">
+                                             <div class="btn btn-link">
+                                                <label class="js-attachment-label" for="file_0">
+                                                    <input type="file" name="attached_files" multiple="multiple" multiple /><br>
+                                                <small class="text-muted hidden-tablet">(TXT, Word, Excel, PDF or images. Max 10 MB)</small>
+                                                </label>
+                                                <a role="button" tabindex="0" class="hidden-desktop" data-placement="top" data-trigger="focus" data-toggle="popover" data-content="(TXT, Word, Excel, PDF or images. Max 10 MB)" data-original-title="" title=""><i class="ebs-icon-info"></i></a>
+                                             </div>
+                                          </div>
+                                          <div class="attachments">
+                                             <div class="js-attachments-wrp">
+                                                <div class="control-group file optional">
+                                                   <div class="controls">
+                                                      <input class="js-slot attachment-slot" id="file_0" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                                      <input class="js-slot attachment-slot" id="file_1" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                                      <input class="js-slot attachment-slot" id="file_2" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                                      <input class="js-slot attachment-slot" id="file_3" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                                      <input class="js-slot attachment-slot" id="file_4" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                                                   </div>
+                                                </div>
+                                                <ul class="js-list attachment-list"></ul>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="inquiry-chat__tablet__bottom-bar__right">
+                                            
+                                          <button type="submit" name='msgsubmit' class="btn btn-outline-success js-send-message">
+                                          <span class="js-loading" style="display: none"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                                          <span class="js-default"><i class="fa fa-send-o"></i> Send</span>
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+                              <div class="inquiry-chat__safety-tip hidden-phone">
+                                 <p>
+                                    <strong>Safety tip:</strong>
+                                    Please remember to only communicate via Tripaneer and not to share contact details before finalizing a booking.
+                                 </p>
+                              </div>
+                              <!-- Styles based on cutomer dialogs -->
+                              <div class="conversation-thread js-conversation-thread">
+                                 {% for message in messages %}
+                                 {% if message.from_host %}
+                                 <div class="message-conversation">
+                                    <div class="conversation-message from--organizer">
+                                       <header>
+                                          <h4>{{ inquiry.listing.get_organization }}</h4>
+                                          <time datetime=""> {{ message.created_at }}</time>
+                                       </header>
+                                       <div class="message-body">
+                                          <p>{{ message.content }}</p>
+                                          <div class="system-message-snippet">
+                                             <p></p>
+                                          </div>
+                                          <div class="attachments-wrapper">
+                                            <ul class="files" style="list-style-type: none;">
+                                               {% for file in message.files.all %}
+                                               <li>
+                                                  <a target="_blank" rel="noopener noreferrer" href="{{ file.file.url }}" title="Wellness_Schedule_2021.pdf" style='color:#7393B3'>
+                                                     {{ file.file|filename }}
+                                                  </a>
+                                               </li>
+                                               {% endfor %}
+                                            </ul>
+                                         </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 {% else %}
+                                 <div class="message-conversation">
+                                    <div class="conversation-message from--customer">
+                                       <header>
+                                          <h4>{{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}</h4>
+                                          <time datetime=""> {{ message.created_at }}</time>
+                                       </header>
+                                       <div class="message-body">
+                                          <p>{{ message.content }}</p>
+                                          <div class="system-message-snippet">
+                                             <p></p>
+                                          </div>
+                                          <div class="attachments-wrapper">
+                                            <ul class="files" style="list-style-type: none;">
+                                               {% for file in message.files.all %}
+                                               <li>
+                                                  <a target="_blank" rel="noopener noreferrer" href="{{ file.file.url }}" title="Wellness_Schedule_2021.pdf" style='color:lightgray'>
+                                                     {{ file.file|filename }}
+                                                  </a>
+                                               </li>
+                                               {% endfor %}
+                                            </ul>
+                                         </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 {% endif %}
+                                 {% endfor %}
+
+                              </div>
+                              <div class="inquiry-chat__safety-tip hidden-tablet hidden-desktop">
+                                 <p>
+                                    <strong>Safety tip:</strong>
+                                    Please remember to only communicate via Tripaneer and not to share contact details before finalizing a booking.
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </section>
+               <!-- MOBILE CHAT -->
+               <!-- Must be positioned relatively to the Initial Containing Block (html, body) -->
+               <div class="js-message-form-backdrop backdrop" style="display: none"></div>
+               <form class="inquiry-chat-form-mobile js-message-form">
+                  <div class="textarea-container">
+                     <textarea class="form-control js-message" placeholder="Reply to Ravid B." rows="1" required></textarea>
+                     <a href="#" class="btn btn-link js-expand-chat-mobile">
+                     <i class="fa fa-expand expand-icon"></i>
+                     <i class="fa fa-compress compress-icon"></i>
+                     </a>
+                  </div>
+                  <div class="attachments">
+                     <div class="js-attachments-wrp">
+                        <div class="control-group file optional">
+                           <div class="controls">
+                              <input class="js-slot attachment-slot" id="m-file_0" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                              <input class="js-slot attachment-slot" id="m-file_1" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                              <input class="js-slot attachment-slot" id="m-file_2" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                              <input class="js-slot attachment-slot" id="m-file_3" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                              <input class="js-slot attachment-slot" id="m-file_4" name="file" type="file" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+                           </div>
+                        </div>
+                        <ul class="js-list attachment-list"></ul>
+                     </div>
+                  </div>
+                  <div class="copy-self hide">Send copy to myself <input type="checkbox" class="toggle-wrapper copyYourself"/> </div>
+                  <div class="buttons-container">
+                     <div>
+                        <label class="js-attachment-label btn btn-link" for="m-file_0">
+                        <i class="ebs-icon ebs-icon-attachment"></i>
+                        </label>
+                        <a href="#" class="btn btn-link self-copy"><i class="ebs-icon-t-document"></i></a>
+                     </div>
+                     <button type="submit" class="btn btn-sm btn-success js-send-message">
+                     <span class="js-loading" style="display: none"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                     <span class="js-default"><i class="fa fa-send-o"></i></span>
+                     </button>
+                  </div>
+               </form>
+               <!-- MODALS -->
+               <div id="request-conditions-modal" class="modal fade" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                     <form class="modal-content" method='POST' action="">
+                         {% csrf_token %}
+                        <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <h4 class="modal-title">Modify Booking Conditions</h4>
+                        </div>
+                        <div class="modal-body">
+                           <div class="form-group">
+                              {{ conditionform }}
+                           </div>
+                           <div class="alert alert-info">
+                              <p>
+                                 Only set the number of days if <strong>To Be Paid</strong> is set to <strong>Before Arrival</strong>
+                              </p>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <button id="request-payment" type="submit" name='conditionform' class="btn btn-success">Confirm</button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <div id="request-modify-modal" class="modal fade" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                   <form class="modal-content" method='POST' action="">
+                       {% csrf_token %}
+                      <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                         <h4 class="modal-title">Modify Trip Details</h4>
+                      </div>
+                      <div class="modal-body">
+                         <div class="form-group">
+                            {{ modifyform }}
+                         </div>
+                         <div class="alert alert-info">
+                            <p>
+                               The payment will be <strong>disabled</strong> once this inquiry is changed. Please enable it again after saving.
+                               <a role="button" tabindex="0" data-placement="top" data-trigger="focus" data-toggle="popover" data-content="This will ensure that the customer is aware of the changes in the trip before they book." data-original-title="" title=""><i class="ebs-icon-info"></i></a>
+                            </p>
+                         </div>
+                      </div>
+                      <div class="modal-footer">
+                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                         <button id="request-payment" type="submit" name='modifyform' class="btn btn-success">Confirm</button>
+                      </div>
+                   </form>
+                </div>
+             </div>
+               <!-- Accept & Enable payment -->
+               <div id="request-payment-modal" class="modal fade" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                     <form class="modal-content">
+                        <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <h4 class="modal-title">Accept &amp; Enable Payment</h4>
+                        </div>
+                        <div class="modal-body">
+                           <p class="text-muted">You are requesting</p>
+                           <dl class="dl-horizontal">
+                              <dt>Deposit</dt>
+                              <dd>
+                                 <strong>US${{ deposit|intcomma|floatformat:2}}</strong> ({{ inquiry.commission_amount }}% of the total) <br/>
+                                 <!-- Cancellation -->
+                                 Non Refundable
+                                 <br/>Total price: US${{ inquiry.total_price|floatformat:2|intcomma }}
+                              </dd>
+                           </dl>
+                           <dl class="dl-horizontal">
+                              <dt>Trip details</dt>
+                              <dd>
+                                 {{ inquiry.listing.title }}<br/>
+                                 {% if inquiry.number_of_people > 1 %}
+                                 {{ inquiry.number_of_people }} people<br/>
+                                 {% else %}
+                                 {{ inquiry.number_of_people }} person<br/>
+                                 {% endif %}
+                                 {{ inquiry.package.room.get_shared_display }} {{ inquiry.package.room.get_type }} <br>
+                                 <span class="inline-list">{{ inquiry.package.room.accommodation.get_acc_type }}</span>
+                                 <br/>
+                                 {{ inquiry.arrival_date }} <i class="ebs-icon-sec-arrow-right"></i> {{ inquiry.departure_date }}
+                              </dd>
+                           </dl>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <a href="{% url 'listings:approve_inquiry' inquiry.pk %}" id="request-payment" type="button" class="btn btn-success">Confirm</a>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+               <!-- Decline availability -->
+               <div id="decline-modal" class="modal fade" tabindex="-1" role="dialog">
+                  <div class="modal-dialog" role="document">
+                     <form class="modal-content js-decline-form" method="POST" action="{% url 'listings:decline_inquiry' inquiry.pk %}">
+                        {% csrf_token %}
+                        <div class="modal-header">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                           <h4 class="modal-title">Decline availability</h4>
+                        </div>
+                        <div class="modal-body">
+                           <div class="form-group">
+                              <label for="js-decline-msg">
+                              Personal message
+                              <small class="feedback-msg text-muted">Kindly inform {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }} about why you are declining. This message will be sent via chat.</small>
+                              </label>
+                              <textarea name="decline-message" id="js-decline-msg" class="form-control" rows="6" placeholder="Reply to {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}" required></textarea>
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                           <button type="submit" class="btn btn-success">
+                           <span class="js-loading" style="display: none"><i class="fa fa-spinner fa-pulse fa-fw"></i></span>
+                           <span class="js-default">Decline</span>
+                           </button>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- SCRIPTS -->
+         <script>
+            /* ***********************
+            
+            	GLOBALS AND TRANLATION TAGS
+            
+            *********************** */
+            
+            var hasUnreadMessages = true,
+            	lastOrganizerChatAccess = new Date("0001-Jan-01 00:00:00" + "Z");
+            
+            const inquiryReference = 1300037,
+            	maxFileSize = 10 * 1024 * 1024,
+            	languageCode = "en",
+            
+            	inquiryEventsExist = $("#inquiry-events").length,
+            	inquiryEvents = $("#inquiry-events").val(),
+            
+            	
+            		customerName = "Ravid B.",
+            	
+            
+            	currency = "USD",
+            
+            	pageName = "Organizer Dialogs",
+            	userType = "Organizer",
+            	translations = {
+            
+            		'days': 'days',
+            		'nights': 'nights',
+            
+            		'newMessages': 'New Messages',
+            		'previousMessages': 'Previous Messages',
+            
+            		'refundable_until': 'Refundable until',
+            		'days_before_arrival': 'days before arrival',
+            		'non_refundable': 'Non Refundable',
+            		'package_changed_on': 'Package changed on',
+            
+            		'organizerName': 'Moksha Yoga Amazónica',
+            		'now': 'Just now',
+            
+            		'success': {
+            			'generic': 'Changes saved successfully',
+            			'messageSent': 'Your message has been sent successfully.'
+            		},
+            
+            		'error': {
+            			'generic': 'Sorry, there was an error sending this request. Please reload the page and try again. If the error persists, please contact your account manager.',
+            			'checkBelow': 'Please check the errors below',
+            
+            			'internal': 'Sorry, there was an internal error. Our team was notified and will fix it as soon as possible. Please try again later and if the problem persists, contact your account manager.',
+            			'inconsistentInquiry': 'There was an update in this inquiry during your session. Please reload the page to see the latest version and try again.',
+            			'invalidValue': 'Please insert a valid value for this field.',
+            			'emptyField': 'Please fill in this field.',
+            
+            			'uploadLimit': 'You can upload a maximum of 5 files per message.',
+            			'fileLarge': 'Each file&#39;s size cannot exceed 10 MB.',
+            			'fileType': 'Invalid file. Please upload only TXT Word, Excel, PDF or images. Maximum 10MB.',
+            			'nameInvalid': 'Filename cannot contain any of the following characters: \ / : * ? &#34; &lt; &gt; |',
+            
+            			'emptyMessage': 'The message field can&#39;t be empty.',
+            
+            			'priceOverflow': 'Please set a price with up to 10 characters.',
+            			'priceInvalid': 'Please, insert a valid price.',
+            
+            			'arrival': 'The arrival date should be today or later.',
+            			'departure': 'The departure date should be later then the check in date.',
+            			'duration': 'The duration has changed: try updating your trip&#39;s name'
+            		},
+            
+            		'inquiryAttributes': {
+            			'listing_title': 'Title',
+            			'arrival_date': 'Arrival',
+            			'departure_date': 'Departure',
+            			'accommodation_description': 'Accommodation',
+            			'package_note': 'Package note',
+            			'price': 'Price',
+            
+            			'deposit': 'Deposit',
+            			'cancellation.refundability': 'Cancellation',
+            			'cancellation.nr_days_before_checkin': 'Cancellation',
+            			'rest_paid_on.when': 'To be paid',
+            			'rest_paid_on.nr_days_before_arrival': 'To be paid',
+            
+            			'BeforeArrival': 'Before Arrival',
+            			'Arrival': 'On Arrival',
+            			'Departure': 'On Departure'
+            		}
+            	}
+            
+         </script>
+         <!-- INTRO -->
+         <div class="modal fade" tabindex="-1" role="dialog" id="inquiry-intro-modal">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-body center">
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                     <div id="inquiry-intro-slider" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                           <li data-target="#inquiry-intro-slider" data-slide-to="0" class="active"></li>
+                           <li data-target="#inquiry-intro-slider" data-slide-to="1"></li>
+                           <li data-target="#inquiry-intro-slider" data-slide-to="2"></li>
+                           <li data-target="#inquiry-intro-slider" data-slide-to="3"></li>
+                           <li data-target="#inquiry-intro-slider" data-slide-to="4"></li>
+                        </ol>
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                           <div class="item active">
+                              <div class="item-wrapper">
+                                 <img src="/static/files/my-inquiries-icons/promo/welcome.svg">
+                                 <h4>Welcome</h4>
+                                 <p>Discover a new way of interacting with your guests.</p>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <div class="item-wrapper">
+                                 <img src="/static/files/my-inquiries-icons/promo/chat.svg">
+                                 <h4>Chat</h4>
+                                 <p>Chat with your customers at any moment: no need to define availability upfront.</p>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <div class="item-wrapper">
+                                 <img src="/static/files/my-inquiries-icons/promo/trip-details.svg">
+                                 <h4>Trip details</h4>
+                                 <p>Easily check and modify the trip&#39;s dates, price and details.</p>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <div class="item-wrapper">
+                                 <img src="/static/files/my-inquiries-icons/promo/booking-conditions.svg">
+                                 <h4>Booking conditions</h4>
+                                 <p>You can now check and modify the deposit and cancellation policy from the beginning.</p>
+                              </div>
+                           </div>
+                           <div class="item">
+                              <div class="item-wrapper">
+                                 <img src="/static/files/my-inquiries-icons/promo/actions.svg">
+                                 <h4>Accept or Decline</h4>
+                                 <p>Once everything is ready, you can accept or decline availability.</p>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control js-carousel-prev" href="#inquiry-intro-slider" role="button" data-slide="prev" style="visibility: hidden">
+                        <i class="ebs-icon-sec-arrow-left ebs-icon"></i>
+                        <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control js-carousel-next" href="#inquiry-intro-slider" role="button" data-slide="next">
+                        <i class="ebs-icon-sec-arrow-right ebs-icon"></i>
+                        <span class="sr-only">Next</span>
+                        </a>
+                        <a class="right carousel-control js-carousel-done" href="#" style="display: none" data-dismiss="modal">
+                        <i class="ebs-icon-checked-thin ebs-icon"></i>
+                        <span class="sr-only">Done</span>
+                        </a>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <script>
+            var organizerUsedDialogsV2Before = true
+            
+            // Only show modal if no cookie
+            if ( organizerUsedDialogsV2Before != 1 && typeof(Cookies.get("org_inquiry_dialog_closed_tour")) == "undefined" ) {
+            	$("#inquiry-intro-modal").modal("show")
+            }
+            
+            // Start carousel
+            $('#inquiry-intro-slider').carousel({interval: false})
+            
+            // Set up navigation
+            $('#inquiry-intro-slider').on('slid.bs.carousel', function () {
+            	var nrSlides = $(this).find(".item").length,
+            		activeSlide = parseInt($(".carousel-indicators .active").attr("data-slide-to")) + 1
+            
+            	if ( activeSlide == nrSlides ) {
+            		$(".js-carousel-next").hide()
+            		$(".js-carousel-done").show()
+            	} else {
+            		$(".js-carousel-next").show()
+            		$(".js-carousel-done").hide()
+            	}
+            
+            	if ( activeSlide > 1 ) {
+            		$(".js-carousel-prev").css("visibility", "visible")
+            	} else {
+            		$(".js-carousel-prev").css("visibility", "hidden")
+            	}
+            })
+            
+            // Reset carousel and set up cooke once modal is closed
+            $('#inquiry-intro-modal').on('hidden.bs.modal', function () {
+            	$('#inquiry-intro-slider').carousel(0)
+            	Cookies.set("org_inquiry_dialog_closed_tour", true)
+            })
+            
+         </script>
+         <script>
+            function showOrgFeedbackMessage(){
+            	$('.js-feedback-initial').hide()
+            	$('.js-feedback-text').show()
+            }
+            var feedbackType = "undefined";
+            function submitOrgFeedback(state_){
+            	if(state_ == 0) {
+            		feedbackType = "negative";
+            	} else if(state_ == 1) {
+            		feedbackType = "positive";
+            	}
+            
+            	$.ajax({
+            		url: '/organizer_feedback',
+            		type: 'POST',
+            		dataType: 'json',
+            		contentType: 'application/json',
+            		data : JSON.stringify({
+            					url: "https://office.tripaneer.com/4/my_inquiries/NWB3LZQM/",
+            					state: state_,
+            					type: feedbackType,
+            					message:$("#orgFeedbackMessageInput").val()
+            				}),
+            		statusCode:{
+            			200: function(response){
+            				if (response.error != undefined) {
+            					flash.error(response.error);
+            					return;
+            				}
+            				if(state_ == 2){
+            					$("#organizer_feedback_submitted").show();
+            					$(".js-org-feedback-controls").hide();
+            				} else {
+            					showOrgFeedbackMessage();
+            				}
+            			}
+            		}
+            	});
+            }
+         </script>
+      </div>
+   </body>
+</html>

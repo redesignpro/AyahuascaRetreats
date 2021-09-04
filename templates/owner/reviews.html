@@ -1,0 +1,446 @@
+{% extends './main.html' %}
+{% load static %}
+{% load humanize %}
+{% load sizify  %}
+
+
+{% block content %}
+
+<script>
+    
+function removeUrlParameter(a, b) {
+  var c,
+    d = b.split("?")[0],
+    e = [],
+    f = -1 === b.indexOf("?") ? "" : b.split("?")[1];
+  if ("" !== f) {
+    e = f.split("&");
+    for (var g = e.length - 1; 0 <= g; g -= 1)
+      (c = e[g].split("=")[0]), c === a && e.splice(g, 1);
+    d = 0 < e.length ? d + "?" + e.join("&") : d;
+  }
+  return d;
+}
+function setParam(name, value) {
+        var l = window.location;
+
+        /* build params */
+        var params = {};        
+        var x = /(?:\??)([^=&?]+)=?([^&?]*)/g;        
+        var s = l.search;
+        for(var r = x.exec(s); r; r = x.exec(s))
+        {
+            r[1] = decodeURIComponent(r[1]);
+            if (!r[2]) r[2] = '%%';
+            params[r[1]] = r[2];
+        }
+
+        /* set param */
+        params[name] = encodeURIComponent(value);
+
+        /* build search */
+        var search = [];
+        for(var i in params)
+        {
+            var p = encodeURIComponent(i);
+            var v = params[i];
+            if (v != '%%') p += '=' + v;
+            search.push(p);
+        }
+        search = search.join('&');
+
+        /* execute search */
+        l.search = search;
+    }
+function getComboA(event, selectObject) {
+    var value = selectObject.value;
+    console.log(value);
+    setParam('flt', value);
+}
+</script>
+
+        <!-- start: page -->
+        <div class="row">
+            <div class="col">
+
+                <div class="card card-modern">
+                    <div class="card-body">
+                        <div class="datatables-header-footer-wrapper">
+                            <div class="datatable-header">
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-8 col-lg-auto ms-auto ml-auto mb-3 mb-lg-0">
+                                        <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                            <label class="ws-nowrap me-3 mb-0">Filter By:</label>
+                                            <select class="form-control select-style-1 filter-by" name="filter-by" onchange="getComboA(event, this);">
+                                                {% if 'all' == request.GET.flt %}
+                                                <option value="all" selected>All</option>
+                                                {% else %}
+                                                <option value="all">All</option>
+                                                {% endif %}
+                                                {% if 'id' == request.GET.flt %}
+                                                <option value="id" selected>ID</option>
+                                                {% else %}
+                                                <option value="id">ID</option>
+                                                {% endif %}
+                                                {% if 'listing_name' == request.GET.flt %}
+                                                <option value="listing_name" selected>Listing Name</option>
+                                                {% else %}
+                                                <option value="listing_name">Listing Name</option>
+                                                {% endif %}
+                                                {% if 'host_name' == request.GET.flt %}
+                                                <option value="host_name" selected>Host Name</option>
+                                                {% else %}
+                                                <option value="host_name">Host Name</option>
+                                                {% endif %}
+                                                {% if 'date' == request.GET.flt %}
+                                                <option value="date">Date</option>
+                                                {% else %}
+                                                <option value="date">Date</option>
+                                                {% endif %}
+                                                {% if 'customer' == request.GET.flt %}
+                                                <option value="customer" selected>Customer Name</option>
+                                                {% else %}
+                                                <option value="customer">Customer Name</option>
+                                                {% endif %}
+                                                {% if 'price' == request.GET.flt %}
+                                                <option value="overall" selected>Overall Rating</option>
+                                                {% else %}
+                                                <option value="overall">Overall Rating</option>
+                                                {% endif %}
+                                                {% if 'progress' == request.GET.flt %}
+                                                <option value="status" selected>Status</option>
+                                                {% else %}
+                                                <option value="status">Status</option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-lg-auto ps-lg-1">
+                                        <div class="search search-style-1 search-style-1-lg mx-lg-auto">
+                                            <form method="GET">
+                                            <div class="input-group">
+                                                <input type="text" class="search-term form-control" name="search-term" id="search-term" placeholder="Search by Anything">
+                                                <button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                  
+                                </div>
+                            </div>
+
+                            <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 750px;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Listing Name</th>
+                                        <th>Customer Name</th>
+                                        <th>Host</th>
+                                        <th>Date</th>
+                                        <th>Value for Money</th>
+                                        <th>Accommodations</th>
+                                        <th>Food</th>
+                                        <th>Location</th>
+                                        <th>Quality of Activities</th>
+                                        <th>Overall Rating</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <style>
+                                        .checked {
+                                          color: orange;
+                                        }
+                                        </style>
+                                    {% for review in reviews %}
+                                    <tr>
+                                        <td style='text-align:center'><a href="{{ review.get_admin_url }}"><strong>{{ review.id }}</strong></a></td>
+                                        <td><a href="{{ review.listing.get_admin_url }}"><strong>{{ review.listing.title|truncatechars:40 }}</strong></a></td>
+                                        <td><a href="{{ review.customer.get_admin_url }}"><strong>{{ review.customer.get_full_name }}</strong></a></td>
+                                        <td><a href="{{ review.listing.user_profile.get_admin_url }}"><strong>{{ review.listing.get_organization }}</strong></a></td>
+                                        <td>{{ review.created_at }}</td>
+                                        <td>
+                                        <div class="stars">
+                                            {% if review.value_for_money == 1 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.value_for_money == 2 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.value_for_money == 3 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.value_for_money == 4 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.value_for_money == 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           {% endif %}
+                                        </div>
+                                        </td>
+                                        <td>
+                                            <div class="stars">
+                                            {% if review.accommodation_and_facilities == 1 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.accommodation_and_facilities == 2 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.accommodation_and_facilities == 3 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.accommodation_and_facilities == 4 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.accommodation_and_facilities == 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           {% endif %}
+                                        </div></td>
+                                        <td><div class="stars">
+                                            {% if review.food == 1 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.food == 2 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.food == 3 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.food == 4 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.food == 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           {% endif %}
+                                        </div></td>
+                                        <td><div class="stars">
+                                            {% if review.location == 1 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.location == 2 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.location == 3 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.location == 4 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.location == 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           {% endif %}
+                                        </div></td>
+                                        <td><div class="stars">
+                                            {% if review.quality_of_activity == 1 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.quality_of_activity == 2 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.quality_of_activity == 3 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.quality_of_activity == 4 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.quality_of_activity == 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           {% endif %}
+                                        </div></td>
+                                        <td><div class="stars">
+                                            {% if review.overall_rating >= 1 and review.overall_rating < 2 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.overall_rating >= 2 and review.overall_rating < 3 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.overall_rating >= 3 and review.overall_rating < 4 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.overall_rating >= 4 and review.overall_rating < 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star"></i>
+                                           {% elif review.overall_rating == 5 %}
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           <i class="fa fa-star checked"></i>
+                                           {% endif %}
+                                        </div></td>
+                                        {% if review.approved %}
+                                        <td><a class='btn btn-xs btn-success noHover'>Approved</a></td>
+                                        {% else %}
+                                        <td><a href="{% url 'listings:approve-review' review.pk %}" class='btn btn-xs btn-warning noHover'>Pending</a></td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr class="solid mt-5 opacity-4">
+                        </table>
+                    </div>
+                    <div class="datatable-footer">
+                        <div class="row align-items-center justify-content-between mt-3">
+                            <div class="col-lg-auto text-center order-3 order-lg-2">
+                                <div class="results-info-wrapper">
+                                </div>
+                            </div>
+                            <div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
+                                <div class="pagination-wrapper">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable-ecommerce-list_paginate">
+                                        <ul class="pagination pagination-modern pagination-modern-spacing justify-content-center">
+                                            {% if page_obj.has_previous %}
+                                            <li class="paginate_button page-item previous" id="datatable-ecommerce-list_previous">
+                                                <a href="?page={{ page_obj.previous_page_number }}" aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button page-item previous disabled" id="datatable-ecommerce-list_previous">
+                                                <a href='' aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if page_obj.number|add:'-4' > 1 %}
+                                            <a href="?page={{ page_obj.number|add:'-5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                                            {% endif %}
+
+                                            {% for i in page_obj.paginator.page_range %}
+                                                {% if page_obj.number == i %}
+                                                    <li class="paginate_button page-item active">
+                                                        <a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="datatable-ecommerce-list" data-dt-idx="1" tabindex="0" class="page-link">{{ i }}</a>
+                                                    </li>
+                                                    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                                                    <li class="paginate_button page-item ">
+                                                        <a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="datatable-ecommerce-list" data-dt-idx="2" tabindex="0" class="page-link">{{ i }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                                                <a href="?page={{ page_obj.number|add:'5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                                            {% endif %}
+
+                                            {% if page_obj.has_next %}
+                                            <li class="paginate_button page-item next" id="datatable-ecommerce-list_next">
+                                                <a href="?page={{ page_obj.next_page_number }}" aria-controls="datatable-ecommerce-list" data-dt-idx="3" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button page-item next disabled" id="datatable-ecommerce-list_next">
+                                                <a href="" aria-controls="datatable-ecommerce-list" data-dt-idx="3" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- end: page -->
+
+
+{% endblock %}

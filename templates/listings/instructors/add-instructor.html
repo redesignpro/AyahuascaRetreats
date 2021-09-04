@@ -1,0 +1,95 @@
+{% extends '../accommodations/accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="admin-content -fullwidth js-active-tab-name" data-tab-name="Instructors">
+    <ol class="breadcrumb">
+      <li>
+        <a href="{% url 'listings:instructor-list' %}">Instructors</a>
+      </li>
+    </ol>
+    <header class="row section-title">
+      <div class="col-sm-9">
+        <h1 class="catamaran"> Add Instructor </h1>
+      </div>
+      <div class="col-sm-3"></div>
+    </header>
+    <div id="contact" data-organizer-id="23069" data-instructor-id="87030">
+      <div class="panel">
+        <div class="panel-body -airy">
+            <form id="instructor-information" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <!-- First name -->
+            <div class="row">
+              <div class="form-group col-sm-6 col-lg-3">
+                {{ form.first_name|as_crispy_field }}
+              </div>
+              <!-- Last name -->
+              <div class="form-group col-sm-6 col-lg-3">
+                {{ form.last_name|as_crispy_field }}
+              </div>
+              <!-- Role(s) -->
+              <div class="form-group col-sm-6 col-lg-3">
+                {{ form.is_host|as_crispy_field }}
+                {{ form.is_instructor|as_crispy_field }}
+              </div>
+              <!-- Gender -->
+              <div class="form-group col-sm-6 col-lg-3">
+                {{ form.gender|as_crispy_field }}
+              </div>
+            </div>
+            <!-- Email -->
+            <div class="row">
+              <div class="form-group col-md-4 col-lg-3">
+                  {{ form.email|as_crispy_field }}
+                </div>
+              <!-- Phone number -->
+              <div class="form-group col-md-4 col-lg-4">
+                {{ form.phone|as_crispy_field }}
+              </div>
+              <!-- Skype -->
+              <div class="form-group col-md-4 col-lg-6">
+                  {{ form.skype|as_crispy_field }}
+              </div>
+            </div>
+            <!-- Biography -->
+            <div class="form-group">
+                {{ form.bio|as_crispy_field }}
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-4 col-lg-2">
+                <!-- Portrait -->
+                <div class="form-group">
+                  {{ form.portrait|as_crispy_field }}
+                </div>
+              </div>
+              <div class="col-sm-8 col-lg-10">
+                <!-- Featured Pictures -->
+                <div class="form-group">
+                  {{ form.featured_portrait|as_crispy_field }}
+                </div>
+              </div>
+            </div>
+            <hr>
+            <!-- Instructor Skills -->
+            <div class="form-group">
+                <div class="alert alert-info">
+                    <i class="fa fa-info-circle"></i>
+                    When the content is created, you will be able to to add skills and certificates by editing the staff members profile.
+                </div>
+            </div>
+            <!-- save button -->
+            <div class="form-group pull-right">
+              <button type="submit" class="btn btn-success">
+                <i class="fa fa-spinner fa-spin hide js-save-spinner"></i> Save </button>
+              <a href="/4/organizers/23069/instructors/" type="button" class="btn btn-danger">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

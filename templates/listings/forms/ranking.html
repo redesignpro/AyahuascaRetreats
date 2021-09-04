@@ -1,0 +1,89 @@
+{% extends './base-listing.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="section-title">
+    <h3>Ranking</h3>
+    <small class="title-description">
+        Our automatic ranking is based on the quality score of your listing.<br>
+    </small>
+    <div class="btn-toolbar">
+        <div class="btn-group">
+            <a href="#" class="btn btn-outline-default js-listing-nav-column-toggle hidden-phone"><i class="fa fa-bars"></i> Toggle Menu</a>
+        </div>
+        <div class="btn-group">
+            <a href="/4/listings/edit/43775/booking-conditions/" class="btn btn-outline-default"><i class="ebs-icon ebs-icon-sec-arrow-left"></i> Booking conditions</a>
+        </div>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-body -airy">
+       <div role="tabpanel" id="ranking" class="tab-pane" i-section="Ranking">
+          <p>Quality Score is an estimate of the expected value of displaying your listing. It is based on the chance a person seeing your listing will make a booking. To calculate the chance a person will book we mainly look at the conversion rate from impressions to paid bookings.
+             Higher Quality Scores lead to a higher ranking of your listing, which will result in more impressions and typically in more bookings.
+             You can improve your quality score by offering good value, adding high quality images and reviews and delivering good customer service.
+          </p>
+          <ul>
+             <li><b>Reply promptly and friendly to inquiries.</b> <a href="http://www.bookyogaretreats.com/news/the-dos-and-donts-of-initial-inquiry-reply">More about how to reply to customer inquiries</a>. Email us to receive reply templates that convert into bookings!</li>
+             <li><b>Pay invoices on time.</b> A large component of our quality score are paid bookings. Paying your invoices on time will typically have a big impact on your quality score.</li>
+             <li><b>Update your availability.</b> Having more dates will typically result in more inquiries</li>
+             <li><b>Add high quality images.</b> Check if the pictures on your listings are high quality, bright and colorful.</li>
+             <li><b>More reviews.</b> Make sure to encourage your customers to send us reviews to service@bookyogaretreats.com.</li>
+          </ul>
+          <div class="row section-title divider-on-top">
+             <div class="col-sm-9">
+                <h3>Quickly boost your ranking</h3>
+                <small class="title-description">
+                You can also increase your ranking by raising your commission percentage. This has an immediate impact on your ranking - results will be visible within one hour.
+                </small>
+             </div>
+          </div>
+          <h1></h1>
+          <p></p>
+          <p>We will start charging the selected commission percentage only from the moment it is included in your ranking.</p>
+          <form method="post">
+             <div class="form-group col-sm-12">
+                {% csrf_token %}
+                {{ form.media }}
+                
+                
+                <div style='width: 60%; margin-top: 100px'>{{ form.commission_percent }}</div>
+                <span id="commission-value" style="padding-left: 20px; font-size: 600%;">{{ listing.commission_percent }}%</span>
+                <p>Your commission is currently set to <b>{{ listing.commission_percent }}%</b>. </p>
+                <div id="raking-output-loader" style="display: none;">
+                   <div class="spinner">
+                      <svg width="18" height="16" viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg" class="bounce bounce1">
+                         <path d="M.035 5.645c-.344 3.11 1.84 8.322 7.776 9.47 3.017.589 7.015-.223 9.002-4.342C23.338-2.817.87-2.397.035 5.645z" fill="#02BF9B" fill-rule="nonzero">
+                         </path>
+                      </svg>
+                      <svg width="18" height="17" viewBox="0 0 18 16" xmlns="http://www.w3.org/2000/svg" class="bounce bounce2">
+                         <path d="M15.643 2.777A8.172 8.172 0 0 0 12.707.703C7.61-1.48 1.765 1.736.333 6.025c-.035.105-.067.21-.096.316-.561 2.033-.135 4.253 1.372 6.066 1.802 2.168 4.765 3.471 7.601 3.613 3.924.196 7.457-1.079 8.504-4.38.79-2.49-.105-6.65-2.071-8.863z" fill="#02A5E8" fill-rule="nonzero">
+                         </path>
+                      </svg>
+                      <svg width="18" height="18" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" class="bounce bounce3">
+                         <path d="M10.215.437C5.117.437-2.205 5.263.634 11.088c2.839 5.825 12.92 8.488 15.732 2.996C19.112 8.718 19.204.437 10.215.437z" fill="#FF9B35" fill-rule="nonzero">
+                         </path>
+                      </svg>
+                   </div>
+                </div>
+                <h3 class="js-ranking-output" id="position_change_up" style="display: none;">You climb <span id="uplift" style="color: green;"></span> position(s) in our overall ranking!</h3>
+                <h3 class="js-ranking-output" id="position_change_none" style="display: none;">Your ranking is unnaffected</h3>
+                <h3 class="js-ranking-output" id="position_change_down" style="display: none;">You go down <span id="downlift" style="color: red;"></span> position(s) in our overall ranking!</h3>
+                <h3 class="js-ranking-output" id="not_ranked" style="display: none;">Listing is not ranked yet, please try again in an hour.</h3>
+                <h3 class="js-ranking-output" id="deposit_warning" style="display: none;">Note: Your current deposit percentage  <span style="color: red;">14%</span> will be changed to <span id="changed_deposit" style="color: green;"></span></h3>
+             </div>
+             <div class="pull-right">
+                <button class="btn btn-success" type="submit"><i class="fa fa-check"></i> Save</button>
+             </div>
+          </form>
+       </div>
+    </div>
+ </div>
+ <script>
+    var result = document.getElementById("id_commission_percent");
+    var mine = document.getElementById("commission-value");
+    function updateLabel(){
+        mine.innerText = result.value + '%';
+    }
+    </script>
+{% endblock %}

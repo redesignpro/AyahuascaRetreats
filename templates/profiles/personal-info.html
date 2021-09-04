@@ -1,0 +1,504 @@
+{% extends '../listings/accommodations/accommodation-base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+
+
+<section id="profile-editor" class="admin--dashboard admin-content  js-active-tab-name" data-tab-name="Business Information" data-organizer="23069" data-site="4" data-profile-type="individual">
+    <header class="section-title">
+      <h1 class="catamaran">Business Information</h1>
+      <small class="title-description"> We respect your privacy and treat your personal data with care. </small>
+    </header>
+    <div id="organizer_identifier" data-organizer-id="23069">
+      <div id="organizer">
+        <div class="panel panel-default">
+          <div class="panel-body -airy">
+            <div role="tabpanel" id="profile" class="tab-pane has-fixed-actions" i-section="Business Profile">
+              <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="business_or_individual" class="control-label"> Profile type </label>
+                      <div class="form-helper">
+                        <p> Please specify if you are registered as business or individual. </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div style="margin-bottom: 10px;">
+                        <label class="label label-success"> Personal </label>
+                      </div>
+                      <a href="{% url 'listings:switch-business' pk=request.user.get_profile.id %}" id="change-profile-type" class="btn btn-primary pull-left"> Change to Business </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Personal information</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_first_name" class="control-label"> First name </label>
+                      <div class="form-helper">
+                        <a href="#" id="change-name" autocomplete="off" data-toggle="modal" data-target="#change-name-modal" p-enable="OrganizersEdit"> Change first name </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.personal_first_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_middle_name" class="control-label"> Middle name </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_middle_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_last_name" class="control-label"> Last name </label>
+                      <div class="form-helper">
+                        <a href="#" id="change-name" autocomplete="off" data-toggle="modal" data-target="#change-name-modal" p-enable="OrganizersEdit"> Change last name </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.personal_last_name|as_crispy_field  }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="date_of_birth" class="control-label"> Date of birth </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div class="input-group">
+                        {{ form.personal_dob|as_crispy_field }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Passport number</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_passport_id_number" class="control-label"> Passport number </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_passport_number|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_middle_name" class="control-label"> Copy of Passport </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_passport_copy|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_middle_name" class="control-label"> Passport Expiry </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_passport_expiry }}
+                    </div>
+                  </div>
+                </div>
+                <!-- contact info ############################################## -->
+                <div class="row section-title divider-on-top js-contact-person">
+                  <div class="col-sm-12">
+                    <h3>Contact information</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="address" class="control-label"> Street and house number </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_street_and_number|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="city_or_region" class="control-label"> City </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_city|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="address_postal_code" class="control-label"> Zip/Postal code </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_zip|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="state" class="control-label">State/Province</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_state|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="country" class="control-label">Country</label>
+                    </div>
+                  </div>
+                  <!-- <div class="row"><div class="form-group"><div class="col-sm-3 col-lg-2"><label for="business-hours-timezone">Timezone</label></div><div class="col-sm-6"><select class="form-control" id="business-hours-timezone"><option value="" selected> ()</option></select></div></div></div> -->
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_country|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row js-contact-person-email">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="mobile_code" class="control-label"> Contact email 
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.personal_email|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row js-contact-person-mobile">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="mobile_code" class="control-label"> Mobile Number 
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-7">
+                        <div class="form-group">
+                          {{ form.personal_phone|as_crispy_field }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="website" class="control-label">Website</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.url|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="social_media_website" class="control-label"> Social Media Page </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                    {{ form.personal_social|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <script type="text/javascript">
+                  $(function() {
+                    if (document.location.href.indexOf('_edit=contact-email') > 0) {
+                      $('html, body').animate({
+                        scrollTop: $('.js-contact-person').offset().top
+                      }, 500);
+                      $('.js-contact-person-email').addClass('highlighted');
+                    }
+                    if (document.location.href.indexOf('_edit=contact-phone') > 0) {
+                      $('html, body').animate({
+                        scrollTop: $('.js-contact-person').offset().top
+                      }, 500);
+                      $('.js-contact-person-mobile').addClass('highlighted');
+                    }
+                  });
+                </script>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Certificates</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="operating_licence" class="control-label"> Certificates </label>
+                      <div class="form-helper">
+                        <p>Please upload scans of your official certificates</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-9 document-manager" id="licensor">
+                    <button id="add-licence" class="btn btn-primary" type="button">Add Certificate</button>
+                    <table class="table hover">
+                      <tbody>
+                        <tr>
+                          <td>Yoga Alliance</td>
+                          <td>
+                            <a href="https://attachments.tpn.to/kg/sf/gs/mp/Tantra%20Vinyasa%20%26amp_%20Ayurveda%20Yoga%20Teacher%20Training%20Certificate%20%281%29.pdf">
+                              <i class="fa fa-cloud-download"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a class="js-delete-document" data-document-id="39928" data-document-type="licence">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <button type="button" class="btn js-document-manage-state btn-success" p-enable="OrganizersEdit" data-document-id="39928" data-document-type="licence">
+                              <i class="fa check-toggle fa-toggle-on"></i>
+                              <span class="on" data-state="verified">Verified</span>
+                              <span class="hide" data-state="unverified">Unverified</span>
+                              <i class="fa fa-spinner fa-spin js-save-spinner hide"></i>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Yoga Alliance</td>
+                          <td>
+                            <a href="https://attachments.tpn.to/nf/ho/rh/eg/Annotation%202020-12-04%20164341.png">
+                              <i class="fa fa-cloud-download"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <a class="js-delete-document" data-document-id="41186" data-document-type="licence">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>
+                          <td>
+                            <button type="button" class="btn js-document-manage-state btn-success" p-enable="OrganizersEdit" data-document-id="41186" data-document-type="licence">
+                              <i class="fa check-toggle fa-toggle-on"></i>
+                              <span class="on" data-state="verified">Verified</span>
+                              <span class="hide" data-state="unverified">Unverified</span>
+                              <i class="fa fa-spinner fa-spin js-save-spinner hide"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div id="change-name-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title text-info">Warning</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p class="text-info">
+                          <i class="fa fa-exclamation-circle"></i> Changing your name impacts Payouts. Hence, you will need to update your bank details in Payment page.
+                        </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button id="change-name-confirm" type="button" data-dismiss="modal" class="btn btn-success">
+                          <i class="fa fa-check"></i> Continue </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                          <i class="fa fa-times"></i> Cancel </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="add-new-id-modal" class="modal fade">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <input type="hidden" name="documentType" value="id">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title text-info">Add ID</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="number">Number</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="text" class="form-control" name="number">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="file">File *</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="file" class="form-control" name="file">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="expiration">Expiration</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="datetime" class="form-control js-datepicker hasDatepicker" name="expiresAt" autocomplete="off" id="dp1627213307541">
+                            <div class="btn btn-success input-group-addon js-datepicker-addon">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-success add-new-registration-document" type="button">
+                          <i class="fa fa-check"></i>Save <i class="fa fa-spinner fa-spin hide js-save-spinner"></i>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  $(function() {
+                    $("#add-id").click(function(event) {
+                      $("#add-new-id-modal").modal("show");
+                      event.preventDefault();
+                    });
+                  });
+                </script>
+                <div id="add-new-licence-modal" class="modal fade">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <input type="hidden" name="documentType" value="licence">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span>
+                        </button>
+                        <h4 class="modal-title text-info">Add Licence</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Association *</label>
+                          <div class="col-sm-9 input-group">
+                            <select name="associationId" class="form-control js-display-hidden-input">
+                              <option value="1">SATSA: South African Tourism Services Association</option>
+                              <option value="2">KATO: The Kenya Association of Tour Operators</option>
+                              <option value="3">TALA: Tanzania Tourism License</option>
+                              <option value="4">British Wheel of Yoga</option>
+                              <option value="5">European Yoga Alliance</option>
+                              <option value="6">World Yoga Alliance</option>
+                              <option value="7">Yoga Alliance International</option>
+                              <option value="8">Yoga Alliance Professionals</option>
+                              <option value="9">Yoga Alliance</option>
+                              <option value="11">TRA: Tourism Regulatory Authority</option>
+                              <option value="other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group hide js-association-name-hidden">
+                          <label class="col-sm-3 control-label"></label>
+                          <div class="col-sm-9 input-group">
+                            <input type="text" class="form-control" name="association" maxlength="200">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="number">Number</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="text" class="form-control" name="number">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="file">File *</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="file" class="form-control" name="file">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="expiration">Expiration</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="datetime" class="form-control js-datepicker hasDatepicker" name="expiresAt" autocomplete="off" id="dp1627213307542">
+                            <div class="btn btn-success input-group-addon js-datepicker-addon">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="btn btn-success add-new-registration-document" type="button">
+                          <i class="fa fa-check"></i>Save <i class="fa fa-spinner fa-spin hide js-save-spinner"></i>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  $(function() {
+                    $("#add-licence").click(function(event) {
+                      $("#add-new-licence-modal").modal("show");
+                      event.preventDefault();
+                    });
+                  });
+                </script>
+                <script>
+                  $(function() {
+                    initAddNewRegistrationDocumentModal();
+                  });
+                </script>
+                <div class="fixed-actions fixed-actions--bottom fixed-actions--right">
+                  <a id="cancel" class="btn btn-danger" href="/4/organizers/">
+                    <i class="fa fa-times"></i> Cancel </a>
+                    <input type="submit" class="btn btn-success save" value="Save changes" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}

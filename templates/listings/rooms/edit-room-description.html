@@ -1,0 +1,39 @@
+{% extends '../accommodations/accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
+</ol>
+<header class="section-title">
+    <h1 class="catamaran">Edit Room Description</h1>
+</header>
+
+<div class="panel">
+    <div class="panel-body -airy">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="form-group col-sm-12">
+                    <label class="control-label" for="tagline">Room name</label>
+                    {{ form.name|as_crispy_field }}    
+                </div>
+                <div class="form-group col-sm-12">
+                    <label class="control-label" for="highlights">Room description</label>                    
+                    {{ form.description|as_crispy_field }}
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="pull-right">
+                    <button id="submit" type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
+                    <a id="cancel" class="btn btn-danger" href="/4/organizers/23069/accommodation/"><i class="fa fa-times"></i> Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+  
+{% endblock %}

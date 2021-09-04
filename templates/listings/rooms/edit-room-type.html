@@ -1,0 +1,101 @@
+
+  {% extends '../accommodations/accommodation-base.html' %}
+  {% load static %}
+  {% load crispy_forms_tags %}
+  {% block content %}
+  <ol class="breadcrumb">
+    <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
+</ol>
+<div class="row">
+    <div class="form-group col-sm-8">
+        <header class="section-title">
+            <h1 class="catamaran">Edit room {{ room.pk }} - {{ room.name }} </h1>
+        </header>
+    </div>
+</div>
+  <div class="panel panel-default">
+<div class="panel-body -airy">
+    <form method="POST" class="has-fixed-actions js-room-basics">
+        {% csrf_token %}
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="website" class="control-label">Type of room</label>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form.type|as_crispy_field }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="website" class="control-label">Give it a name</label>
+                    <div class="form-helper">
+                        <p>Optional: it's for internal use, so it's easy to recognize it</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form.name|as_crispy_field  }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row js-share-container">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="website" class="control-label">Sharing</label>
+                    <div class="form-helper">
+                        <p>Do you have the same room type for shared and private? Please create it twice with different sharing setting</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form.shared|as_crispy_field }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label for="website" class="control-label">Maximum occupanccy</label>
+                    <div class="form-helper">
+                        <p>How many guests this room can accommodate?</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    {{ form.max_occupancy|as_crispy_field }}
+                </div>
+            </div>
+        </div>
+
+
+        <div class="fixed-actions fixed-actions--bottom fixed-actions--right">
+
+            <a id="cancel" class="btn btn-danger" href="/4/organizers/23069/accommodation/"><i class="fa fa-times"></i> Cancel</a>
+
+            <button type="submit" class="btn btn-success">Save room basics</button>
+
+        </div>
+
+    </form>
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,164 @@
+                    <div
+                      class="
+                        control-group
+                        string
+                        required
+                        inquiry_message_form_name
+                        form-group
+                        simple-validation
+                      "
+                    >
+                      <label
+                        for="inquiry_message_form_last_name"
+                        class="string required control-label"
+                        >Last name</label
+                      >
+                      <div class="controls">
+                        <!-- <input
+                          id="inquiry_message_form_last_name"
+                          onFocus="gae('inquiry_modal','lastname_focus');"
+                          class="string form-control required"
+                          name="last_name"
+                          size="50"
+                          type="text"
+                          value
+                        /> -->
+                        {{ form.last_name }}
+                        <span class="help-inline"
+                          >Please provide your last name</span
+                        >
+                      </div>
+                    </div>
+                    <div
+                      class="
+                        control-group
+                        email
+                        required
+                        form-group
+                        email-validation
+                      "
+                    >
+                      <label
+                        for="inquiry_message_form_email"
+                        class="email required control-label"
+                        >Email</label
+                      >
+                      <div class="controls">
+                        <!-- <input
+                          id="inquiry_message_form_email"
+                          onFocus="gae('inquiry_modal','email_focus');"
+                          class="string form-control email required"
+                          maxlength="128"
+                          name="email"
+                          type="email"
+                          value
+                        /> -->
+                        {{ form.email }}
+                        <span class="help-inline"
+                          >Please provide a valid email address.</span
+                        >
+                      </div>
+                    </div>
+                    {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <div
+                      class="
+                        control-group
+                        tel
+                        inquiry_message_form_telephone_number
+                      "
+                    >
+                      <label
+                        for="inquiry_message_form_telephone_number"
+                        class="tel optional control-label"
+                        >Phone
+                        <span class="text-muted">(optional)</span>
+                      </label>
+                      <div class="controls">
+                        <div id="inquiry_message_form_flag_icon"></div>
+                        {{ form.phone_number }}
+                      </div>
+                    </div>
+                    <div style="height:20px; width:100%"></div>
+                    <div
+                    class="
+                      control-group
+                      string
+                      required
+                      inquiry_message_form_name
+                      form-group
+                      simple-validation
+                    "
+                  >
+                    <label
+                      for="inquiry_message_form_password"
+                      class="string required control-label"
+                      >Password</label
+                    >
+                    <div class="controls">
+                      <!-- <input
+                        id="inquiry_message_form_password"
+                        onFocus="gae('inquiry_modal','lastname_focus');"
+                        class="string form-control required"
+                        name="password"
+                        size="50"
+                        type="password"
+                        value
+                      /> -->
+                      {{ form.password1 }}
+                      <span class="help-inline"
+                        >Please provide a password</span
+                      >
+                    </div>
+                  </div>
+                    <div
+                      class="
+                        control-group control-group--bttn-group
+                        js-show-on-default-date
+                      "
+                    >
+                    </div>
+                  </div>
+                  <div class="control-group text inquiry_message_form_message">
+                    <div class="holder-label">
+                      <label
+                        for="inquiry_message_form_message"
+                        class="text control-label"
+                        >Your message for Muay Thai Battle Conquer Gym
+                        <span class="text-muted js-hide-on-default-date"
+                          >(optional)</span
+                        >
+                      </label>
+                    </div>
+                    <div class="holder-message-area">
+                      <div class="controls">
+                        <textarea
+                          name="message"
+                          rows="5"
+                          cols="40"
+                          id="inquiry_message_form_message"
+                          onFocus="gae('inquiry_modal','message_focus');"
+                          class="text form-control"
+                        ></textarea>
+                        <span class="help-inline"
+                          >Message can't be empty when no date is selected</span
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group group-checkbox newsletters-group">
+                    <input
+                      type="checkbox"
+                      value="1"
+                      id="newsletters_sign_up"
+                      name="newsletters_sign_up"
+                    />
+                    <label
+                      for="newsletters_sign_up"
+                      class="control-label newsletters-label"
+                      >I would like to receive the BookYogaRetreats email
+                      newsletter, including special Yoga Retreats offers and
+                      giveaways.</label
+                    >
+                  </div>

@@ -1,0 +1,138 @@
+{% extends '../accommodations/accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<header class="section-title">
+    <h1 class="catamaran">Instructors</h1>
+  </header>
+  <div class="panel panel-default">
+    <div class="panel-body -airy">
+      <div>
+        <div class="row section-title">
+          <div class="col-sm-9">
+            <h3>Instructors list</h3>
+            <small class="title-description"> It is essential for your future guests to know more about their hosts and instructors before they decide to make a reservation. Build a rich profile to all your guides and teachers. </small>
+          </div>
+          <div class="col-sm-3 hidden-phone">
+          </div>
+        </div>
+        <div class="btn-toolbar">
+          <a href="{% url 'listings:add-instructor' %}" class="btn btn-success" p-enable="OrganizersEdit">
+            <i class="fa fa-user-plus"></i> New Instructor / Guide </a>
+        </div>
+        <div class="row">
+            {% for instructor in instructors %}
+          <div class="col-xs-12">
+            <div class="card-list clearfix">
+              <div class="row">
+                <div class="col-md-5 col-sm-6">
+                  <div class="clearfix">
+                    <div class="image pull-left" style="width: 124px;">
+                      <img src="{{ instructor.portrait.url }}" width="124">
+                    </div>
+                    <div class="details">
+                      <div>
+                        <h3>{{ instructor.first_name }} {{ instructor.last_name }} <span data-toggle="tooltip" title="" data-placement="left" data-original-title="Email address added">
+                            {% if instructor.is_verified %}
+                            <i class="fa fa-certificate"></i> VERIFIED </span>
+                            {% else %}
+                            <i class="fa fa-certificate"></i> UNVERIFIED </span>
+                            {% endif %}
+                        </h3>
+                        {% if instructor.is_host %}
+                            {% if instructor.is_instructor %}
+                            <p class="role" data-roles="teacher,host">Instructor, Host</p>
+                            {% else %}
+                            <p class="role" data-roles="host">Host</p>
+                            {% endif %}
+                        {% elif instructor.is_instructor %}
+                            <p class="role" data-roles="teacher">Instructor</p>
+                        {% endif %}
+                      </div>
+                      <p class="meta">
+                        <span class="form-helper">Added: {{ instructor.added_date }}</span>
+                        <br>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="buttons">
+                    <a class="edit-contact btn btn-primary" href="{% url 'listings:edit-instructor' pk=instructor.id %}">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    <a class="edit-contact btn btn-warning" href="{% url 'listings:edit-instructor-skills' pk=instructor.id %}">
+                        <i class="fa fa-star"></i>
+                      </a>
+                    <a class="delete-contact btn btn-danger" href="/4/organizers/delete-contact/23069/87030/">
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-7 col-sm-6">
+                  <p>Assigned to the following listings:</p>
+                  {% for listing in instructor.get_listings.all %}
+                  <a target="_blank" href="{% url 'listings:listing_detail' listing.pk listing.slug %}">{{ listing.title }}</a>
+                  <br>
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row section-title divider-on-top">
+          <div class="col-sm-12">
+            <h3>Business Contacts</h3>
+            <small class="title-description"> Here you can add the people we could keep in touch with at your organization. <br>Their contact information will be visible only internally, no customers will have access to these. </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <a href="{% url 'listings:add-contact' %}" class="btn btn-success" p-enable="OrganizersEdit">
+                <i class="fa fa-user-plus"></i> New Business Contact </a>
+            </div>
+          </div>
+        </div>
+        <div class="vspace-sm">
+          <div class="table-responsive">
+            <div id="contact-list_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+              <div class="row">
+                <div class="col-sm-12">
+                  <table id="contact-list" class="table table-bordered table-striped table-hover table-condensed dataTable no-footer" cellspacing="0" width="100%" role="grid" aria-describedby="contact-list_info" style="width: 100%;">
+                    <thead>
+                      <tr role="row">
+                        <th class="sorting_asc" tabindex="0" aria-controls="contact-list" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 43px;">Name</th>
+                        <th class="sorting" tabindex="0" aria-controls="contact-list" rowspan="1" colspan="1" aria-label="eMail: activate to sort column ascending" style="width: 270px;">eMail</th>
+                        <th class="sorting" tabindex="0" aria-controls="contact-list" rowspan="1" colspan="1" aria-label="Phone: activate to sort column ascending" style="width: 63px;">Phone</th>
+                        <th class="sorting" tabindex="0" aria-controls="contact-list" rowspan="1" colspan="1" aria-label="Skype: activate to sort column ascending" style="width: 158px;">Skype</th>
+                        <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="Actions" style="width: 47px;">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if contacts %}
+                      {% for contact in contacts.all %}
+                      <tr role="row" class="odd">
+                        <td class="sorting_1">{{ contact.first_name }} {{ contact.last_name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>({{ contact.country_code }}) {{ contact.phone }}</td>
+                        <td>{{ contact.skype }}</td>
+                        <td>
+                          <a class="delete-contact btn btn-danger" href="{% url 'listings:delete-contact-handler' pk=contact.pk %}">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}

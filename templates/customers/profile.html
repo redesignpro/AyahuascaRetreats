@@ -1,0 +1,177 @@
+{% extends './base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+      <div class="customer-layout-wrapper my-profile rebrand-funnel">
+         <header>
+            <h1>Profile</h1>
+         </header>
+         <div class="grid-wrapper two-columns-one-fifth">
+            <div class="column hidden-phone">
+               <div class="section profile-navigation">
+                  <ul>
+                     <li class="active btn-link"><a href="/customer/profile">Profile</a></li>
+                     <li class=btn-link><a href="{% url 'listings:customer_pass_change' pk=user.get_customer_id %}">Settings</a></li>
+                     <li><a onclick="accountLogout()" href="#">Log out</a></li>
+                  </ul>
+               </div>
+            </div>
+            <div class=column>
+               <div class="section section-vouchers">
+                  <h2 class=title>My discounts</h2>
+                  <div data-customer-verified=true class="vouchers-container customer-discount-wrapper">
+                     <div class=vouchers-holder></div>
+                  </div>
+               </div>
+               <h2 class=title>Your Personal Information</h2>
+               <div class=personal-info-header>
+                  <p class=status-side>Tripaneer is on a mission to help you find the most unforgettable experiences. To do so we love to learn more about you and what you like. Tell us more about yourself.</p>
+               </div>
+               <div class="section profile-content">
+                  <div class=personal-info-header>
+                     <p class=status-side>Tripaneer is on a mission to help you find the most unforgettable experiences. To do so we love to learn more about you and what you like. Tell us more about yourself.</p>
+                  </div>
+                  <form id='form-profile' class='form-flexbox' method="POST">
+                    {% csrf_token %}
+                     <div class=form-split>
+                        <div class=form-left>
+                           <div class="form-group simple-validation">
+                              <div class=input-and-validation>
+                                 <div class=input-and-marker>
+                                    {{ form.first_name|as_crispy_field }}
+                                    <div class=validation-indicator>
+                                       <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                       <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                                    </div>
+                                 </div>
+                                 <span class=help-inline>Please provide your first name</span>
+                              </div>
+                           </div>
+                           <div class="form-group simple-validation">
+                              <div class=input-and-validation>
+                                 <div class=input-and-marker>
+                                    {{ form.last_name|as_crispy_field }}
+                                    <div class=validation-indicator>
+                                       <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                       <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                                    </div>
+                                 </div>
+                                 <span class=help-inline>Please provide your last name</span>
+                              </div>
+                           </div>
+                           <div class="form-group gender-validation">
+                              <div class=input-and-validation>
+                                 <div class=input-and-marker>
+                                    {{ form.gender|as_crispy_field }}
+                                    <input style=display:none placeholder="Your gender" value class="form-control narrow js-gender-text">
+                                    <div class=validation-indicator>
+                                       <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                       <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                                    </div>
+                                 </div>
+                                 <span class=help-inline>The custom gender field can&#39;t be empty</span>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="form-right hidden-phone">
+                           <div class=photo-group>
+                              <div class=portrait>
+                                 <svg xmlns="http://www.w3.org/2000/svg" height=112 width=119>
+                                    <g fill-rule=evenodd fill=none>
+                                       <path d="M107.82 23.961c11.468 16.655 14.43 45.974 7.41 62.608-9.302 22.041-33.65 28.363-59.544 24.255-18.718-2.968-37.441-14.038-47.85-30.262C-.869 66.994-2.11 51.38 3.064 37.745c.27-.71.558-1.413.863-2.108 12.562-28.59 53.64-46.683 85.896-28.042A54.78 54.78 0 0 1 107.82 23.96z" fill="#F7F7F7"></path>
+                                       <g stroke-width=1.4 stroke="#53585C">
+                                          <path d="M77.426 41.59c0 9.385-7.575 16.994-16.918 16.994S43.59 50.975 43.59 41.59s7.575-16.994 16.918-16.994 16.918 7.61 16.918 16.994z"></path>
+                                          <path d="M30.444 80.453C33.34 68.775 41.226 59.5 51.297 55.84"></path>
+                                          <path d="M69.661 55.566C80.396 59.11 88.784 68.99 91.538 81.438"></path>
+                                       </g>
+                                    </g>
+                                 </svg>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group date-validation offset-by-portrait">
+                        <div class=input-and-validation>
+                           <div class="input-and-marker form-field-birthdate">
+                              <div class=field-icon-wrapper>
+                                {{ form.dob|as_crispy_field }}
+                              </div>
+                              <div class=validation-indicator>
+                                 <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                 <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                              </div>
+                           </div>
+                           <span class=help-inline>Please select a valid date</span>
+                        </div>
+                     </div>
+                     <div class="form-group has-changed simple-validation offset-by-portrait">
+                        <div class=input-and-validation>
+                           <div class=input-and-marker>
+                            {{ form.language|as_crispy_field }}
+                              <div class=validation-indicator>
+                                 <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                 <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group simple-validation offset-by-portrait">
+                        <div class=input-and-validation>
+                           <div class=input-and-marker>
+                            {{ form.country|as_crispy_field }}
+                              <div class=validation-indicator>
+                                 <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                 <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="form-group no-validation">
+                        <div class=input-and-validation>
+                           <div class=input-and-marker>
+                            {{ form.about|as_crispy_field }}
+                              <div class=validation-indicator>
+                                 <i class="ebs-icon ebs-icon-check-rounded-stroked"></i>
+                                 <i class="ebs-icon ebs-icon-close-rounded-stroked"></i>
+                              </div>
+                           </div>
+                           <div class=character-count>
+                              <span class=current>0</span> / <span class=max>200</span>
+                           </div>
+                        </div>
+                     </div>
+                     <div class=form-group>
+                        <label>&nbsp;</label>
+                        <div class=input-and-validation>
+                           <div class=button-wrap>
+                              <button type=submit id=save-profile class="bttn bttn-submit has-loader has-loader--light">
+                                 <span class=default-value>Save</span>
+                                 <span class=loader>
+                                    <div class=spinner>
+                                       <svg xmlns="http://www.w3.org/2000/svg" height=16 width=18 viewbox="0 0 18 16" class="bounce bounce1">
+                                          <path fill-rule=nonzero d="M.035 5.645c-.344 3.11 1.84 8.322 7.776 9.47 3.017.589 7.015-.223 9.002-4.342C23.338-2.817.87-2.397.035 5.645z" fill="#02BF9B"></path>
+                                       </svg>
+                                       <svg xmlns="http://www.w3.org/2000/svg" height=17 width=18 viewbox="0 0 18 16" class="bounce bounce2">
+                                          <path fill-rule=nonzero d="M15.643 2.777A8.172 8.172 0 0 0 12.707.703C7.61-1.48 1.765 1.736.333 6.025c-.035.105-.067.21-.096.316-.561 2.033-.135 4.253 1.372 6.066 1.802 2.168 4.765 3.471 7.601 3.613 3.924.196 7.457-1.079 8.504-4.38.79-2.49-.105-6.65-2.071-8.863z" fill="#02A5E8"></path>
+                                       </svg>
+                                       <svg xmlns="http://www.w3.org/2000/svg" height=18 width=18 viewbox="0 0 18 18" class="bounce bounce3">
+                                          <path fill-rule=nonzero d="M10.215.437C5.117.437-2.205 5.263.634 11.088c2.839 5.825 12.92 8.488 15.732 2.996C19.112 8.718 19.204.437 10.215.437z" fill="#FF9B35"></path>
+                                       </svg>
+                                    </div>
+                                 </span>
+                              </button>
+                              <span class=save-succesful>Your profile has been updated</span>
+                           </div>
+                        </div>
+                     </div>
+                     <input type=hidden value=wv2hjYOJihUuA76If5-WfpUFg0s_gjeu id=csrfToken>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+        
+  {% endblock %}

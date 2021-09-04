@@ -1,0 +1,777 @@
+{% extends './base-listing.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+{% if listing.available_all_year %}
+<div id="listing" data-listing-id="43775">
+    <div class="section-title">
+      <h3> Pricing &amp; Availability </h3>
+      <div class="recommendation-actions">
+        <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_packagesAndAvailability" tabindex="-1" role="dialog" aria-label>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">
+                    <img src="/static/files/shape-icons/recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                  </span>
+                </button>
+                <div class="modal-header__content">
+                  <img src="/static/files/shape-icons/recommendations.svg" class="add-recommendations-modal__title__image" />
+                  <h3>Add recommendation</h3>
+                </div>
+              </div>
+              <div class="add_recommendations_form">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="add-recommendation-title">Recommendation for</label>
+                    <input type="text" class="form-control add-recommendation-title" placeholder="Packages &amp; Availability (page)" value="Packages &amp; Availability (page)" readonly />
+                  </div>
+                  <div class="form-group">
+                    <label for="add-recommendation-type">Type <span id="add-recommendation-type-packagesAndAvailability" class="badge hide">Required</span>
+                    </label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-default">
+                        <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                      <label class="btn btn-default">
+                        <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-packagesAndAvailability" class="badge hide">Required</span>
+                    </label>
+                    <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('packagesAndAvailability', 'page', 'packagesAndAvailability')">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+            let field = recommendationName;
+            let section = recommendationSection;
+            let targetForm = event.target.closest('.add_recommendations_form')
+            let feedback = $(targetForm).find('.add-recommendation-content').val();
+            let type = $(targetForm).find('.add-recommendation-type:checked').val();
+            let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+            let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+            let translations = {
+              "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+              "success": "Changes saved successfully"
+            }
+            if (recommendationType == 'page') {
+              section = recommendationSection;
+              field = '';
+            }
+            if (feedback == '' && type == undefined) {
+              feedbackErrorElement.removeClass('hide')
+              typeErrorElement.removeClass('hide');
+              return;
+            }
+            if (feedback == '') {
+              feedbackErrorElement.removeClass('hide');
+              return;
+            }
+            if (type == undefined) {
+              typeErrorElement.removeClass('hide');
+              return;
+            }
+            let formData = {
+              "type": type,
+              "section": section,
+              "field": field,
+              "feedback": feedback
+            }
+            let options = {
+              credentials: 'same-origin',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: 'POST',
+              body: JSON.stringify(formData)
+            }
+            let url = '/4/listings/43775/feedback/json/create'
+            fetch(url, options).then(function(response) {
+              if (response.status != 400 && response.status != 200) {
+                flash.error(translations.error);
+                console.log(response);
+              } else {
+                flash.success(translations.success, function() {
+                  flash.clear()
+                });
+                $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                return response.json()
+              }
+            })
+          }
+        </script>
+      </div>
+      <script>
+        function showRecommendationHistory(name) {
+          let currentElement = event.target;
+          $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+          $(currentElement).toggleClass('hide');
+          $(currentElement).next().toggleClass('hide');
+        }
+
+        function hideRecommendationHistory(name) {
+          let currentElement = event.target;
+          $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+          $(currentElement).toggleClass('hide');
+          $(currentElement).prev().toggleClass('hide');
+        }
+      </script>
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <a href="#" class="btn btn-outline-default js-listing-nav-column-toggle hidden-phone">
+            <i class="fa fa-bars"></i> Toggle Menu </a>
+        </div>
+        <div class="btn-group">
+          <a href="/4/listings/edit/43775/photos/" class="btn btn-outline-default">
+            <i class="ebs-icon ebs-icon-sec-arrow-left"></i> Photos </a>
+          <a href="/4/listings/edit/43775/booking-conditions/" class="btn btn-outline-default">Booking conditions <i class="ebs-icon ebs-icon-sec-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+              <div class="panel panel-default">
+                <div class="panel-body -airy">
+                  <div id="availability" i-section="Availability">
+                    <script>
+                      function completeRecommendation(recommendationId) {
+                        let targetElement = event.target;
+                        let translations = {
+                          "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                          "success": "Changes saved successfully"
+                        };
+                        let options = {
+                          credentials: 'same-origin',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          method: 'POST'
+                        }
+                        let url = `/4/listings/43775/feedback/${recommendationId}/json/complete`
+                        fetch(url, options).then(function(response) {
+                          if (response.status != 200) {
+                            flash.error(translations.error);
+                            console.log(response);
+                          } else {
+                            flash.success(translations.success, function() {
+                              flash.clear()
+                            });
+                            $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                            $(targetElement).closest('.button-section').hide();
+                            return response.json()
+                          }
+                        })
+                      }
+
+                      function dismissRecommendation(recommendationId, recommendationType) {
+                        let targetElement = event.target;
+                        let options = {
+                          credentials: 'same-origin',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          method: 'POST'
+                        }
+                        let url = `/4/listings/43775/feedback/${recommendationId}/json/dismiss`
+                        fetch(url, options).then(function(response) {
+                          if (response.status != 200) {
+                            flash.error(translations.error);
+                            console.log(response);
+                          } else {
+                            flash.success(translations.success, function() {
+                              flash.clear()
+                            });
+                            $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                            $(targetElement).closest('.button-section').hide();
+                            return response.json()
+                          }
+                        })
+                      }
+
+                      function deleteRecommendation(recommendationId, recommendationType) {
+                        let targetElement = event.target;
+                        let options = {
+                          credentials: 'same-origin',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          method: 'POST'
+                        }
+                        let url = `/4/listings/43775/feedback/${recommendationId}/json/delete`
+                        if (window.confirm("Are you sure?")) {
+                          fetch(url, options).then(function(response) {
+                            if (response.status != 200) {
+                              flash.error('Failed to delete recommendation. Try again or report to #application');
+                              console.log(response);
+                            } else {
+                              flash.success(translations.success, function() {
+                                flash.clear()
+                              });
+                              $(targetElement).closest('.panel-body').hide();
+                              return response.json()
+                            }
+                          })
+                        }
+                      }
+
+                      function editRecommendation(recommendationName, type, id) {
+                        $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                      }
+                    </script>
+                    <div class="row section-title">
+                      <div class="col-sm-8">
+                        <h3> Pricing List </h3>
+                      </div>
+                    </div>
+                    <div class="row package-table">
+                      <div class="col-sm-12">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Price</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody id="package-holder">
+                                {% for cprice in cprices %}
+                              <tr>
+                                <td id="acc_desc_533484" data-room-info="Shared double room">
+                                  <b>{{ cprice.start_date }}</b>
+                                  <br>
+                                </td>
+                                <td> {{ cprice.end_date }} </td>
+                                <td> ${{ cprice.price|intcomma }} USD</td>
+                                <td>
+                                  <a class="btn btn-outline-danger btn-sm package-deleter" href="{% url 'listings:delete-price' req=cprice.id pk=package.pk listing=listing.id %}">
+                                    <i class="fa fa-trash"></i>
+                                  </a>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <form method="POST" action="{% url 'listings:add-price-yearly' pk=package.pk listing=listing.pk %}">
+                      {% csrf_token %}
+                    <div class="row section-title divider-on-top">
+                      <div class="col-sm-6">
+                        <h3 style="margin-bottom: 10px;">Set start dates for this package: </h3>
+                        {% if request.session.calendar_error %}
+                        <h4 style='margin-top: 10px; color: red;'>{{ request.session.calendar_error }}</h4>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <i id="spinner" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                    <input type="hidden" value="14" id="listing_duration">
+                    <div class="row">
+                      <div class="col-sm-9">
+                        <!-- PUT CALENDAR HERE  -->
+                        <input type="hidden" name='start_date' id='start_date' />
+                        <input type="hidden" name='end_date' id='end_date' />
+                        <input class="caleran" name="calendar-input" id="caleran-ex-1" type="text" />
+                      </div>
+                      <div class="col-sm-3" id="updater-box-top-anchor">
+                        <div id="updater-box">
+                          <div class="row">
+                            <div class="form-group col-sm-12">
+                              <label for="filter" class="control-label js-selected-package-name"></label>
+                            </div>
+                          </div>
+                          <div class="row" id="availability-price-group">
+                            <div class="col-lg-4 col-md-6">
+                              <div class="form-group">
+                                <label for="price" class="control-label" style="padding-top: 12px;">Price USD</label>
+                              </div>
+                            </div>
+                            <div class="col-lg-8 col-md-6">
+                              <div class="form-group">
+                                <input id="price" name="price" class="form-control" i-validate="quantity(1) required" type="text" data-currency="USD" value="0" data-default="0">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="form-group col-sm-12">
+                              <button type="submit" id="save-availability" class="btn btn-success btn-block pull-right" style='margin-bottom: 50px;'>Save package availability</button>
+                              {{ package.price_calculation|safe }}
+                            </div>
+                          </div>
+                          <div class="clearfix"></div>
+                          <br />
+                          <br />
+                          <br />
+                          <br />
+                        </div>
+                      </div>
+                    </div>
+                    <div id="updater-box-limit"></div>
+                  </form>
+                  </div>
+                </div>
+              </div>
+              </div>
+{% else %}
+<div id="listing" data-listing-id="43775">
+  <div class="section-title">
+    <h3> Pricing &amp; Availability </h3>
+    <div class="recommendation-actions">
+      <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_packagesAndAvailability" tabindex="-1" role="dialog" aria-label>
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  <img src="/static/files/shape-icons/recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                </span>
+              </button>
+              <div class="modal-header__content">
+                <img src="/static/files/shape-icons/recommendations.svg" class="add-recommendations-modal__title__image" />
+                <h3>Add recommendation</h3>
+              </div>
+            </div>
+            <div class="add_recommendations_form">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="add-recommendation-title">Recommendation for</label>
+                  <input type="text" class="form-control add-recommendation-title" placeholder="Packages &amp; Availability (page)" value="Packages &amp; Availability (page)" readonly />
+                </div>
+                <div class="form-group">
+                  <label for="add-recommendation-type">Type <span id="add-recommendation-type-packagesAndAvailability" class="badge hide">Required</span>
+                  </label>
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-default">
+                      <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-packagesAndAvailability" class="badge hide">Required</span>
+                  </label>
+                  <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('packagesAndAvailability', 'page', 'packagesAndAvailability')">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+          let field = recommendationName;
+          let section = recommendationSection;
+          let targetForm = event.target.closest('.add_recommendations_form')
+          let feedback = $(targetForm).find('.add-recommendation-content').val();
+          let type = $(targetForm).find('.add-recommendation-type:checked').val();
+          let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+          let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+          let translations = {
+            "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+            "success": "Changes saved successfully"
+          }
+          if (recommendationType == 'page') {
+            section = recommendationSection;
+            field = '';
+          }
+          if (feedback == '' && type == undefined) {
+            feedbackErrorElement.removeClass('hide')
+            typeErrorElement.removeClass('hide');
+            return;
+          }
+          if (feedback == '') {
+            feedbackErrorElement.removeClass('hide');
+            return;
+          }
+          if (type == undefined) {
+            typeErrorElement.removeClass('hide');
+            return;
+          }
+          let formData = {
+            "type": type,
+            "section": section,
+            "field": field,
+            "feedback": feedback
+          }
+          let options = {
+            credentials: 'same-origin',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(formData)
+          }
+          let url = '/4/listings/43775/feedback/json/create'
+          fetch(url, options).then(function(response) {
+            if (response.status != 400 && response.status != 200) {
+              flash.error(translations.error);
+              console.log(response);
+            } else {
+              flash.success(translations.success, function() {
+                flash.clear()
+              });
+              $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+              return response.json()
+            }
+          })
+        }
+      </script>
+    </div>
+    <script>
+      function showRecommendationHistory(name) {
+        let currentElement = event.target;
+        $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+        $(currentElement).toggleClass('hide');
+        $(currentElement).next().toggleClass('hide');
+      }
+
+      function hideRecommendationHistory(name) {
+        let currentElement = event.target;
+        $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+        $(currentElement).toggleClass('hide');
+        $(currentElement).prev().toggleClass('hide');
+      }
+    </script>
+    <div class="btn-toolbar">
+      <div class="btn-group">
+        <a href="#" class="btn btn-outline-default js-listing-nav-column-toggle hidden-phone">
+          <i class="fa fa-bars"></i> Toggle Menu </a>
+      </div>
+      <div class="btn-group">
+        <a href="/4/listings/edit/43775/photos/" class="btn btn-outline-default">
+          <i class="ebs-icon ebs-icon-sec-arrow-left"></i> Photos </a>
+        <a href="/4/listings/edit/43775/booking-conditions/" class="btn btn-outline-default">Booking conditions <i class="ebs-icon ebs-icon-sec-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+            <div class="panel panel-default">
+              <div class="panel-body -airy">
+                <div id="availability" i-section="Availability">
+                  <script>
+                    function completeRecommendation(recommendationId) {
+                      let targetElement = event.target;
+                      let translations = {
+                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                        "success": "Changes saved successfully"
+                      };
+                      let options = {
+                        credentials: 'same-origin',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        method: 'POST'
+                      }
+                      let url = `/4/listings/43775/feedback/${recommendationId}/json/complete`
+                      fetch(url, options).then(function(response) {
+                        if (response.status != 200) {
+                          flash.error(translations.error);
+                          console.log(response);
+                        } else {
+                          flash.success(translations.success, function() {
+                            flash.clear()
+                          });
+                          $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                          $(targetElement).closest('.button-section').hide();
+                          return response.json()
+                        }
+                      })
+                    }
+
+                    function dismissRecommendation(recommendationId, recommendationType) {
+                      let targetElement = event.target;
+                      let options = {
+                        credentials: 'same-origin',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        method: 'POST'
+                      }
+                      let url = `/4/listings/43775/feedback/${recommendationId}/json/dismiss`
+                      fetch(url, options).then(function(response) {
+                        if (response.status != 200) {
+                          flash.error(translations.error);
+                          console.log(response);
+                        } else {
+                          flash.success(translations.success, function() {
+                            flash.clear()
+                          });
+                          $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                          $(targetElement).closest('.button-section').hide();
+                          return response.json()
+                        }
+                      })
+                    }
+
+                    function deleteRecommendation(recommendationId, recommendationType) {
+                      let targetElement = event.target;
+                      let options = {
+                        credentials: 'same-origin',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json'
+                        },
+                        method: 'POST'
+                      }
+                      let url = `/4/listings/43775/feedback/${recommendationId}/json/delete`
+                      if (window.confirm("Are you sure?")) {
+                        fetch(url, options).then(function(response) {
+                          if (response.status != 200) {
+                            flash.error('Failed to delete recommendation. Try again or report to #application');
+                            console.log(response);
+                          } else {
+                            flash.success(translations.success, function() {
+                              flash.clear()
+                            });
+                            $(targetElement).closest('.panel-body').hide();
+                            return response.json()
+                          }
+                        })
+                      }
+                    }
+
+                    function editRecommendation(recommendationName, type, id) {
+                      $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                    }
+                  </script>
+                  <div class="row section-title">
+                    <div class="col-sm-8">
+                      <h3> Pricing List </h3>
+                    </div>
+                  </div>
+                  <div class="row package-table">
+                    <div class="col-sm-12">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Start Date</th>
+                              <th>End Date</th>
+                              <th>Price</th>
+                              <th>Slots</th>
+                              <th>Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody id="package-holder">
+                              {% for cprice in cprices %}
+                            <tr>
+                              <td id="acc_desc_533484" data-room-info="Shared double room">
+                                <b>{{ cprice.start_date }}</b>
+                                <br>
+                              </td>
+                              <td> {{ cprice.end_date }} </td>
+                              <td> ${{ cprice.price|intcomma }} USD</td>
+                              <td id="price_533484" data-price="1,190">{{ cprice.max_slots }}</td>
+                              <td>
+                                <a class="btn btn-outline-danger btn-sm package-deleter" href="{% url 'listings:delete-price' req=cprice.id pk=package.pk listing=listing.id %}">
+                                  <i class="fa fa-trash"></i>
+                                </a>
+                              </td>
+                            </tr>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <form method="POST" action="{% url 'listings:add-price' pk=package.pk listing=listing.pk %}">
+                    {% csrf_token %}
+                  <div class="row section-title divider-on-top">
+                    <div class="col-sm-6">
+                      <h3 style="margin-bottom: 10px;">Set start dates for this package: </h3>
+                      {% if request.session.reg_calendar_error %}
+                      <h4 style='margin-top: 10px; color: red;'>{{ request.session.reg_calendar_error }}</h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <i id="spinner" class="fa fa-spinner fa-spin" style="display: none;"></i>
+                  <input type="hidden" value="14" id="listing_duration">
+                  <div class="row">
+                    <div class="col-sm-9">
+                      <!-- PUT CALENDAR HERE  -->
+                      <input type="hidden" name='start_date' id='start_date' />
+                      <input type="hidden" name='end_date' id='end_date' />
+                      <input class="caleran" name="calendar-input" id="caleran-ex-1" type="text" />
+                    </div>
+                    <div class="col-sm-3" id="updater-box-top-anchor">
+                      <div id="updater-box">
+                        <div class="row">
+                          <div class="form-group col-sm-12">
+                            <label for="filter" class="control-label js-selected-package-name"></label>
+                          </div>
+                        </div>
+                        <div class="row" id="availability-slots-group" style="margin-bottom: 10px;">
+                          <div class="form-group">
+                            <div class="col-lg-4 col-md-6">
+                              <label for="slots" class="control-label" style="padding-top: 12px;">Slots</label>
+                            </div>
+                            <div class="col-lg-8 col-md-6">
+                              <select id="slots" name="slots" class="form-control">
+                                <option value="" selected="selected">How many slots?</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
+                                <option value="24">24</option>
+                                <option value="25">25</option>
+                                <option value="26">26</option>
+                                <option value="27">27</option>
+                                <option value="28">28</option>
+                                <option value="29">29</option>
+                                <option value="30">30</option>
+                                <option value="31">31</option>
+                                <option value="32">32</option>
+                                <option value="33">33</option>
+                                <option value="34">34</option>
+                                <option value="35">35</option>
+                                <option value="36">36</option>
+                                <option value="37">37</option>
+                                <option value="38">38</option>
+                                <option value="39">39</option>
+                                <option value="40">40</option>
+                                <option value="41">41</option>
+                                <option value="42">42</option>
+                                <option value="43">43</option>
+                                <option value="44">44</option>
+                                <option value="45">45</option>
+                                <option value="46">46</option>
+                                <option value="47">47</option>
+                                <option value="48">48</option>
+                                <option value="49">49</option>
+                                <option value="50">50</option>
+                                <option value="51">51</option>
+                                <option value="52">52</option>
+                                <option value="53">53</option>
+                                <option value="54">54</option>
+                                <option value="55">55</option>
+                                <option value="56">56</option>
+                                <option value="57">57</option>
+                                <option value="58">58</option>
+                                <option value="59">59</option>
+                                <option value="60">60</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row" id="availability-price-group">
+                          <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                              <label for="price" class="control-label" style="padding-top: 12px;">Price USD</label>
+                            </div>
+                          </div>
+                          <div class="col-lg-8 col-md-6">
+                            <div class="form-group">
+                              <input id="price" name="price" class="form-control" i-validate="quantity(1) required" type="text" data-currency="USD" value="0" data-default="0">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="form-group col-sm-12">
+                            <button type="submit" id="save-availability" class="btn btn-success btn-block pull-right" style='margin-bottom: 50px;'>Save package availability</button>
+                            {{ package.price_calculation|safe }}
+                          </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                      </div>
+                    </div>
+                  </div>
+                  <div id="updater-box-limit"></div>
+                </form>
+                </div>
+              </div>
+            </div>
+            </div>
+{% endif %}
+
+{% if listing.available_all_year %}
+              <script type="text/javascript">
+                caleran("#caleran-ex-1", {
+                    inline: true,
+                    rangeOrientation: "vertical",
+                    onafterselect: function(caleran, startDate, endDate) {
+                        document.getElementById("start_date").value = startDate.format('YYYY-MM-DD');
+                        document.getElementById("end_date").value = endDate.format('YYYY-MM-DD');
+                    },
+                    minDate: moment().add(1, "day").startOf("day"),
+                    maxDate: moment().add(6, "months").endOf("month"),
+                    continuous: true,
+                    disabledRanges: [
+                      {% for cprice in cprices %}
+                      {
+                        "start": moment("{{ cprice.start_date|date:'Y/m/d' }}", "YYYY-MM-DD"),
+                        "end": moment("{{ cprice.end_date|date:'Y/m/d' }}", "YYYY-MM-DD").add(-1, "day")
+                      },
+                      {% endfor %}
+                    ]
+                });
+              </script>
+{% else %}
+              <script type="text/javascript">
+                caleran("#caleran-ex-1", {
+                    inline: true,
+                    rangeOrientation: "vertical",
+                    onafterselect: function(caleran, startDate, endDate) {
+                        document.getElementById("start_date").value = startDate.format('YYYY-MM-DD');
+                        document.getElementById("end_date").value = endDate.format('YYYY-MM-DD');
+                    },
+                    minDate: moment().add(1, "day").startOf("day"),
+                    maxDate: moment().add(6, "months").endOf("month"),
+                    singleDate: true,
+                    continuous: true,
+                    disabledRanges: [
+                      {% for cprice in cprices %}
+                      {
+                        "start": moment("{{ cprice.start_date|date:'Y/m/d' }}", "YYYY-MM-DD"),
+                        "end": moment("{{ cprice.end_date|date:'Y/m/d' }}", "YYYY-MM-DD").add(-1, "day")
+                      },
+                      {% endfor %}
+                    ]
+                });
+              </script>
+{% endif %}
+              {% endblock %}

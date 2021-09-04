@@ -1,0 +1,304 @@
+{% extends '../accommodations/accommodation-base.html' %} {% load static %} {% block content %} <ol class="breadcrumb">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
+</ol>
+  <header class="section-title">
+    <h1 class="catamaran">Edit bed configuration for room {{ room.name }}</h1>
+    <h4 style='margin-top:10px; color:red'>{{ request.session.bed_error }}</h4>
+  </header>
+<style>
+  table { 
+	width: 100%; 
+	border-collapse: collapse; 
+	margin:50px auto;
+	}
+
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+	background: #eee; 
+	}
+
+th { 
+	background: #3498db; 
+	color: white; 
+	font-weight: bold; 
+	}
+
+td, th { 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	text-align: left; 
+	font-size: 18px;
+	}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table { 
+	  	width: 100%; 
+	}
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+	}
+
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		/* Label the data */
+		content: attr(data-column);
+
+		color: #000;
+		font-weight: bold;
+	}
+
+}
+</style>
+  <table>
+    <thead>
+      <tr>
+        <th>Setup</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for config in bed_configs %}
+      <tr>
+        <td data-column="Setup">
+          {% for combo in config.combos.all %}{{ combo.get_bed_type_display }} : {{ combo.num_beds }} Set{% include "./comma.html" %}{% endfor %}
+        </td>
+        <td data-column="DeleteBtn">
+          <a href="{% url 'listings:remove-config' pk=config.id room_id=room.id %}" class="btn btn-danger">Remove</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <form method="POST" id="form" action="{% url 'listings:update-config' pk=room.id %}">
+      {% csrf_token %}
+    <div id="bed_config_placeholder">
+      <fieldset class="form-group panel panel-default">
+        <div class="panel-body">
+          <legend class="zi_name">Add a Bed Configuration</legend>
+          <small>Please select the beds available in this configuration and how many</small>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="1" name="bed_config_1" class="bed_config_selector"> Single bed (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_1_1" data-bed-type-id="1"> How many beds? <input type="text" name="1" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="2" name="bed_config_1" class="bed_config_selector"> Double bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_2_1" data-bed-type-id="2"> How many beds? <input type="text" name="2" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="3" name="bed_config_1" class="bed_config_selector"> Queen size bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_3_1" data-bed-type-id="3"> How many beds? <input type="text" name="3" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="4" name="bed_config_1" class="bed_config_selector"> King size bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_4_1" data-bed-type-id="4"> How many beds? <input type="text" name="4" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="5" name="bed_config_1" class="bed_config_selector"> Platform bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_5_1" data-bed-type-id="5"> How many beds? <input type="text" name="5" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="6" name="bed_config_1" class="bed_config_selector"> Folding bed (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_6_1" data-bed-type-id="6"> How many beds? <input type="text" name="6" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="7" name="bed_config_1" class="bed_config_selector"> Murphy bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_7_1" data-bed-type-id="7"> How many beds? <input type="text" name="7" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="8" name="bed_config_1" class="bed_config_selector"> Canopy bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_8_1" data-bed-type-id="8"> How many beds? <input type="text" name="8" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="9" name="bed_config_1" class="bed_config_selector"> Crib (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_9_1" data-bed-type-id="9"> How many beds? <input type="text" name="9" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="10" name="bed_config_1" class="bed_config_selector"> Twin bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_10_1" data-bed-type-id="10"> How many beds? <input type="text" name="10" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="11" name="bed_config_1" class="bed_config_selector"> Cot bed (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_11_1" data-bed-type-id="11"> How many beds? <input type="text" name="11" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="12" name="bed_config_1" class="bed_config_selector"> Bunk bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_12_1" data-bed-type-id="12"> How many beds? <input type="text" name="12" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="13" name="bed_config_1" class="bed_config_selector"> Mid sleeper bed (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_13_1" data-bed-type-id="13"> How many beds? <input type="text" name="13" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="14" name="bed_config_1" class="bed_config_selector"> Antique style bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_14_1" data-bed-type-id="14"> How many beds? <input type="text" name="14" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="15" name="bed_config_1" class="bed_config_selector"> Trundle bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_15_1" data-bed-type-id="15"> How many beds? <input type="text" name="15" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="16" name="bed_config_1" class="bed_config_selector"> L-shaped bunk bed (3 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_16_1" data-bed-type-id="16"> How many beds? <input type="text" name="16" class="nr_beds nr_beds_1" data-nr-people="3" data-config-id="0">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="17" name="bed_config_1" class="bed_config_selector"> Sofa bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_17_1" data-bed-type-id="17"> How many beds? <input type="text" name="17" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="18" name="bed_config_1" class="bed_config_selector"> Water bed (2 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_18_1" data-bed-type-id="18"> How many beds? <input type="text" name="18" class="nr_beds nr_beds_1" data-nr-people="2" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="19" name="bed_config_1" class="bed_config_selector"> Hanging bed (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_19_1" data-bed-type-id="19"> How many beds? <input type="text" name="19" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="20" name="bed_config_1" class="bed_config_selector"> Hammock (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_20_1" data-bed-type-id="20"> How many beds? <input type="text" name="20" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="21" name="bed_config_1" class="bed_config_selector"> Ottoman bed (1 people) </label>
+              </div>
+              <div class="nr_beds_wrapper_21_1" data-bed-type-id="21"> How many beds? <input type="text" name="20" class="nr_beds nr_beds_1" data-nr-people="1" data-config-id="0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <input type="submit" class="btn btn-success" value="Save">
+        <a href="/4/organizers/23069/accommodation/" class="btn btn-danger">Cancel</a>
+      </div>
+    </div>
+  </form> {% endblock %}

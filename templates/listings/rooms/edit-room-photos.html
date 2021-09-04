@@ -1,0 +1,159 @@
+{% extends '../accommodations/accommodation-base.html' %}
+{% load static %}
+{% block content %}
+<ol class="breadcrumb">
+    <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
+</ol>
+<header class="section-title">
+    <h1 class="catamaran">Photos of "{{ room.name }}"</h1>
+    <small class="title-description">Upload high quality, bright and colorful photos of your listing - drag and drop to reorder</small>
+  </header>
+  <div class="panel panel-default">
+    <div class="panel-body -airy">
+        <div role="tabpanel" class="tab-pane active has-fixed-actions">
+            <script>
+              function completeRecommendation(recommendationId) {
+                let targetElement = event.target;
+                let translations = {
+                  "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                  "success": "Changes saved successfully"
+                };
+                let options = {
+                  credentials: 'same-origin',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  method: 'POST'
+                }
+                let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                fetch(url, options).then(function(response) {
+                  if (response.status != 200) {
+                    flash.error(translations.error);
+                    console.log(response);
+                  } else {
+                    flash.success(translations.success, function() {
+                      flash.clear()
+                    });
+                    $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                    $(targetElement).closest('.button-section').hide();
+                    return response.json()
+                  }
+                })
+              }
+
+              function dismissRecommendation(recommendationId, recommendationType) {
+                let targetElement = event.target;
+                let options = {
+                  credentials: 'same-origin',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  method: 'POST'
+                }
+                let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                fetch(url, options).then(function(response) {
+                  if (response.status != 200) {
+                    flash.error(translations.error);
+                    console.log(response);
+                  } else {
+                    flash.success(translations.success, function() {
+                      flash.clear()
+                    });
+                    $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                    $(targetElement).closest('.button-section').hide();
+                    return response.json()
+                  }
+                })
+              }
+
+              function deleteRecommendation(recommendationId, recommendationType) {
+                let targetElement = event.target;
+                let options = {
+                  credentials: 'same-origin',
+                  headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  },
+                  method: 'POST'
+                }
+                let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                if (window.confirm("Are you sure?")) {
+                  fetch(url, options).then(function(response) {
+                    if (response.status != 200) {
+                      flash.error('Failed to delete recommendation. Try again or report to #application');
+                      console.log(response);
+                    } else {
+                      flash.success(translations.success, function() {
+                        flash.clear()
+                      });
+                      $(targetElement).closest('.panel-body').hide();
+                      return response.json()
+                    }
+                  })
+                }
+              }
+
+              function editRecommendation(recommendationName, type, id) {
+                $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+              }
+            </script>
+
+
+
+<style>
+@media (min-width: 720px){
+.image-row {
+  text-align: left;
+}
+}
+.example-image-link {
+display: inline-block;
+padding: 4px;
+margin: 0 0.5rem 1rem 0.5rem;
+background-color: lightblue;
+line-height: 0;
+border-radius: 5rem;
+text-decoration: none;
+outline: 0;
+}
+.example-image {
+width: 7rem;
+border-radius: 5rem;
+}
+
+</style>
+
+<div class="image-row" style="border-style: dashed; border-color: lightblue; margin-bottom: 100px; padding: 25px; display: inline-flex; flex-direction: row">
+<div class="image-set" style="display: flex; flex-wrap: wrap;">
+{% for image in images %}
+<div class="image-box">
+  
+  <a class="example-image-link" href="{{ image.image.url }}" data-lightbox="example-set" data-title="Click the right half of the image to move forward.">
+    <img class="example-image" src="{{ image.image.url }}" alt="Golden Gate Bridge with San Francisco in distance">
+  </a>
+  <a class="delete_btn" href="{% url 'listings:delete-room-image' pk=image.pk %}"></a>
+  
+</div>
+{% endfor %}
+</div>
+</div>
+
+            <form id="food-drinks-form" class="dropzone dz" method="POST" action="{% url 'listings:upload-room-image' pk=room_pk %}"> 
+              {% csrf_token %} 
+          <!-- ------------------------------------------------ THINGS TO DO --------------------------------------- -->
+                 <!-- Dropped photos pending, waiting for upload -->
+              <div class="fallback">
+                  <input name="file" type="file" multiple />
+              </div>
+                <!-- Add your photos here -->
+
+
+            </form>
+
+          </div>
+    </div>
+  </div>
+
+  {% endblock %}

@@ -1,0 +1,344 @@
+{% extends '../listings/accommodations/accommodation-base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<section class="admin-content  js-active-tab-name" data-tab-name="Reviews" id="review_list">
+    <header class="section-title">
+       <h1 class="catamaran">Reviews</h1>
+       <small class="title-description">Need some help with how to respond to a good or a bad review? <a href="https://tripaneer.zendesk.com/hc/en-us/sections/115001618745-Reviews" target="_blank">Check out our Review FAQ</a> in our help center.</small>
+    </header>
+    <input type="hidden" value="en" class="js-user-language">
+    <style>
+       .review {
+          max-height: none !important;
+       }
+   </style>
+    {% for review in reviews %}
+    <div class="panel panel-default panel--review js-expand-container" id="44510">
+       <div class="panel-body">
+          <div class="row">
+             <div class="col-sm-8">
+                <div class="review-container">
+                   <div class="review">
+                      <div class="review__credit review__credit--review">
+                         Review by {{ review.customer.first_name }} {{ review.customer.last_name }}
+                         <!-- todo: get country -->
+                         <!-- Review by <strong>Katherine L.</strong> from country name -->
+                      </div>
+                      <div class="review__date">
+                         <span class="js-to-local-date" data-iso-string="2021-07-23">{{ review.created_at }}</span>
+                         <a href="{% url 'listings:listing_detail' review.listing.pk review.listing.slug %}">
+                         {{ review.listing.title }}
+                         </a>
+                      </div>
+                      <table class="review__table">
+                         <tbody>
+                            <tr>
+                               <td></td>
+                               <td>
+                                  <h3 class="title review__highlight">
+                                  </h3>
+                               </td>
+                            </tr>
+                            <tr>
+                               <td class="review__thumbs">
+                                  <i class="fa fa-thumbs-up"></i>
+                               </td>
+                               <td>{{ review.positive_info }}
+                               </td>
+                            </tr>
+                            <tr>
+                               <td class="review__thumbs">
+                                  <i class="fa fa-thumbs-down"></i>
+                               </td>
+                               <td>{{ review.negative_info }}</td>
+                            </tr>
+                           {% if review.host_response %}
+                            <tr>
+                               <td class='review__thumbs'>
+                                  <i class='fa fa-comment-dots'></i>
+                               </td>
+                               <td>{{ review.host_response }}</td>
+                            </tr>
+                            {% endif %}
+                         </tbody>
+                      </table>
+                   </div>
+                </div>
+             </div>
+             <style>
+                .checked {
+                  color: orange;
+                }
+                </style>
+             <div class="col-sm-2">
+                <ul class="review__ratings">
+                   <li class="review__ratings__overall">
+                      <span>
+                      Overall impression:
+                      <strong>
+                      {{ review.overall_rating }}
+                      </strong>
+                      / 5
+                      </span>
+                      <div class="stars">
+                            <i class="fa fa-star"></i>
+                            {% if review.overall_rating >= 2 %}
+                            <i class="fa fa-star"></i>
+                                {% if review.overall_rating >= 3 %}
+                                <i class="fa fa-star"></i>
+                                    {% if review.overall_rating >= 4 %}
+                                    <i class="fa fa-star"></i>
+                                        {% if review.overall_rating == 5 %}
+                                        <i class="fa fa-star"></i>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                            
+                      </div>
+                   </li>
+                   <li>
+                      <span>Value for money</span>
+                      <div class="stars">
+                          {% if review.value_for_money == 1 %}
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star"></i>
+                         {% elif review.value_for_money == 2 %}
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star"></i>
+                         {% elif review.value_for_money == 3 %}
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star"></i>
+                         <i class="fa fa-star"></i>
+                         {% elif review.value_for_money == 4 %}
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star"></i>
+                         {% elif review.value_for_money == 5 %}
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         <i class="fa fa-star checked"></i>
+                         {% endif %}
+                      </div>
+                   </li>
+                   <li>
+                      <span>Accommodation &amp; facilities</span>
+                      <div class="stars">
+                        {% if review.accommodation_and_facilities == 1 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.accommodation_and_facilities == 2 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.accommodation_and_facilities == 3 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.accommodation_and_facilities == 4 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.accommodation_and_facilities == 5 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        {% endif %}
+                      </div>
+                   </li>
+                   <li>
+                      <span>Food</span>
+                      <div class="stars">
+                        {% if review.food == 1 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.food == 2 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.food == 3 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.food == 4 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.food == 5 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        {% endif %}
+                      </div>
+                   </li>
+                   <li>
+                      <span>Location</span>
+                      <div class="stars">
+                        {% if review.location == 1 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.location == 2 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.location == 3 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.location == 4 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.location == 5 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        {% endif %}
+                      </div>
+                   </li>
+                   <li>
+                      <span>Quality of activity</span>
+                      <div class="stars">
+                        {% if review.quality_of_activity == 1 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.quality_of_activity == 2 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.quality_of_activity == 3 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.quality_of_activity == 4 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star"></i>
+                        {% elif review.quality_of_activity == 5 %}
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        <i class="fa fa-star checked"></i>
+                        {% endif %}
+                      </div>
+                   </li>
+                </ul>
+             </div>
+             <div class="col-sm-2">
+                <div class="review-mobile-buttons">
+                   {% if review.host_response %}
+                   <a href="{% url 'listings:respond_review' review.pk %}" class="btn btn-info btn-block disabled">
+                     Replied
+                   </a>
+                   {% else %}
+                   <a href="{% url 'listings:respond_review' review.pk %}" class="btn btn-success btn-block">
+                     Reply
+                   </a>
+                   {% endif %}
+
+
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    {% endfor %}
+    <div class="row">
+      <div class="col-sm-7">
+         <div class="dataTables_paginate paging_simple_numbers" id="main_table_paginate">
+            <ul class="pagination">
+               {% if page_obj.has_previous %}
+               <li class="paginate_button previous" id="main_table_previous"><a href="?page={{ page_obj.previous_page_number }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Previous</a></li>
+               {% else %}
+               <li class="paginate_button previous disabled" id="main_table_previous" style='pointer-events: none;'><a  aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Previous</a></li>
+               {% endif %}
+
+               {% if page_obj.number|add:'-4' > 1 %}
+               <li class="paginate_button previous" id="main_table_previous"><a href="?page={{ page_obj.number|add:'-5' }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">&hellip;</a></li>
+               {% endif %}
+
+
+               {% for i in page_obj.paginator.page_range %}
+                  {% if page_obj.number == i %}
+                     <li class="paginate_button active"><a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">{{ i }}</a></li>
+                  {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                     <li class="paginate_button "><a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">{{ i }}</a></li>
+                  {% endif %}
+               {% endfor %}
+
+               {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+               <li class="paginate_button next" id="main_table_next"><a href="?page={{ page_obj.number|add:'5' }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">&hellip;</a></li>
+               {% endif %}
+
+               {% if page_obj.has_next %}
+               <li class="paginate_button next" id="main_table_next"><a href="?page={{ page_obj.next_page_number }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Next</a></li>
+               {% else %}
+               <li class="paginate_button next disabled" id="main_table_next" style='pointer-events: none;'><a  aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Next</a></li>
+
+               {% endif %}
+
+            </ul>
+         </div>
+      </div>
+   </div>
+ </section>
+
+{% endblock %}

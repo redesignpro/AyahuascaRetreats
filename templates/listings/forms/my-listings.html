@@ -1,0 +1,203 @@
+{% extends '../accommodations/accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+      <section class="admin-content js-active-tab-name" data-tab-name="Listings">
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <header class="section-title">
+              <h1 class="catamaran" style="line-height: 115%; padding-top: 10px; padding-bottom: 10px;"> Listings </h1>
+              <div class="btn-toolbar">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_listing_modal">
+                  <i class="ebs-icon ebs-icon-plus"></i> Create new listing </button>
+              </div>
+            </header>
+          </div>
+        </div>
+        <div class="modal fade new_listing_modal" id="new_listing_modal" class="" tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Create new listing</h4>
+              </div>
+              <form id="create-new-listing-form" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-4 js-mobile-step requirements-box" data-step="1">
+                      <div class="modal-section">
+                        <div class="modal-section__title">
+                          <h5>
+                            <i class="ebs-icon-checklist"></i> Requirements
+                          </h5>
+                          <p>
+                            <small>Your listing can only be published if the following requirements are met:</small>
+                          </p>
+                        </div>
+                        <ul class="requirements-list">
+                          <li>It must be <strong>focused on the main activity</strong>
+                          </li>
+                          <li>It must <strong>include accommodation</strong> during the whole trip </li>
+                          <li>It must have at least 1 starting date that is more than <strong>6 weeks</strong> away </li>
+                          <li>The <strong>prices</strong> listed here must be the same or lower as the prices on your website </li>
+                          <li>It cannot include any of our <a href='https://tripaneer.zendesk.com/hc/en-us/articles/360010278779-What-are-activities-that-Tripaneer-doesn-t-accept-' target='_blank'>banned activities</a>
+                          </li>
+                          <li>Flights are not allowed to be part of the package</li>
+                          <li>It cannot be split into <a href='https://tripaneer.zendesk.com/hc/en-us/articles/360010185520-What-kind-of-trips-can-I-advertise-on-Tripaneer-' target='_blank'>modules</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="js-mobile-step hidden-phone hidden-tablet" data-step="2">
+                      <div class="col-md-4">
+                        <div class="modal-section">
+                          <div class="modal-section__title">
+                            <h5>Basic Information</h5>
+                          </div>
+                          <div class="form-group">
+                            <label for="new-listing-destination_country_id">Listing Country</label>
+                            {{ form.country|as_crispy_field }}
+                            <small class="help-block"></small>
+                          </div>
+                          <div class="form-group">
+                            <label for="new-listing-main_spoken_language_id">Language of Instruction</label>
+                            {{ form.instruction_language }}
+                            <small class="help-block"></small>
+                            <p class="js-main-spoken-laguage-helper">Please create the content of the listing in English</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="modal-section">
+                          <div class="modal-section__title">
+                            <h5>Source</h5>
+                            <p>
+                              <small> Your listing <strong>will be reviewed</strong> before being published. Please provide the <strong>URL link</strong> to the trip <strong>and/or a document</strong> with information about the trip </small>
+                            </p>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <span class="input-group-addon">
+                                <i class="ebs-icon-internet"></i> website </span>
+                                {{ form.url }}
+                              </div>
+                            <small class="help-block"></small>
+                          </div>
+                          <div class="form-group">
+                            <div class="input-group">
+                              <a href="#" class="input-group-addon js-select-document">
+                                <i class="ebs-icon-t-document"></i> file </a>
+                              <a href="#" class="remove-attachment-button js-remove-document hidden">
+                                <i class="ebs-icon-close"></i>
+                              </a>
+                              {{ form.brochure }}
+                            </div>
+                            <input type="file" id="new-listing-files" name='new-listing-files' style="display:none" accept="image/jpg, image/jpeg, image/pjpeg, image/gif, image/png, image/x-png, text/plain, application/pdf, application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+                            <small class="help-block"></small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <div class="hidden-desktop">
+                    <a href="#" class="js-mobile-step-btn btn btn-default" data-move="prev">Back</a>
+                    <a href="#" class="js-mobile-step-btn btn btn-success" data-move="next">Continue</a>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="hidden-phone hidden-tablet">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="create-listing" type="submit" class="btn btn-success">Continue</button>
+                  </div>
+                </div>
+              </form>
+              <div id="create-new-listing-form-feedback" class="confirmation-modal hidden">
+                <div class="modal-body">
+                  <img src="/static/files/shape-icons/confirmation.svg" class="confirmation-modal__image" />
+                  <div>
+                    <div class="confirmation-modal__title">
+                      <h5>Ready to start!</h5>
+                    </div>
+                    <div class="confirmation-modal__text-wrapper">
+                      <p>Fill in all the <strong>required fields</strong> to get your listing published. </p>
+                      <p>When you are done, we will <strong>review</strong> the listing and some content may be <strong>adjusted</strong> to fit our requirements. This process takes up to <strong>5 working days</strong>. </p>
+                      <p>Important: your listing will not be published if the requirements are not met.</p>
+                    </div>
+                    <button id="go-to-listing-btn" type="button" class="btn btn-lg btn-success" data-href="">Continue</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+        {% for listing in listings %}
+        <div class="admin--card admin--card--listing">
+          <div class="admin--card--listing__background admin--card--listing__background--has-picture" style="background-image: url('{{ listing.get_first_image }}')"></div>
+          <div class="admin--card--listing__content">
+            <div class="admin--card--listing__content__title">
+              <a href="{% url 'listings:listing_detail' listing.pk listing.slug %}">
+                <h4 class="catamaran"> {{ listing.title }}</h4>
+              </a>
+            </div>
+            <div class="admin--card--listing__content__buttons">
+              <div class="admin--card--listing__content__buttons__secondary">
+                <div class="dropdown listing-list--change-status">
+                  {% if listing.is_verified %}
+                  <a class="dropdown-toggle text-muted" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Published&nbsp; <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="listingEdit">
+                    <li class="multiline">
+                      <div class="current">
+                        <i class="fa fa-check"></i>
+                        <strong>Published</strong>
+                        <small>The listing is discoverable for all customers with the current content.</small>
+                      </div>
+                    </li>
+                    <li class="multiline">
+                      <a href="{% url 'listings:remove-listing' pk=listing.pk %}" class="listing-deactivate-button">
+                        <strong style="display: block;">Delete</strong>
+                        <small>Just in case you want to hide the listing from guests</small>
+                      </a>
+                    </li>
+                  </ul>
+                  {% else %}
+                  <a class="dropdown-toggle text-muted" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Not Published&nbsp; <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="listingEdit">
+                    <li class="multiline">
+                      <div class="current">
+                        <i class="fa fa-check"></i>
+                        <strong>Not Published Yet</strong>
+                        <small>Our staff are working on verifying your listing</small>
+                      </div>
+                    </li>
+                    <li class="multiline">
+                      <a href="{% url 'listings:remove-listing' pk=listing.pk %}" class="listing-deactivate-button">
+                        <strong style="display: block;">Delete</strong>
+                        <small>Just in case you want to remove the listing</small>
+                      </a>
+                    </li>
+                  </ul>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="admin--card--listing__content__buttons__main">
+                <div class="hidden-tablet hidden-desktop">
+                  <a href="/4/listings/43775/edit/introduction/" class="btn btn-success">Open</a>
+                </div>
+                <div class="hidden-phone">
+                  <a href="{% url 'listings:packages-list' pk=listing.pk %}" class="btn btn-outline-success">Packages &amp; Availability</a>
+                  <a href="{% url 'listings:title-update' pk=listing.pk %}" class="btn btn-outline-info">Description</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+{% endblock %}

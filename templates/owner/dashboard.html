@@ -1,0 +1,557 @@
+{% extends './main.html' %}
+{% load static %}
+{% load humanize %}
+{% load sizify  %}
+
+
+
+					{% block content %}
+					<!-- start: page -->
+					<div class="row">
+						<div class="col-lg-6 mb-3">
+							<section class="card">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-xl-8">
+											<div class="chart-data-selector" id="salesSelectorWrapper">
+												<h2>
+													Sales:
+													<strong>
+														<select class="form-control" id="salesSelector">
+															<option value="Net Revenue" selected>Net Revenue</option>
+														</select>
+													</strong>
+												</h2>
+												<input type="hidden" id="seven_month" value="{{ seven }}">
+												<input type="hidden" id="six_month" value="{{ six }}">
+												<input type="hidden" id="five_month" value="{{ five }}">
+												<input type="hidden" id="four_month" value="{{ four }}">
+												<input type="hidden" id="three_month" value="{{ three }}">
+												<input type="hidden" id="two_month" value="{{ two }}">
+												<input type="hidden" id="one_month" value="{{ one }}">
+												<input type="hidden" id="this_month" value="{{ this_month }}">
+												<div id="salesSelectorItems" class="chart-data-selector-items mt-3">
+													<!-- Flot: Sales Porto Admin -->
+													<div class="chart chart-sm" data-sales-rel="Net Revenue" id="flotDashSales1" class="chart-active" style="height: 203px;"></div>
+													<script>
+														var this_month = document.getElementById("this_month").value;
+														var one_month = document.getElementById("one_month").value;
+														var two_month = document.getElementById("two_month").value;
+														var three_month = document.getElementById("three_month").value;
+														var four_month = document.getElementById("four_month").value;
+														var five_month = document.getElementById("five_month").value;
+														var six_month = document.getElementById("six_month").value;
+														var seven_month = document.getElementById("seven_month").value;
+														var flotDashSales1Data = [{
+														    data: [
+														        ["Jan", seven_month],
+														        ["Feb", six_month],
+														        ["Mar", five_month],
+														        ["Apr", four_month],
+														        ["May", three_month],
+														        ["Jun", two_month],
+														        ["Jul", one_month],
+														        ["Aug", this_month]
+														    ],
+														    color: "#0088cc"
+														}];
+
+														// See: js/examples/examples.dashboard.js for more settings.
+
+													</script>
+
+													<!-- Flot: Sales Porto Drupal -->
+													<div class="chart chart-sm" data-sales-rel="Porto Drupal" id="flotDashSales2" class="chart-hidden"></div>
+													<script>
+
+														var flotDashSales2Data = [{
+														    data: [
+														        ["Jan", 240],
+														        ["Feb", 240],
+														        ["Mar", 290],
+														        ["Apr", 540],
+														        ["May", 480],
+														        ["Jun", 220],
+														        ["Jul", 170],
+														        ["Aug", 190]
+														    ],
+														    color: "#2baab1"
+														}];
+
+														// See: js/examples/examples.dashboard.js for more settings.
+
+													</script>
+
+													<!-- Flot: Sales Porto Wordpress -->
+													<div class="chart chart-sm" data-sales-rel="Porto Wordpress" id="flotDashSales3" class="chart-hidden"></div>
+													<script>
+
+														var flotDashSales3Data = [{
+														    data: [
+														        ["Jan", 840],
+														        ["Feb", 740],
+														        ["Mar", 690],
+														        ["Apr", 940],
+														        ["May", 1180],
+														        ["Jun", 820],
+														        ["Jul", 570],
+														        ["Aug", 780]
+														    ],
+														    color: "#734ba9"
+														}];
+
+														// See: js/examples/examples.dashboard.js for more settings.
+
+													</script>
+												</div>
+
+											</div>
+										</div>
+										<style>
+											.resetbtn {
+												text-transform: none !important;
+												font-weight: none !important;
+												font-size: none !important;
+												color: none !important;
+												border-right: none !important;
+												display: none !important;
+												padding-right: none !important;
+												margin-right: none !important;
+												border-right: none !important;
+												padding-right: none !important;
+												margin-right: none !important;
+
+												font-size: 0.9rem !important;
+												padding: 7.52px 12px !important;
+												padding: 0.47rem 0.75rem !important;
+												cursor: pointer !important;
+												display: inline-block !important;
+												font-weight: 400 !important;
+												line-height: 1.5 !important;
+												color: #212529 !important;
+												text-align: center !important;
+												text-decoration: none !important;
+												vertical-align: middle !important;
+												cursor: pointer !important;
+												-webkit-user-select: none !important;
+												-moz-user-select: none !important;
+												user-select: none !important;
+												background-color: transparent !important;
+												border: 1px solid transparent !important;
+												padding: 0.375rem 0.75rem !important;
+												font-size: 1rem !important;
+												border-radius: 0.25rem !important;
+												transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+												color: #333 !important;
+												background-color: #fff !important;
+												border-color: #ccc !important;
+												box-shadow: none !important;
+												font-size: 14.4px !important;
+											}
+										</style>
+										<div class="col-xl-4 text-center">
+											<h2 class="card-title mt-3">Sales Goal</h2>
+											<div class="liquid-meter-wrapper liquid-meter-sm mt-3">
+												<div class="liquid-meter">
+													<meter min="0" max="100" value="{{ monthly }}" id="meterSales"></meter>
+												</div>
+												<div class="liquid-meter-selector mt-4 pt-1" id="meterSalesSel">
+													<a href="#" data-val="{{ monthly }}" class="active">Monthly Goal</a>
+													<a href="#" data-val="{{ yearly }}">Annual Goal</a><br>
+												</div>
+												<a href='{{ goal_obj.get_admin_url }}' class="resetbtn" style='margin-top:15px'>Set Goals</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="col-lg-6">
+							<div class="row mb-3">
+								<div class="col-xl-6">
+									<section class="card card-featured-left card-featured-primary mb-3" style='border-color: #dc3545 !important;'>
+										<div class="card-body">
+											<div class="widget-summary">
+												<div class="widget-summary-col widget-summary-col-icon">
+													<div class="summary-icon bg-danger">
+														<i class="fas fa-life-ring"></i>
+													</div>
+												</div>
+												<div class="widget-summary-col">
+													<div class="summary">
+														<h4 class="title">Flags</h4>
+														<div class="info">
+															<strong class="amount">{{ flags }}</strong>
+														</div>
+													</div>
+													<div class="summary-footer">
+														<a class="text-muted text-uppercase" href="{% url 'listings:dashboard-flags' %}">(view all)</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+								<div class="col-xl-6">
+									<section class="card card-featured-left card-featured-secondary" style='border-color: green !important;'>
+										<div class="card-body">
+											<div class="widget-summary">
+												<div class="widget-summary-col widget-summary-col-icon">
+													<div class="summary-icon bg-secondary" style='background-color: green !important;'>
+														<i class="fas fa-dollar-sign"></i>
+													</div>
+												</div>
+												<div class="widget-summary-col">
+													<div class="summary">
+														<h4 class="title">Total Profit</h4>
+														<div class="info">
+															<strong class="amount">$ {{ this_month|floatformat:2|intcomma }}</strong>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xl-6">
+									<section class="card card-featured-left card-featured-tertiary mb-3">
+										<div class="card-body">
+											<div class="widget-summary">
+												<div class="widget-summary-col widget-summary-col-icon">
+													<div class="summary-icon bg-tertiary">
+														<i class="fas fa-shopping-cart"></i>
+													</div>
+												</div>
+												<div class="widget-summary-col">
+													<div class="summary">
+														<h4 class="title">Today's Inquiries</h4>
+														<div class="info">
+															<strong class="amount">{{ inquiries_today }}</strong>
+														</div>
+													</div>
+													<div class="summary-footer">
+														<a href="{% url 'listings:dashboard-inquiries' %}" class="text-muted text-uppercase">(statement)</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+								<div class="col-xl-6">
+									<section class="card card-featured-left card-featured-quaternary" style='border-color: #E36159 !important;'>
+										<div class="card-body">
+											<div class="widget-summary">
+												<div class="widget-summary-col widget-summary-col-icon">
+													<div class="summary-icon bg-secondary">
+														<i class="fas fa-user"></i>
+													</div>
+												</div>
+												<div class="widget-summary-col">
+													<div class="summary">
+														<h4 class="title">Today's Visitors</h4>
+														<div class="info">
+															<strong class="amount">{{ hits }}</strong>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</section>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+						
+					<div class="row pt-4 mt-1">
+						<div class="col-xl-6">
+							<section class="card">
+								<header class="card-header card-header-transparent" style='margin-bottom: 15px'>
+									<div class="card-actions">
+										<button class='btn btn-info' onclick="location.href='{% url "listings:dashboard-listings" %}'" >View All</button>
+										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+										<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+									</div>
+
+									<h2 class="card-title">Listings Awaiting Approval</h2>
+								</header>
+								<div class="card-body">
+									<table class="table table-responsive-md table-striped mb-0">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Host</th>
+												<th>Project</th>
+												<th>Status</th>
+												<th>Details</th>
+												<th>Approval</th>
+												<th>Progress</th>
+											</tr>
+										</thead>
+										<tbody>
+											<style>
+												.noHover {
+													pointer-events: none;;
+												}
+											</style>
+											{% for listing in listings %}
+											<tr>
+												<td>{{ listing.id }}</td>
+												<td>{% if listing.get_organization %}{{ listing.get_organization }}{% else %}{{ listing.user_profile.user }}{% endif %}</td>
+												<td>{{ listing.title|truncatechars:40 }}</td>
+												{% if listing.updated_after_approval %}
+												<td><a class='btn btn-xs btn-danger noHover'>UPDATED</a></td>
+												{% else %}
+												<td><a class='btn btn-xs btn-warning noHover'>NEW</a></td>
+												{% endif %}
+												<td><a href="{% url 'listings:view-listing' listing.pk %}" target=”_blank” class='btn btn-xs btn-info'>DETAILS</a></td>
+												<td><a href="{% url 'listings:approve-listing' listing.pk %}" class='btn btn-xs btn-success'>APPROVE</a></td>
+												<td width="10%">
+													<div class="progress progress-sm progress-half-rounded m-0 mt-1 light">
+														<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ listing.get_progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ listing.get_progress }}%;">
+															{{ listing.get_progress }}%
+														</div>
+													</div>
+												</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</section>
+						</div>
+						<div class="col-xl-6">
+							<section class="card">
+								<header class="card-header card-header-transparent" style='margin-bottom: 15px'>
+									<div class="card-actions">
+										<button class='btn btn-info' onclick="location.href='{% url "listings:dashboard-reviews" %}'">View All</button>
+										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+										<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+									</div>
+
+									<h2 class="card-title">Reviews Awaiting Approval</h2>
+								</header>
+								<div class="card-body">
+									<table class="table table-responsive-md table-striped mb-0">
+										<thead>
+											<tr>
+												<th style='width:5%'>ID</th>
+												<th style='width:15%'>Guest</th>
+												<th style='width:50%'>Listing</th>
+												<th style='width:10%'>Status</th>
+												<th style='width:12%'>Details</th>
+												<th style='width:13%'>Progress</th>
+											</tr>
+										</thead>
+										<tbody>
+											<style>
+												.noHover {
+													pointer-events: none;;
+												}
+											</style>
+											{% for review in reviews %}
+											<tr>
+												<td>{{ review.id }}</td>
+												<td>{{ review.customer.first_name }} {{ review.customer.last_name|slice:1 }}.</td>
+												<td>{{ review.listing.title|truncatechars:55  }}</td>
+												{% if review.viewed_by_admin %}
+												<td><a class='btn btn-xs btn-danger noHover'>PENDING</a></td>
+												{% else %}
+												<td><a class='btn btn-xs btn-warning noHover'>NEW</a></td>
+												{% endif %}
+												<td><a href='{% url "listings:view-review" review.pk %}' target=”_blank” class='btn btn-xs btn-info'>DETAILS</a></td>
+												<td><a href='{% url "listings:approve-review" review.pk %}' class='btn btn-xs btn-success'>APPROVE</a></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</section>
+						</div>
+					</div>
+					
+					<div class="row pt-4 mt-1">
+						<div class="col-xl-6">
+							<section class="card">
+								<header class="card-header card-header-transparent" style='margin-bottom:15px'>
+									<div class="card-actions">
+										<button class='btn btn-info' onclick="location.href='{% url "listings:dashboard-videos" %}'">View All</button>
+										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+										<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+									</div>
+
+									<h2 class="card-title">Videos Awaiting Approval</h2>
+								</header>
+								<div class="card-body">
+									<table class="table table-responsive-md table-striped mb-0">
+										<thead>
+											<tr>
+												<th style='width:5%'>ID</th>
+												<th style='width:15%'>Host</th>
+												<th style='width:40%'>Filename</th>
+												<th style='width:20%'>Size</th>
+												<th style='width:13%'>Download</th>
+												<th style='width:12%'>Approve</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for video in videos %}
+											<tr>
+												<td>{{ video.id }}</td>
+												<td>{{ video.profile }}</td>
+												<td>{{ video.filename }}</td>
+												<td>{{ video.video.size|sizify }}</td>
+												<td><a href="{{ video.video.url }}"class='btn btn-xs btn-info'>DOWNLOAD</a></td>
+												<td><a href="{% url 'listings:approve-video' video.pk %}" class='btn btn-xs btn-success'>APPROVE</a></td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</section>
+						</div>
+						<div class="col-xl-6">
+							<section class="card">
+								<header class="card-header card-header-transparent" style='margin-bottom:15px'>
+									<div class="card-actions">
+										<button class='btn btn-info' onclick="location.href='{% url "listings:dashboard-staff" %}'">View All</button>
+										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+										<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+									</div>
+
+									<h2 class="card-title">Staff Awaiting Approval</h2>
+								</header>
+								<div class="card-body">
+									<table class="table table-responsive-md table-striped mb-0">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Name</th>
+												<th>Organization</th>
+												<th>Details</th>
+												<th>Approval</th>
+												<th>Progress</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for member in staff %}
+											<tr>
+												<td>{{ member.id }}</td>
+												<td>{{ member.first_name }} {{ member.last_name }}</td>
+												<td>{{ member.host_organization.business_name }}</td>
+												<td><a href='{{ member.get_admin_url }}' target=”_blank” class='btn btn-xs btn-info'>VIEW DETAILS</a></td>
+												<td><a href='{% url "listings:approve-staff" member.pk %}' class='btn btn-xs btn-success'>APPROVE</a></td>
+												<td>
+													<div class="progress progress-sm progress-half-rounded m-0 mt-1 light">
+														<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="{{ member.get_progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ member.get_progress }}%;">
+														{{ member.get_progress }}%
+														</div>
+													</div>
+												</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</section>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+
+							<div class="card card-modern card-modern-table-over-header">
+								<div class="card-header">
+									<div class="card-actions">
+										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+									</div>
+									<h2 class="card-title">Recent Inquiries</h2>
+								</div>
+								<div class="card-body">
+									<div class="datatables-header-footer-wrapper">
+										<div class="datatable-header">
+											<div class="row align-items-center mb-3">
+
+												<div class="col-8 col-lg-auto ms-auto ml-auto mb-3 mb-lg-0">
+													<div class="d-flex align-items-lg-center flex-column flex-lg-row">
+														<label class="ws-nowrap me-3 mb-0">Filter By:</label>
+														<select class="form-control select-style-1 filter-by" name="filter-by">
+															<option value="all" selected>All</option>
+															<option value="1">ID</option>
+															<option value="2">Customer Name</option>
+															<option value="3">Date</option>
+															<option value="6">Arrival Date</option>
+															<option value="4">Total</option>
+															<option value="5">Status</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-4 col-lg-auto ps-lg-1 mb-3 mb-lg-0">
+													<div class="d-flex align-items-lg-center flex-column flex-lg-row">
+														<label class="ws-nowrap me-3 mb-0">Show:</label>
+														<select class="form-control select-style-1 results-per-page" name="results-per-page">
+															<option value="12" selected>12</option>
+															<option value="24">24</option>
+															<option value="36">36</option>
+															<option value="100">100</option>
+														</select>
+													</div>
+												</div>
+												<div class="col-12 col-lg-auto ps-lg-1">
+													<div class="search search-style-2 search-style-2-lg mx-lg-auto">
+														<div class="input-group">
+															<a href="{% url 'listings:dashboard-inquiries' %}" class='btn btn-info'>All Inquiries</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<table class="table table-ecommerce-simple table-borderless table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 640px;">
+
+											<thead>
+												<tr>
+													<th width="9%">ID</th>
+													<th width="16%">Customer Name</th>
+													<th width="16%">Host Name</th>
+													<th width="14%">Date</th>
+													<th width="14%">Arrival Date</th>
+													<th width="14%">Commission</th>
+													<th width="17%">Status</th>
+												</tr>
+											</thead>
+											<tbody>
+												{% for inq in recent_inquiries %}
+												<tr>
+													<td><a href="{{ inq.get_admin_url }}"><strong>{{ inq.id }}</strong></a></td>
+													<td><a href="{{ inq.customer.get_admin_url }}"><strong>{{ inq.customer.first_name }} {{ inq.customer.last_name }}</strong></a></td>
+													<td><a href="{{ inq.listing.user_profile.get_admin_url }}"><strong>{{ inq.listing.get_organization }}</strong></a></td>
+													<td>{{ inq.created_at }}</td>
+													<td>{{ inq.arrival_date }}</td>
+													<td>${{ inq.commission_amount|intcomma }} ({{ inq.commission_percent }}%)</td>
+													{% if inq.deposit_paid %}
+													<td><span class="ecommerce-status completed">Deposit Paid</span></td>
+													{% elif inq.host_declined %}
+													<td><span class="ecommerce-status cancelled">Host Declined</span></td>
+													{% elif inq.is_approved and not inq.deposit_paid %}
+													<td><span class="ecommerce-status on-hold">Awaiting Deposit</span></td>
+													{% else %}
+													<td><span class="ecommerce-status pending">Pending Host</span></td>
+													{% endif %}
+												</tr>
+												{% endfor %}
+											</tbody>
+										</table>
+										<hr class="solid mt-5 opacity-4">
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- end: page -->
+					{% endblock %}
+					

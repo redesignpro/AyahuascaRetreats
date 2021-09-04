@@ -1,0 +1,275 @@
+<html>
+    <head>
+        {% load static %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta charset="UTF-8">
+      <style>
+        @font-face {
+            font-family: Roboto;
+            src: url('{% static 'fonts/Roboto-Regular.ttf' %}');
+        }
+
+        @font-face {
+            font-family: Roboto-bold;
+            src: url('{% static 'fonts/Roboto-Bold.ttf' %}');
+            font-weight: bold;
+        }
+
+        @page {
+            size: a4 portrait;
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: frame_header_left;
+                left: 50pt; width: 245pt; top: 30pt; height: 150pt;
+            }
+            @frame header_frame {           /* Static Frame */
+                -pdf-frame-content: frame_header_right;
+                left: 300pt; width: 245pt; top: 50pt; height: 150pt;
+            }
+
+            @frame content_frame {          /* Content Frame */
+                -pdf-frame-content: frame_invoice_number;
+                left: 50pt; width: 512pt; top: 170pt; height: 30pt;
+            }
+
+            @frame col1 {
+                -pdf-frame-content: frame_col1;
+                left: 50pt; width: 245pt; top: 220pt; height: 130pt;
+            }
+
+            @frame col2 {
+                -pdf-frame-content: frame_col2;
+                left: 300pt; width: 245pt; top: 220pt; height: 130pt;
+            }
+
+            @frame frame_services {
+                -pdf-frame-content: frame_services;
+                left: 50pt; width: 512pt; top: 380pt; height: 250pt;
+    
+            }
+
+            @frame content_frame {
+                -pdf-frame-content: frame_summary;
+                left: 465pt; width: 100pt; top: 590pt; height: 50pt;
+            }
+
+            @frame content_frame {
+                -pdf-frame-content: frame_vat;
+                left: 350pt; width: 150pt; top: 640pt; height: 100pt;
+            }
+            @frame content_frame {
+                -pdf-frame-content: frame_total;
+                left: 500pt; width: 70pt; top: 640pt; height: 100pt;
+            }
+
+            @frame content_frame {
+                -pdf-frame-content: frame_signatures_left;
+                left: 50pt; width: 140pt; top: 725pt; height: 70pt;
+            }
+
+            @frame content_frame {
+                -pdf-frame-content: frame_signatures_right;
+                left: 400pt; width: 140pt; top: 725pt; height: 70pt;
+                left: 400pt; width: 140pt; top: 725pt; height: 70pt;
+            }
+
+            @frame content_frame {
+                -pdf-frame-content: footer_content;
+                left: 50pt; width: 512pt; top: 775pt; height: 50pt;
+            }
+    }
+
+        body {
+          background-color: white;
+          font-family: "Roboto", sans-serif;
+        }
+
+        .right{
+            font-size: 10px;
+            text-align: right;
+
+        }
+        .left{
+            text-align: left;
+        }
+
+        .invoice-number {
+            font-size: 18px;
+            font-family: "Roboto-bold", sans-serif;
+        }
+
+        .col-titles {
+            font-size: 16px;
+            text-decoration: underline;
+            font-family: "Roboto-bold", sans-serif;
+         }
+
+         .footer {
+            font-size: 8px;
+            text-align: center;
+         }
+
+         p{
+            font-size: 10px;
+            line-height: 0;
+         }
+
+         table {
+            border-bottom: none;
+            text-align: center;
+        }
+
+        td, td {
+            border-bottom: none;
+            vertical-align: middle;
+        }
+
+
+
+
+         th {
+            height: 36px;
+
+         }
+         td {
+            height:50px;
+         }
+
+
+
+
+
+table th {
+  
+  
+  color: #5D6975;
+  border-bottom: 1px solid #C1CED9;
+  white-space: nowrap;        
+  font-weight: normal;
+}
+
+
+
+
+
+
+
+      </style>
+    </head>
+    <body>
+        <div>
+            <div>
+                <div id="frame_header_left" class="left">
+                    <img src="http://127.0.0.1:8000/static/images/tripaneer.png" alt="logo">
+                </div>
+                <div id="frame_header_right" class="right">
+                    <h1>Invoice</h1>
+                    <p>Invoice #: {{ inquiry.invoice_no }}</p>
+                    <p>Invoice Date: {{ inquiry.created_at }}</p>
+                    <p>Due Date: {{ inquiry.deposit_payout_date }}</p>
+                </div>
+            </div>
+            <div id="frame_invoice_number">
+                <div class="invoice-number">
+                    <h2>Amount Due: {{ inquiry.net_deposit_payout }}</h2>
+                </div>
+            </div>
+            <div id="frame_col1">
+                <p class="col-titles">Tripaneer</p>
+                <div>
+                    <p>Tripaneer B.V.</p>
+                    <p>1017 AZ Amsterdam</p>
+                    <p>The Netherlands</p>
+                    <p>info@tripaneer.com</p>
+                    <p>https://www.tripaneer.com</p>
+                    <p>VAT-ID NL 854513322B01 | KVK 61843962</p>
+                </div>
+            </div>
+
+            <div id="frame_col2">
+                <p class="col-titles">{{ inquiry.listing.user_profile.business_name }}</p>
+                <div>
+                    <p> {{ inquiry.listing.user_profile.business_name }}</p>
+                    <p> {{ inquiry.listing.user_profile.owner_first_name }} {{ inquiry.listing.user_profile.owner_last_name }}</p>
+                    <p> {{ inquiry.listing.user_profile.business_street_and_number }}</p>
+                    <p> {{ inquiry.listing.user_profile.business_city }}, {{ inquiry.listing.user_profile.business_state }}</p>
+                    <p> {{ inquiry.listing.user_profile.business_zip }}, {{ inquiry.listing.user_profile.business_country }}</p>
+                    <p> {{ inquiry.listing.user_profile.registration_number }}</p>
+                </div>
+            </div>
+            <div class="table-container" style="overflow-x:auto; border-top: 1px solid black;" id="frame_services">
+            <table class="table" style="width:100%">
+                <thead>
+                    <tr>
+                        <th scope="col" style='width:20%'>Date</th>
+                        <th scope="col" style='width:40%'>Description</th>
+                        <th scope="col" style='width:20%'>Deposit (USD)</th>
+                        <th scope="col" style='width:20%'>Commission (USD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row" style='height:235px; text-align: left; padding-left: 5px;'>{{ inquiry.created_at }}</td>
+                        <td style='height:235px'>
+                            <div style='width:100%; height:100%; text-align: left; margin-left: 35px;'>
+                                {{ inquiry.commission_percent }}% Commission - {{ inquiry.listing.title }} <br> {{ inquiry.package.room.name }} <br> {{ inquiry.package.room.get_shared_display }} {{ inquiry.package.room.get_type }} <br> {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }} <br> Arrival on {{ inquiry.arrival_date }}
+                            </div>
+                        </td>
+                        <td style='height:235px'>${{ inquiry.deposit_amount }}</td>
+                        <td style='height:235px; color: red;'>(${{ inquiry.commission_amount }})</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            <div id='frame_vat' >
+                <div class="right">
+                    <div class="right" style='font-size:1.2rem;'>
+                        Subtotal: 
+                        <hr>
+                    </div>
+                    
+                    <div class="right" style='font-size:1.2rem;'>
+                        Total:    
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="right" style='font-size:1.2rem;'>
+                        Amount Paid: 
+                        <hr>
+                    </div>
+                    <div class="right" style='font-size:1.2rem;'>
+                        Amount Due: 
+                    </div>
+                </div>
+            </div>
+            <div id='frame_total' style='padding-left:10px'>
+                <div class="left">
+                    <div class="left" style='font-size:1.2rem;'>
+                        ${{ inquiry.deposit_payout_amount }}
+                        <hr>
+                    </div>    
+                    <div class="left" style='font-size:1.2rem;'>
+                        ${{ inquiry.deposit_payout_amount }} 
+                    </div>
+                </div>
+                <div class="left">
+                    <div class="left" style='font-size:1.2rem; color:red'>
+                        (${{ inquiry.depsoit_payout_paid_amount }})
+                        <hr>
+                    </div>
+                    <div class="left" style='font-size:1.2rem;'>
+                        ${{ inquiry.net_deposit_payout }}
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="footer_content" >
+                <p class="footer">NOTES:</p>
+                <p class="footer">Reverse charge applies: It is the responsibility of the customer to remit any VAT relating to goods or services covered by this invoice to the customer's
+local revenue authorities.
+</p>
+            </div>
+
+        </div>
+    </body>
+</html>

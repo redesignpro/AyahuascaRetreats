@@ -1,0 +1,69 @@
+{% extends '../accommodations/accommodation-base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block content %} 
+<section class="admin-content -fullwidth js-active-tab-name" data-tab-name="Instructors">
+    <ol class="breadcrumb">
+      <li>
+        <a href="{% url 'listings:instructor-list' %}">Instructors</a>
+      </li>
+    </ol>
+    <header class="row section-title">
+      <div class="col-sm-9">
+        <h1 class="catamaran"> Edit Instructor: {{ instructor.first_name }} {{ instructor.last_name }} </h1>
+      </div>
+      <div class="col-sm-3"></div>
+    </header>
+    <div id="contact" data-organizer-id="23069" data-instructor-id="87030">
+      <div class="panel">
+        <div class="panel-body -airy">
+          <form method="POST" enctype="multipart/form-data" action="{% url 'listings:add-skill' pk=instructor.id %}"> 
+            {% csrf_token %}
+            <!-- First name -->
+            <div class="form-group" style='margin-bottom: 75px;'>
+                <div class="row">
+                    <div class="form-group col-sm-6 col-lg-3">
+                        <label for="first_name" class="control-label">Skill Name</label>
+                        <input class="form-control" name="skill_name" type="text" required="" value="">
+                    </div>
+                    <div class="form-group col-sm-6 col-lg-3">
+                        <label for="first_name" class="control-label">Training Year</label>
+                        <input class="form-control" name="training_year" type="text" required="" value="">
+                    </div>
+                    <div class="form-group col-sm-6 col-lg-3">
+                        <label for="first_name" class="control-label">Teacher</label>
+                        <input class="form-control" name="teacher_name" type="text" required="" value="">
+                    </div>
+                    <div class="form-group col-sm-6 col-lg-3">
+                        <label for="first_name" class="control-label">School</label>
+                        <input class="form-control" name="school_name" type="text" required="" value="">
+                    </div>
+                  </div>
+              <button id="add-skill-button" class="btn btn-primary" type="submit">
+                <i class="fa fa-plus"></i> Add Skill </button>
+            </div>
+            <div class="row">
+                <div class="form-group">
+                    <h3>Skills</h3>
+                  </div>
+            {% for skill in skills %}
+              <div class="instructor-item">
+                <div class="instructor-item__content">
+                  <p>{{ skill.name }} ({{ skill.training_year }})</p>
+                  <span>
+                    <!-- <a class="btn btn-sm btn-default edit-skill" data-skill-id="9" style="cursor: pointer;" data-toggle="tooltip" title="edit"><i class="fa fa-pencil"></i></a> -->
+                    <a class="btn btn-sm btn-default js-remove-skill" data-skill-id="9" data-toggle="tooltip" title="" data-original-title="remove" href='{% url "listings:remove-skill" pk=instructor.pk skill_id=skill.pk %}'>
+                      <i class="fa fa-trash"></i>
+                    </a>
+                  </span>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <!-- Instructor Skills -->
+            <!-- save button -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </section> {% endblock %}

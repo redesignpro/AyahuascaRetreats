@@ -1,0 +1,333 @@
+{% extends '../listings/accommodations/accommodation-base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<section class="admin-content  js-active-tab-name" data-tab-name="Reviews">
+    <ol class="breadcrumb">
+       <li><a href="/4/organizers/23069/reviews/">Reviews</a></li>
+    </ol>
+    <div class="row">
+       <div class="col-sm-8">
+          <header class="section-title">
+             <h1 class="catamaran">
+                Respond to review
+                <span class="availability-subtitle js-inventory-accommodation-name">
+                | from {{ review.customer.first_name }} {{ review.customer_last_name }}
+                </span>
+             </h1>
+             <small class="title-description">
+             Need some help with how to respond to a good or a bad review? <a href="https://tripaneer.zendesk.com/hc/en-us/sections/115001618745-Reviews" target="_blank">Check out our Review FAQ</a> in our help center.
+             </small>
+          </header>
+       </div>
+       <div class="col-sm-4 hidden-phone">
+          <div class="pull-right">
+             <a href="/4/organizers/23069/reviews/" class="btn btn-outline-default btn-sm">Back to all reviews</a>
+          </div>
+       </div>
+    </div>
+    <style>
+        .checked {
+          color: orange;
+        }
+        </style>
+    <div class="row">
+       <div class="col-sm-6">
+          <div class="admin--card admin--card-compact">
+             <div class="card-content">
+                <div class="card-content--header">
+                   <h4 class="card-title--small">The review</h4>
+                </div>
+                <table class="table">
+                   <tbody>
+                      <tr>
+                         <th style="padding-right: 10px;">Author</th>
+                         <td>
+                            {{ review.customer.first_name }} {{ review.customer_last_name }}
+                         </td>
+                      </tr>
+                      <tr>
+                         <th>Scores</th>
+                         <td>
+                            <ul class="review__ratings">
+                                <li class="review__ratings__overall">
+                                   <span>
+                                   Overall impression:
+                                   <strong>
+                                   {{ review.overall_rating }}
+                                   </strong>
+                                   / 5
+                                   </span>
+                                   <div class="stars">
+                                         <i class="fa fa-star"></i>
+                                         {% if review.overall_rating >= 2 %}
+                                         <i class="fa fa-star"></i>
+                                             {% if review.overall_rating >= 3 %}
+                                             <i class="fa fa-star"></i>
+                                                 {% if review.overall_rating >= 4 %}
+                                                 <i class="fa fa-star"></i>
+                                                     {% if review.overall_rating == 5 %}
+                                                     <i class="fa fa-star"></i>
+                                                     {% endif %}
+                                                 {% endif %}
+                                             {% endif %}
+                                         {% endif %}
+                                         
+                                   </div>
+                                </li>
+                                <li>
+                                   <span>Value for money</span>
+                                   <div class="stars">
+                                       {% if review.value_for_money == 1 %}
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      {% elif review.value_for_money == 2 %}
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      {% elif review.value_for_money == 3 %}
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star"></i>
+                                      <i class="fa fa-star"></i>
+                                      {% elif review.value_for_money == 4 %}
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star"></i>
+                                      {% elif review.value_for_money == 5 %}
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      <i class="fa fa-star checked"></i>
+                                      {% endif %}
+                                   </div>
+                                </li>
+                                <li>
+                                   <span>Accommodation &amp; facilities</span>
+                                   <div class="stars">
+                                     {% if review.accommodation_and_facilities == 1 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.accommodation_and_facilities == 2 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.accommodation_and_facilities == 3 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.accommodation_and_facilities == 4 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.accommodation_and_facilities == 5 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     {% endif %}
+                                   </div>
+                                </li>
+                                <li>
+                                   <span>Food</span>
+                                   <div class="stars">
+                                     {% if review.food == 1 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.food == 2 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.food == 3 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.food == 4 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.food == 5 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     {% endif %}
+                                   </div>
+                                </li>
+                                <li>
+                                   <span>Location</span>
+                                   <div class="stars">
+                                     {% if review.location == 1 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.location == 2 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.location == 3 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.location == 4 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.location == 5 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     {% endif %}
+                                   </div>
+                                </li>
+                                <li>
+                                   <span>Quality of activity</span>
+                                   <div class="stars">
+                                     {% if review.quality_of_activity == 1 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.quality_of_activity == 2 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.quality_of_activity == 3 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.quality_of_activity == 4 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star"></i>
+                                     {% elif review.quality_of_activity == 5 %}
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     <i class="fa fa-star checked"></i>
+                                     {% endif %}
+                                   </div>
+                                </li>
+                             </ul>                         </td>
+                      </tr>
+                      <tr>
+                         <th>Pros</th>
+                         <td>{{ review.positive_info }}
+                         </td>
+                      </tr>
+                      <tr>
+                         <th>Cons</th>
+                         <td>{{ review.negative_info }} </td>
+                      </tr>
+                   </tbody>
+                </table>
+             </div>
+          </div>
+          <div class="admin--card admin--card-compact">
+             <div class="card-content">
+                <div class="card-content--header">
+                   <h4 class="card-title--small">Tips</h4>
+                </div>
+                <div id="accordion" role="tablist" aria-multiselectable="true">
+                   <p>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#positive-tips">
+                      Tip for responding to a positive review
+                      </a>
+                   </p>
+                   <div id="positive-tips" class="collapse" style="margin-bottom: 20px;">
+                      You could use this opportunity to thank the reviewer. Please make sure to personalize your response and avoid using standard or short replies like ‘Thank you’, since these may come across as insincere.
+                   </div>
+                   <p>
+                      <a data-toggle="collapse" data-parent="#accordion" href="#negative-tips">
+                      Tip for responding to a bad review
+                      </a>
+                   </p>
+                   <div id="negative-tips" class="collapse">
+                      Try to convey that you deeply understand how the customer feels, even if you didn’t cause whatever made them upset. You should also try to understand and resolve the issue quickly and get to the bottom of why the mistake occurred, without being defensive or blaming anyone; focus on fixing the process so that it doesn’t happen again.
+                      <br>
+                      Do keep in mind that your reply will be seen by all the customers that visit your listings and business page so please try to follow these best practices for how you should format your reply:
+                      <ul>
+                         <li>Use polite and pleasant language.</li>
+                         <li>Respect the privacy of the customer.</li>
+                         <li>Be professional and use standard formatting.</li>
+                         <li>Don't hastily reply, think carefully about how you want to explain your side of the story.</li>
+                      </ul>
+                      Note: Please be notified that we do not allow and will remove any contact details that you share in your reply.
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <div class="col-sm-6">
+          <div class="admin--card">
+             <div class="card-content">
+                <h4 class="card-title--small">Respond to the review</h4>
+                <form id="review_form" class="popup" action="" method="POST">
+                    {% csrf_token %}
+                   <div class="form-group">
+                      {{ form.host_response|as_crispy_field }}
+                   </div>
+                   <div class="row">
+                      <div class="col-sm-6 col-sm-push-6">
+                         <input class="btn btn-success review_reply_submit btn-block" type="submit" value="Send reply">
+                      </div>
+                   </div>
+                   <div class="clearfix"></div>
+                </form>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+
+{% endblock %}

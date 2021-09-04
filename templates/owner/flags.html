@@ -1,0 +1,231 @@
+{% extends './main.html' %}
+{% load static %}
+{% load humanize %}
+{% load sizify  %}
+
+
+{% block content %}
+
+<script>
+    
+function removeUrlParameter(a, b) {
+  var c,
+    d = b.split("?")[0],
+    e = [],
+    f = -1 === b.indexOf("?") ? "" : b.split("?")[1];
+  if ("" !== f) {
+    e = f.split("&");
+    for (var g = e.length - 1; 0 <= g; g -= 1)
+      (c = e[g].split("=")[0]), c === a && e.splice(g, 1);
+    d = 0 < e.length ? d + "?" + e.join("&") : d;
+  }
+  return d;
+}
+function setParam(name, value) {
+        var l = window.location;
+
+        /* build params */
+        var params = {};        
+        var x = /(?:\??)([^=&?]+)=?([^&?]*)/g;        
+        var s = l.search;
+        for(var r = x.exec(s); r; r = x.exec(s))
+        {
+            r[1] = decodeURIComponent(r[1]);
+            if (!r[2]) r[2] = '%%';
+            params[r[1]] = r[2];
+        }
+
+        /* set param */
+        params[name] = encodeURIComponent(value);
+
+        /* build search */
+        var search = [];
+        for(var i in params)
+        {
+            var p = encodeURIComponent(i);
+            var v = params[i];
+            if (v != '%%') p += '=' + v;
+            search.push(p);
+        }
+        search = search.join('&');
+
+        /* execute search */
+        l.search = search;
+    }
+function getComboA(event, selectObject) {
+    var value = selectObject.value;
+    console.log(value);
+    setParam('flt', value);
+}
+</script>
+<style>
+    .noHover {
+        pointer-events: none;;
+    }
+</style>
+        <!-- start: page -->
+        <div class="row">
+            <div class="col">
+
+                <div class="card card-modern">
+                    <div class="card-body">
+                        <div class="datatables-header-footer-wrapper">
+                            <div class="datatable-header">
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-8 col-lg-auto ms-auto ml-auto mb-3 mb-lg-0">
+                                        <div class="d-flex align-items-lg-center flex-column flex-lg-row">
+                                            <label class="ws-nowrap me-3 mb-0">Filter By:</label>
+                                            <select class="form-control select-style-1 filter-by" name="filter-by" onchange="getComboA(event, this);">
+                                                {% if 'all' == request.GET.flt %}
+                                                <option value="all" selected>All</option>
+                                                {% else %}
+                                                <option value="all">All</option>
+                                                {% endif %}
+                                                {% if 'id' == request.GET.flt %}
+                                                <option value="id" selected>ID</option>
+                                                {% else %}
+                                                <option value="id">ID</option>
+                                                {% endif %}
+                                                {% if 'convo_id' == request.GET.flt %}
+                                                <option value="convo_id" selected>Conversation ID</option>
+                                                {% else %}
+                                                <option value="convo_id">Conversation ID</option>
+                                                {% endif %}
+                                                {% if 'host_name' == request.GET.flt %}
+                                                <option value="host_name" selected>Host Name</option>
+                                                {% else %}
+                                                <option value="host_name">Host Name</option>
+                                                {% endif %}
+                                                {% if 'customer_name' == request.GET.flt %}
+                                                <option value="customer_name" selected>Customer First Name</option>
+                                                {% else %}
+                                                <option value="customer_name">Customer First Name</option>
+                                                {% endif %}
+                                                {% if 'customer_last_name' == request.GET.flt %}
+                                                <option value="customer_last_name" selected>Customer Last Name</option>
+                                                {% else %}
+                                                <option value="customer_last_name">Customer Last Name</option>
+                                                {% endif %}
+                                                {% if 'date' == request.GET.flt %}
+                                                <option value="date">Date</option>
+                                                {% else %}
+                                                <option value="date">Date</option>
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-12 col-lg-auto ps-lg-1">
+                                        <div class="search search-style-1 search-style-1-lg mx-lg-auto">
+                                            <form method="GET">
+                                            <div class="input-group">
+                                                <input type="text" class="search-term form-control" name="search-term" id="search-term" placeholder="Search Customer">
+                                                <button class="btn btn-default" type="submit"><i class="bx bx-search"></i></button>
+                                            </div>
+                                        </form>
+                                        </div>
+                                    </div>
+                  
+                                </div>
+                            </div>
+
+                            <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 750px;">
+                                <thead>
+                                    <tr>
+                                        <th>Msg. ID</th>
+                                        <th>Conv. ID</th>
+                                        <th>Host</th>
+                                        <th>Customer</th>
+                                        <th>Date</th>
+                                        <th>Message</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for flag in flags %}
+                                    <tr>
+                                        <td><a href="{{ flag.get_admin_url }}"><strong>{{ flag.id }}</strong></a></td>
+                                        <td><a href="{{ flag.conversation.get_admin_url }}"><strong>{{ flag.conversation.id }}</strong></a></td>
+                                        <td><a href="{{ flag.conversation.host.get_admin_url }}"><strong>{{ flag.conversation.host.business_name }}</strong></a></td>
+                                        <td><a href="{{ flag.conversation.customer.get_admin_url }}"><strong>{{ flag.conversation.customer.get_full_name }}</strong></a></td>
+                                        <td>{{ flag.created_at }}</td>
+                                        <td>{{ flag.original_context|truncatechars:80 }}</td>
+                                        <td><a href='{{ flag.get_admin_url }}' class='btn btn-xs btn-warning'>Edit</a><a href='{% url "listings:approve-flag" flag.id %}' class='btn btn-xs btn-success' style='margin-left:15px'>Approve</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr class="solid mt-5 opacity-4">
+                        </table>
+                    </div>
+                    
+                    <div class="datatable-footer">
+                        <div class="row align-items-center justify-content-between mt-3">
+                            <div class="col-lg-auto text-center order-3 order-lg-2">
+                                <div class="results-info-wrapper">
+                                </div>
+                            </div>
+                            <div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
+                                <div class="pagination-wrapper">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable-ecommerce-list_paginate">
+                                        <ul class="pagination pagination-modern pagination-modern-spacing justify-content-center">
+                                            {% if page_obj.has_previous %}
+                                            <li class="paginate_button page-item previous" id="datatable-ecommerce-list_previous">
+                                                <a href="?page={{ page_obj.previous_page_number }}" aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button page-item previous disabled" id="datatable-ecommerce-list_previous">
+                                                <a href='' aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if page_obj.number|add:'-4' > 1 %}
+                                            <a href="?page={{ page_obj.number|add:'-5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                                            {% endif %}
+
+                                            {% for i in page_obj.paginator.page_range %}
+                                                {% if page_obj.number == i %}
+                                                    <li class="paginate_button page-item active">
+                                                        <a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="datatable-ecommerce-list" data-dt-idx="1" tabindex="0" class="page-link">{{ i }}</a>
+                                                    </li>
+                                                    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                                                    <li class="paginate_button page-item ">
+                                                        <a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="datatable-ecommerce-list" data-dt-idx="2" tabindex="0" class="page-link">{{ i }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                                                <a href="?page={{ page_obj.number|add:'5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                                            {% endif %}
+
+                                            {% if page_obj.has_next %}
+                                            <li class="paginate_button page-item next" id="datatable-ecommerce-list_next">
+                                                <a href="?page={{ page_obj.next_page_number }}" aria-controls="datatable-ecommerce-list" data-dt-idx="3" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button page-item next disabled" id="datatable-ecommerce-list_next">
+                                                <a href="" aria-controls="datatable-ecommerce-list" data-dt-idx="3" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end: page -->
+
+
+{% endblock %}

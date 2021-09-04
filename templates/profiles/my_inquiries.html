@@ -1,0 +1,269 @@
+{% extends '../listings/accommodations/accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load humanize %}
+<style>
+   .recent-inquiries ul { margin: 16px 0 36px; padding: 0; list-style-type: none; }
+   .recent-inquiries ul li {border-bottom: 1px solid #EEEEEE; margin-bottom: 10px; padding-bottom: 10px; position: relative;}
+   .recent-inquiries ul li .mobile-link {display: block; position: absolute;width: 100%; height: 100%; top: 0;}
+   .recent-inquiries .customer-name {font-size: 14px; color: #1F2225;}
+   .recent-inquiries .label-container .label {margin-bottom: 2px; margin-right: 2px;}
+   .recent-inquiries .listing-title { color: #6B747B; font-size: 14px; }
+   .recent-inquiries .listing-title p { padding-bottom: 3px; margin-bottom: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 8px;}
+   .recent-inquiries .inquiry-meta { color: #979AA0; font-size: 12px; }
+   /* .recent-inquiries .inquiry-meta * {white-space: nowrap;} */
+   .recent-inquiries .inquiry-meta strong {color: #18bc9c;}
+   
+   @media screen and (min-width: 768px) {
+      .recent-inquiries ul {margin: 20px 0 80px 0;}
+      .recent-inquiries .customer-name {font-size: 16px; }
+      .recent-inquiries .listing-title { color: #6B747B; font-size: 15px;}
+      .recent-inquiries .listing-title p { margin-top: 0; }
+      .recent-inquiries .inquiry-meta { font-size: 14px; }
+      .recent-inquiries ul li .mobile-link {display: none;}
+   }
+   
+   </style>
+<section class="admin-content  js-active-tab-name" data-tab-name="Inquiries">
+   <header class="section-title">
+      <h1 class="catamaran">Inquiries</h1>
+   </header>
+   <div class="panel panel-default">
+      <div class="panel-heading horizontal-scroll">
+         <ul class="nav nav-tabs horizontal-scroll__elements">
+            <li role="presentation" class="active"><a href="#"><i class="fa fa-comments"></i> Recent Inquiries</a></li>
+            <li role="presentation"><a href="{% url 'listings:inquiry_archive' pk=request.user.get_profile.id %}"><i class="fa fa-archive"></i> Inquiry Archive</a></li>
+         </ul>
+      </div>
+      <div class="panel-body -airy">
+         <div class="tab-content">
+            <div role="tabpanel" id="inquiries" class="tab-pane active">
+               <div class="recent-inquiries">
+                  <div class="section-title">
+                     <h3>New inquiries</h3>
+                     <small class="title-description">You haven't replied to these ones yet</small>
+                  </div>
+                  <ul class="recent-inquiries--new">
+                     {% for inquiry in inquiries %}
+                     {% if not inquiry.is_approved and not inquiry.viewed %}
+                     <li>
+                        <div class="row">
+                           <div class="col-sm-3">
+                              <div class="row">
+                                 <div class="col-sm-12 col-xs-8 customer-name">
+                                    <strong>
+                                    {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}
+                                    </strong>
+                                 </div>
+                                 <div class="col-sm-12 col-xs-4 label-container">
+                                    {% if inquiry.is_conditional %}
+                                    <span class=" pull-right-only-xs label label-info">inquiry</span>
+                                    {% else %}
+                                    <span class=" pull-right-only-xs label label-warning">reservation</span>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-8 col-sm-7">
+                              <div class="row listing-title">
+                                 <div class="col-sm-12">
+                                    <p>{{ inquiry.listing.title }}</p>
+                                 </div>
+                              </div>
+                              <div class="row inquiry-meta">
+                                 <div class="col-sm-4 col-xs-6">
+                                    <strong>{{ inquiry.total_price|intcomma }} USD</strong>
+                                 </div>
+                                 <div class="col-sm-5 col-xs-6">
+                                    Arrival: <strong>{{ inquiry.arrival_date }}</strong>
+                                 </div>
+                                 <div class="col-sm-3 hidden-phone">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i> {{ inquiry.created_at|timesince }}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-1 col-sm-2 hidden-phone">
+                              <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="btn btn-info pull-right" target="_blank" rel="noopener noreferrer">
+                              Respond
+                              </a>
+                           </div>
+                        </div>
+                        <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="mobile-link" target="_blank" rel="noopener noreferrer"></a>
+                     </li>
+                     {% endif %}
+                     {% endfor %}
+                  </ul>
+                  <div class="section-title">
+                     <h3>New Messages</h3>
+                     <small class="title-description">Inquiries you have recently received a message from</small>
+                  </div>
+                  <ul class="recent-inquiries--new">
+                     {% for inquiry in new_messages %}
+                     <li>
+                        <div class="row">
+                           <div class="col-sm-3">
+                              <div class="row">
+                                 <div class="col-sm-12 col-xs-8 customer-name">
+                                    <strong>
+                                    {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }} {{ inquiry.id }}
+                                    </strong>
+                                 </div>
+                                 <div class="col-sm-12 col-xs-4 label-container">
+                                    {% if inquiry.is_conditional %}
+                                    <span class=" pull-right-only-xs label label-info">inquiry</span>
+                                    {% else %}
+                                    <span class=" pull-right-only-xs label label-warning">reservation</span>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-8 col-sm-7">
+                              <div class="row listing-title">
+                                 <div class="col-sm-12">
+                                    <p>{{ inquiry.listing.title }}</p>
+                                 </div>
+                              </div>
+                              <div class="row inquiry-meta">
+                                 <div class="col-sm-4 col-xs-6">
+                                    <strong>{{ inquiry.total_price|intcomma }} USD</strong>
+                                 </div>
+                                 <div class="col-sm-5 col-xs-6">
+                                    Arrival: <strong>{{ inquiry.arrival_date }}</strong>
+                                 </div>
+                                 <div class="col-sm-3 hidden-phone">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i> {{ inquiry.created_at|timesince }}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-1 col-sm-2 hidden-phone">
+                              <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="btn btn-info pull-right" target="_blank" rel="noopener noreferrer">
+                              Respond
+                              </a>
+                           </div>
+                        </div>
+                        <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="mobile-link" target="_blank" rel="noopener noreferrer"></a>
+                     </li>
+                     {% endfor %}
+                  </ul>
+                  <div class="section-title">
+                     <h3>Payment Not Enabled Yet</h3>
+                     <small class="title-description">Do you have availability for these customers? Accept their inquiry to enable them to pay.</small>
+                  </div>
+                  <ul class="recent-inquiries--new">
+                     {% for inquiry in inquiries %}
+                     {% if not inquiry.is_approved and inquiry.viewed %}
+                     <li>
+                        <div class="row">
+                           <div class="col-sm-3">
+                              <div class="row">
+                                 <div class="col-sm-12 col-xs-8 customer-name">
+                                    <strong>
+                                    {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}
+                                    </strong>
+                                 </div>
+                                 <div class="col-sm-12 col-xs-4 label-container">
+                                    {% if inquiry.is_conditional %}
+                                    <span class=" pull-right-only-xs label label-info">inquiry</span>
+                                    {% else %}
+                                    <span class=" pull-right-only-xs label label-warning">reservation</span>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-8 col-sm-7">
+                              <div class="row listing-title">
+                                 <div class="col-sm-12">
+                                    <p>{{ inquiry.listing.title }}</p>
+                                 </div>
+                              </div>
+                              <div class="row inquiry-meta">
+                                 <div class="col-sm-4 col-xs-6">
+                                    <strong>{{ inquiry.total_price|intcomma }} USD</strong>
+                                 </div>
+                                 <div class="col-sm-5 col-xs-6">
+                                    Arrival: <strong>{{ inquiry.arrival_date }}</strong>
+                                 </div>
+                                 <div class="col-sm-3 hidden-phone">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i> {{ inquiry.created_at|timesince }}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-1 col-sm-2 hidden-phone">
+                              <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="btn btn-info pull-right" target="_blank" rel="noopener noreferrer">
+                              Respond
+                              </a>
+                           </div>
+                        </div>
+                        <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="mobile-link" target="_blank" rel="noopener noreferrer"></a>
+                     </li>
+                     {% endif %}
+                     {% endfor %}
+                  </ul>
+                  <div class="section-title">
+                     <h3>Recent inquiries</h3>
+                     <small class="title-description">You have responded to these requests, but you can follow up with them anytime</small>
+                  </div>
+                  <ul class="recent-inquiries--new">
+                     {% for inquiry in inquiries %}
+                     {% if inquiry.is_approved and not inquiry.deposit_paid %}
+                     <li>
+                        <div class="row">
+                           <div class="col-sm-3">
+                              <div class="row">
+                                 <div class="col-sm-12 col-xs-8 customer-name">
+                                    <strong>
+                                    {{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}
+                                    </strong>
+                                 </div>
+                                 <div class="col-sm-12 col-xs-4 label-container">
+                                    {% if inquiry.is_conditional %}
+                                    <span class=" pull-right-only-xs label label-info">inquiry</span>
+                                    {% else %}
+                                    <span class=" pull-right-only-xs label label-warning">reservation</span>
+                                    {% endif %}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-8 col-sm-7">
+                              <div class="row listing-title">
+                                 <div class="col-sm-12">
+                                    <p>{{ inquiry.listing.title }}</p>
+                                 </div>
+                              </div>
+                              <div class="row inquiry-meta">
+                                 <div class="col-sm-4 col-xs-6">
+                                    <strong>{{ inquiry.total_price|intcomma }} USD</strong>
+                                 </div>
+                                 <div class="col-sm-5 col-xs-6">
+                                    Arrival: <strong>{{ inquiry.arrival_date }}</strong>
+                                 </div>
+                                 <div class="col-sm-3 hidden-phone">
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i> {{ inquiry.created_at|timesince }}
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-1 col-sm-2 hidden-phone">
+                              <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="btn btn-primary pull-right" target="_blank" rel="noopener noreferrer">
+                              Follow up
+                              </a>
+                           </div>
+                        </div>
+                        <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="mobile-link" target="_blank" rel="noopener noreferrer"></a>
+                     </li>
+                     {% endif %}
+                     {% endfor %}
+                  </ul>
+                  <div class="row">
+                     <div class="col-xs-12">
+                        Please find the rest of your inquries and reservations in the <a style="font-weight: bold;" href="/4/organizers/23069/inquiries/">INQUIRY ARCHIVE</a> tab.
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+
+{% endblock %}

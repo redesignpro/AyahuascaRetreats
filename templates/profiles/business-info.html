@@ -1,0 +1,558 @@
+{% extends '../listings/accommodations/accommodation-base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block content %}
+
+
+<section id="profile-editor" class="admin--dashboard admin-content js-active-tab-name" data-tab-name="Business Information" data-organizer="51525" data-site="4" data-profile-type="business">
+    <header class="section-title">
+      <h1 class="catamaran">Business Information</h1>
+      <small class="title-description"> We respect your privacy and treat your personal data with care. </small>
+    </header>
+    <div id="organizer_identifier" data-organizer-id="51525">
+      <div id="organizer">
+        <div class="panel panel-default">
+          <div class="panel-body -airy">
+            <div role="tabpanel" id="profile" class="tab-pane has-fixed-actions" i-section="Business Profile">
+              <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="business_or_individual" class="control-label"> Profile type </label>
+                      <div class="form-helper">
+                        <p> Please specify if you are registered as business or individual. </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div style="margin-bottom: 10px">
+                        <label class="label label-success"> Business </label>
+                      </div>
+                      <a href="{% url 'listings:switch-business' pk=request.user.get_profile.id %}" id="change-profile-type" class="btn btn-primary pull-left"> Change to Personal </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Business information</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="registered_business_name" class="control-label">Registered business Name</label>
+                      <div class="form-helper">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.registered_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="website" class="control-label">Website</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.url|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Business registration documents</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="registration_number" class="control-label"> Business registration number </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.registration_number|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="registration" class="control-label"> Business registrations </label>
+                      <div class="form-helper">
+                        <p> Please upload a scan of your business registrations </p>
+                      </div>
+                    </div>
+                  </div>
+                  <style>
+                      #id_expiration_date {
+                          width: 200px;
+                      }
+                  </style>
+                  <div class="col-sm-9 document-manager" id="registrar">
+                    {{ form.registration_file|as_crispy_field }}
+                  {{ form.expiration_date|as_crispy_field }}
+                  </div>
+                </div>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Business registration address</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="address" class="control-label"> Street and house number </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.business_street_and_number|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="city_or_region" class="control-label"> City </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.business_city|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="address_postal_code" class="control-label"> Zip/Postal code </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.business_zip|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="state" class="control-label"> State/Province </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.business_state|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="country" class="control-label">Country</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.business_country|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-group"><div class="row"><div class="col-sm-3"><label for="business-hours-timezone">Timezone</label></div><div class="col-sm-6"><select class="form-control" id="business-hours-timezone"><option value="" selected> ()</option></select></div></div></div> -->
+                <div class="row" id="vat_wrap" style="display: none">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="vat_id" class="control-label">VAT number</label>
+                      <div class="form-helper">
+                        <p id="vat_info_europe_wrap"> As you are based in Europe, please provide your VAT number here so we can reverse charge the tax. If you do not have a (valid) VAT number, we will charge 21% VAT on top of our commission. </p>
+                        <p id="vat_info_netherlands_wrap" style="display: none"> As you are based in the Netherlands, we are required to charge 21% VAT on top of our commission </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <input name="vat_id" id="vat_id" type="text" class="form-control" onkeyup="checkVatValid()" v-model="vat_id" />
+                    </div>
+                  </div>
+                </div>
+                <!-- contact person ############################################## -->
+                <div class="row section-title divider-on-top js-contact-person">
+                  <div class="col-sm-12">
+                    <h3>Contact person</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="contact_first_name" class="control-label">First name</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.contact_first_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="contact_last_name" class="control-label">Last name</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.contact_last_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row js-contact-person-mobile">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="mobile_code" class="control-label"> Mobile Number </label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="row">
+                      <div class="col-xs-7">
+                        <div class="form-group">
+                            {{ form.contact_phone|as_crispy_field }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row js-contact-person-email">
+                    <div class="col-sm-3">
+                      <div class="form-group">
+                        <label for="mobile_code" class="control-label"> Contact Email </label>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-xs-7">
+                          <div class="form-group">
+                              {{ form.contact_email|as_crispy_field }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                <script type="text/javascript">
+                  $(function() {
+                    if (document.location.href.indexOf("_edit=contact-email") > 0) {
+                      $("html, body").animate({
+                        scrollTop: $(".js-contact-person").offset().top,
+                      }, 500);
+                      $(".js-contact-person-email").addClass("highlighted");
+                    }
+                    if (document.location.href.indexOf("_edit=contact-phone") > 0) {
+                      $("html, body").animate({
+                        scrollTop: $(".js-contact-person").offset().top,
+                      }, 500);
+                      $(".js-contact-person-mobile").addClass("highlighted");
+                    }
+                  });
+                </script>
+                <!-- business owner ############################################## -->
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Business Owner</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_first_name" class="control-label">First name</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      {{ form.owner_first_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_middle_name" class="control-label">Middle name</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.owner_middle_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_last_name" class="control-label">Last name</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.owner_last_name|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="date_of_birth" class="control-label">Date of birth</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div class="input-group">
+                        {{ form.owner_dob|as_crispy_field }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_mobile_number" class="control-label">Mobile Number</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-xs-7">
+                            {{ form.owner_phone|as_crispy_field }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="owner_email" class="control-label">Owner email</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                        {{ form.owner_email|as_crispy_field }}
+                    </div>
+                  </div>
+                </div>
+                <div class="row section-title divider-on-top">
+                  <div class="col-sm-12">
+                    <h3>Licences</h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <label for="operating_licence" class="control-label"> Operating licenses </label>
+                      <div class="form-helper">
+                        <p> Please upload scans of your operating licences </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-9 document-manager" id="licensor">
+                    {{ form.owner_license|as_crispy_field }}
+                  </div>
+                </div>
+                <div id="change-name-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title text-info">Warning</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p class="text-info">
+                          <i class="fa fa-exclamation-circle"></i> Changing your business name impacts Payouts. Hence, you will need to update your bank details in Payment page.
+                        </p>
+                      </div>
+                      <div class="modal-footer">
+                        <button id="change-name-confirm" type="button" data-dismiss="modal" class="btn btn-success">
+                          <i class="fa fa-check"></i> Continue </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                          <i class="fa fa-times"></i> Cancel </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="add-new-registration-modal" class="modal fade">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <input type="hidden" name="documentType" value="registration" />
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title text-info"> Add Registration </h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="number">Number</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="text" class="form-control" name="number" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="file">File *</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="file" class="form-control" name="file" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="expiration">Expiration</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="datetime" class="form-control js-datepicker" name="expiresAt" autocomplete="off" />
+                            <div class="
+                                btn btn-success
+                                input-group-addon
+                                js-datepicker-addon
+                              ">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="
+                            btn btn-success
+                            add-new-registration-document
+                          " type="button">
+                          <i class="fa fa-check"></i>Save <i class="
+                              fa fa-spinner fa-spin
+                              hide
+                              js-save-spinner
+                            "></i>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal"> Cancel </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  $(function() {
+                    $("#add-registration").click(function(event) {
+                      $("#add-new-registration-modal").modal("show");
+                      event.preventDefault();
+                    });
+                  });
+                </script>
+                <div id="add-new-licence-modal" class="modal fade">
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <input type="hidden" name="documentType" value="licence" />
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title text-info">Add Licence</h4>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">Association *</label>
+                          <div class="col-sm-9 input-group">
+                            <select name="associationId" class="form-control js-display-hidden-input">
+                              <option value="1"> SATSA: South African Tourism Services Association </option>
+                              <option value="2"> KATO: The Kenya Association of Tour Operators </option>
+                              <option value="3"> TALA: Tanzania Tourism License </option>
+                              <option value="4"> British Wheel of Yoga </option>
+                              <option value="5"> European Yoga Alliance </option>
+                              <option value="6">World Yoga Alliance</option>
+                              <option value="7"> Yoga Alliance International </option>
+                              <option value="8"> Yoga Alliance Professionals </option>
+                              <option value="9">Yoga Alliance</option>
+                              <option value="11"> TRA: Tourism Regulatory Authority </option>
+                              <option value="other">Other</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group hide js-association-name-hidden">
+                          <label class="col-sm-3 control-label"></label>
+                          <div class="col-sm-9 input-group">
+                            <input type="text" class="form-control" name="association" maxlength="200" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="number">Number</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="text" class="form-control" name="number" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="file">File *</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="file" class="form-control" name="file" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label" for="expiration">Expiration</label>
+                          <div class="col-sm-9 input-group">
+                            <input type="datetime" class="form-control js-datepicker" name="expiresAt" autocomplete="off" />
+                            <div class="
+                                btn btn-success
+                                input-group-addon
+                                js-datepicker-addon
+                              ">
+                              <i class="fa fa-calendar"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button class="
+                            btn btn-success
+                            add-new-registration-document
+                          " type="button">
+                          <i class="fa fa-check"></i>Save <i class="
+                              fa fa-spinner fa-spin
+                              hide
+                              js-save-spinner
+                            "></i>
+                        </button>
+                        <button class="btn btn-danger" type="button" data-dismiss="modal"> Cancel </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  $(function() {
+                    $("#add-licence").click(function(event) {
+                      $("#add-new-licence-modal").modal("show");
+                      event.preventDefault();
+                    });
+                  });
+                </script>
+                <script>
+                  $(function() {
+                    initAddNewRegistrationDocumentModal();
+                  });
+                </script>
+                <div class="
+                    fixed-actions fixed-actions--bottom fixed-actions--right
+                  ">
+                  <a id="cancel" class="btn btn-danger" href="/4/organizers/">
+                    <i class="fa fa-times"></i> Cancel </a>
+                  <input type="submit" class="btn btn-success save" value="Save changes" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  {% endblock %}

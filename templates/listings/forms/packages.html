@@ -1,0 +1,486 @@
+{% extends './base-listing.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div id="listing" data-listing-id="43775">
+    <div class="section-title">
+      <h3> Packages &amp; Availability </h3>
+      <div class="recommendation-actions">
+        <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_packagesAndAvailability" tabindex="-1" role="dialog" aria-label>
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">
+                    <img src="/static/files/shape-icons/recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                  </span>
+                </button>
+                <div class="modal-header__content">
+                  <img src="/static/files/shape-icons/recommendations.svg" class="add-recommendations-modal__title__image" />
+                  <h3>Add recommendation</h3>
+                </div>
+              </div>
+              <div class="add_recommendations_form">
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="add-recommendation-title">Recommendation for</label>
+                    <input type="text" class="form-control add-recommendation-title" placeholder="Packages &amp; Availability (page)" value="Packages &amp; Availability (page)" readonly />
+                  </div>
+                  <div class="form-group">
+                    <label for="add-recommendation-type">Type <span id="add-recommendation-type-packagesAndAvailability" class="badge hide">Required</span>
+                    </label>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                      <label class="btn btn-default">
+                        <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                      <label class="btn btn-default">
+                        <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-packagesAndAvailability" class="badge hide">Required</span>
+                    </label>
+                    <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('packagesAndAvailability', 'page', 'packagesAndAvailability')">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+            let field = recommendationName;
+            let section = recommendationSection;
+            let targetForm = event.target.closest('.add_recommendations_form')
+            let feedback = $(targetForm).find('.add-recommendation-content').val();
+            let type = $(targetForm).find('.add-recommendation-type:checked').val();
+            let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+            let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+            let translations = {
+              "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+              "success": "Changes saved successfully"
+            }
+            if (recommendationType == 'page') {
+              section = recommendationSection;
+              field = '';
+            }
+            if (feedback == '' && type == undefined) {
+              feedbackErrorElement.removeClass('hide')
+              typeErrorElement.removeClass('hide');
+              return;
+            }
+            if (feedback == '') {
+              feedbackErrorElement.removeClass('hide');
+              return;
+            }
+            if (type == undefined) {
+              typeErrorElement.removeClass('hide');
+              return;
+            }
+            let formData = {
+              "type": type,
+              "section": section,
+              "field": field,
+              "feedback": feedback
+            }
+            let options = {
+              credentials: 'same-origin',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: 'POST',
+              body: JSON.stringify(formData)
+            }
+            let url = '/4/listings/43775/feedback/json/create'
+            fetch(url, options).then(function(response) {
+              if (response.status != 400 && response.status != 200) {
+                flash.error(translations.error);
+                console.log(response);
+              } else {
+                flash.success(translations.success, function() {
+                  flash.clear()
+                });
+                $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                return response.json()
+              }
+            })
+          }
+        </script>
+      </div>
+      <script>
+        function showRecommendationHistory(name) {
+          let currentElement = event.target;
+          $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+          $(currentElement).toggleClass('hide');
+          $(currentElement).next().toggleClass('hide');
+        }
+
+        function hideRecommendationHistory(name) {
+          let currentElement = event.target;
+          $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+          $(currentElement).toggleClass('hide');
+          $(currentElement).prev().toggleClass('hide');
+        }
+      </script>
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <a href="#" class="btn btn-outline-default js-listing-nav-column-toggle hidden-phone">
+            <i class="fa fa-bars"></i> Toggle Menu </a>
+        </div>
+        <div class="btn-group">
+          <a href="/4/listings/edit/43775/photos/" class="btn btn-outline-default">
+            <i class="ebs-icon ebs-icon-sec-arrow-left"></i> Photos </a>
+          <a href="/4/listings/edit/43775/booking-conditions/" class="btn btn-outline-default">Booking conditions <i class="ebs-icon ebs-icon-sec-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+              <div class="panel panel-default">
+                <div class="panel-body -airy">
+                  <div id="availability" i-section="Availability">
+                    <script>
+                      function completeRecommendation(recommendationId) {
+                        let targetElement = event.target;
+                        let translations = {
+                          "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                          "success": "Changes saved successfully"
+                        };
+                        let options = {
+                          credentials: 'same-origin',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          method: 'POST'
+                        }
+                        let url = `/4/listings/43775/feedback/${recommendationId}/json/complete`
+                        fetch(url, options).then(function(response) {
+                          if (response.status != 200) {
+                            flash.error(translations.error);
+                            console.log(response);
+                          } else {
+                            flash.success(translations.success, function() {
+                              flash.clear()
+                            });
+                            $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                            $(targetElement).closest('.button-section').hide();
+                            return response.json()
+                          }
+                        })
+                      }
+
+                      function dismissRecommendation(recommendationId, recommendationType) {
+                        let targetElement = event.target;
+                        let options = {
+                          credentials: 'same-origin',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          method: 'POST'
+                        }
+                        let url = `/4/listings/43775/feedback/${recommendationId}/json/dismiss`
+                        fetch(url, options).then(function(response) {
+                          if (response.status != 200) {
+                            flash.error(translations.error);
+                            console.log(response);
+                          } else {
+                            flash.success(translations.success, function() {
+                              flash.clear()
+                            });
+                            $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                            $(targetElement).closest('.button-section').hide();
+                            return response.json()
+                          }
+                        })
+                      }
+
+                      function deleteRecommendation(recommendationId, recommendationType) {
+                        let targetElement = event.target;
+                        let options = {
+                          credentials: 'same-origin',
+                          headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                          },
+                          method: 'POST'
+                        }
+                        let url = `/4/listings/43775/feedback/${recommendationId}/json/delete`
+                        if (window.confirm("Are you sure?")) {
+                          fetch(url, options).then(function(response) {
+                            if (response.status != 200) {
+                              flash.error('Failed to delete recommendation. Try again or report to #application');
+                              console.log(response);
+                            } else {
+                              flash.success(translations.success, function() {
+                                flash.clear()
+                              });
+                              $(targetElement).closest('.panel-body').hide();
+                              return response.json()
+                            }
+                          })
+                        }
+                      }
+
+                      function editRecommendation(recommendationName, type, id) {
+                        $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                      }
+                    </script>
+                    <div class="row section-title">
+                      <div class="col-sm-8">
+                        <h3> Packages </h3>
+                        {% if request.session.package_error %}
+                        <h4 style='color: red;'>{{ request.session.package_error }}</h4>
+                        {% endif %}
+                        <div class="btn-toolbar" style="margin-bottom: 10px">
+                          {% if request.user.get_profile.has_accommodations and request.user.get_profile.has_rooms %}
+                          <button id="package-creator" class="btn btn-success package-creator " data-target="#edit-package" data-toggle="modal">
+                            <i class="fa fa-plus"></i> 
+                            New Package 
+                          </button>
+                            {% if listing.available_all_year %}
+                            <button id="package-creator" class="btn btn-danger package-deleter "data-target="#edit-year" data-toggle="modal">
+                              <i class="fa fa-minus" style='color:white'></i> 
+                              Remove Year-Round 
+                            </button>
+                            {% else %}
+                            <a class="btn btn-success package-creator" href="{% url 'listings:add_year_round' listing=listing.id %}">
+                              <i class="fa fa-check"></i> Enable Year-Round
+                            </a>
+                            {% endif %}
+                            {% if listing.instant_booking %}
+                            <a class="btn btn-danger package-creator" href="{% url 'listings:remove_instant_booking' pk=listing.id %}">
+                              <i class="fa fa-check"></i> Disable Instant Bookings
+                            </a>
+                            {% else %}
+                            <a class="btn btn-success package-creator" href="{% url 'listings:add_instant_booking' pk=listing.id %}">
+                              <i class="fa fa-check"></i> Enable Instant Bookings
+                            </a>
+                            {% endif %}
+                            {% else %}
+                            <button id="package-creator" class="btn btn-success package-creator " data-target="#room-reminder" data-toggle="modal">
+                              <i class="fa fa-plus"></i> 
+                              New Package 
+                            </button>
+                            <button id="package-creator" class="btn btn-success package-deleter "data-target="#room-reminder" data-toggle="modal">
+                              <i class="fa fa-check" style='color:white'></i> 
+                              Enable Year-Round 
+                            </button>
+                            <button id="package-creator" class="btn btn-success package-creator "data-target="#room-reminder" data-toggle="modal">
+                              <i class="fa fa-check" style='color:white'></i> 
+                              Enable Instant Bookings
+                            </button>
+                            {% endif %}
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="alert alert-info-light" role="alert">
+                          <strong>Tip</strong>: Save time and increase conversion with turning on instant bookings to your packages!
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row package-table">
+                      <div class="col-sm-12">
+                        <div class="table-responsive">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Room &amp; Accommodation</th>
+                                <th>People in Package</th>
+                                <th>Note</th>
+                                <th>Default Price</th>
+                                <th>Price Calculation</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody id="package-holder">
+                                {% for package in packages %}
+                              <tr>
+                                <td id="acc_desc_533484" data-room-info="Shared double room">
+                                  <b>{{ package.room.get_type }}</b>
+                                  <br> {{ package.room.get_acc }}
+                                </td>
+                                <td> {{ package.number_of_people }} </td>
+                                <td id="note_533484">{{ package.note }}</td>
+                                <td id="price_533484" data-price="1,190">{{ package.default_price|intcomma }} USD</td>
+                                <td id="price_calculation_533484">{{ package.price_calculation|safe|truncatechars:30 }}</td>
+                                <td>
+                                  <button class="btn btn-outline-primary btn-sm price-btn" data-target="#edit-price" data-toggle="modal" data-packageid='{{ package.id }}' data-packageprice='{{ package.default_price }}' data-packagecalc='{{ package.price_calculation }}'><i class="fa fa-tag"></i></button>
+                                  <a class="btn btn-outline-secondary btn-sm package-deleter" href="{% url 'listings:edit-calendar' pk=package.pk listing=listing.id %}">
+                                    <i class="fa fa-edit"></i>
+                                  </a>
+                                  <a href="{% url 'listings:delete-package' pk=package.id listing=listing.pk %}" class="btn btn-outline-danger btn-sm package-deleter">
+                                    <i class="fa fa-trash"></i>
+                                  </button>
+                                </td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <script type="text/javascript">
+                caleran("#caleran-ex-1", {
+                    inline: true,
+                    rangeOrientation: "vertical",
+                    onafterselect: function(caleran, startDate, endDate) {
+                        document.getElementById("start_date").value = startDate.format('l');
+                        document.getElementById("end_date").value = endDate.format('l');
+                    }
+                });
+              </script>
+                            <div id="edit-price" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                              <form method="POST" action="">
+                                {% csrf_token %}
+                                {{ form.media }}
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">×</span>
+                                    </button>
+                                    <input type='hidden' value='' name='package_id' id='package_id' />
+                                    <h4 class="modal-title" id="edit-package-title">Create a new package</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="row">
+                                      <div class="form-group col-sm-12">
+                                        {{ form.default_price|as_crispy_field }}
+                                      </div>
+                                      <div class="form-group col-sm-12">
+                                        {{ form.price_calculation|as_crispy_field }}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button id="send-package" type="submit" class="btn btn-success">
+                                      <i class="fa fa-check"></i> Continue </button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                      <i class="fa fa-times"></i> Cancel </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                            </div>
+              <div id="edit-package" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <form method="POST" action="{% url 'listings:add-package' pk=listing.pk %}">
+                  {% csrf_token %}
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title" id="edit-package-title">Create a new package</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="form-group col-sm-12">
+                          <label for="nr_persons" class="control-label">Number of People in Package</label>
+                          <input id="nr_persons" value="1" name="nr_persons" type="number" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-12">
+                          <label for="room_id" class="control-label" style="display: block">Room</label>
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <select name="room_id" id="room_id" class="form-control">
+                                <option value="">Select a room</option>
+                                {% for acc in accommodations %}
+                                <optgroup label="{{ acc.name }}">
+                                  {% for room in acc.rooms.all %}
+                                  <option value="{{ room.pk }}">{{ room.name }}</option>
+                                  {% endfor %}
+                                </optgroup>
+                                {% endfor %}
+                              </select>
+                            </div>
+                            <div class="col-sm-6">
+                              <a href="/4/organizers/23069/accommodation/" target="_blank" rel="noopener noreferrer" style="padding: 10px 0; display: block">Adjust accommodation and room setup</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group col-sm-12" id="note_container">
+                          <label for="note_modal" class="control-label">Note</label>
+                          <input id="note_modal" name="note_modal" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-12">
+                          <label for="price_modal" class="control-label">Minimum Default Price in USD</label>
+                          <input id="price_modal" name="price_modal" type="number" class="form-control">
+                        </div>
+                        <div class="form-group col-sm-12">
+                          <label for="price_modal" class="control-label">Pricing Details</label>
+                          <textarea id="price_calculation" name="price_calculation" class="form-control" rows="4"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="send-package" type="submit" class="btn btn-success">
+                        <i class="fa fa-check"></i> Continue </button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Cancel </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <div id="edit-year" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h2 class="modal-title" id="edit-package-title">This will reset your package availability</h4>
+                      <h4 class="modal-title" style='margin-top: 30px'>Are you sure you want to continue?</h2>
+                    </div>
+                    <div class="modal-footer">
+                      <a href='{% url 'listings:remove_year_round' listing=listing.id %}' id="send-package" class="btn btn-success">
+                        <i class="fa fa-check"></i> Continue </a>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Cancel </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="room-reminder" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;top:150px">
+                <div class="modal-dialog modal-dialog-centered ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h2 class="modal-title" id="edit-package-title">You must first add <strong>accommodations and rooms</strong> before setting up packages</h4>
+                      <h4 class="modal-title" style='margin-top: 30px'>Do you want to be redirected to the accommodations page?</h2>
+                    </div>
+                    <div class="modal-footer">
+                      <a href='{% url 'listings:accommodation-list' %}' id="send-package" class="btn btn-success">
+                        <i class="fa fa-check"></i> Continue </a>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-times"></i> Cancel </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <script>
+              $(document).on("click", ".price-btn", function () {
+                var packageID = $(this).data('packageid');
+                var defaultPrice = $(this).data('packageprice')
+                var priceCalc = $(this).data('packagecalc')
+                console.log('clicked')
+                console.log(packageID)
+                $("#package_id").val( packageID );
+                $("#id_default_price").val( defaultPrice );
+                CKEDITOR.instances.id_price_calculation.setData( priceCalc );
+           });
+          </script>
+              {% endblock %}

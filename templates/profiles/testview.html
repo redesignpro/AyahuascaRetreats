@@ -1,0 +1,36 @@
+{% load static %}
+<link
+href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700"
+rel="stylesheet"
+/>
+<link
+href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+rel="stylesheet"
+/>
+
+<!-- .caleran includes -->
+<link href="{% static 'vendors/caleran/build/css/caleran.min.css' %}" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="{% static 'vendors/caleran/build/js/caleran.min.js' %}"></script>
+<!-- .end caleran includes -->
+
+    <div class="col-sm-9" style="display:contents">
+        <!-- PUT CALENDAR HERE  -->
+        <input type="hidden" name='start_date' id='start_date' />
+        <input type="hidden" name='end_date' id='end_date' />
+        <input class="caleran" name="calendar-input" id="caleran-ex-1" type="text" />
+      </div>
+
+      <script type="text/javascript">
+        caleran("#caleran-ex-1", {
+            inline: true,
+            calendarCount: 1,
+            showHeader: false,
+            onafterselect: function(caleran, startDate, endDate) {
+                document.getElementById("start_date").value = startDate.format('YYYY-MM-DD');
+                document.getElementById("end_date").value = endDate.format('YYYY-MM-DD');
+            },
+            minDate: moment().add(1, "day").startOf("day"),
+            maxDate: moment().add(6, "months").endOf("month"),
+        });
+      </script>

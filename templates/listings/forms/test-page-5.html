@@ -1,0 +1,1954 @@
+{% extends './base-listing.html' %}
+{% load static %}
+{% block content %}
+            <div class="section-title">
+              <h3>Program &amp; Itinerary</h3>
+              <small class="title-description"> Introduce the trip and highlight what&#39;s unique about your program </small>
+              <div class="recommendation-actions">
+                <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_intro" tabindex="-1" role="dialog" aria-label>
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">
+                            <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                          </span>
+                        </button>
+                        <div class="modal-header__content">
+                          <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                          <h3>Add recommendation</h3>
+                        </div>
+                      </div>
+                      <div class="add_recommendations_form">
+                        <div class="modal-body">
+                          <div class="form-group">
+                            <label for="add-recommendation-title">Recommendation for</label>
+                            <input type="text" class="form-control add-recommendation-title" placeholder="Title &amp; Intro (page)" value="Title &amp; Intro (page)" readonly />
+                          </div>
+                          <div class="form-group">
+                            <label for="add-recommendation-type">Type <span id="add-recommendation-type-intro" class="badge hide">Required</span>
+                            </label>
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                              <label class="btn btn-default">
+                                <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                              <label class="btn btn-default">
+                                <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-intro" class="badge hide">Required</span>
+                            </label>
+                            <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                          <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('intro', 'page', 'intro')">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                    let field = recommendationName;
+                    let section = recommendationSection;
+                    let targetForm = event.target.closest('.add_recommendations_form')
+                    let feedback = $(targetForm).find('.add-recommendation-content').val();
+                    let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                    let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                    let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                    let translations = {
+                      "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                      "success": "Changes saved successfully"
+                    }
+                    if (recommendationType == 'page') {
+                      section = recommendationSection;
+                      field = '';
+                    }
+                    if (feedback == '' && type == undefined) {
+                      feedbackErrorElement.removeClass('hide')
+                      typeErrorElement.removeClass('hide');
+                      return;
+                    }
+                    if (feedback == '') {
+                      feedbackErrorElement.removeClass('hide');
+                      return;
+                    }
+                    if (type == undefined) {
+                      typeErrorElement.removeClass('hide');
+                      return;
+                    }
+                    let formData = {
+                      "type": type,
+                      "section": section,
+                      "field": field,
+                      "feedback": feedback
+                    }
+                    let options = {
+                      credentials: 'same-origin',
+                      headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
+                      method: 'POST',
+                      body: JSON.stringify(formData)
+                    }
+                    let url = '/4/listings/95462/feedback/json/create'
+                    fetch(url, options).then(function(response) {
+                      if (response.status != 400 && response.status != 200) {
+                        flash.error(translations.error);
+                        console.log(response);
+                      } else {
+                        flash.success(translations.success, function() {
+                          flash.clear()
+                        });
+                        $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                        return response.json()
+                      }
+                    })
+                  }
+                </script>
+              </div>
+              <script>
+                function showRecommendationHistory(name) {
+                  let currentElement = event.target;
+                  $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                  $(currentElement).toggleClass('hide');
+                  $(currentElement).next().toggleClass('hide');
+                }
+
+                function hideRecommendationHistory(name) {
+                  let currentElement = event.target;
+                  $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                  $(currentElement).toggleClass('hide');
+                  $(currentElement).prev().toggleClass('hide');
+                }
+              </script>
+
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body -airy">
+                    <div role="tabpanel" class="tab-pane active has-fixed-actions">
+                      <script>
+                        function completeRecommendation(recommendationId) {
+                          let targetElement = event.target;
+                          let translations = {
+                            "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                            "success": "Changes saved successfully"
+                          };
+                          let options = {
+                            credentials: 'same-origin',
+                            headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json'
+                            },
+                            method: 'POST'
+                          }
+                          let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                          fetch(url, options).then(function(response) {
+                            if (response.status != 200) {
+                              flash.error(translations.error);
+                              console.log(response);
+                            } else {
+                              flash.success(translations.success, function() {
+                                flash.clear()
+                              });
+                              $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                              $(targetElement).closest('.button-section').hide();
+                              return response.json()
+                            }
+                          })
+                        }
+    
+                        function dismissRecommendation(recommendationId, recommendationType) {
+                          let targetElement = event.target;
+                          let options = {
+                            credentials: 'same-origin',
+                            headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json'
+                            },
+                            method: 'POST'
+                          }
+                          let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                          fetch(url, options).then(function(response) {
+                            if (response.status != 200) {
+                              flash.error(translations.error);
+                              console.log(response);
+                            } else {
+                              flash.success(translations.success, function() {
+                                flash.clear()
+                              });
+                              $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                              $(targetElement).closest('.button-section').hide();
+                              return response.json()
+                            }
+                          })
+                        }
+    
+                        function deleteRecommendation(recommendationId, recommendationType) {
+                          let targetElement = event.target;
+                          let options = {
+                            credentials: 'same-origin',
+                            headers: {
+                              'Accept': 'application/json',
+                              'Content-Type': 'application/json'
+                            },
+                            method: 'POST'
+                          }
+                          let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                          if (window.confirm("Are you sure?")) {
+                            fetch(url, options).then(function(response) {
+                              if (response.status != 200) {
+                                flash.error('Failed to delete recommendation. Try again or report to #application');
+                                console.log(response);
+                              } else {
+                                flash.success(translations.success, function() {
+                                  flash.clear()
+                                });
+                                $(targetElement).closest('.panel-body').hide();
+                                return response.json()
+                              }
+                            })
+                          }
+                        }
+    
+                        function editRecommendation(recommendationName, type, id) {
+                          $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                        }
+                      </script>
+                      <form id="food-drinks-form" class="js-serialize-this-form" method="POST"> {% csrf_token %} {{ form.media }}
+                        <div class="row section-title">
+                            <div class="col-md-9 col-sm-12">
+                              <h3></h3>
+                              <small class="title-description"></small>
+                            </div>
+                          </div>
+                          <!-- ---------------------------------------------DURATION IN DAYS ---------------------------------------- -->
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="duration" class="control-label label-block"> Duration in days <span class="required-label label label-purple-pale"> required </span>
+                                </label>
+                                <div class="form-helper"> Set the duration of the program, include the arrival and departure days. </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_duration_in_days" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Duration in days (field)" value="Duration in days (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-duration_in_days" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-duration_in_days" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('duration_in_days', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                {{ form.program_duration }}
+                              </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                          </div>
+                          <!-- ---------------------------------------------DAYS WITH INSTRUCTION ---------------------------------------- -->
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="days_with_instruction" class="control-label label-block"> Days with instruction <span class="required-label label label-purple-pale"> required </span>
+                                </label>
+                                <div class="form-helper"> Specify the number of days with planned activities. </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_days_with_instruction" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Days with instruction (field)" value="Days with instruction (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-days_with_instruction" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-days_with_instruction" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('days_with_instruction', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                {{ form.instruction_duration }}
+                              </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                          </div>
+                          <!-- ---------------------------------------------MAX GROUP SIZE ---------------------------------------- -->
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="max_group_size" class="control-label label-block">Maximum group size</label>
+                                <div class="form-helper"> Specify if you work with a maximum group size. Set to 0 for unlimited. </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_max_group_size" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Maximum group size (field)" value="Maximum group size (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-max_group_size" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-max_group_size" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('max_group_size', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                {{ form.max_group_size }}
+                              </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                          </div>
+                          <!-- ---------------------------------------------MIN GROUP SIZE ---------------------------------------- -->
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="min_group_size" class="control-label label-block">Minimum group size</label>
+                                <div class="form-helper"> Specify if you have a minimum number of participants. This means that you will cancel the trip if this number is not met. </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_min_group_size" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Minimum group size (field)" value="Minimum group size (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-min_group_size" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-min_group_size" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('min_group_size', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                {{ form.min_group_size }}
+                              </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                            <div id="wrapper_guaranteed_start_x_days_before" hidden>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="min_group_size" class="control-label label-block">Cut-off date minimum group size</label>
+                                  <div class="form-helper"> Please specify how many days before the arrival date the trip is guaranteed to start. </div>
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <input type="number" name="guaranteed_start_x_days_before" id="guaranteed_start_x_days_before" min="0" class="form-control" value="0">
+                                </div>
+                                <script>
+                                  function completeRecommendation(recommendationId) {
+                                    let translations = {
+                                      "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                      "success": "Changes saved successfully"
+                                    };
+                                    let targetElement = event.target;
+                                    let options = {
+                                      credentials: 'same-origin',
+                                      headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                      },
+                                      method: 'POST'
+                                    }
+                                    let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                        $(targetElement).closest('.button-section').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+      
+                                  function dismissRecommendation(recommendationId, recommendationType) {
+                                    let targetElement = event.target;
+                                    let options = {
+                                      credentials: 'same-origin',
+                                      headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                      },
+                                      method: 'POST'
+                                    }
+                                    let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        if (recommendationType == 'comment') {
+                                          flash.error(translations.error);
+                                        } else {
+                                          flash.error(translations.error);
+                                        }
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                        $(targetElement).closest('.button-section').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+      
+                                  function deleteRecommendation(recommendationId, recommendationType) {
+                                    let targetElement = event.target;
+                                    let options = {
+                                      credentials: 'same-origin',
+                                      headers: {
+                                        'Accept': 'application/json',
+                                        'Content-Type': 'application/json'
+                                      },
+                                      method: 'POST'
+                                    }
+                                    let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                    if (window.confirm("Are you sure?")) {
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(targetElement).closest('.panel-body').hide();
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  }
+      
+                                  function editRecommendation(recommendationName, type, id) {
+                                    $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+
+                          </div>
+                          <!-- ---------------------------------------------ITINERARY ---------------------------------------- -->
+                          <div class="row section-title divider-on-top">
+                            <div class="col-md-9 col-sm-12">
+                              <h3>Itinerary</h3>
+                              <small class="title-description"> Describe the full program to your customers and share with them how their days will look like. </small>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="itinerary" class="control-label label-block"> Content <span class="required-label label label-purple-pale"> required </span>
+                                </label>
+                                <div class="form-helper"> Formatting help: <br /> - Header starts with a dash <br /> * list items start with asterisk <br /> % paragraphs start with percent </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_itinerary" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Itinerary (field)" value="Itinerary (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-itinerary" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-itinerary" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('itinerary', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-md-9 col-xs-12">
+                              <div class="form-group">
+                                {{ form.itinerary_info | safe }}
+                              </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                          </div>
+                          <!-- ---------------------------------------------EXCURSIONS ---------------------------------------- -->
+                          <div class="row section-title divider-on-top">
+                            <div class="col-md-9 col-sm-12">
+                              <h3>Included excursions</h3>
+                              <small class="title-description"> Share more details about the excursions that are included in the package. </small>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="excursions" class="control-label label-block"> Content </label>
+                                <div class="form-helper"> Formatting help: <br /> - Header starts with a dash <br /> * list items start with asterisk <br /> % paragraphs start with percent <br />
+                                  <br /> Long lines are turned into paragraphs and short lines are turned into lists automatically.
+                                </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_excursions" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Included excursions (field)" value="Included excursions (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-excursions" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-excursions" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('excursions', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-md-9 col-xs-12">
+                              <div class="form-group">
+                                {{ form.excursion_info | safe }}
+                              </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                          </div>
+                          <!-- ---------------------------------------------INSTRUCTOR CONTACTS ---------------------------------------- -->
+                          <div class="row section-title divider-on-top">
+                            <div class="col-md-9 col-sm-12">
+                              <h3>Instructing your guests</h3>
+                              <small class="title-description"> Select the instructors or guides that are going to lead the trip. You need to create a profile for them in your account first. </small>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label for="instructors" class="control-label label-block">Instructors</label>
+                                <div class="form-helper"> You can create instructor profiles in the <a href="/4/organizers/51525/instructors/" target="_blank">instructors page</a>
+                                </div>
+                                <div class="recommendation-actions">
+                                  <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_instructorContactIDs" tabindex="-1" role="dialog" aria-label>
+                                    <div class="modal-dialog modal-lg" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">
+                                              <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                                            </span>
+                                          </button>
+                                          <div class="modal-header__content">
+                                            <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                                            <h3>Add recommendation</h3>
+                                          </div>
+                                        </div>
+                                        <div class="add_recommendations_form">
+                                          <div class="modal-body">
+                                            <div class="form-group">
+                                              <label for="add-recommendation-title">Recommendation for</label>
+                                              <input type="text" class="form-control add-recommendation-title" placeholder="Instructors (field)" value="Instructors (field)" readonly />
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-type">Type <span id="add-recommendation-type-instructorContactIDs" class="badge hide">Required</span>
+                                              </label>
+                                              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                                                <label class="btn btn-default">
+                                                  <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                                              </div>
+                                            </div>
+                                            <div class="form-group">
+                                              <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-instructorContactIDs" class="badge hide">Required</span>
+                                              </label>
+                                              <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                                            </div>
+                                          </div>
+                                          <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                            <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('instructorContactIDs', 'field', 'programs')">Save</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <script>
+                                    function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+                                      let field = recommendationName;
+                                      let section = recommendationSection;
+                                      let targetForm = event.target.closest('.add_recommendations_form')
+                                      let feedback = $(targetForm).find('.add-recommendation-content').val();
+                                      let type = $(targetForm).find('.add-recommendation-type:checked').val();
+                                      let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+                                      let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+                                      let translations = {
+                                        "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                        "success": "Changes saved successfully"
+                                      }
+                                      if (recommendationType == 'page') {
+                                        section = recommendationSection;
+                                        field = '';
+                                      }
+                                      if (feedback == '' && type == undefined) {
+                                        feedbackErrorElement.removeClass('hide')
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (feedback == '') {
+                                        feedbackErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      if (type == undefined) {
+                                        typeErrorElement.removeClass('hide');
+                                        return;
+                                      }
+                                      let formData = {
+                                        "type": type,
+                                        "section": section,
+                                        "field": field,
+                                        "feedback": feedback
+                                      }
+                                      let options = {
+                                        credentials: 'same-origin',
+                                        headers: {
+                                          'Accept': 'application/json',
+                                          'Content-Type': 'application/json'
+                                        },
+                                        method: 'POST',
+                                        body: JSON.stringify(formData)
+                                      }
+                                      let url = '/4/listings/95462/feedback/json/create'
+                                      fetch(url, options).then(function(response) {
+                                        if (response.status != 400 && response.status != 200) {
+                                          flash.error(translations.error);
+                                          console.log(response);
+                                        } else {
+                                          flash.success(translations.success, function() {
+                                            flash.clear()
+                                          });
+                                          $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+                                          return response.json()
+                                        }
+                                      })
+                                    }
+                                  </script>
+                                </div>
+                                <script>
+                                  function showRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).next().toggleClass('hide');
+                                  }
+      
+                                  function hideRecommendationHistory(name) {
+                                    let currentElement = event.target;
+                                    $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+                                    $(currentElement).toggleClass('hide');
+                                    $(currentElement).prev().toggleClass('hide');
+                                  }
+                                </script>
+                              </div>
+                            </div>
+                            <div class="col-lg-6 col-md-9 col-xs-12">
+                              <div class="form-group">{{ form.instructors }} </div>
+                              <script>
+                                function completeRecommendation(recommendationId) {
+                                  let translations = {
+                                    "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+                                    "success": "Changes saved successfully"
+                                  };
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      flash.error(translations.error);
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function dismissRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+                                  fetch(url, options).then(function(response) {
+                                    if (response.status != 200) {
+                                      if (recommendationType == 'comment') {
+                                        flash.error(translations.error);
+                                      } else {
+                                        flash.error(translations.error);
+                                      }
+                                      console.log(response);
+                                    } else {
+                                      flash.success(translations.success, function() {
+                                        flash.clear()
+                                      });
+                                      $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                                      $(targetElement).closest('.button-section').hide();
+                                      return response.json()
+                                    }
+                                  })
+                                }
+      
+                                function deleteRecommendation(recommendationId, recommendationType) {
+                                  let targetElement = event.target;
+                                  let options = {
+                                    credentials: 'same-origin',
+                                    headers: {
+                                      'Accept': 'application/json',
+                                      'Content-Type': 'application/json'
+                                    },
+                                    method: 'POST'
+                                  }
+                                  let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+                                  if (window.confirm("Are you sure?")) {
+                                    fetch(url, options).then(function(response) {
+                                      if (response.status != 200) {
+                                        flash.error(translations.error);
+                                        console.log(response);
+                                      } else {
+                                        flash.success(translations.success, function() {
+                                          flash.clear()
+                                        });
+                                        $(targetElement).closest('.panel-body').hide();
+                                        return response.json()
+                                      }
+                                    })
+                                  }
+                                }
+      
+                                function editRecommendation(recommendationName, type, id) {
+                                  $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+                                }
+                              </script>
+                            </div>
+                          </div>
+                        <div class="fixed-actions fixed-actions--bottom fixed-actions--right">
+                            <button class="btn btn-success js-submit-listing-edit-form"> Save </button>
+                          </div>
+                      </form>
+                      <!-- ------------------------------------------------ SUBMIT --------------------------------------- -->
+
+                    </div>
+                </div>
+            </div>
+            {% endblock %}

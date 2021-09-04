@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>BookYogaRetreats - Login</title>
+      <meta charset="utf-8" />
+      <meta name="robots" content="noindex">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png?v=16">
+      <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png?v=16">
+      <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png?v=16">
+      <link rel="manifest" href="/static/favicon/site.webmanifest?v=16">
+      <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg?v=16" color="#00c09c">
+      <link rel="shortcut icon" href="/static/favicon/favicon.ico?v=16">
+      <meta name="msapplication-TileColor" content="#da532c">
+      <meta name="msapplication-config" content="/static/favicon/browserconfig.xml?v=16">
+      <meta name="theme-color" content="#02BF9B">
+      <link rel="stylesheet" type="text/css" href="/static/framework.css?v=2Sb3gWgXL" />
+      <link rel="stylesheet" type="text/css" href="/static/style.css?v=2Sb3gWgXL" />
+      <script type="text/javascript" charset="utf-8" src="/static/js/lib.js?v=2Sb3gWgXL"></script>
+      <script type="text/javascript" charset="utf-8" src="/static/js/logic.js?v=2Sb3gWgXL"></script>
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+         
+         ga('create', 'UA-104417812-1', 'auto');
+         ga('send', 'pageview');
+         
+      </script>
+   </head>
+   <body id="login" data-site-id="3" class="office">
+      <nav class="navbar navbar-static-top navbar--mobile">
+         <div class="navbar-header">
+            <div class="pull-left">
+               <ul class="nav navbar-nav">
+                  <li>
+                     <a class="site-selector-header dropdown-toggle" href="/3/" data-site-id="3">
+                        <i class="office-logo-main office-logo-main--secondary-on-mobile"></i>
+                        <div class="office-logo-text">
+                        </div>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="navbar" class="navbar-right-items">
+            <ul class="nav navbar-nav pull-right">
+               <li><a href="/3/support/">Contact us</a></li>
+            </ul>
+         </div>
+      </nav>
+      <script type="text/javascript">
+         $(".language-switch").click(function(e) {
+         	e.preventDefault;
+         
+         	$.post( "/language_switch/", { languageCode: $(this).data("langCode") })
+         		.done(function() {
+         			location.reload();
+         		})
+         	;
+         
+         });
+         
+      </script>
+      <div class="container">
+         <div id="flash"></div>
+      </div>
+      <style>
+         .navbar {
+         display: none;
+         }
+         body#login {
+         background-image: url("https://statics.tpn.to/hero/images/yoga.jpg");
+         background-color: #FFFFFF;
+         }
+         @media (max-width:993px) {
+         body#login {
+         background-image: none;
+         }
+         }
+      </style>
+      <div class="login-container">
+         <div class="login-container__logo">
+            <div class="img-container">
+               <img alt="Office portal" src="/static/files/office_logo.svg" class="logo-mobile"/>
+               <img alt="Office portal" src="/static/files/office_logo_negative.svg" class="logo-desktop"/>
+            </div>
+         </div>
+         <form class="form-signin " method="post" action="/3/login/">
+            <input type="hidden" name="csrfToken" value="TkJk2fp1tBDD6tv9eR7NcxTqD7b_PiIb" />
+            <div class="section-title">
+               <h3 class="catamaran">Welcome back!</h3>
+            </div>
+            <div class="form-group">
+               <label for="inputEmail" class="sr-only">eMail address</label>
+               <input type="email" id="inputEmail" name="username" class="form-control" placeholder="Email address" required autofocus >
+            </div>
+            <div class="form-group">
+               <label for="inputPassword" class="sr-only">Password</label>
+               <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+            </div>
+            <div>
+               <button class="btn bexittn-lg btn-success btn-block" type="submit">Sign in</button>
+            </div>
+            <div class="forgotten-password">
+               <a href="/3/forgot-password/">Forgot your password?</a>
+               &nbsp;|&nbsp;
+               <a href="/3/support/">Contact us</a>
+            </div>
+            <div class="section-title login-secondary-title">
+               <h3 class="catamaran">Or sign in without password</h3>
+               <small class="title-description">We&#39;ll send you a temporary login link on your registered email address</small>
+            </div>
+            <div>
+               <a href="/3/request-auto-login/" class="btn btn-primary btn-block">Get login link via email</a>
+            </div>
+         </form>
+      </div>
+      <script type="text/javascript">
+         flash.clear();
+         
+         
+         
+         
+         
+      </script>
+      <!-- Facebook Pixel Code for tracking office login, to exclude them from retargeting campaigns -->
+      <script>
+         !function(f,b,e,v,n,t,s)
+         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+         if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+         n.queue=[];t=b.createElement(e);t.async=!0;
+         t.src=v;s=b.getElementsByTagName(e)[0];
+         s.parentNode.insertBefore(t,s)}(window, document,'script',
+         'https://connect.facebook.net/en_US/fbevents.js');
+         fbq('init', '405890722892989');
+         fbq('track', 'PageView');
+      </script>
+      <noscript><img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=405890722892989&ev=PageView&noscript=1"
+         /></noscript>
+      <!-- End Facebook Pixel Code -->
+   </body>
+</html>

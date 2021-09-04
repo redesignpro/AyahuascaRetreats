@@ -1,0 +1,231 @@
+{% extends './accommodation-base.html' %}
+{% load static %}
+{% block content %}
+      <section class="admin-content js-active-tab-name" data-tab-name="Accommodations">
+        <header class="section-title">
+          <h1 class="catamaran">Accommodations</h1>
+          <small class="title-description"> The accommodations and rooms created here will only be visible to the user when used on each of the packages created. <br />
+            <span class="hidden-phone">Packages are created at Listing level and you will be able to use each of the accommodations created here for all your listings and its packages.</span>
+          </small>
+        </header>
+        <div class="btn-toolbar btn-toolbar--main">
+          <a href="{% url 'listings:add-accommodation-view' %}" class="btn btn-success">+ Add new accommodation</a>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-body -airy">
+            <div class="accommodation-list js-accommodation-list">
+                {% for acc in accommodations %}
+              <div class="row js-accommodation--item" data-assingedlistings="1" data-lastupdate="2019-Oct-23 23:20:55">
+                <div class="
+                    col-md-12 col-lg-10
+                    accommodation-list--collapsed
+                    js-expand-accommodation
+                    hidden
+                  " data-toggle="tooltip" title="Click to see details and editing options">
+                  <strong>{{ acc.name }}</strong>
+                  <div class="collapser pull-right">
+                    <i class="fa fa-chevron-down"></i>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-10 accommodation-list--item">
+                  <div class="accommodation--summary">
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <div class="accommodation-list--type-and-name">
+                          <h3>
+                            <strong>{{ acc.name }}</strong>
+                          </h3>
+                        </div>
+                        <br />
+                        <!-- Hiding set location link while the page it opens is almost impossible to use
+									<div class="accommodation-list--location"><i class="fa fa-map-marker"></i><a href="/4/organizers/23069/accommodation/59189/location/">Set location</a></div> -->
+                      </div>
+                      <div class="col-sm-4">
+                        <a href="{% url 'listings:edit-accommodation' pk=acc.id %}" class="pull-right"> Edit accommodation </a>
+                        <br />
+                        <div class="pull-right" data-toggle="tooltip" style="cursor: not-allowed" title="There are listings with packages assigned to this accommodation. Please update them before deleting this accommodation.">
+                          <a href="{% url 'listings:delete-accommodation' pk=acc.id %}" class="btn btn-link">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="accommodation-list--photos photo-num-30">
+                            {% for image in acc.images.all %}
+                          <a href="{{ image.image.url }}">
+                            <img class="
+                                accommodation-list--photo-item
+                                photo-item-num-0
+                              " src="{{ image.image.url }}" />
+                          </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <p class="accommodation--facilities">
+                          <strong>Photos:</strong>
+                          <span>{{ acc.image_count }} uploaded</span>
+                        </p>
+                      </div>
+                      <div class="col-sm-4">
+                        <a href="{% url 'listings:edit-accommodation-photos' pk=acc.id %}" class="pull-right"> Edit Photos </a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-8">
+                        <p class="accommodation--facilities ellipsis">
+                          <strong>Description:</strong>
+                          <span>{{ acc.description }}</span>
+                        </p>
+                      </div>
+                      <div class="col-sm-4">
+                        <a href="{% url 'listings:acc-description-update' pk=acc.id %}" class="pull-right"> Edit Description </a>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <p class="accommodation--facilities ellipsis">
+                                <strong>Facilities:</strong> <span>{{ acc.facilities }}</span>
+                            </p>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="{% url 'listings:acc-facilities-update' pk=acc.id %}" class="pull-right">
+                                Edit Facilitites
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                  <h4 class="section">
+                    <strong>Rooms</strong>
+                  </h4>
+                  <div class="accommodation--rooms-list">
+                    {% for room in acc.rooms.all %}
+                    <div class="accommodation--rooms-container js-expand-room">
+                      <!-- ROOM NAME-->
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <div class="accommodation-list--room-name">
+                            <h4>
+                              <strong>{{ room.name }}</strong>
+                              <span>({{ room.id }} - {{ room.get_shared_display }})</span>
+                            </h4>
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <div class="collapsed-actions">
+                            <a href="{% url 'listings:room-type-update' pk=room.pk %}" class="pull-right"> Edit Room Type </a>
+                            <br />
+                            <a href="{% url 'listings:delete-room' pk=room.pk %}"class="room-toggle pull-right">Delete</a>
+                          </div>
+                          <div class="collapser pull-right">
+                            <i class="fa fa-chevron-down"></i>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="collapsed-info">
+                        <!-- ROOM PHOTOS-->
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <div class="
+                                accommodation-list--room-photos
+                                photo-num-6
+                              ">
+                              {% for image in room.images.all %}
+                              <a href="{{ image.image.url }}">
+                                <img class="
+                                    accommodation-list--room-photo-item
+                                    photo-item-num-0
+                                  " src="{{ image.image.url }}" />
+                              </a>
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <p class="accommodation--facilities">
+                              <strong>Room Photos:</strong>
+                              <span>{{ room.get_image_count }} uploaded</span>
+                            </p>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="{% url 'listings:room-photos-update' pk=room.id %}" class="pull-right"> Edit Photos </a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <p class="accommodation--facilities ellipsis">
+                              <strong>Facilities:</strong>
+                              <span>{{ room.facilities }}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="{% url 'listings:room-facilities-update' pk=room.id %}" class="pull-right"> Edit Room Facilitites </a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <p class="accommodation--facilities ellipsis">
+                              <strong>Description:</strong>
+                              <span>{{ room.description }}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="{% url 'listings:room-description-update' pk=room.id %}" class="pull-right"> Edit Description </a>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-8">
+                            <p class="accommodation--facilities">
+                              <strong>Bed configuration:</strong>
+                              <span>
+                                {% for config in room.room_configs.all %} 
+                                  {% for conf in config.combos.all %}
+                                    {{ conf.num_beds }} - {{ conf.get_bed_type_display }}
+                                    {% if not forloop.last %}
+                                      ,
+                                    {% endif %} 
+                                  {% endfor %} 
+                                  {% if not forloop.last %}
+                                    <strong>OR</strong>
+                                  {% endif %}  
+                                {% endfor %}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm-4">
+                            <a href="{% url 'listings:room-bed-config-update' pk=room.id %}" class="pull-right"> Edit Bed Configuration </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <p class="accommodation--facilities">
+                          <a href="{% url 'listings:add-room-view' pk=acc.id %}" class="missing">+ Add a New Room Type</a>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <h4 class="section">
+                    <strong>Listings</strong>
+                  </h4>
+                  <p class="accommodation--facilities">
+                    <span> The accommodation is assigned to these listings: </span>
+                  </p>
+                  <div class="listings-list">
+                      {% for listing in acc.listing.all %}
+                    <a class="listings-list--item" target="_blank" data-toggle="tooltip" title="This listing has no availability. " style="color: #8b99a0" href="/4/listings/edit/79296/availability/">{{ listing.title }}</a>
+                        {% endfor %}
+                </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </section>
+
+{% endblock %}

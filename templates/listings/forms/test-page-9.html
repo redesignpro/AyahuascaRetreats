@@ -1,0 +1,344 @@
+{% extends './base-listing.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<div class="section-title">
+    <h3> Booking conditions <span class="required-label label label-purple-pale"> required </span>
+    </h3>
+    <small class="title-description"> Here you can specify the percentage of the price or a fixed amount that you require as a deposit. </small>
+    <div class="recommendation-actions">
+      <div class="modal fade add_recommendations_modal" id="add_recommendations_modal_bookingConditions" tabindex="-1" role="dialog" aria-label>
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  <img src="./recommendationsClose.svg" class="add-recommendations-modal__close__image" />
+                </span>
+              </button>
+              <div class="modal-header__content">
+                <img src="./recommendations.svg" class="add-recommendations-modal__title__image" />
+                <h3>Add recommendation</h3>
+              </div>
+            </div>
+            <div class="add_recommendations_form">
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="add-recommendation-title">Recommendation for</label>
+                  <input type="text" class="form-control add-recommendation-title" placeholder="Booking conditions (page)" value="Booking conditions (page)" readonly />
+                </div>
+                <div class="form-group">
+                  <label for="add-recommendation-type">Type <span id="add-recommendation-type-bookingConditions" class="badge hide">Required</span>
+                  </label>
+                  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-default">
+                      <input type="radio" name="type" value="comment" class="add-recommendation-type" autocomplete="off"> Comment </label>
+                    <label class="btn btn-default">
+                      <input type="radio" name="type" value="suggestion" autocomplete="off" class="add-recommendation-type"> Improvement </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="add-recommendation-content">Recommendation <span id="add-recommendation-content-bookingConditions" class="badge hide">Required</span>
+                  </label>
+                  <textarea class="form-control add-recommendation-content" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-success add-recommendation-button" type="button" onclick="addRecommendation('bookingConditions', 'page', 'bookingConditions')">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        function addRecommendation(recommendationName, recommendationType, recommendationSection) {
+          let field = recommendationName;
+          let section = recommendationSection;
+          let targetForm = event.target.closest('.add_recommendations_form')
+          let feedback = $(targetForm).find('.add-recommendation-content').val();
+          let type = $(targetForm).find('.add-recommendation-type:checked').val();
+          let feedbackErrorElement = $(targetForm).find(`#add-recommendation-content-${recommendationName}`);
+          let typeErrorElement = $(targetForm).find(`#add-recommendation-type-${recommendationName}`);
+          let translations = {
+            "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+            "success": "Changes saved successfully"
+          }
+          if (recommendationType == 'page') {
+            section = recommendationSection;
+            field = '';
+          }
+          if (feedback == '' && type == undefined) {
+            feedbackErrorElement.removeClass('hide')
+            typeErrorElement.removeClass('hide');
+            return;
+          }
+          if (feedback == '') {
+            feedbackErrorElement.removeClass('hide');
+            return;
+          }
+          if (type == undefined) {
+            typeErrorElement.removeClass('hide');
+            return;
+          }
+          let formData = {
+            "type": type,
+            "section": section,
+            "field": field,
+            "feedback": feedback
+          }
+          let options = {
+            credentials: 'same-origin',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(formData)
+          }
+          let url = '/4/listings/95462/feedback/json/create'
+          fetch(url, options).then(function(response) {
+            if (response.status != 400 && response.status != 200) {
+              flash.error(translations.error);
+              console.log(response);
+            } else {
+              flash.success(translations.success, function() {
+                flash.clear()
+              });
+              $(`#add_recommendations_modal_${recommendationName}`).modal('hide')
+              return response.json()
+            }
+          })
+        }
+      </script>
+    </div>
+    <script>
+      function showRecommendationHistory(name) {
+        let currentElement = event.target;
+        $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+        $(currentElement).toggleClass('hide');
+        $(currentElement).next().toggleClass('hide');
+      }
+
+      function hideRecommendationHistory(name) {
+        let currentElement = event.target;
+        $(`#view_recommendations_history_container_${name}`).toggleClass('hide');
+        $(currentElement).toggleClass('hide');
+        $(currentElement).prev().toggleClass('hide');
+      }
+    </script>
+
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-body -airy">
+      <div role="tabpanel" id="accommodation" class="tab-pane has-fixed-actions" i-section="Description">
+        <script>
+          function completeRecommendation(recommendationId) {
+            let targetElement = event.target;
+            let translations = {
+              "error": "There was an error saving your changes. Please reload the page and try again. If the error persists, contact your account manager.",
+              "success": "Changes saved successfully"
+            };
+            let options = {
+              credentials: 'same-origin',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: 'POST'
+            }
+            let url = `/4/listings/95462/feedback/${recommendationId}/json/complete`
+            fetch(url, options).then(function(response) {
+              if (response.status != 200) {
+                flash.error(translations.error);
+                console.log(response);
+              } else {
+                flash.success(translations.success, function() {
+                  flash.clear()
+                });
+                $(targetElement).closest('.panel-body').find('.content-section span').html('[ Done ]');
+                $(targetElement).closest('.button-section').hide();
+                return response.json()
+              }
+            })
+          }
+
+          function dismissRecommendation(recommendationId, recommendationType) {
+            let targetElement = event.target;
+            let options = {
+              credentials: 'same-origin',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: 'POST'
+            }
+            let url = `/4/listings/95462/feedback/${recommendationId}/json/dismiss`
+            fetch(url, options).then(function(response) {
+              if (response.status != 200) {
+                flash.error(translations.error);
+                console.log(response);
+              } else {
+                flash.success(translations.success, function() {
+                  flash.clear()
+                });
+                $(targetElement).closest('.panel-body').find('.content-section span').html('[ DISMISSED ]');
+                $(targetElement).closest('.button-section').hide();
+                return response.json()
+              }
+            })
+          }
+
+          function deleteRecommendation(recommendationId, recommendationType) {
+            let targetElement = event.target;
+            let options = {
+              credentials: 'same-origin',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: 'POST'
+            }
+            let url = `/4/listings/95462/feedback/${recommendationId}/json/delete`
+            if (window.confirm("Are you sure?")) {
+              fetch(url, options).then(function(response) {
+                if (response.status != 200) {
+                  flash.error('Failed to delete recommendation. Try again or report to #application');
+                  console.log(response);
+                } else {
+                  flash.success(translations.success, function() {
+                    flash.clear()
+                  });
+                  $(targetElement).closest('.panel-body').hide();
+                  return response.json()
+                }
+              })
+            }
+          }
+
+          function editRecommendation(recommendationName, type, id) {
+            $(`#edit_recommendations_modal_${recommendationName}_${type}_${id}`).modal('show');
+          }
+        </script>
+        <form method="POST" class="form-inline">
+        {% csrf_token %}
+          <div id="cancellation_policy" class="listing-edit-booking-conditions-group">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label label-block">Cancellation Policy</label>
+                <p class="form-helper">The deposit is...</p>
+              </div>
+              <div class="col-md-5">
+                <label class="policyRadio">
+                  <input type="radio" name="cancellation_policy" value="non_refundable" checked> Non-refundable upon payment </label>
+              </div>
+              <div class="col-md-4">
+                <div class="alert alert-info-light" role="alert">
+                  <h3>Our COVID-19 cancellation policy</h3>
+                  <p>Due to the uncertainty during the COVID-19 pandemic, we can only offer a non-refundable deposit option. We encourage you to offer the customer to reschedule the booking with you. If that&#39;s not possible, we will convert the non-refundable deposit into a store credit for the customer. No cash refunds will be issued. Payments will only be transferred to you 1 day post the arrival date.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="rest_paid_on" class="listing-edit-booking-conditions-group">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label label-block">Remaining amount</label>
+                <p class="form-helper"> The remainder should be paid... </p>
+              </div>
+              <div class="col-md-5">
+                  {{ form.remainder_due }}
+                  {{ form.remainder_due.errors }}
+                </div>
+              <div class="col-md-4">
+                <div class="alert alert-info-light" role=" alert">
+                  <p>The payment of remaining amount must arranged between you and the customer. It can’t be paid via Tripaneer. You can select your supported payment methods in <a href='/4/organizers/edit/51525/payments/'>Payment Information</a>. </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="rest_paid_on" class="listing-edit-booking-conditions-group">
+            <div class="row">
+              <div class="col-md-3">
+                <label class="control-label label-block">Deposit Due Date Before Arrival</label>
+                <p class="form-helper"> The remainder should be paid how many days before arrival... </p> 
+              </div>
+              <div class="col-md-5">
+                  {{ form.days_to_pay }}
+                  {{ form.days_to_pay.errors }}
+                </div>
+            </div>
+          </div>
+          <div class="clear"></div>
+          <div class="fixed-actions fixed-actions--bottom fixed-actions--right">
+            <button class="btn btn-success" type="submit" onclick="return confirmCancellationPolicy()" id="save_payments_and_policies"> Save </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script type="text/javascript" charset="utf-8">
+	$(".nav-tab-booking-conditions").addClass('active')
+
+    
+
+
+	$('#deposit_policy').on('input', function() {
+		var depositPercentageOutput = $(this).data('target2'),
+			remainingPercentageOutput = $(".js-remaining-percentage-output")
+
+		if (parseInt($(this).val() / 100) > $(this).attr('min') / 100)
+			$(this).val(parseInt($(this).val() / 100) * 100);
+
+		$(depositPercentageOutput).text($(this).val() / 100 + '%');
+		remainingPercentageOutput.text(100 - (parseInt($(this).val())) + '%' )
+
+		if ( $(this).val() == "100" ) {
+			$(".js-hide-on-full-amount").hide()
+		} else {
+			$(".js-hide-on-full-amount").show()
+		}
+	})
+
+	$('#payment_percentage').trigger('input')
+
+	$("#deposit_amount").on('input', function() {
+		$('#radio_fixed').prop("checked", true);
+	})
+
+	function confirmCancellationPolicy() {
+		if ($('input[name="cancellation_policy"]:checked').length < 1) {
+			flash.error("Please choose a cancellation policy", function(){ flash.clear() })
+			return false
+		} else {
+			return true
+		}
+	}
+
+	$('#save_payments_and_policies').click(function() {
+		var selectedPolicy = $('input[name="cancellation_policy"]:checked');
+		if (selectedPolicy.val() === "refundable" && $("#nr_days_refundable_before_checkin").val() == 0) {
+			if (window.confirm("With your current settings, even if the user doesn't show up, the user has the right to a full refund. Are you sure you want to proceed?"))
+				return true;
+			return false;
+		}
+		return true;
+	})
+
+	$('#deposit_policy input, #cancellation_policy input, #rest_paid_on input').on('click',function(event){
+		var el = event.target;
+		while ((el = el.parentElement) && !el.classList.contains('policyRadio'));
+		el.querySelector('input[type="radio"]').checked = true;
+	})
+
+</script>
+
+
+  {% endblock %}

@@ -1,0 +1,984 @@
+{% load static %}
+{% load humanize %}
+{% load socialaccount %}
+{% load crispy_forms_tags %} 
+{% load filename %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang=en>
+   <head>
+      <link rel=preconnect href="https://photos.tpn.to">
+      <link rel=preconnect href="https://fonts.googleapis.com">
+      <link rel=stylesheet href="{% static 'css/main.css' %}">
+      <link rel=stylesheet href="{% static 'css/customer.css' %}">
+      <style>@font-face {
+         font-family: "ebs-fonticon";
+         font-display: block;
+         font-weight: 400;
+         font-style: normal;
+         src: local('ebs-fonticon'),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=yYobSbilW');
+         src: url('/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=yYobSbilW#iefix') format("embedded-opentype"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.woff2?v=yYobSbilW') format("woff2"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.woff?v=yYobSbilW') format("woff"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.ttf?v=yYobSbilW') format("truetype"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.svg?v=yYobSbilW#ebs-fonticon') format("svg");
+         }
+      </style>
+      <script data-should-stay>window.dataLayer = window.dataLayer || [];
+         dataLayer.push({"platformId":3,"platformName":"BookYogaRetreats","platformVersion":"88a94e0653","platformEnvironment":"live","pageType":"DialogCustomer","pageId":9,"sessionCurrency":"CAD","userLanguage":"en","viewUUID":"610bd77fd2502507001d375b"});dataLayer.push({"customerEmailSubscribed":false,"customerLoginStatus":"logged-in","customerId":"1434428","organizerId":"942","inquiryID":"1300498","loginId":"1434428","userId":"1434428","inquiryNumberLast30Days":0,"firstName":"Amirrca","lastName":"Amirrca","email":"amirrca@yahoo.com"});dataLayer.push({"goals":{"did_not_bounce":true}});
+         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-W48MKS');
+      </script>
+      <title>Amirrca Amirrca - BookYogaRetreats.com</title>
+      <link rel=apple-touch-icon sizes=180x180 href="/static/favicon/apple-touch-icon.png?v=16">
+      <link rel=icon type="image/png" sizes=32x32 href="/static/favicon/favicon-32x32.png?v=16">
+      <link rel=icon type="image/png" sizes=16x16 href="/static/favicon/favicon-16x16.png?v=16">
+      <link rel=manifest href="/static/favicon/site.webmanifest?v=16">
+      <link rel=mask-icon color="#00c09c" href="/static/favicon/safari-pinned-tab.svg?v=16">
+      <link rel="shortcut icon" href="/static/favicon/favicon.ico?v=16">
+      <meta content="#da532c" name=msapplication-TileColor>
+      <meta content="/static/favicon/browserconfig.xml?v=16" name=msapplication-config>
+      <meta content="#f7f7f7" name=theme-color>
+      <meta content=public http-equiv=Cache-control>
+      <meta content name=description>
+      <meta content name=keywords>
+      <meta property=fb:admins content="book.yogaretreats,
+         rob.holland.378,
+         robertdenhollander">
+      <meta property=fb:app_id content=578121312206944>
+      <meta content=478732585615-s8dg6osif5kqmls43gj8ape4o698i9j4.apps.googleusercontent.com name=google-signin-client_id>
+      <meta content="width=device-width, initial-scale=1.0" name=viewport>
+      <meta content="https://www.tripaneer.com/static/files/hero/BookMeditationRetreats_mobile.jpg" name=image>
+      <meta content="Amirrca Amirrca - BookYogaRetreats.com" itemprop=name>
+      <meta content itemprop=description>
+      <meta content="/static/files/social-share/social-share-3.jpg" itemprop=image>
+      <meta content=summary name=twitter:card>
+      <meta content="Amirrca Amirrca - BookYogaRetreats.com" name=twitter:title>
+      <meta content name=twitter:description>
+      <meta content="https://twitter.com/book_yoga" name=twitter:site>
+      <meta content="/static/files/social-share/social-share-3.jpg" name=twitter:image:src>
+      <meta property=og:title content="Amirrca Amirrca - BookYogaRetreats.com">
+      <meta property=og:description content>
+      <meta property=og:image content="/static/files/social-share/social-share-3.jpg">
+      <meta property=og:url content="https://www.bookyogaretreats.com/customer/inquiries/aL-qCLWcV-9W6Lcvo4V5-BE5dVwiwHBt">
+      <meta property=og:site_name content=BookYogaRetreats.com>
+      <meta property=og:type content=website>
+      <meta content=noindex name=robots>
+      <link rel=stylesheet type="text/css" href="{% static 'css/dialog.css' %}">
+      <link rel=stylesheet type="text/css" href="{% static 'css/footerSubscribe.css' %}">
+      <link rel=stylesheet type="text/css" href="{% static 'css/footer.css' %}">
+   </head>
+   {% include '../listings/head-banner.html' %}
+      <div class="t-container customer-dialogs-messages hide">
+         <div class=customer-dialogs-messages__header>
+            <div>
+               <h2 class="customer-dialogs-messages__page-title title">
+                  My Inquiries
+               </h2>
+            </div>
+         </div>
+         <a href="/customer/inquiries/aL-qCLWcV-9W6Lcvo4V5-BE5dVwiwHBt" class=customer-dialogs__link2>
+            <div class="customer-dialogs-message js-customer-dialogs-message full-width-sm">
+               <div style="background-image:url(https://photos.tpn.to/rp/gt/mn/pp/299x225.webp)" class=customer-dialogs-message__image></div>
+               <div class=customer-dialogs-message__content>
+                  <div class=customer-dialogs-message__information>
+                     <div class=customer-dialogs-message__header>
+                        <span class=customer-dialogs-message__name>Mangosteen Ayurveda &amp; Wellness Resort</span>
+                        <span class="customer-dialogs-message__header__status hidden-desktop hidden-tablet">
+                        <span class="customer-dialogs-status customer-dialogs-status--available">
+                        <span>Available</span>
+                        <i class="ebs-icon ebs-icon-info"></i>
+                        <span class=status-tooltip>
+                        Booking link is available and expires in 2d. Proceed to booking!
+                        </span>
+                        </span>
+                        </span>
+                     </div>
+                     <h3 class="title customer-dialogs-message__title">
+                        6 Day Relaxing Yoga Retreat in Rawai, Phuket
+                     </h3>
+                     <div class=customer-dialogs-message__excerpt>
+                        <span class=customer-dialogs-message__new>new</span>
+                     </div>
+                  </div>
+                  <div class=customer-dialogs-message__right>
+                     <div class=hidden-phone>
+                        <span class="customer-dialogs-status customer-dialogs-status--available">
+                        <span>Available</span>
+                        <i class="ebs-icon ebs-icon-info"></i>
+                        <span class=status-tooltip>
+                        Booking link is available and expires in 2d. Proceed to booking!
+                        </span>
+                        </span>
+                     </div>
+                     <div class=customer-dialogs-message__date>
+                        arrival:
+                        <strong>November 10, 2021</strong>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </a>
+         <a href="/customer/inquiries/XVDZer2WsqDyaQFDKLOT15pKkl5-Xpqh" class=customer-dialogs__link2>
+            <div class="customer-dialogs-message js-customer-dialogs-message full-width-sm">
+               <div style="background-image:url(https://photos.tpn.to/rp/gt/mn/pp/299x225.webp)" class=customer-dialogs-message__image></div>
+               <div class=customer-dialogs-message__content>
+                  <div class=customer-dialogs-message__information>
+                     <div class=customer-dialogs-message__header>
+                        <span class=customer-dialogs-message__name>Mangosteen Ayurveda &amp; Wellness Resort</span>
+                        <span class="customer-dialogs-message__header__status hidden-desktop hidden-tablet">
+                        <span class="customer-dialogs-status customer-dialogs-status--open">
+                        <span>Open</span>
+                        <i class="ebs-icon ebs-icon-info"></i>
+                        <span class=status-tooltip>
+                        Your inquiry was sent to the organizer to reply.
+                        </span>
+                        </span>
+                        </span>
+                     </div>
+                     <h3 class="title customer-dialogs-message__title">
+                        6 Day Relaxing Yoga Retreat in Rawai, Phuket
+                     </h3>
+                     <div class=customer-dialogs-message__excerpt>
+                        <span class=customer-dialogs-message__new>new</span>
+                        "Hi Amirrca Amirrca,
+                        We haven’t heard back from you in a while...."
+                     </div>
+                  </div>
+                  <div class=customer-dialogs-message__right>
+                     <div class=hidden-phone>
+                        <span class="customer-dialogs-status customer-dialogs-status--open">
+                        <span>Open</span>
+                        <i class="ebs-icon ebs-icon-info"></i>
+                        <span class=status-tooltip>
+                        Your inquiry was sent to the organizer to reply.
+                        </span>
+                        </span>
+                     </div>
+                     <div class=customer-dialogs-message__date>
+                        arrival:
+                        <strong>November 10, 2021</strong>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </a>
+         <a href="/customer/inquiries/pva-1KjE9Oil6UGPog8ZC4KuWkUKXCe7" class=customer-dialogs__link2>
+            <div class="customer-dialogs-message js-customer-dialogs-message full-width-sm customer-dialogs-message--new">
+               <div style="background-image:url(https://photos.tpn.to/rp/gt/mn/pp/299x225.webp)" class=customer-dialogs-message__image></div>
+               <div class=customer-dialogs-message__content>
+                  <div class=customer-dialogs-message__information>
+                     <div class=customer-dialogs-message__header>
+                        <span class=customer-dialogs-message__name>Mangosteen Ayurveda &amp; Wellness Resort</span>
+                        <span class="customer-dialogs-message__header__status hidden-desktop hidden-tablet">
+                        <span class="customer-dialogs-status customer-dialogs-status--available">
+                        <span>Available</span>
+                        <i class="ebs-icon ebs-icon-info"></i>
+                        <span class=status-tooltip>
+                        Booking link is available and expires in 2d. Proceed to booking!
+                        </span>
+                        </span>
+                        </span>
+                     </div>
+                     <h3 class="title customer-dialogs-message__title">
+                        6 Day Relaxing Yoga Retreat in Rawai, Phuket
+                     </h3>
+                     <div class=customer-dialogs-message__excerpt>
+                        <span class=customer-dialogs-message__new>new</span>
+                     </div>
+                  </div>
+                  <div class=customer-dialogs-message__right>
+                     <div class=hidden-phone>
+                        <span class="customer-dialogs-status customer-dialogs-status--available">
+                        <span>Available</span>
+                        <i class="ebs-icon ebs-icon-info"></i>
+                        <span class=status-tooltip>
+                        Booking link is available and expires in 2d. Proceed to booking!
+                        </span>
+                        </span>
+                     </div>
+                     <div class=customer-dialogs-message__date>
+                        arrival:
+                        <strong>November 14, 2021</strong>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </a>
+      </div>
+      <div class="t-container rebrand-funnel--dialog">
+         <div class="customer-dialogs-toggler js-customer-dialogs-toggler full-width-sm">
+            <div class=customer-dialogs-image>
+               <img src="https://photos.tpn.to/rp/gt/mn/pp/653x490.webp">
+            </div>
+            <div class=customer-dialogs-toggler__summary>
+               <small class=customer-dialogs-toggler__lead>My inquiry for</small>
+               <h2 class="title customer-dialogs-toggler__title">
+                  6 Day Relaxing Yoga Retreat in Rawai, Phuket
+               </h2>
+               <i class="ebs-icon ebs-icon-t-caret-down"></i>
+            </div>
+         </div>
+         <div class=hidden-phone>
+            <a href="{% url 'listings:my_messages' inquiry.customer.pk %}" class="customer-dialogs__inquiries-link header-back-link">
+               <i class="ebs-icon ebs-icon-tiny-arrow-left"></i>
+               <div>
+                  Back to my messages
+               </div>
+            </a>
+         </div>
+         <div class=customer-dialogs-header>
+            <h4>
+               {% if inquiry.is_approved %}
+               <span class="customer-dialogs-status customer-dialogs-status--available">
+               <span>Available</span>
+               <i class="ebs-icon ebs-icon-info"></i>
+               <span class=status-tooltip>
+               Booking link is available and expires in 2d. Proceed to booking!
+               </span>
+               </span>
+               {% else %}
+               <span class="customer-dialogs-status customer-dialogs-status--open">
+               <span>Open</span>
+               <i class="ebs-icon ebs-icon-info"></i>
+               <span class="status-tooltip">
+               Your inquiry was sent to the organizer to reply.
+               </span>
+               </span>
+               {% endif %}
+            </h4>
+            <h1 class=title>
+               {{ inquiry.listing.title }}
+            </h1>
+         </div>
+         <div class=customer-dialogs-body>
+            <div class=t-row>
+               <div class="col-sm-4 col-sm-push-8">
+                  <div class="customer-dialogs-panel js-customer-dialogs-toggler customer-dialogs-panel">
+                     <div class=customer-dialogs-image>
+                        <img src="{{ inquiry.listing.get_first_image }}">
+                     </div>
+                     <div class="section customer-dialogs-card-content full-width-sm">
+                        {% if inquiry.is_approved %}
+                        <span class="customer-dialogs-status customer-dialogs-status--available">
+                           <span>Available</span>
+                           <i class="ebs-icon ebs-icon-info"></i>
+                           <span class=status-tooltip>
+                              Booking link is available. Proceed to booking!
+                           </span>
+                        </span>
+                        {% else %}
+                        <span class="customer-dialogs-status customer-dialogs-status--open">
+                           <span>Open</span>
+                           <i class="ebs-icon ebs-icon-info"></i>
+                           <span class="status-tooltip">
+                           Your inquiry was sent to the organizer for confirmation.
+                           </span>
+                           </span>
+                        {% endif %}
+                        <div class=customer-dialogs-panel__byline>
+                           Organized by {{ inquiry.listing.get_organization }}
+                        </div>
+                        <div class=customer-dialogs-panel__link>
+                           <a target=_blank href="{% url 'listings:profile-detail' inquiry.listing.user_profile.pk %}">
+                           See Yoga Retreat page
+                           </a>
+                        </div>
+                        <div class=customer-dialogs-panel__package-details>
+                           {% if inquiry.number_of_people > 1 %}
+                           <span>{{ inquiry.number_of_people }} people</span>
+                           {% else %}
+                           <span>{{ inquiry.number_of_people }} person</span>
+                           {% endif %}
+                           <div>{{ inquiry.package.room.get_shared_display }} {{ inquiry.package.room.get_type_display }}</div>
+                           <div class=customer-dialogs-panel__note>{{ inquiry.package.room.accommodation.name }} - {{ inquiry.package.room.name }}</div>
+                        </div>
+                        <div class=customer-dialogs-panel__duration>
+                           <div class=customer-dialogs-panel__arrival>
+                              {{ inquiry.arrival_date|date:"D d M Y" }}
+                           </div>
+                           <div>
+                              <img src="/static/rebrand/duration-arrow.png">
+                           </div>
+                           <div class=customer-dialogs-panel__departure>
+                              {{ inquiry.departure_date|date:"D d M Y" }}
+                           </div>
+                        </div>
+                        {% if inquiry.is_conditional %}
+                        <div class=customer-dialogs-payment>
+                           <div class=customer-dialogs-payment__price>
+                              <div>Total price:</div>
+                              <div>
+                                 <span data-package-id=523153 data-listing-id=34061 id=original-price-wrapper class=final-original-price>
+                                 USD {{ inquiry.total_price|intcomma }}
+                                 </span>
+                              </div>
+                           </div>
+                           <div class=customer-dialogs-payment__price-info>
+                              <div id=currency-details-wrapper>
+                                 <p class=currency-details>
+                                    <span>Your total price is an estimate. For accurate pricing, please wait for your inquiry to be approved by the host.</span>
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        {% else %}
+                        <div class=customer-dialogs-payment>
+                           <div class=customer-dialogs-payment__price>
+                              <div>Total price:</div>
+                              <div>
+                                 <span data-package-id=523153 data-listing-id=34061 id=original-price-wrapper class=final-original-price>
+                                    USD ${{ inquiry.total_price|intcomma }}
+                                 </span>
+                              </div>
+                           </div>
+                           <div class=customer-dialogs-payment__price-info>
+                              <div id=currency-details-wrapper>
+                                 <p class=currency-details>
+                                    <span>Your inquiry and associated price has been confirmed by the host</span>
+                                 </p>
+                              </div>
+                           </div>
+                        </div>
+                        {% endif %}
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-8 col-sm-pull-4">
+                  <div id=message-form-wrapper class=customer-dialogs-communication>
+                     <!-- Not approved payment yet -->
+                     {% if inquiry.is_approved and not inquiry.deposit_paid %}
+                     <div class="section customer-dialogs-information customer-dialogs-information--spot_available full-width-sm">
+                        <h3 class=title>Secure your spot</h3>
+                        <div>Great news! Mangosteen Ayurveda &amp; Wellness Resort has confirmed that they have a free spot. We are holding it for you now.</div>
+                        <div>
+                           Pay within <span class="js-payment-countdown text-lowercase">(Loading...)</span> to guarantee your stay. After this period, your spot might not be available anymore.
+                        </div>
+                        <input type=hidden value="2021-Aug-08 11:25:15" class=js-payment-expiration>
+                        <a href="{% url 'listings:payment' inquiry.pk %}" class="bttn bttn--outline">Book Now</a>
+                     </div>
+                     {% elif inquiry.is_approved and inquiry.deposit_paid %}
+                     <div class="section customer-dialogs-information customer-dialogs-information--instant_payment full-width-sm">
+                        <h3 class="title">Travellers’ tip - save your invoice!</h3>
+                        <div>Keeping a copy of your invoice allows you to verify your stay with your host on arrive.</div>
+                        <a onclick="gae('dialogsPage','instant_btn');" href="/customer/book_now/GKmOjKW1JjpX0ItVurnG1tQgtF91FRO-/click_pay" class="bttn bttn--outline customer-dialogs__cta">
+                        Print my invoice
+                        </a>
+                     </div>
+                     {% else %}
+                     <div class="section customer-dialogs-information customer-dialogs-information--instant_payment full-width-sm">
+                        <h3 class="title">Travellers’ tip - book immediately!</h3>
+                        <div>Paying now will secure your spot on this unique retreat.</div>
+                        <div>Keep in mind that there is only a few spots left for your dates - we recommend you act soon!</div>
+                        <a onclick="gae('dialogsPage','instant_btn');" href="/customer/book_now/GKmOjKW1JjpX0ItVurnG1tQgtF91FRO-/click_pay" class="bttn bttn--outline customer-dialogs__cta">
+                        Yes! Guarantee my booking.
+                        </a>
+                     </div>
+                     {% endif %}
+                     <!-- Approved Payment -->
+
+                     <div class=flexible-booking-conditions>
+                        <h4>Book with flexible conditions</h4>
+                        <p>Need to cancel your trip due to COVID-19 ? You can reschedule your booking free of charge or receive store credit for your non-refundable deposit and re-book anytime.</p>
+                     </div>
+                     <div style=margin-bottom:20px></div>
+                     <div class="section customer-dialogs-compose full-width-sm">
+                        <h3 class="customer-dialogs-compose__title title">
+                           Reply to {{ inquiry.listing.get_organization }}
+                        </h3>
+                        <div id=message-form-client-errors class=hide>
+                           <span id=file_too_large>Each file&#39;s size cannot exceed 10 MB.</span>
+                           <span id=failed_to_contact_server>Failed to contact server to send your message. Please try again later.</span>
+                           <span id=file_name_invalid>Filename cannot contain any of the following characters: \ / : * ? &#34; &lt; &gt; |</span>
+                        </div>
+                        <div id=message-form-errors class="alert alert--error hide"></div>
+                        <form id=new_simple_message_form class="simple_form new_simple_message_form messenger-type-form" method=post enctype="multipart/form-data" action="" accept-charset='UTF-8'>
+                           {% csrf_token %}
+                           <div class=control-group>
+                              {{ form|crispy }}
+                           </div>
+                           <div class="customer-dialogs-compose__attach">
+                              <label for="file_0" class="attachment field">
+                              <span class="icon"><i class="ebs-icon ebs-icon-attachment"> </i></span>
+                              <input type="file" name="attached_files" multiple="multiple" multiple /><br>
+                              <span class="label-name">Attach files</span>
+                              <span class="hidden-phone text-muted">(TXT, Word, Excel, PDF or images. Max 10 MB)</span>
+                              </label>
+                              <label class="checkbox field">
+                              <input name="yourself_copy" type="checkbox" value="1" id="simple_message_form_yourself_copy" class="boolean optional">
+                              Send yourself a copy
+                              </label>
+                              </div>
+                           <div class=messaging-security-message>
+                              <svg xmlns="http://www.w3.org/2000/svg" height=20 width=18 viewBox="0 0 18 20">
+                                 <g fill-rule=evenodd transform="translate(1 1)" fill=none>
+                                    <path d="M8 18c-4.256-1.41-6.922-3.913-8-7.509V0h16v10.491C14.922 14.087 12.256 16.59 8 18z" stroke="#53585C" fill="#CCEDFA"></path>
+                                    <rect rx=1 y=4.063 width=4 stroke="#53585C" height=4.5 x=6></rect>
+                                    <rect x=4.5 rx=2 y=7.063 width=7 height=5 fill="#FFF"></rect>
+                                    <path d="M8 7.063h1.5a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8v-5z" fill="#9ADBF6"></path>
+                                    <rect rx=1 y=7.063 width=7 stroke="#53585C" height=5 x=4.5></rect>
+                                    <circle r=1 cy=9.563 cx=8 fill="#53585C"></circle>
+                                 </g>
+                              </svg>
+                              <strong>Always communicate through BookYogaRetreats</strong> - To protect your payment data and to make sure we can support you, please always communicate through our website.
+                           </div>
+                           <div class=customer-dialogs-compose__actions>
+                              <button type='submit' class="sec-cta-send bttn bttn--regular bttn--large catamaran">
+                              Send message
+                              </button>
+                           </div>
+                        </form>
+                     </div>
+                     <div class="customer-dialogs-history full-width-sm">
+                        <div class="dialog-container js-customer-dialogs-history">
+                           {% for message in messages %}
+                           {% if message.from_host %}
+                           <div class=message-organizer>
+                              <div class=message-meta>
+                                 <span class=message-name>{{ inquiry.listing.get_organization }}</span>
+                                 <span class=message-timeago>{{ message.created_at|timesince }}</span>
+                              </div>
+                              <div class=message-content>
+                                 <p></p>
+                                 <p class="message-snippet js-clean-linebreak">
+                                   {{ message.content }}
+                                 </p>
+                                 <div class="attachments-wrapper">
+                                    <ul class="files">
+                                       {% for file in message.files.all %}
+                                       <li>
+                                          <a target="_blank" rel="noopener noreferrer" href="{{ file.file.url }}" title="Wellness_Schedule_2021.pdf">
+                                             {{ file.file|filename }}
+                                          </a>
+                                       </li>
+                                       {% endfor %}
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           {% else %}
+                           <div class=message-customer>
+                              <div class=message-meta>
+                                 <span class=message-name>{{ inquiry.customer.get_full_name }}</span>
+                                 <span class=message-timeago>{{ message.created_at|timesince }}</span>
+                              </div>
+                              <div class=message-content>
+                                 <p></p>
+                                 <p class="message-snippet js-clean-linebreak">
+                                   {{ message.content }}
+                                 </p>
+                                 <div class="attachments-wrapper">
+                                    <ul class="files">
+                                       {% for file in message.files.all %}
+                                       <li>
+                                          <a target="_blank" rel="noopener noreferrer" href="{{ file.file.url }}" title="Wellness_Schedule_2021.pdf">
+                                             {{ file.file|filename }}
+                                          </a>
+                                       </li>
+                                       {% endfor %}
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                           {% endif %}
+                           {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="customer-dialogs__link-holder section full-width-sm hidden-tablet hidden-desktop">
+               <div class=t-container>
+                  <a href="/customer/messages/" class="bttn bttn--outline bttn--block customer-dialogs__link-holder__mobile-button">
+                  <i class="ebs-icon ebs-icon-tiny-arrow-left"></i>
+                  Messages
+                  (3)
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+      <input type=hidden value=false id=newsletter_subscribe name=newsletter_subscribe>
+      <noscript>
+         <div style=display:inline>
+            <img style=border-style:none height=1 width=1 alt src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/951179771/?value=0&amp;guid=ON&amp;script=0">
+         </div>
+      </noscript>
+      <div style=display:none id=subscribe_confirm_modal class="modal new default-style subscribe-modal">
+         <div class=modal-header>
+            <button type=button onclick="gae('subscribe-confirm-modal','close');" data-dismiss=modal title=Close class=close>
+               <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" height=18 width=18 xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon--svg">
+                  <g fill-rule=evenodd>
+                     <path d="M2.1213203.5147187L17.6776695 16.071068c.3905243.3905242.3905243 1.0236892 0 1.4142135-.3905242.3905243-1.0236893.3905243-1.4142135 0L.7071067 1.9289323C.3165824 1.538408.3165825.905243.7071067.5147187c.3905243-.3905243 1.0236893-.3905243 1.4142136 0z"></path>
+                     <path d="M.7071067 16.0710677L16.263456.5147185c.3905242-.3905243 1.0236892-.3905243 1.4142135 0 .3905243.3905242.3905243 1.0236893 0 1.4142135L2.1213203 17.4852813c-.3905243.3905243-1.0236893.3905242-1.4142136 0-.3905243-.3905243-.3905243-1.0236893 0-1.4142136z"></path>
+                  </g>
+               </svg>
+            </button>
+         </div>
+         <div class="modal-body subscribe-popup">
+            <div class=modal-icon>
+               <svg xmlns="http://www.w3.org/2000/svg" height=512 width=512 viewBox="0 0 512 512">
+                  <path d="M368 457H48c-26 0-48-22-48-48V201c0-27 22-48 48-48h320c26 0 48 21 48 48v208c0 26-22 48-48 48zM48 172c-16 0-28 13-29 29v208c1 16 13 28 29 28h320c15 0 28-12 28-28V201c0-16-13-29-28-29zm160 193c-14 0-27-5-36-15L43 222c-4-4-4-10 0-14s10-4 13 0l129 129c13 12 33 12 45 0l129-129c4-4 10-4 14 0 3 4 4 10 0 14L244 350c-10 10-23 15-36 15zm253-6h-11c-5 0-9-4-9-10 0-5 4-9 9-9h11c17 0 32-15 32-32V106c0-17-15-31-32-31H148c-18 0-32 14-32 31v15c0 6-4 10-10 10-5 0-10-4-10-10v-15c1-28 23-51 52-51h313c28 0 51 23 51 51v202c0 28-23 51-51 51z"></path>
+               </svg>
+            </div>
+            <h5 class="title catamaran">Almost there!</h5>
+            <p class=intro>Please go to your inbox and click the confirmation link we just emailed you.</p>
+         </div>
+      </div>
+      <div style=display:none id=subscribe_modal class="modal new default-style subscribe-modal">
+         <div class=modal-header>
+            <button type=button onclick="gae('subscribe-modal','close-v0');" data-dismiss=modal title=Close class=close>
+               <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" height=18 width=18 xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon--svg">
+                  <g fill-rule=evenodd>
+                     <path d="M2.1213203.5147187L17.6776695 16.071068c.3905243.3905242.3905243 1.0236892 0 1.4142135-.3905242.3905243-1.0236893.3905243-1.4142135 0L.7071067 1.9289323C.3165824 1.538408.3165825.905243.7071067.5147187c.3905243-.3905243 1.0236893-.3905243 1.4142136 0z"></path>
+                     <path d="M.7071067 16.0710677L16.263456.5147185c.3905242-.3905243 1.0236892-.3905243 1.4142135 0 .3905243.3905242.3905243 1.0236893 0 1.4142135L2.1213203 17.4852813c-.3905243.3905243-1.0236893.3905242-1.4142136 0-.3905243-.3905243-.3905243-1.0236893 0-1.4142136z"></path>
+                  </g>
+               </svg>
+            </button>
+         </div>
+         <div class="modal-body subscribe-popup">
+            <h5 class="title catamaran">Sign up for our newsletter</h5>
+            <p class=intro>Don&#39;t miss our special promotions, exclusive offers, new destinations and inspirational stories!</p>
+            <div id=form-container class=js-successful-subscription>
+               <form id=footer-modal-subscribe class="new_subscriber subscribe-form">
+                  <div class=control-group>
+                     <div class=controls>
+                        <input data-source=footer_modal readonly class="form-control form-control-inline form-control-lg" name=email size=30 type=email value="amirrca@yahoo.com">
+                        <input type=submit value=Subscribe class="form-control form-control-inline bttn -regular form-control-lg">
+                        <div class=subscribe-form-message></div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <p class=outro>We respect your privacy. We will not publish or share your email address in any way.</p>
+         </div>
+      </div>
+      <div class="subscribe-corner js-subscribe-corner hide">
+         <div class=subscribe-corner__container>
+            <h5 class="title catamaran">Don&#39;t miss out, join our mailing list and get updates &amp; special offers!</h5>
+            <button class="js-subscribe-signup bttn bttn--regular">Sign up for our newsletter</button>
+         </div>
+         <div class="subscribe-corner__close js-subscribe-corner-close">
+            <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" height=18 width=18 xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon--svg">
+               <g fill-rule=evenodd>
+                  <path d="M2.1213203.5147187L17.6776695 16.071068c.3905243.3905242.3905243 1.0236892 0 1.4142135-.3905242.3905243-1.0236893.3905243-1.4142135 0L.7071067 1.9289323C.3165824 1.538408.3165825.905243.7071067.5147187c.3905243-.3905243 1.0236893-.3905243 1.4142136 0z"></path>
+                  <path d="M.7071067 16.0710677L16.263456.5147185c.3905242-.3905243 1.0236892-.3905243 1.4142135 0 .3905243.3905242.3905243 1.0236893 0 1.4142135L2.1213203 17.4852813c-.3905243.3905243-1.0236893.3905242-1.4142136 0-.3905243-.3905243-.3905243-1.0236893 0-1.4142136z"></path>
+               </g>
+            </svg>
+         </div>
+      </div>
+      <div style=display:none>
+         <small>Served by www:8000</small>
+      </div>
+      <div id=script-container>
+         <script>var rebrand_customer_dialogs = 1;</script><script>window.dataLayer=window.dataLayer||[];
+            dataLayer.push({
+            "experimentId":"",
+            "experimentVariantId":"",
+            "experiments": {}
+            });
+            window.__insp=window.__insp||[];
+            __insp.push(['tagSession',{}]);
+         </script><script>var ctx = (function(){
+            return {
+            hasSelectedArrivalDate: false,
+            baseUrlWithDate: "/?arrival_date=",
+            }
+            })();
+            var siteid='3';
+            var operatingSystem='Windows';
+            var browserFamily='Chrome';
+            var deviceType='Desktop';
+            var supportsWEBP=true;
+            var photoExtension='webp';
+            var selectedLanguage='en';
+            var selectedLanguageId=41;
+            var selectedCurrency='CAD';
+            var selectedCurrencyFormat='CAD {amount}';
+            var isLiveEnv = true;
+            var isSubscriber = false;
+            var translation = {};
+            var isDialogForCustomer = true;
+            var isConfirmationPage = false;
+            var isListingPage = false;
+            var isInquiryPage = false;
+            var isTopicPage = false;
+            var isIndexPage = false;
+            var isOrganizerPage = false;
+            var isSearchresultsPage = false;
+            var isBlogHome = false;
+            var isBlogPost = false;
+            var facebookAppId = 1736875203042291;
+            var bingAppId = "5118296";
+            const isSearchResultsPage = false;
+            var viewUUID = '610bd77fd2502507001d375b';
+            var country = 'Thailand';
+            var continentCode = 'AS';
+            var isBot = false;
+            var isNewSession = false;
+            var pageType = '9';
+            var pageTypeName = 'DialogCustomer';
+            if (!Date.now) {
+            Date.now = function(){return new Date().getTime();}
+            }
+            var loadStart = Date.now();
+            var rebrand_experiment = false;
+            var lp_package_filters = false;
+            var reviewsTransTags = {}
+            reviewsTransTags.testimonials = "Testimonials"
+            reviewsTransTags.verified_site_reviews = "Verified BookYogaRetreats reviews"
+            reviewsTransTags.review_by_customer = "Review by REVIEWER"
+            reviewsTransTags.review_by_customer_from_country_anonymous = "Review by Anonymous"
+            reviewsTransTags.review_by_customer_from_country_customer = "Review by CUSTOMER from COUNTRY"
+            reviewsTransTags.valueForMoney = "Value for money"
+            reviewsTransTags.accommodationAndFacilities = "Accommodation &amp; facilities"
+            reviewsTransTags.food = "Food"
+            reviewsTransTags.location = "Location"
+            reviewsTransTags.qualityOfActivity = "Quality of activity"
+            reviewsTransTags.overallImpression = "Overall impression"
+            reviewsTransTags.organizer_response = "Organizer response"
+            reviewsTransTags.anonymous = "Anonymous"
+            var trustpilot_killswitch = 1;
+            function getDeviceType() {
+            var windowWidth = $(window).width();
+            if ( windowWidth < 768 ){
+            return 'mobile';
+            } else if ( windowWidth <= 1024 ) {
+            return 'tablet';
+            } else {
+            return 'desktop';
+            }
+            }
+         </script><script>+function() {
+            var errorCount = 0,
+            win        = Function( 'return this' )();
+            function post( url, data ) {
+            var request = new XMLHttpRequest();
+            request.open( 'POST', url, true );
+            request.send( data );
+            }
+            function runSafe( fnc ) {
+            var success = true;
+            try {
+            fnc();
+            } catch( e ) {
+            success = false;
+            }
+            return success;
+            }
+            function getSafe( fnc ) {
+            var result;
+            try {
+            result = fnc();
+            } catch( e ) {}
+            return result;
+            }
+            function report( error ) {
+            var data = new FormData(),
+            key;
+            for ( key in error ) if ( error.hasOwnProperty( key ) ) {
+            data.append( key, error[ key ] );
+            }
+            if (typeof(viewUUID))
+            data.append('viewUUID', viewUUID);
+            post( '/js-error', data );
+            }
+            win.onerror = function( message, file, line, column, error ) {
+            var args = [].slice.apply( arguments );
+            errorCount += 1;
+            if ( errorCount > 5 ) {
+            return;
+            }
+            if (
+            ! runSafe(function() {
+            report({
+            msg:     message,
+            url:     win.location.href,
+            script:  file,
+            line:    line,
+            column:  column,
+            stack:   getSafe(function() { return error.stack; })
+            });
+            })
+            ) {
+            runSafe(function() {
+            report({
+            message: message
+            });
+            });
+            }
+            };
+            }();
+         </script>
+            <script
+            src="https://code.jquery.com/jquery-1.12.4.js"
+            integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+            crossorigin="anonymous"
+          ></script>
+      <script src="{% static 'js/swiper.js' %}"></script>
+      <script src="{% static 'js/libs.js' %}"></script>
+      <script src="{% static 'js/logic.js' %}"></script>
+      <script src="{% static 'js/customer.js' %}"></script>
+         <script defer async src="https://www.google.com/recaptcha/api.js"></script>
+         <script>
+         function moment(str) {
+            return {
+            toDate: function() {
+            var date = new Date(str);
+            if (isNaN(date.getDate()))
+            return new Date();
+            return date;
+            }
+            };
+            }
+         </script><script>var variants_ = {}</script>
+         <script>window.addEventListener("load", function() {
+            setTimeout(function() {
+            if ('cookieconsent' in window) {
+            window.cookieconsent.initialise({
+            "palette": {
+            "popup": {
+            "text": "#fff",
+            "background": "rgba(2, 191, 155, 0.85)"
+            },
+            "button": {
+            "background": "rgba(2, 191, 155, 1)",
+            "text": "#fff"
+            }
+            },
+            "content": {
+            "message": 'This website uses cookies. If that’s okay with you, just keep browsing.',
+            "dismiss": 'Close',
+            "link": 'Learn more',
+            "href": window.location.protocol + "//" + window.location.host + "/terms-and-privacy"
+            }
+            })
+            }
+            }, 666);
+            });
+         </script>
+         <script src="{% static 'js/subscriber.js' %}"></script>
+         <script src="{% static 'js/footerSubscribe.js' %}"></script>
+         <script>tippy('.data-tippy--click', {
+            content(reference) {
+            const id = reference.getAttribute('data-template');
+            const template = document.getElementById(id);
+            return template.innerHTML;
+            },
+            trigger: 'click',
+            theme: 'tripaneer'
+            });
+         </script><script>var dialog_intro = "Now you are messaging with ORGANISER about LISTING";
+            var token = "aL-qCLWcV-9W6Lcvo4V5-BE5dVwiwHBt";
+         </script><script>var exp_dialogs_cust_resizable_textarea = false;</script><script>$(function(){
+            $("br + br",$(".js-clean-linebreak")).each(function(){
+            if($(this).prev()[0].nodeName == this.nodeName){
+            $(this).remove()
+            }
+            });
+            });
+         </script><script>/* <![CDATA[ */
+            var google_conversion_id = 951179771;
+            var google_custom_params = window.google_tag_params;
+            var google_remarketing_only = true;
+            /* ]]> */
+         </script><script async src="//www.googleadservices.com/pagead/conversion.js"></script><script>$('#subscribe_modal').on('shown', function(){
+            if ($(this).hasClass('modal-wide')) {
+            gae('subscribe-modal','show-v1');
+            } else {
+            gae('subscribe-modal','show-v0');
+            }
+            });
+         </script><script>var wishAdd = 'Trip added to Favorites';
+            var wishRemove = 'Trip removed from Favorites';
+            var wishLoginButton = 'Log in';
+            var resendEmailSendingText = 'Sending...';
+            var resendEmailSentText = 'sent';
+            var removeProfilePictureWarningMessage = 'Are you sure you want to remove your profile picture?';
+            var translations = {
+            'linkCopiedToClipboard': 'Link copied to clipboard',
+            'copyLink': 'Copy',
+            'linkCopied': 'Link copied',
+            'listingPhotos': 'Photos',
+            'listingVideos': 'Videos',
+            'allReviews': 'All reviews',
+            'loadMore': 'Load more',
+            'inbox': {
+            'totalPrice': 'Total price',
+            'bookNow': 'Book Now',
+            'messages': 'Messages',
+            'deposit': 'Deposit',
+            'noDatesSelected': 'No dates selected',
+            'person': 'person',
+            'persons': 'persons',
+            'open': 'Awaiting reply from the organizer',
+            'available': 'Payment link is open, book now!',
+            'booked': 'Confirmed, paid, and ready for travel!',
+            'cancelled': 'The booking has been cancelled',
+            'awaitingConfirmation': 'The organizer has to accept your inquiry',
+            'notAvailable': 'No availability for your dates.',
+            'depositText': 'The deposit is',
+            'tripReadyToBook': 'Trip is ready to book',
+            'requestToPay': 'Request to Pay',
+            'requestToPayText': 'You will only be charged and the booking will only be finalized once the organizer confirms.',
+            'continueToConversation': 'Continue to conversation',
+            'cancelPaymentRequest': 'Cancel Payment Request',
+            'paymentPendingText': 'You will only be charged once the organizer confirms.',
+            'duplicate': 'This is a duplicate of another inquiry',
+            'other': 'Conversations with this organizer',
+            'explore': 'Explore similar trips',
+            'statusLabel': {
+            'open': 'Open',
+            'available': 'Available',
+            'booked': 'Booked',
+            'cancelled': 'Cancelled',
+            'awaitingConfirmation': 'Awaiting confirmation',
+            'notAvailable': 'Not available',
+            'duplicate': 'Duplicate'
+            },
+            'indicativeprice': 'This total price is converted based on the current exchange rate and is indicative.'
+            },
+            'payment': {
+            'retry': 'Retry',
+            'paymentSuccesful': 'Payment successful',
+            'preauthSuccessful': 'Saved card details successfully',
+            'somethingWentWrong': 'Something went wrong, please try again',
+            'cancelledTryAgain' : 'Payment process is cancelled, please try again',
+            'reviewTripDetails': 'Review Trip Details',
+            'contactInformation': 'Contact Information',
+            'confirmAndPay': 'Confirm and Pay',
+            'firstName': 'First name',
+            'lastName': 'Last name',
+            'phone': 'phone',
+            'email': 'email',
+            'message': 'message',
+            'requestToBook': 'Request to Book',
+            'requestToBookSubtitle': 'You will only be charged if the organizer accepts within 48 hours',
+            'paymentHeading': 'Book now',
+            'paymentSubtitle': 'Reserve your spot on your dream vacation',
+            'alreadyHaveAccount' : 'Already have an account?',
+            "login": 'Log in',
+            "contactUs": 'Contact us',
+            "discountVoucher": 'Discount voucher',
+            "verifyEmailToRedeem": 'Verify your email to redeem it',
+            "discountsSafelyVerifyEmail": 'To safely use discounts, we need to be able to reach you by email. Please find the verification email we sent',
+            "customerEmail": 'amirrca@yahoo.com',
+            "resendVerificationEmail": 'Resend email',
+            "amountPaid": 'Amount Paid',
+            "noPayment": 'Good news! Your voucher covers the amount to be paid right now.'
+            },
+            'paymentStatus': {
+            'noChargesWereMade': 'No charges were made',
+            'tryAgainText': 'Please try again. If the problem persists, please try a different payment method or contact our support.',
+            'selectPaymentMethod': 'Select payment method',
+            'listingWasUpdated': 'Listing was updated',
+            'invalidArrivalDate': 'Invalid arrival date',
+            'arrivalDateHasPassed': 'Looks like the date you selected has passed. Please select a valid date and try again.',
+            'noInstantAvailability': 'No instant availability',
+            'bookingNotProcessed': 'Sorry, we couldn’t process your booking. No charges were made.',
+            'reopenListingText': 'Please reopen the listing to see the latest version.',
+            'back': 'Back',
+            'backToListing': 'Back to Listing',
+            'lastInstantBookingSoldOut': 'The last instant bookable spot has sold out. You can still continue and send this request as an inquiry.',
+            'sendAsInquiry': 'Send as Inquiry',
+            'anotherDatePackage': 'or book another date/package',
+            'packageDetailsNotFound': 'Package Details Not Found',
+            'backToPackageSelection': 'Back to Package Selection',
+            'whyAmISeeingThis': 'Why am i seeing this?',
+            'packageDetailsEdited': 'The organizer may have edited the package you selected while you were booking.',
+            'updatesMayHaveBeenMade': 'Updates may have been made to the listing before you finished booking.',
+            'invalidPackage': 'Invalid Package',
+            'invalidLink': 'Invalid Link',
+            'internalError': 'Internal Error',
+            'errorOnOurSide': 'There was an error on our side, our team was already notified and will fix it as soon as possible.',
+            'tryAgain': 'Try Again',
+            'backToSite': 'Back to BookYogaRetreats',
+            'refreshPage': 'Refresh Page',
+            'somethingWentWrong': 'Something went wrong',
+            'sorryPaymentFailed': 'Sorry, your payment failed',
+            'selectPaymentMethod': 'Select Payment Method',
+            'waitingForPaymentProvider': 'Waiting for payment provider',
+            'doNotCloseWindow': 'Please do not close this window'
+            },
+            'vouchers': {
+            'validUntil': 'Valid until',
+            'applyThisVoucher': 'Apply this voucher',
+            'applied': 'Applied',
+            'tripaneerVoucherCode': 'Tripaneer voucher code',
+            'logIn': 'Log in',
+            'toApplyVoucher': 'To apply a voucher to this account',
+            'yourVoucherCode': 'Your voucher code',
+            'noVouchersOnThisAccount': 'You don&#39;t have any vouchers on this account',
+            'expired': 'Expired',
+            'viewFullTC': 'View full T&amp;C',
+            'voucherUsage': 'Voucher usage',
+            'voucherUsage1': 'Only 1 voucher can be used per transaction. Tripaneer only accepts 1 transaction per booking.',
+            'voucherUsage2': 'If there is any credit remaining after the redemption of the voucher, a new voucher with the same validity period shall be issued for the remaining amount.',
+            'voucherUsage3': 'This voucher must be redeemed in full in a single transaction. No change or credit is given in the event that the voucher amount exceeds the transaction amount.',
+            'voucherUsage4': 'The voucher is linked to this email address and can only be used by the account with this email address.',
+            'voucherUsage6': 'The voucher can only be used to book online through Tripaneer.com or any of our websites and cannot be presented upon check-in at the establishment.',
+            'voucherRedeemable': 'Redeemable for cash after',
+            'voucherDetails': 'Voucher details',
+            'applyVoucherOnPayment': 'Apply this voucher on the payment page of your booking',
+            'verifyEmailToUse': 'Verify your email to use your vouchers',
+            'paymentYour': 'Your',
+            'voucherModalText1': 'This has been converted from',
+            'voucherModalText2': 'based on todays exchange rate',
+            'voucherModalText3': 'Your voucher is worth',
+            'voucherModalText4': 'and can be used until',
+            'voucherModalText5': 'or you can exchange this for cash after',
+            'voucherOverflowText1': 'The remaining',
+            'voucherOverflowText2': 'of your voucher will be issued as a new voucher for a future booking',
+            'voucherOverflowText3': 'This is a one-time voucher. Any balance that remains on the voucher after the payment is successfully processed will no longer be available for use.',
+            'voucher': 'voucher',
+            'oops': 'Oops!',
+            'voucherErrorText1': 'We’re sorry, something went wrong on our end. Please refresh the page and try applying the voucher again.',
+            'voucherErrorText2': 'This voucher isn’t valid.',
+            'voucherErrorText3': 'Contact',
+            'voucherErrorText4': 'customer support',
+            'voucherErrorText5': 'if you have questions.'
+            },
+            'filterMap': {
+            'nrPersons': 'persons',
+            'nrPerson': 'person',
+            'days': 'days',
+            'from': 'from',
+            'showing500Results': 'Showing 500+ results',
+            'somethingWentWrong': 'Oops, something went wrong.',
+            'noResultsTryZoom': 'No results found in this area, try zooming out',
+            'showing': 'Showing',
+            'results': 'results',
+            'prev': 'Prev',
+            'next': 'Next',
+            'refreshPage': 'Browse the map and search again',
+            'noResultsFound': 'No results found',
+            'noResultsTryBrowse': 'The selection you&#39;ve chosen has no results, try browsing another area or zooming out'
+            }
+            }
+         </script>
+      </div>
+      <div class='loader-overlay'>
+         <h2>Logging out</h2>
+         <h4>of Tripaneer websites</h4>
+         <div class='spinner'>
+            <svg xmlns="http://www.w3.org/2000/svg" height=16 width=18 viewbox="0 0 18 16" class="bounce bounce1">
+               <path fill-rule='nonzero' d="M.035 5.645c-.344 3.11 1.84 8.322 7.776 9.47 3.017.589 7.015-.223 9.002-4.342C23.338-2.817.87-2.397.035 5.645z" fill="#02BF9B"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height=17 width=18 viewbox="0 0 18 16" class="bounce bounce2">
+               <path fill-rule='nonzero' d="M15.643 2.777A8.172 8.172 0 0 0 12.707.703C7.61-1.48 1.765 1.736.333 6.025c-.035.105-.067.21-.096.316-.561 2.033-.135 4.253 1.372 6.066 1.802 2.168 4.765 3.471 7.601 3.613 3.924.196 7.457-1.079 8.504-4.38.79-2.49-.105-6.65-2.071-8.863z" fill="#02A5E8"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height=18 width=18 viewbox="0 0 18 18" class="bounce bounce3">
+               <path fill-rule='nonzero' d="M10.215.437C5.117.437-2.205 5.263.634 11.088c2.839 5.825 12.92 8.488 15.732 2.996C19.112 8.718 19.204.437 10.215.437z" fill="#FF9B35"></path>
+            </svg>
+         </div>
+      </div>
+      <div id='toast'>
+         <div id='toast-inner'></div>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,200 @@
+{% extends '../accommodations/accommodation-base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block content %} 
+<section class="admin-content -fullwidth js-active-tab-name" data-tab-name="Instructors">
+    <header class="row section-title">
+      <div class="col-sm-9">
+        <h1 class="catamaran"> Add Videos </h1>
+      </div>
+      <div class="col-sm-3"></div>
+    </header>
+    <div id="contact" data-organizer-id="23069" data-instructor-id="87030">
+      <div class="panel">
+        <div class="panel-body -airy">
+          <div class="row">
+            <div class="col-md-6">
+              <div id="organizer-videos-uploads">
+                <form id="food-drinks-form" class="dropzone dz" method="POST" action="{% url 'listings:add-video' pk=user_p %}"> 
+                    {% csrf_token %}
+                <!-- ------------------------------------------------ THINGS TO DO --------------------------------------- -->
+                       <!-- Dropped photos pending, waiting for upload -->
+                    <div class="fallback">
+                        <input name="file" type="file" multiple />
+                    </div>
+                      <!-- Add your photos here -->
+
+
+                  </form>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="note-card">
+                <p>Tips on videos</p>
+                <p>To maintain the quality of the Tripaneer website, <strong>videos will be reviewed</strong> by Tripaneer before they are displayed on your page. </p>
+                <p>Best videos to upload:</p>
+                <ul>
+                  <li>
+                    <strong>No external links</strong> (eg. www.mysite.com) or contact information
+                  </li>
+                  <li>Short videos, up to 7 minutes long</li>
+                  <li>Real videos instead of picture slideshows</li>
+                  <li>Up to 50MB (If your video is bigger, you can use <a href="https://handbrake.fr/" target="_blank">Handbrake</a> or <a href="http://www.squared5.com/" target="_blank">MPEG Streamclip</a> to make it smaller) </li>
+                  <li>No inappropriate content (foul language, nudity, sexual activities, platform banned activities like hunting, elephant riding, fishing etc.)</li>
+                </ul>
+                <p>Suggested content and quality:</p>
+                <ul>
+                  <li>Quality: 1080p is preferred, but not mandatory</li>
+                  <li>Show the activities, accommodations, and surroundings</li>
+                  <li>Introduce the instructors, hosts or staff</li>
+                  <li>Testimonials from guests describing what they love about your theme vacation</li>
+                </ul>
+                <p>As an example, have a look at the following videos: <a target="_blank" href="https://www.bookyogaretreats.com/the-salty-pelican">Salty Pelican</a>
+                </p>
+                <p>
+                  <strong>Why are high quality photos and videos important?</strong>
+                </p>
+                <p>In Tripaneer’s user research, guests have told us that high-quality images are crucial to their booking decision. They even told us that it’s their most important factor in deciding to book a retreat, and use the photos and videos to determine which listings are interesting for them to consider. The listings with professional photos got significantly more inquiries and bookings than listings without.</p>
+                <p>Do you want the help of a professional photographer to get visual footage for your listings? Check out our page: <a target="_blank" href="https://www.bookyogaretreats.com/professional-photography">www.bookyogaretreats.com/professional-photography</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card-list card-list--videos clearfix" id="video-files" data-select2-id="video-files">
+              {% for video in videos %}
+            <div class="js-video-item" data-select2-id="8">
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="clearfix">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <video controls="" controlslist="nodownload" src="{{ video.video.url }}" type="video/mp4" class="embed-responsive-item"></video>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="details">
+                          <div>
+                            <h3>{{video.filename }}</h3>
+                            <p>
+                                {% if video.approved %}
+                              <span class="label label-success">Approved</span>
+                              {% else %}
+                              <span class="label label-danger">Not Approved</span>
+                              {% endif %}
+                              <br>
+                            </p>
+                          </div>
+                          <div class="buttons">
+                            <a href="{{ video.video.url }}" target="_blank" class="btn btn-default">
+                              <i class="fa fa-eye"></i>
+                            </a>
+                            <a href="{% url 'listings:update-video' pk=video.pk %}" target="_blank" class="btn btn-primary">
+                                <i class="fa fa-eye"></i>
+                              </a>
+                            <a data-toggle="modal" href="{% url 'listings:delete-video' pk=video.id user_p=user_p %}" class="delete-video btn btn-danger">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </div>
+                          <script type="text/javascript">
+                            $(function() {
+                              $('[data-toggle="tooltip"]').tooltip({
+                                container: 'body'
+                              })
+                            })
+                          </script>
+                          <p></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                    {% if video.listings.all %}
+                    <div class="js-hide-on-edit-video">
+							
+                        <p>Assigned to the following listings:</p>
+                        {% for listing in video.listings.all %}
+                                <a target="_blank" href="{% url 'listings:listing_detail' pk=listing.id slug=listing.slug %}">{{listing.title}}</a><br>
+                                {% endfor %}
+                    
+                </div>
+                  {% else %}
+                  <div class="js-hide-on-edit-video">
+							
+                    <p>Not assigned to any listings yet</p>
+                
+                <a href="{% url 'listings:update-video' pk=video.pk %}" class="js-edit-video btn btn-sm btn-default" style="margin-top: 15px"><i class="fa fa-pencil"></i>  Assign video to listings </a>
+            </div>
+                  {% endif %}
+                </div>
+              </div>
+              <hr>
+            </div>
+            <!-- DELETE VIDEO MODAL -->
+            <div class="modal fade" tabindex="-1" role="dialog" id="delete-video-modal-1099818">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title">Delete</h4>
+                  </div>
+                  <div class="modal-body"> Are you sure you want to delete <strong>Samadhi Sacred Valley _ Peru _ Sony A6300 _ DJI Spark _ Zhiyun Crane V2.mp4</strong>? </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                    <a href="/4/organizers/delete-video/23069/1099818/" class="btn btn-danger"> Delete</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- BLOCK VIDEO MODAL -->
+            <div id="video-blocked-modal-1099818" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <form id="block_video_form_1099818" method="post" action="/4/organizers/video-block/23069/1099818/">
+                    {% csrf_token %}
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                      </button>
+                      <h4 class="modal-title"> Samadhi Sacred Valley _ Peru _ Sony A6300 _ DJI Spark _ Zhiyun Crane V2.mp4 is <span class="label label-danger">blocked</span>
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <img src="https://videos.tpn.to/transcoded/thumbs/kr/ie/hs/eg/video-00001.png" class="img-responsive">
+                        </div>
+                        <div class="col-md-7">
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="reasonRadio" id="optionsRadios1" value="external-link" checked="">This video contains an external link or contact information </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="reasonRadio" id="optionsRadios2" value="picture-slideshow">This video is a picture slideshow </label>
+                          </div>
+                          <div class="radio">
+                            <label>
+                              <input type="radio" name="reasonRadio" id="optionsRadios3" value="inappropriate">This video is inappropriate </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-link" data-dismiss="modal">Cancel</button>
+                      <button type="submit" form="block_video_form_1099818" class="btn btn-danger"> Block</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

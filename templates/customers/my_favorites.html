@@ -1,0 +1,1071 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang=en>
+   <head>
+      <link rel=preconnect href="https://photos.tpn.to">
+      <link rel=preconnect href="https://fonts.googleapis.com">
+      <link rel=stylesheet href="{% static 'css/main.css' %}">
+      <link rel=stylesheet href="{% static 'css/favorites.css' %}">
+      <link rel=stylesheet href="{% static 'css/customer.css' %}">
+      <style>@font-face {
+         font-family: "ebs-fonticon";
+         font-display: block;
+         font-weight: 400;
+         font-style: normal;
+         src: local('ebs-fonticon'),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=p52sKPsZv');
+         src: url('/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=p52sKPsZv#iefix') format("embedded-opentype"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.woff2?v=p52sKPsZv') format("woff2"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.woff?v=p52sKPsZv') format("woff"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.ttf?v=p52sKPsZv') format("truetype"),
+         url('/static/fonts/ebs-fonticon/ebs-fonticon.svg?v=p52sKPsZv#ebs-fonticon') format("svg");
+         }
+      </style>
+      <script data-should-stay>window.dataLayer = window.dataLayer || [];
+         dataLayer.push({"ecommerce":{"currencyCode":"CAD","impressions":[{"id":"32088","name":"4 Day Wellness Retreat with Yoga, Meditation, and More in Ko Pha Ngan, Surat Thani","price":"112.63","brand":"Wonderland Healing Center","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":1},{"id":"34061","name":"6 Day Relaxing Yoga Retreat in Rawai, Phuket","price":"1182.68","brand":"Mangosteen Ayurveda & Wellness Resort","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":2},{"id":"93824","name":"Self-Paced 50 Hour Online Advanced Yoga Anatomy Training and a Bonus of 70 Hours Live Classes","price":"124.31","brand":"Ulu Yoga","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":3},{"id":"93846","name":"Self-Paced 50-Hour Online Aerial Yoga Teacher Training with ULU Yoga","price":"375.45","brand":"Ulu Yoga","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":4},{"id":"32088","name":"4 Day Wellness Retreat with Yoga, Meditation, and More in Ko Pha Ngan, Surat Thani","price":"112.63","brand":"Wonderland Healing Center","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":5},{"id":"34061","name":"6 Day Relaxing Yoga Retreat in Rawai, Phuket","price":"1182.68","brand":"Mangosteen Ayurveda & Wellness Resort","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":6},{"id":"93824","name":"Self-Paced 50 Hour Online Advanced Yoga Anatomy Training and a Bonus of 70 Hours Live Classes","price":"124.31","brand":"Ulu Yoga","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":7},{"id":"93846","name":"Self-Paced 50-Hour Online Aerial Yoga Teacher Training with ULU Yoga","price":"375.45","brand":"Ulu Yoga","category":"","remarketingID":"","isOYTTListingBYR":false,"list":"Favorites","position":8}]}});dataLayer.push({"platformId":3,"platformName":"BookYogaRetreats","platformVersion":"9206a5cc45","platformEnvironment":"live","pageType":"Favorites","pageId":46,"sessionCurrency":"CAD","userLanguage":"en","viewUUID":"611b7440402371080009a7ef"});dataLayer.push({"customerEmailSubscribed":false,"customerLoginStatus":"logged-in","customerId":"1434428","loginId":"1434428","userId":"1434428","inquiryNumberLast30Days":0,"firstName":"Amirrca","lastName":"Amirrca","email":"amirrca@yahoo.com"});dataLayer.push({"goals":{"did_not_bounce":true}});
+         (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+         new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+         j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+         'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+         })(window,document,'script','dataLayer','GTM-W48MKS');
+      </script>
+      <title>BookYogaRetreats | 5147 Yoga Retreats and Holidays Worldwide</title>
+      <link rel=apple-touch-icon sizes=180x180 href="/static/favicon/apple-touch-icon.png?v=16">
+      <link rel=icon type="image/png" sizes=32x32 href="/static/favicon/favicon-32x32.png?v=16">
+      <link rel=icon type="image/png" sizes=16x16 href="/static/favicon/favicon-16x16.png?v=16">
+      <link rel=manifest href="/static/favicon/site.webmanifest?v=16">
+      <link rel=mask-icon color="#00c09c" href="/static/favicon/safari-pinned-tab.svg?v=16">
+      <link rel="shortcut icon" href="/static/favicon/favicon.ico?v=16">
+      <meta content="#da532c" name=msapplication-TileColor>
+      <meta content="/static/favicon/browserconfig.xml?v=16" name=msapplication-config>
+      <meta content="#f7f7f7" name=theme-color>
+      <meta content=public http-equiv=Cache-control>
+      <meta content="The World&#39;s Leading Yoga Travel Site. Read reviews, browse and compare prices, view pictures and book your yoga vacations at BookYogaRetreats!" name=description>
+      <meta content="yoga retreat, yoga retreats, yoga holiday, yoga holidays, yoga vacation, yoga vacations, yoga festival, festival yoga, yoga festivals, yoga teacher training, yoga instructor training, yoga teacher training india, yoga weekend, ashram yoga, bali yoga retreat, yoga ashram, yoga camp, yoga breaks, yoga cruise, yoga surf retreat" name=keywords>
+      <meta property=fb:admins content="book.yogaretreats,
+         rob.holland.378,
+         robertdenhollander">
+      <meta property=fb:app_id content=578121312206944>
+      <meta content=478732585615-s8dg6osif5kqmls43gj8ape4o698i9j4.apps.googleusercontent.com name=google-signin-client_id>
+      <meta content="width=device-width, initial-scale=1.0" name=viewport>
+      <meta content="https://www.tripaneer.com/static/files/hero/BookMeditationRetreats_mobile.jpg" name=image>
+      <meta content="BookYogaRetreats | 5147 Yoga Retreats and Holidays Worldwide" itemprop=name>
+      <meta content="The World&#39;s Leading Yoga Travel Site. Read reviews, browse and compare prices, view pictures and book your yoga vacations at BookYogaRetreats!" itemprop=description>
+      <meta content="/static/files/social-share/social-share-3.jpg" itemprop=image>
+      <meta content=summary name=twitter:card>
+      <meta content="BookYogaRetreats | 5147 Yoga Retreats and Holidays Worldwide" name=twitter:title>
+      <meta content="The World&#39;s Leading Yoga Travel Site. Read reviews, browse and compare prices, view pictures and book your yoga vacations at BookYogaRetreats!" name=twitter:description>
+      <meta content="https://twitter.com/book_yoga" name=twitter:site>
+      <meta content="/static/files/social-share/social-share-3.jpg" name=twitter:image:src>
+      <meta property=og:title content="BookYogaRetreats | 5147 Yoga Retreats and Holidays Worldwide">
+      <meta property=og:description content="The World&#39;s Leading Yoga Travel Site. Read reviews, browse and compare prices, view pictures and book your yoga vacations at BookYogaRetreats!">
+      <meta property=og:image content="/static/files/social-share/social-share-3.jpg">
+      <meta property=og:url content="https://www.bookyogaretreats.com/favorites">
+      <meta property=og:site_name content=BookYogaRetreats.com>
+      <meta property=og:type content=website>
+      <meta content=noindex name=robots>
+      <link rel=stylesheet type="text/css" href="{% static 'css/footerSubscribe.css' %}">
+      <link rel=stylesheet type="text/css" href="{% static 'css/footer.css' %}">
+   </head>
+   {% include '../listings/head-banner.html' %}
+      <div class="customer-layout-wrapper my-wishtrips rebrand-funnel">
+         <div class="grid-wrapper cropped-width single-column">
+            <div class=column>
+               <div class=filters__sort-by>
+                  <div class=subtitle>Sort by:</div>
+                  <div class=dropdown-toggler>
+                     Recommended <i class="ebs-icon ebs-icon-t-caret-down"></i>
+                     <div aria-labelledby=dLabel role=menu class=dropdown>
+                        <div class=dropdown-content>
+                           <span data-id=recommended class="dropdown-item selected">Recommended</span>
+                           <a href="?sorting=popularity&amp;page=1" class=dropdown-item>Popularity</a>
+                           <a href="?sorting=duration_asc&amp;page=1" class=dropdown-item>Duration short to long</a>
+                           <a href="?sorting=duration_desc&amp;page=1" class=dropdown-item>Duration long to short</a>
+                           <a href="?sorting=price_asc&amp;page=1" class=dropdown-item>Price low to high</a>
+                           <a href="?sorting=price_desc&amp;page=1" class=dropdown-item>Price high to low</a>
+                           <a href="?sorting=price_per_day_asc&amp;page=1" class=dropdown-item>Price per day low to high</a>
+                           <a href="?sorting=price_per_day_desc&amp;page=1" class=dropdown-item>Price per day high to low</a>
+                           <a href="?sorting=review_score&amp;page=1" class=dropdown-item>Review score</a>
+                        </div>
+                     </div>
+                  </div>
+                  <div style='margin-left: auto;'><a href="{% url 'listings:my_compares' %}" class='bttn bttn--regular'>COMPARE</a></div>
+               </div>
+               <div class=cards>
+                  {% for listing in listings %}
+                  <div
+                  data-duration="12"
+                  data-csrf-token="puqlPFFSjIILYXdwxJrUvznOgHUPnZGC"
+                  data-listing-id="45396"
+                  data-organizer-id="18578"
+                  data-reference-code="ETC0UesOkrreMDirxAkyHV9eJfxXAGYe"
+                  class="showcard-listing"
+                >
+                  <a href="{% url 'listings:listing_detail' listing.pk listing.slug %}" class="js-showcard-link">
+                    <div
+                      data-view-class="img-1956832"
+                      class="showcard-listing-image"
+                    >
+                    {% if listing.clean_and_safe %}
+                      <div
+                        data-tippy
+                        data-template="clean-and-safe-popover"
+                        class="
+                          showcard-listing-image__badge
+                          showcard-listing-image__badge--default
+                        "
+                      >
+                      
+                        Clean &amp; Safe 
+                      </div>
+                    
+                      <div
+                        style="display: none"
+                        id="clean-and-safe-popover"
+                        role="tooltip"
+                        class="tippy-popper"
+                      >
+                        <div class="tippy-content">
+                          This organizer is taking steps to ensure your experience
+                          is safe, during the COVID-19 pandemic
+                        </div>
+                      </div>
+                      {% endif %}
+                      {% if user.is_authenticated and user.is_customer %}
+                      
+                      <div class="favorite favorite-new-showcard" >
+                        <i class="ebs-icon ebs-icon--shadow ebs-icon-heart-stroked">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" fill="none"><path fill-opacity=".5" stroke-linecap="round" stroke="#fff" stroke-linejoin="round" fill="#202224" stroke-width="2" d="M22.347 2a7.537 7.537 0 00-3.6.973A7.864 7.864 0 0016 5.573a7.866 7.866 0 00-2.748-2.6A7.537 7.537 0 009.653 2c-2.039.013-3.99.864-5.424 2.366A8.14 8.14 0 002 10.014C2 18.027 16 30 16 30s14-11.973 14-19.986a8.14 8.14 0 00-2.229-5.648C26.337 2.864 24.386 2.013 22.347 2v0z" stroke-miterlimit="10"></path></svg>
+                        </i>
+                        {% if listing.pk in wish_list %}
+                        <i onclick=addFavorite({{ listing.id }}) data-csrf-token="7GtC208kbHoSXmWQmVVP43jgZ7SOMDXs" data-currency-code="CAD" data-listing-id="32088" data-total-listing-price="113" data-reference-code="RVSS7U35YgT3LXXvFE2eyw1jDjKuJ5CM" class="ebs-icon ebs-icon--main ebs-icon-heart favorites makes-toast">
+                        {% else %}
+                        <i onclick=addFavorite({{ listing.id }}) data-csrf-token="7GtC208kbHoSXmWQmVVP43jgZ7SOMDXs" data-currency-code="CAD" data-listing-id="81787" data-total-listing-price="2,511" data-reference-code="aJJQ5bGyZ9azKdAcBEAx_q3iUADVMIvv" class="ebs-icon ebs-icon--main ebs-icon-heart-stroked favorites makes-toast">
+                        {% endif %}
+                          <svg xmlns="http://www.w3.org/2000/svg" height="32" width="32" fill="none"><path fill-opacity="1" stroke-linecap="round" stroke="#fff" stroke-linejoin="round" fill="#E63C15" stroke-width="2" d="M22.347 2a7.537 7.537 0 00-3.6.973A7.864 7.864 0 0016 5.573a7.866 7.866 0 00-2.748-2.6A7.537 7.537 0 009.653 2c-2.039.013-3.99.864-5.424 2.366A8.14 8.14 0 002 10.014C2 18.027 16 30 16 30s14-11.973 14-19.986a8.14 8.14 0 00-2.229-5.648C26.337 2.864 24.386 2.013 22.347 2v0z" stroke-miterlimit="10"></path></svg>
+                        </i>
+                        <span class="js-show-on-like">
+                        Remove from Favorites
+                        </span>
+                        <span class="js-show-on-unlike">
+                        Add to Favorites
+                        </span>
+                        </div>
+                      {% else %}
+                      <div
+                      onclick="openLoginModal()"
+                      class="
+                        favorite
+                        favorite--right-aligned
+                        favorite--preventDefault
+                      "
+                    >
+                      <div class="svg-wrapper">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="32"
+                          width="32"
+                          fill="none"
+                        >
+                          <path
+                            fill-opacity=".5"
+                            stroke-linecap="round"
+                            stroke="#fff"
+                            stroke-linejoin="round"
+                            fill="#202224"
+                            stroke-width="2"
+                            d="M22.347 2a7.537 7.537 0 00-3.6.973A7.864 7.864 0 0016 5.573a7.866 7.866 0 00-2.748-2.6A7.537 7.537 0 009.653 2c-2.039.013-3.99.864-5.424 2.366A8.14 8.14 0 002 10.014C2 18.027 16 30 16 30s14-11.973 14-19.986a8.14 8.14 0 00-2.229-5.648C26.337 2.864 24.386 2.013 22.347 2v0z"
+                            stroke-miterlimit="10"
+                          ></path>
+                        </svg>
+                      </div>
+                      <span class="js-show-on-unlike">
+                        Login to save to your favorites
+                      </span>
+                    </div>
+                      {% endif %}
+  
+                      <div class="slider-viewport">
+                        <div class="slider-button-group">
+                          <button class="slider-prev">
+                            <svg
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="26"
+                              width="14"
+                              viewBox="0 0 14 26"
+                            >
+                              <path
+                                stroke-width="2"
+                                d="M13 25L1 13L13 1"
+                                stroke-linecap="round"
+                                stroke="white"
+                                stroke-linejoin="round"
+                                stroke-miterlimit="10"
+                              ></path>
+                            </svg>
+                          </button>
+                          <button class="slider-next">
+                            <svg
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="26"
+                              width="14"
+                              viewBox="0 0 14 26"
+                            >
+                              <path
+                                stroke-width="2"
+                                d="M1 25L13 13L1 1"
+                                stroke-linecap="round"
+                                stroke="white"
+                                stroke-linejoin="round"
+                                stroke-miterlimit="10"
+                              ></path>
+                            </svg>
+                          </button>
+                        </div>
+                        <div class="slider-wrapper">
+                          {% for image in listing.images.all %}
+                          <img
+                            loading="eager"
+                            src="{{ image.image.url }}"
+                            class="img1956832"
+                          />
+                          {% endfor %}
+                          <!-- <img
+                            loading="lazy"
+                            src="https://photos.tpn.to/qq/nl/qi/mj/653x490.webp"
+                            class="img1956841"
+                          />
+                          <img
+                            loading="lazy"
+                            src="https://photos.tpn.to/ft/lo/mm/he/653x490.webp"
+                            class="img1956848"
+                          />
+                          <img
+                            loading="lazy"
+                            src="https://photos.tpn.to/jf/tr/ge/tt/653x490.webp"
+                            class="img1956843"
+                          />
+                          <img
+                            loading="lazy"
+                            src="https://photos.tpn.to/ps/jo/el/nq/653x490.webp"
+                            class="img1956812"
+                          /> -->
+                          
+                        </div>
+                        <div class="slider-indicators-container">
+                          <div class="slider-indicators-list"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="showcard-listing-content">
+                      <div class="pre-main-content">
+                        <div class="pre-main-content__location">{{ listing.country.name }}</div>
+                        <div class="pre-main-content-rating-and-interested">
+                          <div
+                            data-href="/muay-thai-battle-conquer-gym/12-days-weight-loss-detox-yoga-meditation-and-muay-thai-in-phetchabun-thailand#reviews"
+                            class="pre-main-content__rating"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="12"
+                              width="13"
+                              fill="none"
+                            >
+                              <path
+                                d="M12.209 4.174l-3.54-.54L7.085.272a.534.534 0 00-.19-.198.503.503 0 00-.52 0 .534.534 0 00-.19.198l-1.58 3.364-3.54.539a.49.49 0 00-.25.118.526.526 0 00-.154.239.549.549 0 00.127.537L3.35 7.69l-.606 3.697a.548.548 0 00.03.286c.035.09.093.17.169.227a.486.486 0 00.527.04l3.167-1.75 3.167 1.746a.48.48 0 00.615-.126.534.534 0 00.11-.426l-.605-3.698 2.562-2.62a.549.549 0 00.127-.538.526.526 0 00-.154-.24.49.49 0 00-.25-.117v.003z"
+                                fill="#02A5E8"
+                              ></path>
+                            </svg>
+                            4.7 <span class="review-number">(247)</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="listing-title">
+                        {{ listing.title }}
+                      </div>
+                      <div class="listing-features">
+                        {% if listing.airport_shuttle != 3 %}
+                        <span>Airport transfer available</span>
+                        {% endif %}
+                        <span>Instructed in {{ listing.get_instruction_language_display }}</span>
+                        {% if 'Breakfast' and 'Lunch' and 'Dinner' in listing.get_meals_display %}
+                        <span>All meals included</span>
+                        {% elif listing.get_meals_display %}
+                        <span>Some meals included</span>
+                        {% else %}
+                        <span>No meals included</span>
+                        {% endif %}
+                      </div>
+                      <div class="listing-footer">
+                        <div class="listing-footer__details">
+                          <span class="detail-item detail-item--number-of-people">
+                            <svg
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="16"
+                              width="16"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M9 10.836C9 10.232 8.735 9.657 8.262 9.282C7.539 8.708 6.285 8 4.5 8C2.715 8 1.461 8.708 0.738 9.282C0.265 9.657 0 10.232 0 10.836V12H9V10.836Z"
+                                fill="#7C8086"
+                              ></path>
+                              <path
+                                d="M4.5 7C5.88071 7 7 5.88071 7 4.5C7 3.11929 5.88071 2 4.5 2C3.11929 2 2 3.11929 2 4.5C2 5.88071 3.11929 7 4.5 7Z"
+                                fill="#7C8086"
+                              ></path>
+                              <path
+                                d="M11.5 7C12.8807 7 14 5.88071 14 4.5C14 3.11929 12.8807 2 11.5 2C10.1193 2 9 3.11929 9 4.5C9 5.88071 10.1193 7 11.5 7Z"
+                                fill="#7C8086"
+                              ></path>
+                              <path
+                                d="M15.262 9.282C14.539 8.708 13.285 8 11.5 8C10.939 8 10.437 8.075 9.981 8.189C10.625 8.909 11 9.836 11 10.836V12H16V10.836C16 10.232 15.735 9.657 15.262 9.282Z"
+                                fill="#7C8086"
+                              ></path>
+                            </svg>
+                            1 person
+                          </span>
+                          <span
+                            class="detail-item detail-item--availability-and-days"
+                          >
+                            <svg
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              height="16"
+                              width="16"
+                              viewBox="0 0 16 16"
+                            >
+                              <path
+                                d="M15 2H13V0H10V2H6V0H3V2H1C0.448 2 0 2.448 0 3V15C0 15.552 0.448 16 1 16H15C15.552 16 16 15.552 16 15V3C16 2.448 15.552 2 15 2ZM14 14H2V5H14V14Z"
+                                fill="#7C8086"
+                              ></path>
+                              <path d="M6 7H4V9H6V7Z" fill="#7C8086"></path>
+                              <path d="M9 7H7V9H9V7Z" fill="#7C8086"></path>
+                              <path d="M6 10H4V12H6V10Z" fill="#7C8086"></path>
+                              <path d="M9 10H7V12H9V10Z" fill="#7C8086"></path>
+                              <path d="M12 7H10V9H12V7Z" fill="#7C8086"></path>
+                              <path d="M12 10H10V12H12V10Z" fill="#7C8086"></path>
+                            </svg>
+                            <span class="days"> {{ listing.program_duration }} days </span>
+                            <span class="availability">
+                              <span>•</span> Available all year
+                            </span>
+                          </span>
+                        </div>
+                        <div class="listing-footer__price">
+                          <div class="from">from</div>
+                          <div class="price">US${{ listing.get_lowest_package_price|intcomma }} </div>
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+                  {% endfor %}
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class=site__footer>
+         <div data-view-class=img-topography-blue class="sector sector-newsletter topography topography-blue">
+            <style>.img-topography-blue {
+               background-image: url("https://s3.us-east-2.amazonaws.com/statics.tpn.to/backgrounds/topography-blue.svg");
+               }
+            </style>
+            <div class=customer-layout-wrapper>
+               <div class="grid-wrapper two-columns">
+                  <div class=column>
+                     <div class=sector-header>
+                        <svg xmlns="http://www.w3.org/2000/svg" height=132 width=93 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 93 132">
+                           <title>Illustration of an envelope with a picture</title>
+                           <defs>
+                              <path d="M0 18.87l14.5-13.1 12.74 12.58 5.8-5.87 12.6 12.35H66V0H0z" id=a></path>
+                           </defs>
+                           <g fill-rule=evenodd fill=none>
+                              <path opacity=.2 d="M1.97 92.52a45.4 45.4 0 0 1-.08-19.96c6.3-30.16 39.57-46.5 63.65-39.36.59.18 1.17.37 1.74.57 11.04 3.93 19.79 12.94 23.24 25.58 4.12 15.1.61 32.74-7.78 46.1-11.61 18.48-28.67 30.5-47.03 24.74-13.85-4.34-29.93-21.66-33.74-37.67z" fill="#02A5E8"></path>
+                              <path stroke-width=4 d="M14.45 60.15V2h66v58.27l3.53 2.93a6 6 0 0 1 4.47 5.8v46a6 6 0 0 1-6 6h-70a6 6 0 0 1-6-6V69a6 6 0 0 1 4.17-5.72l3.83-3.13z" stroke="#53585C"></path>
+                              <path stroke-width=4 d="M14.45 2h66v71l-33 29.63-33-29.63zm0 34.5h66m-59 8H73.4m-51.95 8H63.4" stroke="#53585C"></path>
+                              <path stroke-width=4 d="M23.45 62h7v7h-7zm12 0H73.4m-37.95 8h11m3 0H73.4m-37.95 8h20m-16 8h17m2-8h6" stroke="#53585C"></path>
+                              <path stroke-width=4 stroke-linecap=round d="M14.79 72.89l32.55 29.74 32.79-29.74" stroke="#53585C"></path>
+                              <path stroke-width=4 stroke-linecap=round d="M14.79 108.74l19.6-17.91 12.95 11.8 13.16-11.7 19.63 17.81" stroke="#53585C"></path>
+                              <path stroke-width=4 d="M14.45 22.87l14.5-13.1 12.74 12.58 5.8-5.87 12.59 12.35h20.37" stroke="#53585C"></path>
+                              <g transform="translate(14.45 4)">
+                                 <mask id=b fill="#fff">
+                                    <use xlink:href="#a"></use>
+                                 </mask>
+                                 <circle stroke-width=4 mask="url(#b)" cy=12 cx=41 stroke="#53585C" r=8></circle>
+                              </g>
+                           </g>
+                        </svg>
+                        <div class=text>
+                           <h2>Still searching for that perfect trip?</h2>
+                           <h3>Get weekly inspiration delivered right to your inbox!</h3>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="column newsletter-form-wrapper">
+                     <div class="footer-subscribe form-flexbox form-single-inline js-successful-subscription">
+                        <form id=footer-subscribe>
+                           <label for=subscribe-to-newsletter>Your email address</label>
+                           <div class=form-group>
+                              <div class="field-and-sublabel field-grow">
+                                 <input data-source=footer readonly id=subscribe-to-newsletter class="form-control required" name=email size=30 type=email value="amirrca@yahoo.com">
+                              </div>
+                              <input type=submit value=Subscribe class="bttn -block">
+                           </div>
+                           <div class=subscribe-form-message></div>
+                        </form>
+                        <p class=hint>We respect your privacy. We will not publish or share your email address in any way.</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <footer role=contentinfo class="sector sector-footer">
+            <div class=customer-layout-wrapper>
+               <div class="grid-wrapper four-columns-one-third">
+                  <div class="column column-padded-right">
+                     <div class=pre-logo>
+                        Made with 
+                        <svg xmlns="http://www.w3.org/2000/svg" height=18 width=22 viewBox="0 0 22 19" class="icon icon--svg heart-svg-full">
+                           <path fill-rule=nonzero d="M20.395 1.866C19.31.663 17.805 0 16.156 0c-2.318 0-3.785 1.353-4.608 2.489-.214.294-.396.59-.548.868a8.21 8.21 0 0 0-.548-.868C9.63 1.353 8.162 0 5.844 0 4.196 0 2.69.663 1.605 1.866.57 3.015 0 4.552 0 6.196c0 1.79.715 3.454 2.25 5.238 1.37 1.595 3.344 3.238 5.628 5.142.852.709 1.732 1.442 2.67 2.244l.027.024a.652.652 0 0 0 .85 0l.028-.024c.937-.802 1.817-1.535 2.669-2.244 2.284-1.904 4.257-3.547 5.629-5.142C21.285 9.65 22 7.986 22 6.196c0-1.644-.57-3.181-1.605-4.33z" fill="#53585C"></path>
+                        </svg>
+                        by
+                     </div>
+                     <div class=footer-logo>
+                        <svg xmlns="http://www.w3.org/2000/svg" height=90 width=380 class=logo viewBox="0 0 380 90">
+                           <title>Tripaneer logo</title>
+                           <g fill-rule=nonzero fill="#02C69E">
+                              <path d="M292.56 36.799c-.913-6.583-3.55-11.225-7.9-14.006a21.555 21.555 0 0 0-11.802-3.104 35.615 35.615 0 0 0-5.013.374c-6.798 1.011-11.851 3.62-15.23 7.979a18.942 18.942 0 0 0-4.101 11.932c0 1.08.074 2.157.22 3.226l1.825 13.085c.873 6.32 3.33 11.013 7.38 14.158 3.001 2.332 7.012 3.502 12.031 3.509a38.936 38.936 0 0 0 5.445-.405c6.196-.883 11.009-3.047 14.438-6.492a13.83 13.83 0 0 0 4.291-10.112 17.122 17.122 0 0 0-.17-2.346 1.014 1.014 0 0 0-.331-.678 1.355 1.355 0 0 0-.822-.222 2.406 2.406 0 0 0-.452 0l-10.367 1.456a2.18 2.18 0 0 0-1.734 1.466c-1.123 2.589-3.39 4.126-6.668 4.581a12.25 12.25 0 0 1-1.875.142 7.71 7.71 0 0 1-4.442-1.224 6.266 6.266 0 0 1-2.807-4.5l-.12-.82a6.374 6.374 0 0 1 0-.737 2.695 2.695 0 0 1 .581-1.8 2.688 2.688 0 0 1 1.715-.82l22.108-3.084a5.006 5.006 0 0 0 3.58-2.133 5.554 5.554 0 0 0 1.002-3.246 8.709 8.709 0 0 0-.07-1.012l-.712-5.167zm-14.488 4.288a2.798 2.798 0 0 1-1.785.849l-10.869 1.547a3.211 3.211 0 0 1-.53 0 2.225 2.225 0 0 1-1.655-.637 3.26 3.26 0 0 1-.762-1.83 6.955 6.955 0 0 1-.07-1.012 7.277 7.277 0 0 1 1.724-4.61 8.323 8.323 0 0 1 5.495-3.034c.528-.071 1.06-.108 1.594-.112a7.97 7.97 0 0 1 4.421 1.244 6.693 6.693 0 0 1 3.008 4.996c.04.25.06.504.06.758a2.776 2.776 0 0 1-.631 1.84zM191.313 35.808c0-5.805-1.925-10.112-5.755-12.974s-9.635-4.349-17.405-4.349c-3.731.012-7.443.543-11.03 1.578a18.1 18.1 0 0 0-8.281 4.49 1.21 1.21 0 0 0-.24.88c.01.22.071.435.18.627l4.19 8.453c.17.306.485.501.833.516.327-.007.646-.105.922-.283a16.833 16.833 0 0 1 5.525-2.457 24.551 24.551 0 0 1 6.567-1.011 23.87 23.87 0 0 1 7.44.91 4.17 4.17 0 0 1 2.085 1.456 4.07 4.07 0 0 1 .702 2.437 3.36 3.36 0 0 1-1.895 2.963c-.988.514-2.035.901-3.118 1.153-1.558.445-3.64.943-6.247 1.496l-5.454 1.153a23.074 23.074 0 0 0-4.943 1.81 15.809 15.809 0 0 0-4.492 3.125 14.686 14.686 0 0 0-2.888 4.793 19.056 19.056 0 0 0-1.193 7.008 12.822 12.822 0 0 0 2.838 8.414 15.187 15.187 0 0 0 6.557 4.813 24.137 24.137 0 0 0 8.162 1.355c5.915 0 10.507-1.224 13.806-3.65a3.244 3.244 0 0 1 1.614-.678c.375-.01.738.136 1.003.404.254.316.38.717.35 1.123-.03.313.084.624.312.84.29.211.645.311 1.002.282h7.35c.396.064.798-.068 1.082-.354a1.27 1.27 0 0 0 .351-1.092l.07-35.231zm-14.307 17.788c0 3.458-.903 5.935-2.778 7.361a10.308 10.308 0 0 1-6.396 2.083 7.108 7.108 0 0 1-4.402-1.446 4.89 4.89 0 0 1-1.935-4.156 6.806 6.806 0 0 1 .541-2.841c.371-.79.973-1.447 1.725-1.881a10.405 10.405 0 0 1 2.005-.92l2.306-.708 7.019-1.69h.05a1.786 1.786 0 0 1 1.394.537c.333.439.497.985.46 1.537l.01 2.124zM340.797 53.393a.812.812 0 0 0-.301-.718 1.723 1.723 0 0 0-1.003-.253h-9.725a2.004 2.004 0 0 0-1.755 1.113c-1.363 2.225-3.64 3.347-6.697 3.337a8.115 8.115 0 0 1-5.665-1.82 5.867 5.867 0 0 1-2.006-4.5v-.759a3.052 3.052 0 0 1 .632-2.083 2.375 2.375 0 0 1 1.875-.728h20.735a4.603 4.603 0 0 0 3.559-1.476 5.325 5.325 0 0 0 1.394-3.762V36.9c0-6.138-1.835-10.73-5.465-13.834-3.63-3.104-8.643-4.682-15.04-4.682-6.396 0-11.34 1.84-14.979 5.34a17.895 17.895 0 0 0-5.474 13.368v12.226c0 5.895 1.664 10.517 5.013 13.904 3.349 3.388 8.452 5.057 15.56 5.057 5.796 0 10.475-1.349 14.038-4.045a12.9 12.9 0 0 0 5.304-10.84zm-24.825-21.458a7.654 7.654 0 0 1 5.434-2.114 7.977 7.977 0 0 1 5.384 1.82 6.275 6.275 0 0 1 2.106 4.976 3.184 3.184 0 0 1-.652 2.164c-.51.522-1.22.795-1.945.748h-10.157c-.67.047-1.328-.2-1.805-.677a2.807 2.807 0 0 1-.611-1.952 6.638 6.638 0 0 1 2.246-4.965zM377.804 29.184c.31.02.615-.081.852-.283.217-.257.338-.583.341-.92l.873-10.79v-.233a1.129 1.129 0 0 0-.29-.921 1.108 1.108 0 0 0-.893-.353 33.457 33.457 0 0 0-2.838-.121 32.846 32.846 0 0 0-13.134 2.73c-.3.204-.644.329-1.003.364h-.06a1.576 1.576 0 0 1-.933-.333 1.015 1.015 0 0 1-.35-.83v-.667a.812.812 0 0 0-.271-.667 1.714 1.714 0 0 0-.943-.304l-6.958-.566h-.23a1.286 1.286 0 0 0-.913.283c-.223.25-.348.574-.351.91l-3.79 48.175v.213a1.26 1.26 0 0 0 .3.92c.279.244.635.377 1.003.374l11.16.91h.22c.332.024.66-.085.913-.303.241-.28.373-.64.37-1.011l2.267-28.194c.23-2.902 1.082-5.116 2.596-6.603a8.637 8.637 0 0 1 6.357-2.225c.441 0 .903 0 1.374.061l4.2.344h.201l-.07.04zM227.81 64.82l10.718.455h.1c.338.028.674-.082.932-.303.237-.28.356-.644.331-1.011l1.254-30.155v-1.598c0-5.886-1.424-10.305-4.232-13.328-2.807-3.024-7.018-4.662-12.753-4.905h-1.003c-3.632-.057-7.195 1.001-10.217 3.034a2.994 2.994 0 0 1-1.604.667 1.287 1.287 0 0 1-1.002-.384 1.434 1.434 0 0 1-.321-1.011v-.192a.884.884 0 0 0-.271-.728 1.475 1.475 0 0 0-.912-.283l-6.688-.284h-.12a1.276 1.276 0 0 0-.923.294 1.22 1.22 0 0 0-.33.89l-1.916 46.314v.111c-.027.342.081.68.301.94.279.24.638.36 1.003.335l10.718.455h.11c.339.03.676-.08.933-.304.24-.279.362-.642.34-1.011l1.304-29.933a7.485 7.485 0 0 1 2.106-5.056 6.725 6.725 0 0 1 5.013-1.9h.481a6.265 6.265 0 0 1 5.154 2.386l-.201.141.2-.141a8.2 8.2 0 0 1 1.474 4.904v.475l-1.193 29.74v.112c-.026.343.086.682.311.94.253.215.572.334.902.334zM80.803 72.627l10.247.303h.07c.328.03.653-.076.902-.293.218-.258.33-.591.311-.93l1.273-44.16v-.082a1.22 1.22 0 0 0-.29-.9 1.287 1.287 0 0 0-.923-.323l-10.337-.304h-.07a1.107 1.107 0 0 0-.832.273 1.271 1.271 0 0 0-.291.87l-1.274 44.252v.07c-.028.33.077.659.291.91.257.22.587.332.923.314zM73.714 20.457a1.363 1.363 0 0 0-.29-1.01 1.127 1.127 0 0 0-.873-.294 30.134 30.134 0 0 0-14.398 3.61c-.29.228-.637.372-1.003.415a1.425 1.425 0 0 1-.932-.274 1.015 1.015 0 0 1-.351-.839v-.374a.772.772 0 0 0-.26-.657 1.405 1.405 0 0 0-.903-.233h-6.387a1.336 1.336 0 0 0-1.002.293 1.149 1.149 0 0 0-.291.88v44.272c-.033.348.076.695.3.96.28.235.642.345 1.003.304h10.237c.362.043.725-.066 1.003-.303.225-.266.333-.613.3-.96V40.357c0-2.882.732-5.056 2.216-6.573 1.484-1.516 3.7-2.204 6.588-2.204h3.86c.32.027.637-.075.882-.283.204-.25.304-.568.28-.89l.021-9.95zM87.961 3.731h-.26a7.185 7.185 0 0 0-5.164 2.023 7.401 7.401 0 0 0-2.326 5.37v.263a7.193 7.193 0 0 0 2.005 5.167l-.18.172.19-.172a7.31 7.31 0 0 0 5.304 2.306h.271a7.256 7.256 0 0 0 5.24-2.078 7.382 7.382 0 0 0 2.21-5.224v-.262a7.356 7.356 0 0 0-2.006-5.208 7.151 7.151 0 0 0-5.284-2.357zM111.634 89.04c.299.033.597-.071.812-.284.21-.262.317-.593.3-.93l.803-19.992c-.006-.416.109-.823.33-1.173.225-.3.582-.467.953-.445h.07c.087.012.17.036.251.07l.32.162a14.403 14.403 0 0 0 6.498 1.76h1.344c5.584 0 10.026-1.477 13.375-4.399 3.61-3.155 5.544-7.605 5.775-13.43l.521-13.064v-1.012a17.051 17.051 0 0 0-4.622-12.347c-3.319-3.438-7.96-5.278-14.037-5.531h-.742a16.14 16.14 0 0 0-9.665 3.145 1.894 1.894 0 0 1-1.133.384h-.08a1.238 1.238 0 0 1-.913-.374 1.383 1.383 0 0 1-.31-1.011V20.427a.864.864 0 0 0-.251-.688 1.465 1.465 0 0 0-.873-.263l-6.386-.263h-.1c-.322-.026-.64.08-.883.294-.218.254-.33.584-.31.92l-2.668 66.883v.091c-.028.326.081.65.301.89.282.232.639.351 1.003.334l10.237.414h.09-.01zm2.667-41.006l.39-9.85c0-2.238.77-4.407 2.177-6.138a6.928 6.928 0 0 1 5.534-2.235h.491a6.835 6.835 0 0 1 5.645 2.65 9.555 9.555 0 0 1 1.604 5.652v.597l-.39 9.85a9.505 9.505 0 0 1-2.176 6.148 7.066 7.066 0 0 1-5.505 2.134h-.511c-2.557-.102-4.472-.961-5.645-2.61a9.29 9.29 0 0 1-1.614-5.602v-.596zM40.807 76.106c.262-.268.397-.637.371-1.012v-.172l-.701-11.346a1.82 1.82 0 0 0-.412-1.193 1.327 1.327 0 0 0-1.002-.364H37.95a8.598 8.598 0 0 1-7.019-2.973c-1.644-2.022-2.566-4.904-2.797-8.767l-1.133-18.03v-.274a2.328 2.328 0 0 1 .602-1.729 2.555 2.555 0 0 1 1.754-.688l7.82-.495c.46.011.907-.16 1.244-.475a1.8 1.8 0 0 0 .401-1.275v-.242l-.621-9.88a1.738 1.738 0 0 0-.432-1.173c-.3-.273-.7-.409-1.103-.374h-.2l-7.82.495h-.281a2.484 2.484 0 0 1-1.805-.637 2.815 2.815 0 0 1-.702-1.86l-.792-12.327a.904.904 0 0 0-.25-.658.997.997 0 0 0-.703-.212h-.15l-14.087.89a1.186 1.186 0 0 0-.762.253.823.823 0 0 0-.22.637v.1l.761 12.308v.303a2.532 2.532 0 0 1-.601 1.8 2.525 2.525 0 0 1-1.765.708l-5.284.334c-.43-.005-.847.15-1.173.434a1.535 1.535 0 0 0-.36 1.113v.202l.63 10.112c-.008.434.15.855.442 1.173.335.268.757.401 1.183.375h.22l5.074-.294h.3c.652-.04 1.292.178 1.786.607a2.59 2.59 0 0 1 .701 1.78l1.264 20.427c.521 8.312 3.218 14.278 8.091 17.99 4.305 3.276 9.846 4.918 16.624 4.924.912 0 1.865 0 2.827-.09v.262-.263c.436.01.86-.141 1.193-.424z"></path>
+                           </g>
+                        </svg>
+                     </div>
+                     <div class=footer-about>
+                        <strong>Who are we?</strong>
+                        <p>We’re the world’s leading marketplace to explore and book unforgettable travel experiences. We offer any type of holiday you can imagine including mindful yoga retreats, adventurous safaris, epic surf camps, and more.</p>
+                        <strong>Why choose us?</strong>
+                        <p>We love to travel and we want to share our excitement with you. We’re passionate about connecting you with local organizers to enrich your life with unforgettable trips.</p>
+                        <strong>Connect with us</strong>
+                        <ul class=footer-social>
+                           <li>
+                              <a target=_blank rel="noopener noreferrer" href="https://www.facebook.com/bookyogaretreats" class=fb>
+                                 <span>facebook</span> 
+                                 <svg xmlns="http://www.w3.org/2000/svg" height=17 width=9>
+                                    <path fill-rule=nonzero d="M5.842 16.941V9.214h2.653l.398-3.012h-3.05V4.279c0-.872.246-1.466 1.526-1.466H9V.117A22.614 22.614 0 006.624 0C4.27 0 2.66 1.404 2.66 3.98v2.222H0v3.012h2.66v7.727h3.182z" fill="#4172B8"></path>
+                                 </svg>
+                              </a>
+                           </li>
+                           <li>
+                              <a target=_blank rel="noopener noreferrer" href="https://twitter.com/book_yoga" class=twt>
+                                 <span>twitter</span> 
+                                 <svg xmlns="http://www.w3.org/2000/svg" height=14 width=18>
+                                    <path fill-rule=nonzero d="M17.192 1.667c-.636.28-1.314.47-2.028.556A3.558 3.558 0 0016.716.27a7.294 7.294 0 01-2.244.85 3.53 3.53 0 00-6.017 3.217A10 10 0 011.177.656a3.46 3.46 0 00-.478 1.777c0 1.227.624 2.306 1.57 2.94A3.52 3.52 0 01.67 4.93v.043A3.533 3.533 0 003.502 8.44a3.586 3.586 0 01-1.587.06 3.543 3.543 0 003.304 2.453 7.082 7.082 0 01-4.38 1.51c-.28 0-.558-.016-.839-.047C1.571 13.415 3.422 14 5.424 14 11.922 14 15.47 8.62 15.47 3.962c0-.15 0-.301-.011-.452a7.13 7.13 0 001.765-1.828l-.033-.015z" fill="#2DB0E3"></path>
+                                 </svg>
+                              </a>
+                           </li>
+                           <li>
+                              <a target=_blank rel="noopener noreferrer" href="https://www.youtube.com/bookyogaretreats" class=yt>
+                                 <span>youtube</span> 
+                                 <svg xmlns="http://www.w3.org/2000/svg" height=512 width=512 viewBox="0 0 512 512">
+                                    <path d="M151 185h25v-74L209 0h-27l-18 72-20-72h-28l35 111zm91 3h10c12-1 19-9 24-16 6-10 6-21 6-21V85c0-3-1-13-1-13-5-18-21-24-29-26-4-1-8-1-11 0-9 2-23 8-28 26 0 0-1 10-1 13v66s0 11 6 21c3 8 12 15 24 16zm-9-103c0-18 13-17 13-17 12 0 11 17 11 17v66c0 16-11 15-11 15s-13 1-13-15zm88 103c12 0 27-17 27-17v16h24V48h-24v106c-4 9-13 12-13 12-9 0-8-6-8-6V48h-24v119c-1 13 5 21 18 21zm103 40c-30-5-63-4-170-5-72 0-107 1-112 1-46 3-78-3-90 48-5 29-8 66-8 95 3 62-2 136 55 141 30 3 106 4 158 4 69 0 143-1 169-6 11-3 21-15 24-20 15-20 16-52 18-119-3-57 1-132-44-139zm-255 67h-29v161h-27V295H85v-28h84s1 28 0 28zm75 161h-24v-16s-13 17-27 17-19-10-19-27V315h24v113s0 5 6 5 16-10 16-12V315h24zm94-24s-2 26-18 26-24-9-29-15v14h-25V268h25v61s13-16 24-16 23 9 23 26zm92 0c-4 24-32 26-32 26-41 0-40-40-40-40v-66c0-5 2-13 2-13 3-9 5-24 36-24 35 0 34 36 34 36v39h-49v28c0 7 4 16 15 16 9 0 9-16 9-16v-11h25c1 0 2 6 0 25zm-127-96c-6 0-11 5-11 5v87c4 5 11 5 11 5 10 0 10-12 10-12v-71c1-7-4-14-10-14zm104 15s-2-15-11-15c-10 0-14 13-14 15v17h25z"></path>
+                                 </svg>
+                              </a>
+                           </li>
+                           <li>
+                              <a target=_blank rel="noopener noreferrer" href="https://www.instagram.com/book_yoga_retreats/" class=in>
+                                 <span>instagram</span> 
+                                 <svg xmlns="http://www.w3.org/2000/svg" height=512 width=512 viewBox="0 0 512 512">
+                                    <path d="M256 371c-63 0-115-52-115-115s52-115 115-115 115 52 115 115-52 115-115 115zm0-194c-44 0-79 35-79 79s35 79 79 79 79-35 79-79-35-79-79-79zm125-8c-16 0-30-14-30-30 0-17 14-30 30-30 17 0 31 13 31 30 0 16-14 30-31 30zm0-31s0 1 0 0c0 1 1 1 0 0 1 1 0 0 0 0zm-12 346H143c-63 0-115-52-115-115V143C28 80 80 28 143 28h226c63 0 115 52 115 115v226c0 63-52 115-115 115zM143 64c-43 0-79 36-79 79v226c0 43 36 79 79 79h226c43 0 79-36 79-79V143c0-43-36-79-79-79z"></path>
+                                 </svg>
+                              </a>
+                           </li>
+                        </ul>
+                     </div>
+                     <p class=copyright>Copyright &copy; 2021 Tripaneer.<br> All rights reserved.</p>
+                  </div>
+                  <div class=column>
+                     <h4>Tripaneer</h4>
+                     <ul class=link-list>
+                        <li><a href="/customer-service">Contact Us</a></li>
+                        <li><a href="/about">About us</a></li>
+                        <li><a href="/partners?experience=3">Become a Partner</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="/affiliates">Join the Affiliate Program</a></li>
+                        <li><a href="#subscribe_modal" data-toggle=modal>Newsletter Sign Up</a></li>
+                        <li><a href="/site-map">Site Map</a></li>
+                        <li><a href="https://tripaneer.recruitee.com/">Careers</a></li>
+                        <li><a href="/customer-service">Customer Care</a></li>
+                        <li><a href="/terms-and-privacy">Terms and Privacy</a></li>
+                     </ul>
+                  </div>
+                  <div class=column>
+                     <h4>Our Other Themes</h4>
+                     <ul class=link-list>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookmartialarts.com">BookMartialArts</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookculinaryvacations.com">BookCulinaryVacations</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookcyclingholidays.com">BookCyclingHolidays</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.booksurfcamps.com">BookSurfCamps</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookhorseridingholidays.com">BookHorseRidingHolidays</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookmeditationretreats.com">BookMeditationRetreats</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookyogateachertraining.com">BookYogaTeacherTraining</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookdetoxretreats.com">BookDetoxRetreats</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookallsafaris.com">BookAllSafaris</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookmotorcycletours.com">BookMotorcycleTours</a></li>
+                        <li><a target=_blank rel="noopener noreferrer" href="https://www.bookranchvacations.com">BookRanchVacations</a></li>
+                     </ul>
+                  </div>
+                  <div class=column>
+                     <h4><a href="/news">Recent Blog Articles</a></h4>
+                     <ul class=link-list>
+                        <li><a href="/news/top-yoga-retreats-greece">Best Yoga Retreats in Greece</a></li>
+                        <li><a href="/news/beginners-yoga-retreat-france">Kickstart Your Practice on a Beginners’ Retreat in France</a></li>
+                        <li><a href="/news/teacher-training-mexico">Why Should You Do Your Teacher Training in Mexico?</a></li>
+                        <li><a href="/news/thailand-yoga-teacher-training">Why Choose Thailand for a Teacher Training?</a></li>
+                        <li><a href="/news/affordable-yoga-retreats-thailand">Affordable Yoga Retreats in Thailand [2020]</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </footer>
+      </div>
+      <input type=hidden value=false id=newsletter_subscribe name=newsletter_subscribe>
+      <noscript>
+         <div style=display:inline>
+            <img style=border-style:none height=1 width=1 alt src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/951179771/?value=0&amp;guid=ON&amp;script=0">
+         </div>
+      </noscript>
+      <div style=display:none id=subscribe_confirm_modal class="modal new default-style subscribe-modal">
+         <div class=modal-header>
+            <button type=button onclick="gae('subscribe-confirm-modal','close');" data-dismiss=modal title=Close class=close>
+               <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" height=18 width=18 xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon--svg">
+                  <g fill-rule=evenodd>
+                     <path d="M2.1213203.5147187L17.6776695 16.071068c.3905243.3905242.3905243 1.0236892 0 1.4142135-.3905242.3905243-1.0236893.3905243-1.4142135 0L.7071067 1.9289323C.3165824 1.538408.3165825.905243.7071067.5147187c.3905243-.3905243 1.0236893-.3905243 1.4142136 0z"></path>
+                     <path d="M.7071067 16.0710677L16.263456.5147185c.3905242-.3905243 1.0236892-.3905243 1.4142135 0 .3905243.3905242.3905243 1.0236893 0 1.4142135L2.1213203 17.4852813c-.3905243.3905243-1.0236893.3905242-1.4142136 0-.3905243-.3905243-.3905243-1.0236893 0-1.4142136z"></path>
+                  </g>
+               </svg>
+            </button>
+         </div>
+         <div class="modal-body subscribe-popup">
+            <div class=modal-icon>
+               <svg xmlns="http://www.w3.org/2000/svg" height=512 width=512 viewBox="0 0 512 512">
+                  <path d="M368 457H48c-26 0-48-22-48-48V201c0-27 22-48 48-48h320c26 0 48 21 48 48v208c0 26-22 48-48 48zM48 172c-16 0-28 13-29 29v208c1 16 13 28 29 28h320c15 0 28-12 28-28V201c0-16-13-29-28-29zm160 193c-14 0-27-5-36-15L43 222c-4-4-4-10 0-14s10-4 13 0l129 129c13 12 33 12 45 0l129-129c4-4 10-4 14 0 3 4 4 10 0 14L244 350c-10 10-23 15-36 15zm253-6h-11c-5 0-9-4-9-10 0-5 4-9 9-9h11c17 0 32-15 32-32V106c0-17-15-31-32-31H148c-18 0-32 14-32 31v15c0 6-4 10-10 10-5 0-10-4-10-10v-15c1-28 23-51 52-51h313c28 0 51 23 51 51v202c0 28-23 51-51 51z"></path>
+               </svg>
+            </div>
+            <h5 class="title catamaran">Almost there!</h5>
+            <p class=intro>Please go to your inbox and click the confirmation link we just emailed you.</p>
+         </div>
+      </div>
+      <div style=display:none id=subscribe_modal class="modal new default-style subscribe-modal">
+         <div class=modal-header>
+            <button type=button onclick="gae('subscribe-modal','close-v0');" data-dismiss=modal title=Close class=close>
+               <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" height=18 width=18 xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon--svg">
+                  <g fill-rule=evenodd>
+                     <path d="M2.1213203.5147187L17.6776695 16.071068c.3905243.3905242.3905243 1.0236892 0 1.4142135-.3905242.3905243-1.0236893.3905243-1.4142135 0L.7071067 1.9289323C.3165824 1.538408.3165825.905243.7071067.5147187c.3905243-.3905243 1.0236893-.3905243 1.4142136 0z"></path>
+                     <path d="M.7071067 16.0710677L16.263456.5147185c.3905242-.3905243 1.0236892-.3905243 1.4142135 0 .3905243.3905242.3905243 1.0236893 0 1.4142135L2.1213203 17.4852813c-.3905243.3905243-1.0236893.3905242-1.4142136 0-.3905243-.3905243-.3905243-1.0236893 0-1.4142136z"></path>
+                  </g>
+               </svg>
+            </button>
+         </div>
+         <div class="modal-body subscribe-popup">
+            <h5 class="title catamaran">Sign up for our newsletter</h5>
+            <p class=intro>Don&#39;t miss our special promotions, exclusive offers, new destinations and inspirational stories!</p>
+            <div id=form-container class=js-successful-subscription>
+               <form id=footer-modal-subscribe class="new_subscriber subscribe-form">
+                  <div class=control-group>
+                     <div class=controls>
+                        <input data-source=footer_modal readonly class="form-control form-control-inline form-control-lg" name=email size=30 type=email value="amirrca@yahoo.com">
+                        <input type=submit value=Subscribe class="form-control form-control-inline bttn -regular form-control-lg">
+                        <div class=subscribe-form-message></div>
+                     </div>
+                  </div>
+               </form>
+            </div>
+            <p class=outro>We respect your privacy. We will not publish or share your email address in any way.</p>
+         </div>
+      </div>
+      <div class="subscribe-corner js-subscribe-corner hide">
+         <div class=subscribe-corner__container>
+            <h5 class="title catamaran">Don&#39;t miss out, join our mailing list and get updates &amp; special offers!</h5>
+            <button class="js-subscribe-signup bttn bttn--regular">Sign up for our newsletter</button>
+         </div>
+         <div class="subscribe-corner__close js-subscribe-corner-close">
+            <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" height=18 width=18 xmlns:xlink="http://www.w3.org/1999/xlink" class="icon icon--svg">
+               <g fill-rule=evenodd>
+                  <path d="M2.1213203.5147187L17.6776695 16.071068c.3905243.3905242.3905243 1.0236892 0 1.4142135-.3905242.3905243-1.0236893.3905243-1.4142135 0L.7071067 1.9289323C.3165824 1.538408.3165825.905243.7071067.5147187c.3905243-.3905243 1.0236893-.3905243 1.4142136 0z"></path>
+                  <path d="M.7071067 16.0710677L16.263456.5147185c.3905242-.3905243 1.0236892-.3905243 1.4142135 0 .3905243.3905242.3905243 1.0236893 0 1.4142135L2.1213203 17.4852813c-.3905243.3905243-1.0236893.3905242-1.4142136 0-.3905243-.3905243-.3905243-1.0236893 0-1.4142136z"></path>
+               </g>
+            </svg>
+         </div>
+      </div>
+      <div style=display:none>
+         <small>Served by www:8000</small>
+      </div>
+      <div id=script-container>
+         <script>window.dataLayer=window.dataLayer||[];
+            dataLayer.push({
+            "experimentId":"3253",
+            "experimentVariantId":"1",
+            "experiments": {3253:1}
+            });
+            window.__insp=window.__insp||[];
+            __insp.push(['tagSession',{3253:1}]);
+         </script><script>var ctx = (function(){
+            return {
+            hasSelectedArrivalDate: false,
+            baseUrlWithDate: "/?arrival_date=",
+            }
+            })();
+            var siteid='3';
+            var operatingSystem='Windows';
+            var browserFamily='Chrome';
+            var deviceType='Desktop';
+            var supportsWEBP=true;
+            var photoExtension='webp';
+            var selectedLanguage='en';
+            var selectedLanguageId=41;
+            var selectedCurrency='CAD';
+            var selectedCurrencyFormat='CAD {amount}';
+            var isLiveEnv = true;
+            var isSubscriber = false;
+            var translation = {};
+            var isDialogForCustomer = false;
+            var isConfirmationPage = false;
+            var isListingPage = false;
+            var isInquiryPage = false;
+            var isTopicPage = false;
+            var isIndexPage = false;
+            var isOrganizerPage = false;
+            var isSearchresultsPage = false;
+            var isBlogHome = false;
+            var isBlogPost = false;
+            var facebookAppId = 1736875203042291;
+            var bingAppId = "5118296";
+            const isSearchResultsPage = false;
+            var activeFilters = {
+            'styles':[
+            ],
+            'categories':[
+            ],
+            'trCategories':[
+            ],
+            'destinations':[
+            ]
+            };
+            var viewUUID = '611b7440402371080009a7ef';
+            var country = 'Thailand';
+            var continentCode = 'AS';
+            var isBot = false;
+            var isNewSession = false;
+            var pageType = '46';
+            var pageTypeName = 'Favorites';
+            if (!Date.now) {
+            Date.now = function(){return new Date().getTime();}
+            }
+            var loadStart = Date.now();
+            var rebrand_experiment = false;
+            var lp_package_filters = false;
+            var reviewsTransTags = {}
+            reviewsTransTags.testimonials = "Testimonials"
+            reviewsTransTags.verified_site_reviews = "Verified BookYogaRetreats reviews"
+            reviewsTransTags.review_by_customer = "Review by REVIEWER"
+            reviewsTransTags.review_by_customer_from_country_anonymous = "Review by Anonymous"
+            reviewsTransTags.review_by_customer_from_country_customer = "Review by CUSTOMER from COUNTRY"
+            reviewsTransTags.valueForMoney = "Value for money"
+            reviewsTransTags.accommodationAndFacilities = "Accommodation &amp; facilities"
+            reviewsTransTags.food = "Food"
+            reviewsTransTags.location = "Location"
+            reviewsTransTags.qualityOfActivity = "Quality of activity"
+            reviewsTransTags.overallImpression = "Overall impression"
+            reviewsTransTags.organizer_response = "Organizer response"
+            reviewsTransTags.anonymous = "Anonymous"
+            var trustpilot_killswitch = 1;
+            function getDeviceType() {
+            var windowWidth = $(window).width();
+            if ( windowWidth < 768 ){
+            return 'mobile';
+            } else if ( windowWidth <= 1024 ) {
+            return 'tablet';
+            } else {
+            return 'desktop';
+            }
+            }
+         </script><script>+function() {
+            var errorCount = 0,
+            win        = Function( 'return this' )();
+            function post( url, data ) {
+            var request = new XMLHttpRequest();
+            request.open( 'POST', url, true );
+            request.send( data );
+            }
+            function runSafe( fnc ) {
+            var success = true;
+            try {
+            fnc();
+            } catch( e ) {
+            success = false;
+            }
+            return success;
+            }
+            function getSafe( fnc ) {
+            var result;
+            try {
+            result = fnc();
+            } catch( e ) {}
+            return result;
+            }
+            function report( error ) {
+            var data = new FormData(),
+            key;
+            for ( key in error ) if ( error.hasOwnProperty( key ) ) {
+            data.append( key, error[ key ] );
+            }
+            if (typeof(viewUUID))
+            data.append('viewUUID', viewUUID);
+            post( '/js-error', data );
+            }
+            win.onerror = function( message, file, line, column, error ) {
+            var args = [].slice.apply( arguments );
+            errorCount += 1;
+            if ( errorCount > 5 ) {
+            return;
+            }
+            if (
+            ! runSafe(function() {
+            report({
+            msg:     message,
+            url:     win.location.href,
+            script:  file,
+            line:    line,
+            column:  column,
+            stack:   getSafe(function() { return error.stack; })
+            });
+            })
+            ) {
+            runSafe(function() {
+            report({
+            message: message
+            });
+            });
+            }
+            };
+            }();
+         </script>
+                        <script
+                        src="https://code.jquery.com/jquery-1.12.4.js"
+                        integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+                        crossorigin="anonymous"
+                      ></script>
+         <script src="{% static 'js/swiper.js' %}"></script>
+         <script src="{% static 'js/lib.js' %}"></script>
+         <script src="{% static 'js/logic.js' %}"></script>
+         <script src="{% static 'js/customer.js' %}"></script>
+         <script defer async src="https://www.google.com/recaptcha/api.js">
+         </script>
+               <script>
+                  function addFavorite(id) {
+                    url = "{% url 'listings:add_favorite' 0 %}".replace('0', id)
+                    $.ajax({
+                      type : 'POST',
+                      url :  url,
+                      success : function(response){
+                      },
+                      error : function(response){
+                          console.log(response)
+                      }
+                    });
+                  }
+          
+                  function removeFavorite(id) {
+                    url = "{% url 'listings:remove_favorite' 0 %}".replace('0', id)
+                    $.ajax({
+                      type : 'POST',
+                      url :  url,
+                      success : function(response){
+                      },
+                      error : function(response){
+                          console.log(response)
+                      }
+                    });
+                  }
+                </script>
+         <script>
+         function moment(str) {
+            return {
+            toDate: function() {
+            var date = new Date(str);
+            if (isNaN(date.getDate()))
+            return new Date();
+            return date;
+            }
+            };
+            }
+         </script><script>var variants_ = {}</script><script>window.addEventListener("load", function() {
+            setTimeout(function() {
+            if ('cookieconsent' in window) {
+            window.cookieconsent.initialise({
+            "palette": {
+            "popup": {
+            "text": "#fff",
+            "background": "rgba(2, 191, 155, 0.85)"
+            },
+            "button": {
+            "background": "rgba(2, 191, 155, 1)",
+            "text": "#fff"
+            }
+            },
+            "content": {
+            "message": 'This website uses cookies. If that’s okay with you, just keep browsing.',
+            "dismiss": 'Close',
+            "link": 'Learn more',
+            "href": window.location.protocol + "//" + window.location.host + "/terms-and-privacy"
+            }
+            })
+            }
+            }, 666);
+            });
+         </script><script src="{% static 'js/subscriber.js' %}"></script>
+         <script src="{% static 'js/footerSubscribe.js' %}"></script>
+         <script>tippy('.data-tippy--click', {
+            content(reference) {
+            const id = reference.getAttribute('data-template');
+            const template = document.getElementById(id);
+            return template.innerHTML;
+            },
+            trigger: 'click',
+            theme: 'tripaneer'
+            });
+         </script><script>$('.pre-main-content__rating').click(function(){
+            event.preventDefault();
+            window.open($(this).attr('data-href'));
+            });
+         </script><script>$('.pre-main-content__rating').click(function(){
+            event.preventDefault();
+            window.open($(this).attr('data-href'));
+            });
+         </script><script>$('.pre-main-content__rating').click(function(){
+            event.preventDefault();
+            window.open($(this).attr('data-href'));
+            });
+         </script><script>$('.pre-main-content__rating').click(function(){
+            event.preventDefault();
+            window.open($(this).attr('data-href'));
+            });
+         </script><script>tippy('[data-tippy]', {
+            content(reference) {
+            const id = reference.getAttribute('data-template');
+            const template = document.getElementById(id);
+            return template.innerHTML;
+            },
+            trigger: 'mouseenter',
+            placement: 'bottom-start',
+            theme: 'tripaneer'
+            });
+         </script><script>/* <![CDATA[ */
+            var google_conversion_id = 951179771;
+            var google_custom_params = window.google_tag_params;
+            var google_remarketing_only = true;
+            /* ]]> */
+         </script><script async src="//www.googleadservices.com/pagead/conversion.js"></script><script>$('#subscribe_modal').on('shown', function(){
+            if ($(this).hasClass('modal-wide')) {
+            gae('subscribe-modal','show-v1');
+            } else {
+            gae('subscribe-modal','show-v0');
+            }
+            });
+         </script><script>var wishAdd = 'Trip added to Favorites';
+            var wishRemove = 'Trip removed from Favorites';
+            var wishLoginButton = 'Log in';
+            var resendEmailSendingText = 'Sending...';
+            var resendEmailSentText = 'sent';
+            var removeProfilePictureWarningMessage = 'Are you sure you want to remove your profile picture?';
+            var translations = {
+            'linkCopiedToClipboard': 'Link copied to clipboard',
+            'copyLink': 'Copy',
+            'linkCopied': 'Link copied',
+            'listingPhotos': 'Photos',
+            'listingVideos': 'Videos',
+            'allReviews': 'All reviews',
+            'loadMore': 'Load more',
+            'inbox': {
+            'totalPrice': 'Total price',
+            'bookNow': 'Book Now',
+            'messages': 'Messages',
+            'deposit': 'Deposit',
+            'noDatesSelected': 'No dates selected',
+            'person': 'person',
+            'persons': 'persons',
+            'open': 'Awaiting reply from the organizer',
+            'available': 'Payment link is open, book now!',
+            'booked': 'Confirmed, paid, and ready for travel!',
+            'cancelled': 'The booking has been cancelled',
+            'awaitingConfirmation': 'The organizer has to accept your inquiry',
+            'notAvailable': 'No availability for your dates.',
+            'depositText': 'The deposit is',
+            'tripReadyToBook': 'Trip is ready to book',
+            'requestToPay': 'Request to Pay',
+            'requestToPayText': 'You will only be charged and the booking will only be finalized once the organizer confirms.',
+            'continueToConversation': 'Continue to conversation',
+            'cancelPaymentRequest': 'Cancel Payment Request',
+            'paymentPendingText': 'You will only be charged once the organizer confirms.',
+            'duplicate': 'This is a duplicate of another inquiry',
+            'other': 'Conversations with this organizer',
+            'explore': 'Explore similar trips',
+            'statusLabel': {
+            'open': 'Open',
+            'available': 'Available',
+            'booked': 'Booked',
+            'cancelled': 'Cancelled',
+            'awaitingConfirmation': 'Awaiting confirmation',
+            'notAvailable': 'Not available',
+            'duplicate': 'Duplicate'
+            },
+            'indicativeprice': 'This total price is converted based on the current exchange rate and is indicative.'
+            },
+            'payment': {
+            'retry': 'Retry',
+            'paymentSuccesful': 'Payment successful',
+            'preauthSuccessful': 'Saved card details successfully',
+            'somethingWentWrong': 'Something went wrong, please try again',
+            'cancelledTryAgain' : 'Payment process is cancelled, please try again',
+            'reviewTripDetails': 'Review Trip Details',
+            'contactInformation': 'Contact Information',
+            'confirmAndPay': 'Confirm and Pay',
+            'firstName': 'First name',
+            'lastName': 'Last name',
+            'phone': 'phone',
+            'email': 'email',
+            'message': 'message',
+            'requestToBook': 'Request to Book',
+            'requestToBookSubtitle': 'You will only be charged if the organizer accepts within 48 hours',
+            'paymentHeading': 'Book now',
+            'paymentSubtitle': 'Reserve your spot on your dream vacation',
+            'alreadyHaveAccount' : 'Already have an account?',
+            "login": 'Log in',
+            "contactUs": 'Contact us',
+            "discountVoucher": 'Discount voucher',
+            "verifyEmailToRedeem": 'Verify your email to redeem it',
+            "discountsSafelyVerifyEmail": 'To safely use discounts, we need to be able to reach you by email. Please find the verification email we sent',
+            "customerEmail": 'amirrca@yahoo.com',
+            "resendVerificationEmail": 'Resend email',
+            "amountPaid": 'Amount Paid',
+            "noPayment": 'Good news! Your voucher covers the amount to be paid right now.'
+            },
+            'paymentStatus': {
+            'noChargesWereMade': 'No charges were made',
+            'tryAgainText': 'Please try again. If the problem persists, please try a different payment method or contact our support.',
+            'selectPaymentMethod': 'Select payment method',
+            'listingWasUpdated': 'Listing was updated',
+            'invalidArrivalDate': 'Invalid arrival date',
+            'arrivalDateHasPassed': 'Looks like the date you selected has passed. Please select a valid date and try again.',
+            'noInstantAvailability': 'No instant availability',
+            'bookingNotProcessed': 'Sorry, we couldn’t process your booking. No charges were made.',
+            'reopenListingText': 'Please reopen the listing to see the latest version.',
+            'back': 'Back',
+            'backToListing': 'Back to Listing',
+            'lastInstantBookingSoldOut': 'The last instant bookable spot has sold out. You can still continue and send this request as an inquiry.',
+            'sendAsInquiry': 'Send as Inquiry',
+            'anotherDatePackage': 'or book another date/package',
+            'packageDetailsNotFound': 'Package Details Not Found',
+            'backToPackageSelection': 'Back to Package Selection',
+            'whyAmISeeingThis': 'Why am i seeing this?',
+            'packageDetailsEdited': 'The organizer may have edited the package you selected while you were booking.',
+            'updatesMayHaveBeenMade': 'Updates may have been made to the listing before you finished booking.',
+            'invalidPackage': 'Invalid Package',
+            'invalidLink': 'Invalid Link',
+            'internalError': 'Internal Error',
+            'errorOnOurSide': 'There was an error on our side, our team was already notified and will fix it as soon as possible.',
+            'tryAgain': 'Try Again',
+            'backToSite': 'Back to BookYogaRetreats',
+            'refreshPage': 'Refresh Page',
+            'somethingWentWrong': 'Something went wrong',
+            'sorryPaymentFailed': 'Sorry, your payment failed',
+            'selectPaymentMethod': 'Select Payment Method',
+            'waitingForPaymentProvider': 'Waiting for payment provider',
+            'doNotCloseWindow': 'Please do not close this window'
+            },
+            'vouchers': {
+            'validUntil': 'Valid until',
+            'applyThisVoucher': 'Apply this voucher',
+            'applied': 'Applied',
+            'tripaneerVoucherCode': 'Tripaneer voucher code',
+            'logIn': 'Log in',
+            'toApplyVoucher': 'To apply a voucher to this account',
+            'yourVoucherCode': 'Your voucher code',
+            'noVouchersOnThisAccount': 'You don&#39;t have any vouchers on this account',
+            'expired': 'Expired',
+            'viewFullTC': 'View full T&amp;C',
+            'voucherUsage': 'Voucher usage',
+            'voucherUsage1': 'Only 1 voucher can be used per transaction. Tripaneer only accepts 1 transaction per booking.',
+            'voucherUsage2': 'If there is any credit remaining after the redemption of the voucher, a new voucher with the same validity period shall be issued for the remaining amount.',
+            'voucherUsage3': 'This voucher must be redeemed in full in a single transaction. No change or credit is given in the event that the voucher amount exceeds the transaction amount.',
+            'voucherUsage4': 'The voucher is linked to this email address and can only be used by the account with this email address.',
+            'voucherUsage6': 'The voucher can only be used to book online through Tripaneer.com or any of our websites and cannot be presented upon check-in at the establishment.',
+            'voucherRedeemable': 'Redeemable for cash after',
+            'voucherDetails': 'Voucher details',
+            'applyVoucherOnPayment': 'Apply this voucher on the payment page of your booking',
+            'verifyEmailToUse': 'Verify your email to use your vouchers',
+            'paymentYour': 'Your',
+            'voucherModalText1': 'This has been converted from',
+            'voucherModalText2': 'based on todays exchange rate',
+            'voucherModalText3': 'Your voucher is worth',
+            'voucherModalText4': 'and can be used until',
+            'voucherModalText5': 'or you can exchange this for cash after',
+            'voucherOverflowText1': 'The remaining',
+            'voucherOverflowText2': 'of your voucher will be issued as a new voucher for a future booking',
+            'voucherOverflowText3': 'This is a one-time voucher. Any balance that remains on the voucher after the payment is successfully processed will no longer be available for use.',
+            'voucher': 'voucher',
+            'oops': 'Oops!',
+            'voucherErrorText1': 'We’re sorry, something went wrong on our end. Please refresh the page and try applying the voucher again.',
+            'voucherErrorText2': 'This voucher isn’t valid.',
+            'voucherErrorText3': 'Contact',
+            'voucherErrorText4': 'customer support',
+            'voucherErrorText5': 'if you have questions.'
+            },
+            'filterMap': {
+            'nrPersons': 'persons',
+            'nrPerson': 'person',
+            'days': 'days',
+            'from': 'from',
+            'showing500Results': 'Showing 500+ results',
+            'somethingWentWrong': 'Oops, something went wrong.',
+            'noResultsTryZoom': 'No results found in this area, try zooming out',
+            'showing': 'Showing',
+            'results': 'results',
+            'prev': 'Prev',
+            'next': 'Next',
+            'refreshPage': 'Browse the map and search again',
+            'noResultsFound': 'No results found',
+            'noResultsTryBrowse': 'The selection you&#39;ve chosen has no results, try browsing another area or zooming out'
+            },
+            'newsletter': {
+            'subscribeNewsletter': 'Subscribe',
+            'signupNewsletter': 'Subscribe to our newsletter',
+            'getWellnessGuide': 'Get our free wellness guide',
+            'subscribeNewsletterSubheading': 'Subscribe to our newsletter and get a free wellness guide, staff picks, discounts and more',
+            'newsletterPrivacy': 'We respect your privacy and will never share your details.',
+            'privacyPolicy': 'Privacy policy'
+            }
+            }
+         </script>
+      </div>
+      <div class=loader-overlay>
+         <h2>Logging out</h2>
+         <h4>of Tripaneer websites</h4>
+         <div class=spinner>
+            <svg xmlns="http://www.w3.org/2000/svg" height=16 width=18 viewbox="0 0 18 16" class="bounce bounce1">
+               <path fill-rule=nonzero d="M.035 5.645c-.344 3.11 1.84 8.322 7.776 9.47 3.017.589 7.015-.223 9.002-4.342C23.338-2.817.87-2.397.035 5.645z" fill="#02BF9B"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height=17 width=18 viewbox="0 0 18 16" class="bounce bounce2">
+               <path fill-rule=nonzero d="M15.643 2.777A8.172 8.172 0 0 0 12.707.703C7.61-1.48 1.765 1.736.333 6.025c-.035.105-.067.21-.096.316-.561 2.033-.135 4.253 1.372 6.066 1.802 2.168 4.765 3.471 7.601 3.613 3.924.196 7.457-1.079 8.504-4.38.79-2.49-.105-6.65-2.071-8.863z" fill="#02A5E8"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height=18 width=18 viewbox="0 0 18 18" class="bounce bounce3">
+               <path fill-rule=nonzero d="M10.215.437C5.117.437-2.205 5.263.634 11.088c2.839 5.825 12.92 8.488 15.732 2.996C19.112 8.718 19.204.437 10.215.437z" fill="#FF9B35"></path>
+            </svg>
+         </div>
+      </div>
+      <div id=toast>
+         <div id=toast-inner></div>
+      </div>
+   </body>
+</html>

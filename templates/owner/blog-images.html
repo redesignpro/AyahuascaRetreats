@@ -1,0 +1,180 @@
+{% extends './main.html' %}
+{% load static %}
+{% load filename %}
+{% load humanize %}
+{% load sizify  %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<script>
+    
+function removeUrlParameter(a, b) {
+  var c,
+    d = b.split("?")[0],
+    e = [],
+    f = -1 === b.indexOf("?") ? "" : b.split("?")[1];
+  if ("" !== f) {
+    e = f.split("&");
+    for (var g = e.length - 1; 0 <= g; g -= 1)
+      (c = e[g].split("=")[0]), c === a && e.splice(g, 1);
+    d = 0 < e.length ? d + "?" + e.join("&") : d;
+  }
+  return d;
+}
+function setParam(name, value) {
+        var l = window.location;
+
+        /* build params */
+        var params = {};        
+        var x = /(?:\??)([^=&?]+)=?([^&?]*)/g;        
+        var s = l.search;
+        for(var r = x.exec(s); r; r = x.exec(s))
+        {
+            r[1] = decodeURIComponent(r[1]);
+            if (!r[2]) r[2] = '%%';
+            params[r[1]] = r[2];
+        }
+
+        /* set param */
+        params[name] = encodeURIComponent(value);
+
+        /* build search */
+        var search = [];
+        for(var i in params)
+        {
+            var p = encodeURIComponent(i);
+            var v = params[i];
+            if (v != '%%') p += '=' + v;
+            search.push(p);
+        }
+        search = search.join('&');
+
+        /* execute search */
+        l.search = search;
+    }
+function getComboA(event, selectObject) {
+    var value = selectObject.value;
+    console.log(value);
+    setParam('flt', value);
+}
+</script>
+<style>
+    .noHover {
+        pointer-events: none;;
+    }
+</style>
+        <!-- start: page -->
+        <div class="row">
+            <div class="col">
+
+                <div class="card card-modern">
+                    <div class="card-body">
+                        <div class="datatables-header-footer-wrapper">
+
+                            <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 750px;">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Date</th>
+                                        <th>URL</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for photo in photos %}
+                                    <tr>
+                                        <td><a href="{{ photo.image.url }}"><strong>{{ photo.id }}</strong></a></td>
+                                        <td><a href="{{ photo.image.url }}"><strong>{{ photo.image|filename }}</strong></a></td>
+                                        <td><a href="{{ photo.image.url }}"><strong>{{ photo.created_at }}</strong></a></td>
+                                        <td><a href="{{ photo.image.url }}"><strong>{{ request.get_host }}{{ photo.image.url }}</strong></a></td>
+                                        <td><a href='{% url "listings:delete-photo" photo.id %}' class='btn btn-xs btn-danger' style='margin-left:15px'>Delete</a></td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            <hr class="solid mt-5 opacity-4">
+                        </table>
+                    </div>
+                    <style>
+                        #div_id_image {
+                            display: inline-block;
+                        }
+                    </style>
+                    <div class="datatable-footer">
+                        <div class="row align-items-center justify-content-between mt-3">
+                            <div class="col-lg-auto text-center order-3 order-lg-2">
+                                <div class="results-info-wrapper">
+                                    <form method="POST" enctype='multipart/form-data' action='{% url 'listings:blog-images' %}'>
+                                        {% csrf_token %}
+                                        {{ form.image|as_crispy_field }}
+                                        <button class='btn btn-success' type='submit' style='display: inline-block;'>Add Photo</button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-lg-auto order-2 order-lg-3 mb-3 mb-lg-0">
+                                <div class="pagination-wrapper">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable-ecommerce-list_paginate">
+                                        <ul class="pagination pagination-modern pagination-modern-spacing justify-content-center">
+                                            {% if page_obj.has_previous %}
+                                            <li class="paginate_button page-item previous" id="datatable-ecommerce-list_previous">
+                                                <a href="?page={{ page_obj.previous_page_number }}" aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button page-item previous disabled" id="datatable-ecommerce-list_previous">
+                                                <a href='' aria-controls="datatable-ecommerce-list" data-dt-idx="0" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+                                            {% if page_obj.number|add:'-4' > 1 %}
+                                            <a href="?page={{ page_obj.number|add:'-5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                                            {% endif %}
+
+                                            {% for i in page_obj.paginator.page_range %}
+                                                {% if page_obj.number == i %}
+                                                    <li class="paginate_button page-item active">
+                                                        <a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="datatable-ecommerce-list" data-dt-idx="1" tabindex="0" class="page-link">{{ i }}</a>
+                                                    </li>
+                                                    {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                                                    <li class="paginate_button page-item ">
+                                                        <a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="datatable-ecommerce-list" data-dt-idx="2" tabindex="0" class="page-link">{{ i }}</a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+
+                                            {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                                                <a href="?page={{ page_obj.number|add:'5' }}&{{ get_copy.urlencode }}">&hellip;</a>
+                                            {% endif %}
+
+                                            {% if page_obj.has_next %}
+                                            <li class="paginate_button page-item next" id="datatable-ecommerce-list_next">
+                                                <a href="?page={{ page_obj.next_page_number }}" aria-controls="datatable-ecommerce-list" data-dt-idx="3" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% else %}
+                                            <li class="paginate_button page-item next disabled" id="datatable-ecommerce-list_next">
+                                                <a href="" aria-controls="datatable-ecommerce-list" data-dt-idx="3" tabindex="0" class="page-link">
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            </li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- end: page -->
+
+
+{% endblock %}

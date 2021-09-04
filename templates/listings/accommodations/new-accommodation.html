@@ -1,0 +1,196 @@
+{% extends './accommodation-base.html' %} {% load static %} {% block content %} <ol class="breadcrumb">
+    <li>
+      <a href="/4/organizers/23069/accommodation/">Accommodations</a>
+    </li>
+  </ol>
+  <div class="row">
+    <div class="form-group col-sm-8">
+      <header class="section-title">
+        <h1 class="catamaran"> Create new accommodation </h1>
+        {% if request.session.acc_error %}
+        <h4 style='color:red'>{{ request.session.acc_error }}</h4>
+        {% endif %}
+      </header>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-body -airy">
+      <form method="POST" class="js-accommodation-edit-form" action="{% url 'listings:add-accommodation' pk=user_p %}">
+        <!-- STEP 1 -->
+        {% csrf_token %}
+        <div class="row" data-step="1">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="website" class="control-label">What type of accommodation is it?</label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <div class="checkbox">
+                <label style="padding-left: 0; display: flex;">
+                  <input type="radio" name="accommodation_share_group" class="js-accommodation-share-group" value="1" checked="checked" id='private-group'>
+                  <span style="padding-left: 15px;"> Guests travelling together will have the entire unit for themselves <br>
+                    <span style="color: #969AA1;">(like apartment, tent or a small cabin in the woods)</span>
+                  </span>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label style="padding-left: 0; display: flex;">
+                  <input type="radio" name="accommodation_share_group" class="js-accommodation-share-group" value="2" id='shared-group'>
+                  <span style="padding-left: 15px;"> It has multiple rooms, can accommodate many groups of guests <br>
+                    <span style="color: #969AA1;">(like hotel, ashram or a guest house)</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- STEP 2 -->
+        <div class="row" data-step="2" data-type="Private" id='private-form' name='private-form'>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="website" class="control-label">Now pick an accommodation category</label>
+              <div class="form-helper">
+                <p>No rooms need to be added</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <select class="form-control js-accommodation-type" name='private-category'>
+                <option value="">Select one</option>
+                <option value="1"> House </option>
+                <option value="2"> Apartment </option>
+                <option value="3"> Cabin </option>
+                <option value="4"> Lodge </option>
+                <option value="5"> Tent </option>
+                <option value="6"> Bungalow </option>
+                <option value="7"> Chalet </option>
+                <option value="8"> Villa </option>
+                <option value="9"> Cabin (boat) </option>
+                <option value="10"> Studio </option>
+                <option value="11"> Recreational vehicle </option>
+                <option value="12"> Yurt </option>
+                <option value="13"> Cottage </option>
+                <option value="14"> Various accommodations </option>
+                <option value="15"> Barn </option>
+                <option value="16"> Ranch </option>
+                <option value="17"> Boat </option>
+              </select>
+              <div style="margin-top: 5px;" class="form-helper"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row" data-step="2" data-type="Shared" id='shared-form' name='shared-form'   style="display: none">
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="website" class="control-label">Now pick an accommodation category</label>
+              <div class="form-helper">
+                <p>Later you will add the rooms</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <select class="form-control js-accommodation-type" name='shared-category'>
+                <option value="">Select one</option>
+                <option value="1"> Hotel </option>
+                <option value="2"> Hostel </option>
+                <option value="3"> House </option>
+                <option value="4"> Apartment </option>
+                <option value="5"> Ashram </option>
+                <option value="6"> Academy </option>
+                <option value="7"> Cabin </option>
+                <option value="8"> Resort </option>
+                <option value="9"> School </option>
+                <option value="10"> Lodge </option>
+                <option value="11"> Tent </option>
+                <option value="12"> Bungalow </option>
+                <option value="13"> Chalet </option>
+                <option value="14"> Villa </option>
+                <option value="15"> Cabin (boat) </option>
+                <option value="16"> Motel </option>
+                <option value="17"> Inn </option>
+                <option value="18"> Studio </option>
+                <option value="19"> Campus </option>
+                <option value="20"> Recreational vehicle </option>
+                <option value="21"> Yurt </option>
+                <option value="22"> Retreat center </option>
+                <option value="23"> Temple </option>
+                <option value="24"> Monastery </option>
+                <option value="25"> Cottage </option>
+                <option value="26"> Campsite </option>
+                <option value="27"> Various accommodations </option>
+                <option value="28"> Castle </option>
+                <option value="29"> Barn </option>
+                <option value="30"> Ranch </option>
+                <option value="31"> Bed and Breakfast </option>
+                <option value="32"> Tree House </option>
+                <option value="33"> Boat </option>
+                <option value="34"> Farm </option>
+              </select>
+              <div style="margin-top: 5px;" class="form-helper"></div>
+            </div>
+          </div>
+        </div>
+        <!-- STEP 3 -->
+        <div class="row" data-step="3" id='acc-name-form'>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="website" class="control-label">Accommodation name</label>
+              <div class="form-helper">
+                <p>For internal and post-booking use</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <input type="text" class="form-control js-accommodation-name" name="accommodation_name" value="" maxlength="128" char-count="1">
+              <p class="char-counter">
+                <span style="font-size: 14px;">0</span>/128
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- STEP 4 -->
+        <div class="row" data-step="4" id='max-occ-form' name='private-form'>
+          <div class="col-sm-3">
+            <div class="form-group">
+              <label for="nr_people_share" class="control-label">Max occupanccy</label>
+              <div class="form-helper">
+                <p>It's important to set, so we will know what's the biggest group that can fit. </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <input type="text" class="form-control js-nr-people-share" name="nr_people_share" placeholder="How many guests this property can accommodate?" value="">
+            </div>
+          </div>
+        </div>
+        <input type="hidden" class="js-accommodation-type-target" value="13" name="accommodation_type_id">
+        <input type="hidden" id="accommodation_share_type" value="on" class="js-accommodation-share-toggle" name="accommodation_share_type">
+        <!-- STEP 4 -->
+        <div class="row" data-step="final">
+          <div class="col-sm-12">
+            <div class="pull-right">
+              <button type="submit" class="btn btn-success">Add new acccommodation</button>
+              <a href="/4/organizers/23069/accommodation/" class="btn btn-danger">Cancel</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $('[name="accommodation_share_group"]').on('change', function() {
+        var state = this.id == 'private-group';
+
+        $('[name="private-form"]').toggle(state);
+        $('[name="shared-form"]').toggle(!state);
+
+    });
+    </script>
+  
+  {% endblock %}

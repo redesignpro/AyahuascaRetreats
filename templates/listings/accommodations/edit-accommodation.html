@@ -1,0 +1,135 @@
+{% extends './accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<section class="admin-content  js-active-tab-name" data-tab-name="Accommodations">
+  <ol class="breadcrumb">
+    <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
+</ol>
+    <!-- EDIT EXISTING ACCOMMODATION -->
+    <div class="row">
+      <div class="form-group col-sm-8">
+        <header class="section-title">
+          <h1 class="catamaran"> Edit {{ accommodation.id }} - {{ accommodation.name }} </h1>
+        </header>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-body -airy">
+        <form method="POST" class="js-accommodation-edit-form">
+            {% csrf_token %}
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="website" class="control-label">Accommodation sharing</label>
+                <div class="form-helper">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group js-share-change-container">
+                <div class="checkbox">
+                  <label style="padding-left: 0; display: flex;">
+                    {{ form.type|as_crispy_field }}
+                  </label>
+                </div>
+              </div>
+              <input type="hidden" id="accommodation_share_type" value="on" class="js-accommodation-share-toggle" name="accommodation_share_type">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="website" class="control-label">Accommodation category</label>
+                <div class="form-helper">
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                {% if accommodation.category_private_unit %}
+                {{ form.category_private_unit|as_crispy_field }}
+                {% else %}
+                {{ form.category_multiple_units|as_crispy_field }}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="website" class="control-label">Accommodation name</label>
+                <div class="form-helper">
+                  <p>For internal and post-booking use.</p>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                {{ form.name|as_crispy_field }}
+            </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="pull-right">
+                <button type="submit" class="btn btn-success">Save changes</button>
+                <a href="" class="btn btn-danger">Cancel</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <script type="text/javascript" charset="utf-8">
+      const accommodationTypes = {
+        1: 1,
+        2: 1,
+        3: 0,
+        4: 0,
+        5: 1,
+        6: 1,
+        7: 0,
+        8: 1,
+        9: 1,
+        10: 0,
+        11: 0,
+        12: 0,
+        13: 0,
+        14: 0,
+        15: 0,
+        16: 1,
+        17: 1,
+        18: 0,
+        19: 1,
+        20: 0,
+        21: 0,
+        22: 1,
+        23: 1,
+        24: 1,
+        25: 0,
+        26: 1,
+        27: 0,
+        28: 1,
+        29: 0,
+        30: 0,
+        31: 1,
+        33: 1,
+        34: 0,
+        35: 1,
+        "Shared": 1,
+        "Private": 0
+      };
+      initEditAccommodation(1, "shared", 1, 1);
+    </script>
+    <!-- CREATE NEW ACCOMMODATION -->
+  </section>
+
+
+{% endblock %}

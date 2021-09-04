@@ -1,0 +1,108 @@
+{% extends '../listings/accommodations/accommodation-base.html' %}
+{% load static %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .recent-inquiries ul { margin: 16px 0 36px; padding: 0; list-style-type: none; }
+    .recent-inquiries ul li {border-bottom: 1px solid #EEEEEE; margin-bottom: 10px; padding-bottom: 10px; position: relative;}
+    .recent-inquiries ul li .mobile-link {display: block; position: absolute;width: 100%; height: 100%; top: 0;}
+    .recent-inquiries .customer-name {font-size: 14px; color: #1F2225;}
+    .recent-inquiries .label-container .label {margin-bottom: 2px; margin-right: 2px;}
+    .recent-inquiries .listing-title { color: #6B747B; font-size: 14px; }
+    .recent-inquiries .listing-title p { padding-bottom: 3px; margin-bottom: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 8px;}
+    .recent-inquiries .inquiry-meta { color: #979AA0; font-size: 12px; }
+    /* .recent-inquiries .inquiry-meta * {white-space: nowrap;} */
+    .recent-inquiries .inquiry-meta strong {color: #18bc9c;}
+    
+    @media screen and (min-width: 768px) {
+        .recent-inquiries ul {margin: 20px 0 80px 0;}
+        .recent-inquiries .customer-name {font-size: 16px; }
+        .recent-inquiries .listing-title { color: #6B747B; font-size: 15px;}
+        .recent-inquiries .listing-title p { margin-top: 0; }
+        .recent-inquiries .inquiry-meta { font-size: 14px; }
+        .recent-inquiries ul li .mobile-link {display: none;}
+    }
+    </style>
+<section class="admin-content  js-active-tab-name" data-tab-name="Bookings">
+    <header class="section-title">
+       <h1 class="catamaran">Bookings</h1>
+    </header>
+    <div class="panel panel-default">
+       <div class="panel-body -airy">
+          <div class="tab-content">
+             <div role="tabpanel" id="inquiries" class="tab-pane active">
+                <div class="recent-inquiries">
+                   <div class="row section-title">
+                      <div class="col-sm-12">
+                         <h3>Currently with you</h3>
+                         <small class="title-description">You have no bookings in progress at the moment. </small>
+                      </div>
+                   </div>
+                   <ul class="recent-inquiries--new">
+                   </ul>
+                   <div class="row section-title">
+                      <div class="col-sm-12">
+                         <h3>Upcoming bookings</h3>
+                      </div>
+                   </div>
+                   <ul class="recent-inquiries--new">
+                       {% for inquiry in inquiries %}
+                      <li>
+                         <div class="row">
+                            <div class="col-sm-3">
+                               <div class="row">
+                                  <div class="col-sm-12 col-xs-8 customer-name">
+                                     <strong>{{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}</strong>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-8 col-sm-7">
+                               <div class="row listing-title">
+                                  <div class="col-sm-12">
+                                     <p>{{ inquiry.listing.title }}</p>
+                                  </div>
+                               </div>
+                               <div class="row inquiry-meta">
+                                  <div class="col-sm-3">
+                                     <strong>{{ inquiry.total_price|floatformat:2|intcomma }} USD</strong>
+                                  </div>
+                                  <div class="col-sm-5">
+                                     Arrival: <strong>{{ inquiry.arrival_date }}</strong>
+                                  </div>
+                                  <div class="col-sm-4">
+                                     Departure: <strong>{{ inquiry.departure_date }}</strong>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-1 col-sm-2 hide-on-mobile">
+                               <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="btn btn-info pull-right" target="_blank" rel="noopener noreferrer
+                                  ">
+                               View conversation
+                               </a>
+                            </div>
+                         </div>
+                         <a href="{% url 'listings:inquiry_detail' inquiry.pk %}" class="mobile-link" target="_blank" rel="noopener noreferrer"></a>
+                      </li>
+                      {% endfor %}
+                   </ul>
+                   <div class="row section-title">
+                      <div class="col-sm-12">
+                         <h3>Past bookings</h3>
+                         <small class="title-description">You have no recent past bookings. </small>
+                      </div>
+                   </div>
+                   <ul class="recent-inquiries--new">
+                   </ul>
+                   <div class="row">
+                      <div class="col-xs-12">
+                         Please find the rest of your inquries and reservations in the <a style="font-weight: bold;" href="/4/organizers/23069/inquiries/">INQUIRY ARCHIVE</a> tab.
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends '../listings/accommodations/accommodation-base.html' %}
+{% load static %}
+{% load humanize %}
+{% load mathfilters %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .recent-inquiries ul { margin: 16px 0 36px; padding: 0; list-style-type: none; }
+    .recent-inquiries ul li {border-bottom: 1px solid #EEEEEE; margin-bottom: 10px; padding-bottom: 10px; position: relative;}
+    .recent-inquiries ul li .mobile-link {display: block; position: absolute;width: 100%; height: 100%; top: 0;}
+    .recent-inquiries .customer-name {font-size: 14px; color: #1F2225;}
+    .recent-inquiries .label-container .label {margin-bottom: 2px; margin-right: 2px;}
+    .recent-inquiries .listing-title { color: #6B747B; font-size: 14px; }
+    .recent-inquiries .listing-title p { padding-bottom: 3px; margin-bottom: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 8px;}
+    .recent-inquiries .inquiry-meta { color: #979AA0; font-size: 12px; }
+    /* .recent-inquiries .inquiry-meta * {white-space: nowrap;} */
+    .recent-inquiries .inquiry-meta strong {color: #18bc9c;}
+    
+    @media screen and (min-width: 768px) {
+        .recent-inquiries ul {margin: 20px 0 80px 0;}
+        .recent-inquiries .customer-name {font-size: 16px; }
+        .recent-inquiries .listing-title { color: #6B747B; font-size: 15px;}
+        .recent-inquiries .listing-title p { margin-top: 0; }
+        .recent-inquiries .inquiry-meta { font-size: 14px; }
+        .recent-inquiries ul li .mobile-link {display: none;}
+    }
+    </style>
+<section class="admin-content  js-active-tab-name" data-tab-name="Invoices">
+    <header class="section-title">
+       <h1 class="catamaran">Invoices</h1>
+    </header>
+    <div class="panel panel-default">
+       <div class="panel-body -airy">
+          <div class="vspace-sm">
+             <div class="table-responsive">
+                <div id="main_table_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                   <div class="row">
+                      <div class="col-sm-6">
+                         <div class="dataTables_length" id="main_table_length">
+                         </div>
+                      </div>
+                      <div class="col-sm-6"></div>
+                   </div>
+                   <div class="row">
+                      <div class="col-sm-12">
+                         <table id="main_table" class="table table-bordered table-striped dataTable no-footer" cellspacing="0" role="grid" aria-describedby="main_table_info" style="width: 1497px;">
+                            <thead>
+                               <tr role="row">
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 72px;">Invoice Date</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 115px;">Deposit Paid Date</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 20px;">Status</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 137px;">Customer</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 25px;">Currency</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Deposit Amount</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 100px;">Remaining Balance</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 91px;">Total Price</th>
+                                  <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 101px;">PDF</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                {% for inquiry in inquiries %}
+                                {% if forloop.counter|divisibleby:2 %}
+                                <tr role="row" class="even">
+                                {% else %}
+                                <tr role="row" class="odd">
+                                {% endif %}
+                                  <td>{{ inquiry.created_at }}</td>
+                                  <td>{{ inquiry.deposit_paid_date }}</td>
+                                  {% if inquiry.deposit_paid %}
+                                  <td>Paid</td>
+                                  {% else %}
+                                  <td>Pending</td>
+                                  {% endif %}
+                                  <td><a target='_blank' href="{% url 'listings:inquiry_detail' inquiry.pk %}">{{ inquiry.customer.first_name }} {{ inquiry.customer.last_name }}</a><br> from BookYogaRetreats</td>
+                                  <td>USD</td>
+                                  <td><span style="white-space: nowrap;">${{ inquiry.paid_amount|intcomma }} USD</span><br></td>
+                                  <td><span style="white-space: nowrap;">${{ inquiry.total_price|sub:inquiry.paid_amount }} USD</span><br></td>
+                                  <td><span style="white-space: nowrap;">${{ inquiry.total_price|intcomma }} USD</span><br></td>
+                                  <td><a href="{% url 'listings:render_pdf' inquiry.pk %}">{{ inquiry.invoice_no }} <i class="fa fa fa-file-pdf-o"></i></a></td>
+                               </tr>
+                               {% endfor %}
+                            </tbody>
+                         </table>
+                      </div>
+                   </div>
+                   <div class="row">
+                      <div class="col-sm-7">
+                         <div class="dataTables_paginate paging_simple_numbers" id="main_table_paginate">
+                            <ul class="pagination">
+                              {% if page_obj.has_previous %}
+                              <li class="paginate_button previous" id="main_table_previous"><a href="?page={{ page_obj.previous_page_number }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Previous</a></li>
+                              {% else %}
+                              <li class="paginate_button previous disabled" id="main_table_previous"><a href="#" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Previous</a></li>
+                              {% endif %}
+                              {% if page_obj.number|add:'-4' > 1 %}
+                              <li class="paginate_button "><a href="?page={{ page_obj.number|add:'-5' }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">&hellip;</a></li>
+                              {% endif %}
+                              {% for i in page_obj.paginator.page_range %}
+                                 {% if page_obj.number == i %}
+                                    <li class="paginate_button active"><a href="#" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">{{ i }}</a></li>
+                                 {% elif i > page_obj.number|add:'-5' and i < page_obj.number|add:'5' %}
+                                    <li class="paginate_button "><a href="?page={{ i }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">{{ i }}</a></li>
+                                 {% endif %}
+                              {% endfor %}
+                              {% if page_obj.paginator.num_pages > page_obj.number|add:'4' %}
+                              <li class="paginate_button "><a href="?page={{ page_obj.number|add:'5' }}&{{ get_copy.urlencode }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">&hellip;</a></li>
+                              {% endif %}
+                              {% if page_obj.has_next %}
+                              <li class="paginate_button next" id="main_table_next"><a href="?page={{ page_obj.next_page_number }}" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Next</a></li>
+                              {% else %}
+                              <li class="paginate_button next disabled" id="main_table_next"><a href="#" aria-controls="main_table" data-dt-idx="{{ i }}" tabindex="0">Next</a></li>
+                              {% endif %}
+                            </ul>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends '../accommodations/accommodation-base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<ol class="breadcrumb">
+    <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
+</ol>
+<header class="section-title">
+    <h1 class="catamaran">Facilities for {{ room.name }}</h1>
+    <small class="title-description">Upload high quality, bright and colorful photos of your listing - drag and drop to reorder</small>
+  </header>
+  <div class="panel panel-default">
+    <style>
+      #id_facilities {
+        columns: 4;
+      -webkit-columns: 4;
+      -moz-columns: 4;
+      list-style-type: none;
+    }
+    </style>
+<div class="panel-body -airy">
+    <form method="POST" class="has-fixed-actions">
+        {% csrf_token %}
+        {{ form.facilities }}
+      <div class="fixed-actions fixed-actions--bottom fixed-actions--right">
+        <a href="/4/organizers/23069/accommodation/" class="btn btn-danger">
+          <i class="fa fa-times"></i> Cancel </a>
+        <input type="submit" class="btn btn-success" value="Save facilities" />
+      </div>
+    </form>
+  </div>
+  </div>
+
+  
+  {% endblock %}

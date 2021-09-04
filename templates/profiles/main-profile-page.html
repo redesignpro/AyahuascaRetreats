@@ -1,0 +1,105 @@
+{% extends '../listings/accommodations/accommodation-base.html' %} 
+{% load static %} 
+{% load crispy_forms_tags %} 
+{% block content %} 
+<header class="section-title">
+    <div class="row">
+        <div class="col-xs-8">
+            <h1 class="catamaran">My Profile Page</h1>
+            <small class="title-description">Basic information to define your profile and public data.</small>
+        </div>
+        <div class="col-xs-4">
+            <a target="_blank" href="{% url 'listings:profile-detail' pk=request.user.get_profile.pk %}" class="btn btn-primary pull-right"> Preview</a>
+        </div>
+    </div>
+</header>
+<div id="organizer_identifier" data-organizer-id="23069">
+    <div id="organizer">
+      <div class="panel panel-default">
+        <div class="panel-body -airy">
+          <div role="tabpanel" id="profile" class="tab-pane" i-section="Business Profile">
+            <form enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="author_name" class="control-label">Business Name</label>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    {{ form.business_name|as_crispy_field }}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="website" class="control-label">Place ID</label>
+                    <div class="form-helper">
+                      <p>For accurate review retrieval, enter your business' place ID. <br><a target='_blank' href='https://googlemaps.github.io/js-samples/dist/samples/places-placeid-finder/index.html'>Find Place ID</a></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    {{ form.place_id|as_crispy_field }}
+                      <span>160</span>/160
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="website" class="control-label">Description</label>
+                    <div class="form-helper">
+                      <p>Please provide a short description of your organization like your company's mission and vision.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    {{ form.description|as_crispy_field }}
+                      <span>160</span>/160
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="row" id="profile-photo-preview">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label class="control-label">Featured Photo</label>
+                    <div class="form-helper">
+                      <p>This high quality picture will be shown on your organizer page and listing pages.</p>
+                      <p>
+                        <a target="_blank" href="https://www.bookyogaretreats.com/moksha-yoga-amazonica"> Preview your public page</a>
+                        <br>
+                        <br> Did you know you can cut your commission in half by sharing this page? <a href="/4/newsletter/23069/list/#discount">Read more</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <div>
+                      {% if request.user.get_profile.featured_photo %}
+                      <img id="profile-photo" style="vertical-align:top;min-height:120px;" src="{{ request.user.get_profile.featured_photo.url }}">
+                      {% endif %}
+                    </div>
+                    {{ form.featured_photo|as_crispy_field }}
+                </div>
+                </div>
+              </div>
+              <div class="pull-right" style="margin-top: 20px">
+                <input type="submit" class="btn btn-success save" value="Save">
+                <a id="cancel" class="btn btn-danger" href="/4/organizers/">
+                  <i class="fa fa-times"></i> Cancel </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
