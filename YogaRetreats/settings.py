@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-$)lr@wl68=lp7tvje-#h#g0u$d=q352uknnb$!ono+)#i85(l4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['ayahuasca-retreats.herokuapp.com']
 
@@ -88,8 +88,8 @@ ADDTHIS_SETTINGS = {
 }
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -191,7 +191,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-django_heroku.settings(locals())
+
 
 
 # Default primary key field type
@@ -221,3 +221,6 @@ CKEDITOR_CONFIGS = {
        'toolbar': 'full',
    }
 }
+
+
+django_heroku.settings(locals())
