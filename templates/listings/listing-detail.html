@@ -965,6 +965,7 @@ robertdenhollander"
                   </div>
                 </div>
               </div>
+              {% if listing.itinerary_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -985,6 +986,8 @@ robertdenhollander"
               </div>
                 </div>
               </div>
+              {% endif %}
+              {% if listing.excursion_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1003,6 +1006,7 @@ robertdenhollander"
                 {{ listing.excursion_info|safe}}
                 </div>
               </div>
+              {% endif %}
               <div id="instructors" class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1129,6 +1133,7 @@ robertdenhollander"
                   </div>
                 </div>
               </div>
+              {% if listing.food_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1152,7 +1157,9 @@ robertdenhollander"
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> 
+              {% endif %}
+              {% if listing.extra_payment_todo_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1171,6 +1178,8 @@ robertdenhollander"
                   {{ listing.extra_payment_todo_info|safe }}
                 </div>
               </div>
+              {% endif %}
+              {% if listing.spa_treament_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1189,6 +1198,8 @@ robertdenhollander"
                   {{ listing.spa_treament_info|safe }}
                 </div>
               </div>
+              {% endif %}
+              {% if listing.included_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1207,6 +1218,8 @@ robertdenhollander"
                 {{ listing.included_info|safe }}
                 </div>
               </div>
+              {% endif %}
+              {% if listing.not_included_info %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
@@ -1217,12 +1230,12 @@ robertdenhollander"
                   class="fas fa-caret-down collapser js-collapser collapsed"
                 ></i>
                 <h2 class="title js-collapser">
-                  <i class="far fa-times-circle"></i
-                  ><font style="vertical-align: inherit"
-                    ><font style="vertical-align: inherit">
+                  <i class="far fa-times-circle"></i>
+                  <font style="vertical-align: inherit">
+                    <font style="vertical-align: inherit">
                       What's not included
-                    </font></font
-                  >
+                    </font>
+                  </font>
                 </h2>
                 <div
                   data-attr="lp-whats-not-included"
@@ -1231,6 +1244,8 @@ robertdenhollander"
                   {{ listing.not_included_info|safe }}
                 </div>
               </div>
+              {% endif %}
+              {% if listing.airport_code %}
               <div
                 id="how_to_get_there"
                 class="section collapsible full-width-sm"
@@ -1286,6 +1301,7 @@ robertdenhollander"
                   </div>
                 </div>
               </div>
+              {% endif %}
               <div class="section collapsible full-width-sm">
                 <span
                   aria-hidden="true"
