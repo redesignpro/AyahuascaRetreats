@@ -2742,7 +2742,7 @@ class DashboardView(ListView):
         last_month_end = today
         monthly_total = Inquiry.objects.filter(Q(host_declined=False) & Q(deposit_paid=True) & Q(created_at__range=(last_month_start, last_month_end))).aggregate(total=Sum('commission_amount')).get('total')
         if not monthly_total:
-            monthly_total = 0
+            monthly_total = 1
         context['this_month'] = monthly_total
         # TODO: REMOVE THESE FOR TEST
         context['one'] = 520
@@ -2757,9 +2757,14 @@ class DashboardView(ListView):
         monthly_goal = goal_obj.monthly_goal
         yearly_goal = goal_obj.yearly_goal
         context['goal_obj'] = goal_obj
-        context['monthly'] = monthly_total / monthly_goal * 100
-        context['yearly'] = total / yearly_goal * 100
-
+        try:
+            context['monthly'] = monthly_total / monthly_goal * 100
+        except Exception as e:
+            context['monthly'] = 0
+        try:
+            context['yearly'] = total / yearly_goal * 100
+        except Exception as e:
+            context['yearly'] = 0
 
 
         listings = Listing.objects.filter(Q(is_verified=False) | Q(updated_after_approval=True))
