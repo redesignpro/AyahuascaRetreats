@@ -1045,6 +1045,7 @@ robertdenhollander"
                   {% endfor %}
                 </div>
               </div>
+              {% if listing.location_info %}
               <div
                 id="location-section"
                 class="section collapsible full-width-sm"
@@ -1069,6 +1070,7 @@ robertdenhollander"
                   </div>
                 </div>
               </div>
+              {% endif %}
               {% if listing.check_vegetarian %}
               <a
                 target="_blank"

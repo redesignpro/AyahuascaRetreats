@@ -382,7 +382,8 @@ class PersonalInfoModelForm(forms.ModelForm):
 class PaymentInfoModelForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ('supported_payments', 'payout_method', 'bank_country' ,'wise_account', 'bank_currency', 'bank_name', 'bank_routing_number', 'bank_account_number', 'beneficiary_name', 'bank_swift_number', 'bank_id', 'bank_branch_id')
+        fields = ('supported_payments',)
+        # fields = ('supported_payments', 'payout_method', 'bank_country' ,'wise_account', 'bank_currency', 'bank_name', 'bank_routing_number', 'bank_account_number', 'beneficiary_name', 'bank_swift_number', 'bank_id', 'bank_branch_id')
 
 
 

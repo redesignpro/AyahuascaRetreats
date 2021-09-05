@@ -833,7 +833,7 @@
             
                       <div class="col-lg-6 col-md-9 col-xs-12">
                         <div class="form-group">
-                          {% if listing.user_profile.staff %}
+                          {% if listing.user_profile.staff.all %}
                             {{ form.hosts }}
                           {% else %}
                           <div class="form-group">

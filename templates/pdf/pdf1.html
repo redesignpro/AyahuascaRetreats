@@ -188,12 +188,21 @@ table th {
             <div id="frame_col2">
                 <p class="col-titles">{{ inquiry.listing.user_profile.business_name }}</p>
                 <div>
+                    {% if inquiry.listing.user_profile.is_business %}
                     <p> {{ inquiry.listing.user_profile.business_name }}</p>
                     <p> {{ inquiry.listing.user_profile.owner_first_name }} {{ inquiry.listing.user_profile.owner_last_name }}</p>
                     <p> {{ inquiry.listing.user_profile.business_street_and_number }}</p>
                     <p> {{ inquiry.listing.user_profile.business_city }}, {{ inquiry.listing.user_profile.business_state }}</p>
                     <p> {{ inquiry.listing.user_profile.business_zip }}, {{ inquiry.listing.user_profile.business_country }}</p>
                     <p> {{ inquiry.listing.user_profile.registration_number }}</p>
+                    {% else %}
+                    <p> {{ inquiry.listing.user_profile.business_name }}</p>
+                    <p> {{ inquiry.listing.user_profile.personal_first_name }} {{ inquiry.listing.user_profile.personal_middle_name }} {{ inquiry.listing.user_profile.personal_last_name }}</p>
+                    <p> {{ inquiry.listing.user_profile.personal_street_and_number }}</p>
+                    <p> {{ inquiry.listing.user_profile.personal_city }}, {{ inquiry.listing.user_profile.personal_state }}</p>
+                    <p> {{ inquiry.listing.user_profile.personal_zip }}, {{ inquiry.listing.user_profile.personal_country }}</p>
+                    <p> {{ inquiry.listing.user_profile.personal_email }}</p>
+                    {% endif %}
                 </div>
             </div>
             <div class="table-container" style="overflow-x:auto; border-top: 1px solid black;" id="frame_services">
