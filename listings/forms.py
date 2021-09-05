@@ -33,6 +33,8 @@ class TitleModelForm(forms.ModelForm):
         kwargs['commit'] = False
         listing = Listing.objects.get(pk=self.instance.pk)
         old_fields = listing.updated_fields
+        if not old_fields:
+            old_fields = ''
         obj = super(TitleModelForm, self).save(*args, **kwargs)
         if self.has_changed():
             changed_fields = ' '.join(self.changed_data)
