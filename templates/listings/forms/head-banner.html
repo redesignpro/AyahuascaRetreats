@@ -7,20 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png?v=16">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png?v=16">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png?v=16">
-    <link rel="manifest" href="/static/favicon/site.webmanifest?v=16">
-    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg?v=16" color="#00c09c">
-    <link rel="shortcut icon" href="/static/favicon/favicon.ico?v=16">
     <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="/static/favicon/browserconfig.xml?v=16">
     <meta name="theme-color" content="#02BF9B">
     <link rel="stylesheet" type="text/css" href="{% static 'css/framework.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'vendors/dropzone/dist/dropzone.css' %}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'vendors/dropzone/dist/dropzone.css' %}" /> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.css" integrity="sha512-7uSoC3grlnRktCWoO4LjHMjotq8gf9XDFQerPuaph+cqR7JC9XKGdvN+UwZMC14aAaBDItdRj3DcSDs4kMWUgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'vendors/lightbox/lightbox2/src/css/lightbox.css' %}" />
-    <script type="text/javascript" src="{% static 'vendors/dropzone/dist/dropzone.js' %}"></script>
+    <!-- <script type="text/javascript" src="{% static 'vendors/dropzone/dist/dropzone.js' %}"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js" integrity="sha512-VQQXLthlZQO00P+uEu4mJ4G4OAgqTtKG1hri56kQY1DtdLeIqhKUp9W/lllDDu3uN3SnUNawpW7lBda8+dSi7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- <script>
       var CKEDITOR_BASEPATH = '/static/ckeditor/';
     </script> -->
@@ -135,7 +130,7 @@
     </script>
     <!-- unsubscribe? -->
     <!-- to check/implement : we have to clean up unsubscribed hashes? -->
-    <style type="text/css">
+    <!-- <style type="text/css">
       @font-face {
         font-family: "ebs-fonticon";
         font-display: swap;
@@ -149,7 +144,7 @@
           url('/static/fonts/ebs-fonticon/ebs-fonticon.ttf?v=hjrU9T9m8') format("truetype"),
           url('/static/fonts/ebs-fonticon/ebs-fonticon.svg?v=hjrU9T9m8#ebs-fonticon') format("svg");
       }
-    </style>
+    </style> -->
 
 
     <link
