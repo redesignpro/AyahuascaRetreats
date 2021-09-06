@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'addthis',
-    'mathfilters'
+    'mathfilters',
+    'storages',
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -264,4 +265,15 @@ LOGGING = {
 DEBUG_PROPAGATE_EXCEPTIONS = True
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-django_heroku.settings(locals())
+
+AWS_ACCESS_KEY_ID = 'AKIAYG27KKANU6XII6UZ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'ayahuasca-retreats-bucket'
+AWS_S3_SIGNATURE_VERSION = 's3v4'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+AWS_S3_VERIFY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_ADDRESSING_STYLE = "virtual"
+# django_heroku.settings(locals())
