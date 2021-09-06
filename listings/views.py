@@ -2928,3 +2928,17 @@ def delete_photo(request, pk):
 #TODO: UPLOAD AT LEAST 12 LISTINGS FROM 3 HOSTS
 
 #TODO: FIX 404 PAGES
+
+#TODO: ERROR 500 - 
+#I also faced the same problem so the best and quickest solution is to remove this line:
+
+# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+# and add this:
+
+# STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage' 
+
+# ALSO Make sure you aren't linking any non existing external file, like in my case I had few css files linked with my html but the actual files were deleted.
+
+# TRY REMOVING DROPZONE.JS AND USING A CDN
+# TRY TAKING DEBUG OFF AND LOOKING AT MISSING FILES
