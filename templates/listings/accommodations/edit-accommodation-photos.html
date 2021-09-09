@@ -1,6 +1,11 @@
 {% extends './accommodation-base.html' %}
 {% load static %}
 {% block content %}
+<script>
+  Dropzone.options.myAwesomeDropzone = {
+  maxFilesize: 1.5, // MB
+};
+</script>
 <ol class="breadcrumb">
   <li><a href="{% url 'listings:accommodation-list' %}">Accommodations</a></li>
 </ol>
@@ -140,7 +145,7 @@ border-radius: 5rem;
 </div>
 </div>
 
-            <form id="food-drinks-form" class="dropzone dz" method="POST" action="{% url 'listings:upload-accommodation-image' pk=acc_pk %}"> 
+            <form id="myAwesomeDropzone" class="dropzone dz" method="POST" action="{% url 'listings:upload-accommodation-image' pk=acc_pk %}"> 
               {% csrf_token %} 
           <!-- ------------------------------------------------ THINGS TO DO --------------------------------------- -->
                  <!-- Dropped photos pending, waiting for upload -->

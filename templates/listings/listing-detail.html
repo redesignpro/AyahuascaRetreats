@@ -3291,7 +3291,7 @@ robertdenhollander"
                   full-width-sm
                 "
               >
-                <a href="/muay-thai-battle-conquer-gym ">
+                <a href="{% url 'listings:profile-detail' pk=listing.user_profile.pk %}">
                   {% if listing.user_profile.featured_photo %}
                   <img
                     loading="lazy"
@@ -3305,7 +3305,7 @@ robertdenhollander"
                     Retreat organizer: <b>{{ listing.user_profile.business_name }}</b>
                     <hr />
                     <div class="listing-organizer-card__description">
-                      {{ listing.user_profile.description }}
+                      {{ listing.user_profile.description|truncatechars:200 }}
                     </div>
                     <section class="listing-organizer-card__properties">
                       <div>
@@ -6350,7 +6350,7 @@ robertdenhollander"
     </script>
     {% else %}
     <script type="text/javascript">
-
+      {% if first_date %}
       caleran("#caleran-ex-1", {
           inline: true,
           calendarCount: 1,
@@ -6374,6 +6374,31 @@ robertdenhollander"
             {% endfor %}
             ]
       });
+      {% else %}
+      caleran("#caleran-ex-1", {
+        inline: true,
+        calendarCount: 1,
+        onafterselect: function(caleran, startDate, endDate) {
+            document.getElementById("start_date").value = startDate.format('YYYY-MM-DD');
+            document.getElementById("end_date").value = endDate.format('YYYY-MM-DD');
+            startDateFixed = moment(startDate, "YYYY-MM-DD");
+            document.getElementById("listing_query_arrival_date").value = startDateFixed.format('YYYY-MM-DD');
+            document.getElementById("d-arrival-now").value = startDateFixed.format('YYYY-MM-DD');
+        },
+        minDate: moment().add(24, "months").endOf("month"),
+        maxDate: moment().add(24, "months").endOf("month"),
+        singleDate: true,
+        continuous: true,
+        disabledRanges: [
+          {% for date in unavailable %}
+          {
+            "start": moment("{{ date|date:'Y/m/d' }}", "YYYY-MM-DD"),
+            "end": moment("{{ date|date:'Y/m/d' }}", "YYYY-MM-DD")
+          },
+          {% endfor %}
+          ]
+    });
+      {% endif %}
     </script>
     {% endif %}
   </body>

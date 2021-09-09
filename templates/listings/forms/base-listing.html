@@ -405,6 +405,7 @@
                     }
                   </script>
                   <button id="listing-deactivate" data-listing-id="95462" class="btn btn-sm listing-header-btn btn-danger"> Deactivate </button>
+                  <a href="{% url 'listings:listing_detail' listing.pk listing.slug %}" id="listing-deactivate" data-listing-id="95462" class="btn btn-sm listing-header-btn btn-success"> Preview </a>
                 </div>
                 <div class="modal fade" id="new_recommendations_modal" tabindex="-1" role="dialog" aria-labelle>
                   <div class="modal-dialog" role="document">

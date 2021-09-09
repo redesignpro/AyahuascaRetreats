@@ -25,6 +25,9 @@ from django.utils import timezone
 from listings.utils import render_to_pdf
 import googlemaps
 import pandas as pd
+from io import BytesIO
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 
 
@@ -633,6 +636,7 @@ class UpdateArrivalView(UpdateView):
             self.object.is_verified = False
             self.object.updated_after_approval = True
             self.object.save()
+        form.save_m2m()
         return HttpResponseRedirect(self.request.path_info)
 
     def form_invalid(self, form):
@@ -738,6 +742,7 @@ class UpdateProgramView(UpdateView):
             self.object.is_verified = False
             self.object.updated_after_approval = True
             self.object.save()
+        form.save_m2m()
         return HttpResponseRedirect(self.request.path_info)
 
     def form_invalid(self, form):
@@ -985,6 +990,7 @@ class AccommodationImagesView(TemplateView):
 def delete_accommodation_image_view(request, pk):
     acc = AccommodationImages.objects.get(pk=pk)
     acc_pk = acc.accommodation_id
+    acc.image.delete(save=False)
     acc.delete()
     return HttpResponseRedirect(reverse('listings:edit-accommodation-photos', kwargs={'pk': acc_pk}))
 
@@ -992,8 +998,14 @@ def upload_accommodation_image_view(request, pk):
     if request.method == 'POST':
         accommodation_pk = pk
         my_file = request.FILES.get('file')
+        image = my_file
+        i = Image.open(image)
+        thumb_io = BytesIO()
+        i.save(thumb_io, format='JPEG', quality=30)
+        inmemory_uploaded_file = InMemoryUploadedFile(thumb_io, None, 'foo.jpeg', 
+                                                    'image/jpeg', thumb_io.tell(), None)
         my_acc = Accommodation.objects.get(pk=accommodation_pk)
-        AccommodationImages.objects.create(accommodation=my_acc, image=my_file)
+        AccommodationImages.objects.create(accommodation=my_acc, image=inmemory_uploaded_file)
     return HttpResponse('upload')
 
 class UpdateAccommodationFacilitiesView(UpdateView):
@@ -1371,6 +1383,11 @@ class InstructorSkillsView(TemplateView):
         context['instructor'] = staff_member
         context['skills'] = Skill.objects.filter(staff_member=staff_member)
         return context
+
+def delete_instructor(request, pk):
+    instructor = Staff.objects.get(pk=pk)
+    instructor.delete()
+    return HttpResponseRedirect(reverse('listings:instructor-list'))
 
 def add_skill_handler(request, pk):
     if request.method == 'POST':
@@ -2908,37 +2925,11 @@ def delete_photo(request, pk):
     return HttpResponseRedirect(reverse('listings:blog-images'))
 
 #TODO: TEST PAYMENTSUCCESSVIEW
-
 #TODO: FIX RANKING FORMULA AND SEARCH PARAMETERS ON MAIN PAGE
 #TODO: CHECK NOTES TO CHANGE.txt
 #TODO: WORK ON ICONS
-
-
-
-
-
-
-#TODO: FINISH TESTING
+#TODO: Accommodation edit views must redirect to accommodation list view since form submitting looks weird  
 #TODO: FIX EVERYTHING qs = Model.*** SINCE QS IS ALREADY THE MODEL! DON'T LOOKUP TWICE
-
-
-
-
-#TODO: FIX POSTGRESQL
 #TODO: UPLOAD AT LEAST 12 LISTINGS FROM 3 HOSTS
-
 #TODO: FIX 404 PAGES
-
-#TODO: ERROR 500 - 
-#I also faced the same problem so the best and quickest solution is to remove this line:
-
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-# and add this:
-
-# STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage' 
-
-# ALSO Make sure you aren't linking any non existing external file, like in my case I had few css files linked with my html but the actual files were deleted.
-
-# TRY REMOVING DROPZONE.JS AND USING A CDN
-# TRY TAKING DEBUG OFF AND LOOKING AT MISSING FILES
+#TODO: CRAETE NEW ACCOMMODATION PAGE HAS WRONG GO BACK URL

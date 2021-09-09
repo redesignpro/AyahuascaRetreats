@@ -60,6 +60,7 @@ urlpatterns = [
     path('listing/instructors/add', AddInstructorView.as_view(), name='add-instructor'),
     path('listing/instructors/edit/<int:pk>', UpdateInstructorView.as_view(), name='edit-instructor'),
     path('listing/instructors/edit/skills/<int:pk>', InstructorSkillsView.as_view(), name='edit-instructor-skills'),
+    path('listing/instructors/delete/<int:pk>', delete_instructor, name='delete-instructor'),
     path('add-instructor-skill/<int:pk>', add_skill_handler, name='add-skill'),
     path('remove-instructor-skill/<int:pk>/<int:skill_id>', remove_skill_handler, name='remove-skill'),
     path('listing/instructors/add/contact', AddContactView.as_view(), name='add-contact'),

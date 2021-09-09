@@ -73,6 +73,11 @@ class Staff(models.Model):
     masked = models.BooleanField(default=False)
     staff_notes = models.TextField(blank=True, null=True)
 
+    def delete(self):
+        self.portrait.delete(save=False)
+        self.featured_portrait.delete(save=False)
+        super().delete()
+
 
     def get_admin_url(self):
         content_type = ContentType.objects.get_for_model(self.__class__)
@@ -115,14 +120,18 @@ class Staff(models.Model):
     def save(self, *args, **kwargs):
         if not self.masked:
             dirty_image = self.portrait
-
+            dirty_portrait = self.featured_portrait
             # load image
             img = Image.open(dirty_image)
-
+            img2 = Image.open(dirty_portrait)
             # crop image 
             width, height = img.size
             x = (width - height)//2
             img_cropped = img.crop((x, 0, x+height, height))
+
+            width2, height2 = img2.size
+            x2 = (width2 - height2)//2
+            img2_cropped = img2.crop((x2, 0, x2+height2, height2))
 
             # create grayscale image with white circle (255) on black background (0)
             mask = Image.new('L', img_cropped.size)
@@ -133,10 +142,13 @@ class Staff(models.Model):
 
             # add mask as alpha channel
             img_cropped.putalpha(mask)
-
+            img_cropped = img_cropped.convert(mode='P', palette=Image.ADAPTIVE)
             blob = BytesIO()
-            img_cropped.save(blob, 'PNG')
-            self.portrait.save(self.first_name + '_imagenew_' + str(self.pk) + '.png', File(blob), save=False)
+            blob2 = BytesIO()
+            img_cropped.save(blob, 'PNG', optimize=True, quality=30)
+            img2_cropped.save(blob2, 'JPEG', optimize=True, quality=30)
+            self.portrait.save(self.first_name + '_imagenew_round.png', File(blob), save=False)
+            self.featured_portrait.save(self.first_name + '_imagenew_portrait.jpg', File(blob2), save=False)
         self.masked = False
         super().save(*args, **kwargs)
         

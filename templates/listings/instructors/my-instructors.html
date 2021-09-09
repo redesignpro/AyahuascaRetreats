@@ -63,7 +63,7 @@
                     <a class="edit-contact btn btn-warning" href="{% url 'listings:edit-instructor-skills' pk=instructor.id %}">
                         <i class="fa fa-star"></i>
                       </a>
-                    <a class="delete-contact btn btn-danger" href="/4/organizers/delete-contact/23069/87030/">
+                    <a class="delete-contact btn btn-danger" href="{% url 'listings:delete-instructor' pk=instructor.id %}">
                       <i class="fa fa-trash"></i>
                     </a>
                   </div>
