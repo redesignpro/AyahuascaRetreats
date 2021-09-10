@@ -311,6 +311,7 @@
                                 <td id="price_calculation_533484">{{ package.price_calculation|safe|truncatechars:30 }}</td>
                                 <td>
                                   <button class="btn btn-outline-primary btn-sm price-btn" data-target="#edit-price" data-toggle="modal" data-packageid='{{ package.id }}' data-packageprice='{{ package.default_price }}' data-packagecalc='{{ package.price_calculation }}'><i class="fa fa-tag"></i></button>
+                                  <button class="btn btn-outline-primary btn-sm price-btn" data-target="#edit-people" data-toggle="modal" data-packageid='{{ package.id }}'><i class="fa fa-users"></i></button>
                                   <a class="btn btn-outline-secondary btn-sm package-deleter" href="{% url 'listings:edit-calendar' pk=package.pk listing=listing.id %}">
                                     <i class="fa fa-edit"></i>
                                   </a>
@@ -339,6 +340,36 @@
                     }
                 });
               </script>
+                                          <div id="edit-people" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                                            <form method="POST" action="{% url 'listings:edit-people-in-package' listing.pk %}">
+                                              {% csrf_token %}
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                  </button>
+                                                  <input type='hidden' value='' name='package_id' id='package_id' />
+                                                  <h4 class="modal-title" id="edit-package-title">Edit Package</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <div class="row">
+                                                    <div class="form-group col-sm-12">
+                                                        <label for="numpeople" class="control-label">Number of People in Package</label>
+                                                        <input id="numpeople" value="1" name="numpeople" type="number" class="form-control">
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button id="send-package" type="submit" class="btn btn-success">
+                                                    <i class="fa fa-check"></i> Continue </button>
+                                                  <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                                    <i class="fa fa-times"></i> Cancel </button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </form>
+                                          </div>
                             <div id="edit-price" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
                               <form method="POST" action="">
                                 {% csrf_token %}
@@ -350,7 +381,7 @@
                                       <span aria-hidden="true">×</span>
                                     </button>
                                     <input type='hidden' value='' name='package_id' id='package_id' />
-                                    <h4 class="modal-title" id="edit-package-title">Create a new package</h4>
+                                    <h4 class="modal-title" id="edit-package-title">Edit Package</h4>
                                   </div>
                                   <div class="modal-body">
                                     <div class="row">

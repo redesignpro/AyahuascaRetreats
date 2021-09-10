@@ -1721,6 +1721,16 @@ def add_price(request, pk, listing):
         CustomPriceRequest.objects.create(package=package, start_date=start_date, end_date=end_date, max_slots=slots, price=price, is_available=True)
         return HttpResponseRedirect(reverse('listings:edit-calendar', kwargs={'pk': pk, 'listing': listing.pk}))
 
+def edit_people_in_package(request, listing):
+    if request.method == 'POST':
+        number_of_people = request.POST.get('numpeople')
+        package_id = request.POST.get('package_id')
+        package = ListingPackage.objects.get(pk=package_id)
+        package.number_of_people = number_of_people
+        package.save()
+    return HttpResponseRedirect(reverse('listings:packages-list', kwargs={'pk': listing}))
+
+
 def add_price_yearly(request, pk, listing):
     if request.method == 'POST':
         start_date = request.POST.get('start_date')
@@ -2933,3 +2943,5 @@ def delete_photo(request, pk):
 #TODO: UPLOAD AT LEAST 12 LISTINGS FROM 3 HOSTS
 #TODO: FIX 404 PAGES
 #TODO: CRAETE NEW ACCOMMODATION PAGE HAS WRONG GO BACK URL
+
+#TODO: IMPORTATNT - THE IMAGES ON LISTING FORMS PAGES AND THE MYPROFILE PAGE ARNT WORKING BECAUSE WE NEED TO .SAVE() for S3 - THERE IS NO MEDIA/PROFILES folder in s3

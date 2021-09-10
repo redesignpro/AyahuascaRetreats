@@ -68,16 +68,16 @@
               <br />
             </span>
             <span class="visible-phone">
-              <a href="/4/organizers/51525/support/" class="btn btn-link btn-sm">
+              <!-- <a href="/4/organizers/51525/support/" class="btn btn-link btn-sm">
                 <img src="./t-customer-service.svg" style="width: 24px" />
-              </a>
+              </a> -->
             </span>
           </div>
         </div>
         <ul class="mt-header__tabs js-tabs js-affix">
           <li class="mt-header__tabs__item dropdown ">
             <a href=# class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
-              <img src="./inquiries.svg" class="mt-header__tabs__item__link__icon"> Inquiries <span class="caret"></span>
+              <img src="{% static 'images/inquiries.svg' %}" class="mt-header__tabs__item__link__icon"> Inquiries <span class="caret"></span>
             </a>
             <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu" role="menu">
               <li>
@@ -101,7 +101,7 @@
           </li>
           <li class="mt-header__tabs__item dropdown ">
             <a href=# class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
-              <img src="./my-listings.svg" class="mt-header__tabs__item__link__icon"> My Listings <span class="caret"></span>
+              <img src="{% static 'images/my-listings.svg' %}" class="mt-header__tabs__item__link__icon"> My Listings <span class="caret"></span>
             </a>
             <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu" role="menu">
               <li>
@@ -120,7 +120,7 @@
           </li>
           <li class="mt-header__tabs__item dropdown">
             <a href=# class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
-              <img src="./my-profile.svg" class="mt-header__tabs__item__link__icon"> My Profile <span class="caret"></span>
+              <img src="{% static 'images/my-profile.svg' %}" class="mt-header__tabs__item__link__icon"> My Profile <span class="caret"></span>
             </a>
             <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu dropdown-menu--right-on-mobile" role="menu">
               <li>
@@ -138,20 +138,9 @@
               </li>
               <li role="separator" class="divider"></li>
               <li>
-                <a href="/4/organizers/edit/51525/account/">Account Settings</a>
-              </li>
-              <li>
-                <a href="/4/organizers/edit/51525/notification_preferences/">Notifications</a>
+                <a href="">Account Settings</a>
               </li>
             </ul>
-          </li>
-          <li class="mt-header__tabs__item ">
-            <a href="/4/newsletter/51525/list/" class="mt-header__tabs__item__link">
-              <img src="./marketing.svg" class="mt-header__tabs__item__link__icon"> Marketing </a>
-          </li>
-          <li class="mt-header__tabs__item hidden-phone">
-            <a href="/4/organizers/51525/support/" class="mt-header__tabs__item__link">
-              <img src="./support.svg" class="mt-header__tabs__item__link__icon"> Support </a>
           </li>
         </ul>
         <div class="js-affix-placeholder affix-placeholder"></div>
@@ -179,7 +168,7 @@
             <div class="listing-header__overlay"></div>
             <div class="listing-header__top">
               <a href="/4/organizers/51525/listings/">
-                <i class="ebs-icon-sec-arrow-left"></i>
+                <i class="fas fa-caret-left"></i>
               </a>
               <!-- <a href="/4/organizers/51525/listings/"><i class="ebs-icon-close"></i></a> -->
             </div>
@@ -196,7 +185,7 @@
                     </a>
                     <div class="popover fade top">
                       <a href="#" class="close js-tour-end">
-                        <i class="ebs-icon-close"></i>
+                        <i class="fas fa-caret-left"></i>
                       </a>
                       <div class="arrow"></div>
                       <div class="popover-content">
@@ -308,7 +297,7 @@
                       </div>
                     </div>
                   </div>
-                  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                  <!-- <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script> -->
                   <script>
                     if (document.getElementsByClassName("js-tour-step").length) {
                       var tourName = document.getElementsByClassName("js-tour-step")[0].getAttribute("data-tour-name"),
@@ -413,11 +402,11 @@
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">
-                            <img src="./recommendationsClose.svg" class="recommendations-modal__close__image" />
+                            <img src="{% static 'images/recommendationsClose.svg' %}" class="recommendations-modal__close__image" />
                           </span>
                         </button>
                         <div class="modal-header__content">
-                          <img src="./recommendations.svg" class="recommendations-modal__title__image" />
+                          <img src="{% static 'images/recommendations.svg' %}" class="recommendations-modal__title__image" />
                           <h3>Recommendations</h3>
                           <p>Comments from our editors and improvement points to boost your listing</p>
                         </div>
@@ -488,7 +477,7 @@
           <div class="col-sm-3 col-lg-2 js-listing-nav-left-column">
             <div class="listing-nav-container js-listing-nav-container">
               <a href="#" class="btn btn-default listing-nav-toggler js-listing-nav-toggler">
-                <i class="fa fa-bars"></i> Menu <i class="ebs-icon ebs-icon-t-caret-down"></i>
+                <i class="fa fa-bars"></i> Menu <i class="fa fa-bars"></i>
               </a>
               <div class="listing-nav ">
                 <p>Description</p>
@@ -670,7 +659,7 @@
           let uploadAttachment = wrapper.find('.upload-attachment');
           wrapper.find("input:file").each(function() {
             if (this.files && this.files.length > 0) {
-              listHtml.append(" < li file - id = '" + this.id + "' >< span class = 'file-name' > " + this.files[0].name + "(" + decorateSize(this.files[0].size) + ") < /span>< span class = 'close delete' >< i class = 'ebs-icon-close' >< /i>< /span>< /li>");
+              listHtml.append(" < li file - id = '" + this.id + "' >< span class = 'file-name' > " + this.files[0].name + "(" + decorateSize(this.files[0].size) + ") < /span>< span class = 'close delete' >< i class = 'fas fa-times' >< /i>< /span>< /li>");
               uploadAttachment.removeClass('hide');
             }
           })

@@ -8,14 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png?v=16" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png?v=16" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png?v=16" />
-    <link rel="manifest" href="/static/favicon/site.webmanifest?v=16" />
-    <link rel="mask-icon" href="/static/favicon/safari-pinned-tab.svg?v=16" color="#00c09c" />
-    <link rel="shortcut icon" href="/static/favicon/favicon.ico?v=16" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="msapplication-config" content="/static/favicon/browserconfig.xml?v=16" />
     <meta name="theme-color" content="#02BF9B" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/framework.css' %}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.css" integrity="sha512-7uSoC3grlnRktCWoO4LjHMjotq8gf9XDFQerPuaph+cqR7JC9XKGdvN+UwZMC14aAaBDItdRj3DcSDs4kMWUgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -110,7 +102,7 @@
       })();
     </script>
     <!-- End Inspectlet Embed Code -->
-    <script>
+    <!-- <script>
       (function(i, s, o, g, r, a, m) {
         i["GoogleAnalyticsObject"] = r;
         (i[r] = i[r] || function() {
@@ -124,63 +116,20 @@
       })(window, document, "script", "https://www.google-analytics.com/analytics.js", "ga");
       ga("create", "UA-104417812-1", "auto");
       ga("send", "pageview");
-    </script>
-    <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js"></script>
-    <script type="text/javascript">
+    </script> -->
+    <!-- <script src="https://cdn.ravenjs.com/3.17.0/raven.min.js"></script> -->
+    <!-- <script type="text/javascript">
       Raven.config("https://7b5597f845f945eabda6a1de5f4397fa@sentry.io/231798", {
         ignoreErrors: ["top.GLOBALS", /UET/, /Blocked a frame with origin/, /__firefox__/, "ResizeObserver loop limit exceeded", ],
         shouldSendCallback(data) {
           return !(/CriOS/i.test(navigator.userAgent) || /UCBrowser/i.test(navigator.userAgent) || /UBrowser/i.test(navigator.userAgent));
         },
       }).install();
-    </script>
-    <script src="https://clientcdn.pushengage.com/core/20226.js"></script>
-    <script>
-      var hash = "";
-      _pe.subscribe({}.pe, function(data) {
-        if (data.statuscode == 1) {
-          hash = data.subscriber_hash;
-          var formData = {
-            hash: hash,
-          };
-          var options = {
-            credentials: "same-origin",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(formData),
-          };
-          var url = "/organizers/23069/json/add_user_push_notification_hash";
-          fetch(url, options).then(function(response) {
-            if (response.status != 400 && response.status != 200) {
-              flash.error("Something went wrong.");
-              console.log(response);
-            } else {
-              return response.json();
-            }
-          });
-        }
-      });
-    </script>
+    </script> -->
+    <!-- <script src="https://clientcdn.pushengage.com/core/20226.js"></script> -->
+
     <!-- unsubscribe? -->
     <!-- to check/implement : we have to clean up unsubscribed hashes? -->
-    <style type="text/css">
-      @font-face {
-        font-family: "ebs-fonticon";
-        font-display: swap;
-        font-weight: 400;
-        font-style: normal;
-        src: local("ebs-fonticon"),
-          url("/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=hjrU9T9m8");
-        src: url("/static/fonts/ebs-fonticon/ebs-fonticon.eot?v=hjrU9T9m8#iefix") format("embedded-opentype"),
-          url("/static/fonts/ebs-fonticon/ebs-fonticon.woff2?v=hjrU9T9m8") format("woff2"),
-          url("/static/fonts/ebs-fonticon/ebs-fonticon.woff?v=hjrU9T9m8") format("woff"),
-          url("/static/fonts/ebs-fonticon/ebs-fonticon.ttf?v=hjrU9T9m8") format("truetype"),
-          url("/static/fonts/ebs-fonticon/ebs-fonticon.svg?v=hjrU9T9m8#ebs-fonticon") format("svg");
-      }
-    </style>
   </head>
   <body class="office" data-site-id="4">
     <nav class="navbar navbar-static-top navbar--mobile">
@@ -225,7 +174,7 @@
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               <span class="visible-xs">
-                <img src="./my-profile.svg" style="filter: brightness(0%); margin-top: -1px" /> &nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i>
+                <img src="{% static 'images/my-profile.svg' %}" style="filter: brightness(0%); margin-top: -1px" /> &nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i>
               </span>
               <span class="hidden-xs">My account &nbsp; <i class="fa fa-angle-down" aria-hidden="true"></i>
               </span>
@@ -319,22 +268,19 @@
           </div>
           <div class="mt-header__content__secondary">
             <span class="hidden-phone"> Account Manager: Alan Cepeda (BYR) <br />
-              <a href="/cdn-cgi/l/email-protection#e2838e838ca2808d8d899b8d85839087969087839691cc818d8f">
-                <span class="__cf_email__" data-cfemail="1d7c717c735d7f72727664727a7c6f78696f787c696e337e7270">[email&#160;protected]</span>
+              <a href="">
+                <span class="__cf_email__">[email&#160;protected]</span>
               </a>
               <br />
             </span>
             <span class="visible-phone">
-              <a href="/4/organizers/23069/support/" class="btn btn-link btn-sm">
-                <img src="./t-customer-service.svg" style="width: 24px" />
-              </a>
             </span>
           </div>
         </div>
         <ul class="mt-header__tabs js-tabs js-affix">
           <li class="mt-header__tabs__item dropdown">
             <a href="#" class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
-              <img src="./inquiries.svg" class="mt-header__tabs__item__link__icon" /> Inquiries <span class="caret"></span>
+              <img src="{% static 'images/my-profile.svg' %}" class="mt-header__tabs__item__link__icon" /> Inquiries <span class="caret"></span>
             </a>
             <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu" role="menu">
               <li>
@@ -358,7 +304,7 @@
           </li>
           <li class="mt-header__tabs__item dropdown">
             <a href="#" class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
-              <img src="./my-listings.svg" class="mt-header__tabs__item__link__icon" /> My Listings <span class="caret"></span>
+              <img src="{% static 'images/my-listings.svg' %}" class="mt-header__tabs__item__link__icon" /> My Listings <span class="caret"></span>
             </a>
             <ul class="mt-header__tabs__item__link__dropdown__menu dropdown-menu" role="menu">
               <li>
@@ -377,7 +323,7 @@
           </li>
           <li class="mt-header__tabs__item dropdown">
             <a href="#" class="mt-header__tabs__item__link dropdown-toggle" data-toggle="dropdown">
-              <img src="./my-profile.svg" class="mt-header__tabs__item__link__icon" /> My Profile <span class="caret"></span>
+              <img src="{% static 'images/my-profile.svg' %}" class="mt-header__tabs__item__link__icon" /> My Profile <span class="caret"></span>
             </a>
             <ul class="
                 mt-header__tabs__item__link__dropdown__menu
@@ -409,118 +355,6 @@
 
 
 {% endblock %}
-
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-      <script>
-        $(() => {
-          /* sorting accommodations by the numbner of listings it is assigned to */
-          var $accommodations = $(".js-accommodation-list");
-          $accommodations.html($accommodations.children(".js-accommodation--item").sort(function(a, b) {
-            return $(b).data("assingedlistings") > $(a).data("assingedlistings") ? 1 : -1;
-          }));
-          var currentTime = new Date();
-          $(".js-accommodation--item").each(function() {
-            var lastUpdateTime = new Date($(this).data("lastupdate"));
-            var diffInMinutes = Math.abs(Math.round(
-              (currentTime.getTime() - lastUpdateTime.getTime()) / 1000 / 60));
-            if (diffInMinutes < 60 * 24 * 3) {
-              /* unfold if accommodation was created less than three days ago */
-              $(this).removeClass("collapsed");
-              $(this).find(".js-expand-accommodation").hide();
-            }
-          });
-          $accommodations.removeClass("hidden");
-          $(".js-accommodation-list-loader").hide();
-          /* expanding room info */
-          $(".js-expand-room").on("click", function() {
-            $(this).removeClass("collapsed");
-          });
-          /* expanding unused accommodation info info */
-          $(".js-expand-accommodation").on("click", function() {
-            console.log(1);
-            $(this).hide().parents(".js-accommodation--item").removeClass("collapsed");
-          });
-          $(".room-deleter, .accommodation-deleter").click(function() {
-            var roomOrAccommodation = $(this).hasClass("accommodation-deleter") ? "accommodation" : "room";
-            if (confirm("Are you sure you want to delete this " + roomOrAccommodation + "?")) {
-              $.post($(this).data("url"), function(data) {}).done(function() {
-                location.reload();
-              });
-            }
-            return false;
-          });
-          $(".room-toggle").click(function() {
-            $.post($(this).data("url"), function(data) {}).done(function() {
-              location.reload();
-            });
-            return false;
-          });
-        });
-      </script>
-      <div class="organizer--feedback">
-        <div class="js-org-feedback-controls organizer--feedback-container">
-          <div class="js-feedback-initial organizer--feedback-form">
-            <label>Do you find this page and its features useful?</label>
-            <input class="btn btn-sm btn-outline-secondary" id="org_feedback_yes" type="button" value="Yes" onclick="submitOrgFeedback(1);" />
-            <input class="btn btn-sm btn-outline-secondary" id="org_feedback_no" type="button" value="No" onclick="submitOrgFeedback(0);" />
-          </div>
-          <div class="js-feedback-text organizer--feedback-message" style="display: none">
-            <label>How could we improve it for you?</label>
-            <textarea id="orgFeedbackMessageInput"></textarea>
-            <small>For immediate support we recommend getting in touch with your account manager, these messages are not constantly monitored.</small>
-            <input type="button" class="btn btn-outline-secondary" onclick="submitOrgFeedback(2);" value="Send feedback" />
-          </div>
-        </div>
-        <div hidden id="organizer_feedback_submitted" class="organizer--feedback-container">
-          <label>Your feedback was sent to our team, thanks for helping us making our tools match your expectations.</label>
-        </div>
-      </div>
-      <script>
-        function showOrgFeedbackMessage() {
-          $(".js-feedback-initial").hide();
-          $(".js-feedback-text").show();
-        }
-        var feedbackType = "undefined";
-
-        function submitOrgFeedback(state_) {
-          if (state_ == 0) {
-            feedbackType = "negative";
-          } else if (state_ == 1) {
-            feedbackType = "positive";
-          }
-          $.ajax({
-            url: "/organizer_feedback",
-            type: "POST",
-            dataType: "json",
-            contentType: "application/json",
-            data: JSON.stringify({
-              url: "https://office.tripaneer.com/4/organizers/23069/accommodation/",
-              state: state_,
-              type: feedbackType,
-              message: $("#orgFeedbackMessageInput").val(),
-            }),
-            statusCode: {
-              200: function(response) {
-                if (response.error != undefined) {
-                  flash.error(response.error);
-                  return;
-                }
-                if (state_ == 2) {
-                  $("#organizer_feedback_submitted").show();
-                  $(".js-org-feedback-controls").hide();
-                } else {
-                  showOrgFeedbackMessage();
-                }
-              },
-            },
-          });
-        }
-      </script>
-
-
-
-
     </div>
   </body>
 </html>

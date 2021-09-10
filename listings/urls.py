@@ -23,6 +23,7 @@ urlpatterns = [
     path('listing/update/booking-conditions-info/<int:pk>', UpdateBookingConditionsView.as_view(), name='booking-conditions-update'),
     path('listing/update/ranking-info/<int:pk>', UpdateRankingView.as_view(), name='ranking-update'),
     path('listing/update/package-info/<int:pk>', PackagesView.as_view(), name='packages-list'),
+    path('edit-people-in-package/<int:listing>', edit_people_in_package, name='edit-people-in-package'),
     path("packages/add-year-round/<int:listing>", add_year_round, name='add_year_round'),
     path("packages/remove-year-round/<int:listing>", remove_year_round, name='remove_year_round'),
     path('listing/update/package-info/availability/<int:pk>/<int:listing>', EditCalendarView.as_view(), name='edit-calendar'),
