@@ -23,7 +23,7 @@
                 </button>
                 <h4 class="modal-title">Create new listing</h4>
               </div>
-              <form id="create-new-listing-form" method="POST">
+              <form id="create-new-listing-form" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="modal-body">
                   <div class="row">
@@ -89,7 +89,7 @@
                           <div class="form-group">
                             <div class="input-group">
                               <a href="#" class="input-group-addon js-select-document">
-                                <i class="ebs-icon-t-document"></i> file </a>
+                                <i class="ebs-icon-t-document"></i> Bruchure </a>
                               <a href="#" class="remove-attachment-button js-remove-document hidden">
                                 <i class="ebs-icon-close"></i>
                               </a>

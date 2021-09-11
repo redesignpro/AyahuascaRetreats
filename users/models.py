@@ -210,6 +210,10 @@ class UserProfile(models.Model):
     bank_branch_id = models.CharField(max_length=250, null=True, blank=True)
 
 
+    def delete(self):
+        self.featured_photo.delete(save=False)
+        super().delete()
+
     def has_accommodations(self):
         return self.accommodation_set.all()
 

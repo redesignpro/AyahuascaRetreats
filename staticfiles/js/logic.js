@@ -252,19 +252,19 @@ function _typeof(a) {
       c = Math.max(document.documentElement.clientHeight, window.innerHeight);
     return !(0 > b.bottom || 0 <= b.top - c);
   }
-
-  function c(a) {
-    return a.replace(/[&<>"'\/]/g, function (a) {
-      return {
-        "&": "&amp;",
-        "<": "&lt;",
-        ">": "&gt;",
-        '"': "&quot;",
-        "'": "&#39;",
-        "/": "&#x2F;",
-      }[a];
-    });
-  }
+// removed
+  // function c(a) {
+  //   return a.replace(/[&<>"'\/]/g, function (a) {
+  //     return {
+  //       "&": "&amp;",
+  //       "<": "&lt;",
+  //       ">": "&gt;",
+  //       '"': "&quot;",
+  //       "'": "&#39;",
+  //       "/": "&#x2F;",
+  //     }[a];
+  //   });
+  // }
 
   function d(a) {
     return a && !!a.length;

@@ -21,7 +21,8 @@ import random
 import string
 from django.utils.timezone import make_aware
 from users.models import *
-
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 def random_string_generator(size=10, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for _ in range(size))
@@ -788,6 +789,9 @@ class AccommodationImages(models.Model):
     def __str__(self):
         return self.accommodation.name
 
+    def delete(self):
+        self.image.delete(save=False)
+        super().delete()
 
 
 # Rooms Models
@@ -878,7 +882,9 @@ class RoomImages(models.Model):
     def __str__(self):
         return self.room.accommodation.name + ' - ' + self.room.name + ' - Image #' + str(self.pk)
     
-
+    def delete(self):
+        self.image.delete(save=False)
+        super().delete()
 
 class BedConfig(models.Model):
 
@@ -1185,6 +1191,10 @@ class BlogPhotos(models.Model):
         request = self.context.get('request')
         return request.build_absolute_uri(self.image.url)
 
+    def delete(self):
+        self.image.delete(save=False)
+        super().delete()
+
 class Messages(models.Model):
     from_host = models.BooleanField(default=False)
     from_owner = models.BooleanField(default=False)
@@ -1232,8 +1242,25 @@ class ListingImage(models.Model):
     def __str__(self):
         return self.listing.title
 
+    def delete(self):
+        self.image.delete(save=False)
+        super().delete()
 
+    def save(self, *args, **kwargs):
+            # Opening the uploaded image
+            im = Image.open(self.image)
 
+            output = BytesIO()
+
+            # after modifications, save it to the output
+            im.save(output, format='JPEG', quality=30)
+            output.seek(0)
+
+            # change the imagefield value to be the newley modifed image value
+            self.image = InMemoryUploadedFile(output, 'ImageField', "%s.jpg" % self.image.name.split('.')[0], 'image/jpeg',
+                                            sys.getsizeof(output), None)
+
+            super(ListingImage, self).save()
 
 
 
@@ -1278,6 +1305,10 @@ class Author(models.Model):
     def get_full_name(self):
         return self.first_name + ' ' + self.last_name
 
+    def delete(self):
+        self.image.delete(save=False)
+        super().delete()    
+
 class PostCategory(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     
@@ -1295,6 +1326,10 @@ class Post(models.Model):
     created_at = models.DateField(auto_now_add=True)
     is_featured = models.BooleanField(default=False)
     slug = models.SlugField(blank=True)
+
+    def delete(self):
+        self.image.delete(save=False)
+        super().delete()
 
     def __str__(self):
         if self.title:
