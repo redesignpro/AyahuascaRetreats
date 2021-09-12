@@ -2948,3 +2948,5 @@ def delete_photo(request, pk):
 
 
 #TODO: FINISH 2 MORE ROOMS FOR LISTING #2
+
+#MOVE 2 GITHUB
